@@ -11,12 +11,15 @@ class Order(db.Model, UserMixin):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    owner_id = db.Column(db.Integer, nullable=False)
+    owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
     order_number = db.Column(db.String(40), nullable=False)
     pick_up_time = db.Column(db.DateTime(timezone=True), nullable=False)
     order_completed = db.Column(db.Boolean(), default=False)
     created_at = db.Column(db.DateTime(timezone=True), default=db.func.now())
     updated_at = db.Column(db.DateTime(timezone=True), default=db.func.now())
+
+    # one-to-many relationship with user
+    owner = db.relationship("User", back_populates="orders")
 
 
     def to_dict(self):

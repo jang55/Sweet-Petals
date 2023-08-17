@@ -18,6 +18,9 @@ class User(db.Model, UserMixin):
     created_at = db.Column(db.DateTime(timezone=True), default=db.func.now())
     updated_at = db.Column(db.DateTime(timezone=True), default=db.func.now())
 
+    # one-to-many relationship with orders
+    orders = db.relationship("Order", cascade="all,delete", back_populates="owner")
+
     @property
     def password(self):
         return self.hashed_password
