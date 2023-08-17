@@ -11,11 +11,14 @@ class Cheesecake(db.Model, UserMixin):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    order_id = db.Column(db.Integer, nullable=False)
+    order_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("orders.id")), nullable=False)
     flavor = db.Column(db.String(40), nullable=False)
     strawberries = db.Column(db.Boolean(), default=False)
     created_at = db.Column(db.DateTime(timezone=True), default=db.func.now())
     updated_at = db.Column(db.DateTime(timezone=True), default=db.func.now())
+
+    # one-to-many relationship with order
+    order = db.relationship("Order", back_populates="cheesecakes")
 
 
     def to_dict(self):

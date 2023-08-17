@@ -24,6 +24,15 @@ class Order(db.Model, UserMixin):
     # one-to-many relationship with reviews
     reviews = db.relationship("Review", back_populates="order")
 
+    # one-to-many relationship with cheesecakes
+    cheesecakes = db.relationship("Cheesecake", cascade="all,delete", back_populates="order")
+
+    # one-to-many relationship with cupcakes
+    cupcakes = db.relationship("Cupcake", cascade="all,delete", back_populates="order")
+
+    # one-to-many relationship with cookies
+    cookies = db.relationship("Cookie", cascade="all,delete", back_populates="order")
+
     def to_dict(self):
         return {
             'id': self.id,
