@@ -12,10 +12,6 @@ class Cupcake(db.Model, UserMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     order_id = db.Column(db.Integer, nullable=False)
-    color_one = db.Column(db.String(40), nullable=False)
-    color_two = db.Column(db.String(40))
-    color_three = db.Column(db.String(40))
-    style = db.Column(db.String(40), nullable=False)
     flavor = db.Column(db.String(40), nullable=False)
     created_at = db.Column(db.DateTime(timezone=True), default=db.func.now())
     updated_at = db.Column(db.DateTime(timezone=True), default=db.func.now())
@@ -25,10 +21,6 @@ class Cupcake(db.Model, UserMixin):
         return {
             'id': self.id,
             'order_id': self.order_id,
-            'color_one': self.color_one,
-            'color_two': self.color_two,
-            'color_three': self.color_three,
-            'style': self.style,
             'flavor': self.flavor,
             'created_at': self.created_at,
             'updated_at': self.updated_at
