@@ -22,3 +22,29 @@ def get_order_detail(id):
         return {"error": "Order not found"}, 404
 
     return order.to_dict()
+
+
+
+
+@order_routes.route("/orders", methods=["POST"])
+@login_required
+def create_order():
+
+
+
+
+@order_routes.route("", methods=[])
+@login_required
+
+
+
+@order_routes.route("", methods=[])
+@login_required
+@order_routes.route("", methods=[])
+@login_required
+@order_routes.route("", methods=[])
+@login_required
+@order_routes.route("", methods=[])
+@login_required
+@order_routes.route("", methods=[])
+@login_required
