@@ -31,7 +31,7 @@ class Review(db.Model, UserMixin):
             'user_id': self.user_id,
             'order_id': self.order_id,
             'review': self.review,
-            'star': self.star,
+            'stars': self.stars,
             'image_url': self.image_url,
             'created_at': self.created_at,
             'updated_at': self.updated_at
