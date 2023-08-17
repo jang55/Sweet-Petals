@@ -11,11 +11,15 @@ class Message(db.Model, UserMixin):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    admin_id = db.Column(db.Integer, nullable=False)
-    customer_id = db.Column(db.Integer, nullable=False)
+    admin_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
+    customer_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
     message = db.Column(db.String(), nullable=False)
     created_at = db.Column(db.DateTime(timezone=True), default=db.func.now())
     updated_at = db.Column(db.DateTime(timezone=True), default=db.func.now())
+
+    # many to many relationship between admin and customers
+    admin = db.relationship('User', foreign_keys=[admin_id], back_populates='admin_message')
+    customer = db.relationship('User', foreign_keys=[customer_id], back_populates='customer_messages')
 
 
     def to_dict(self):

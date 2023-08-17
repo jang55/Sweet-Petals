@@ -27,6 +27,10 @@ class User(db.Model, UserMixin):
     # one-to-many relationship with recipes
     recipes = db.relationship("Recipe", cascade="all,delete", back_populates="user")
 
+    # Many-to-Many relationship with messages
+    admin_messages = db.relationship('Message', foreign_keys=[Message.admin_id], back_populates='admin')
+    customer_messages = db.relationship('Message', foreign_keys=[Message.customer_id], back_populates='customer')
+
 
     @property
     def password(self):

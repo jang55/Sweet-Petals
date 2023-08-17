@@ -20,7 +20,7 @@ class Cupcake(db.Model, UserMixin):
     created_at = db.Column(db.DateTime(timezone=True), default=db.func.now())
     updated_at = db.Column(db.DateTime(timezone=True), default=db.func.now())
 
-    # one-to-many relationship with order
+    # this is the many side relationship with order
     order = db.relationship("Order", back_populates="cupcakes")
 
     def to_dict(self):
