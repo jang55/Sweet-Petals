@@ -21,6 +21,13 @@ class User(db.Model, UserMixin):
     # one-to-many relationship with orders
     orders = db.relationship("Order", cascade="all,delete", back_populates="owner")
 
+    # one-to-many relationship with reviews
+    reviews = db.relationship("Review", cascade="all,delete", back_populates="user")
+
+    # one-to-many relationship with recipes
+    recipes = db.relationship("Recipe", cascade="all,delete", back_populates="user")
+
+
     @property
     def password(self):
         return self.hashed_password

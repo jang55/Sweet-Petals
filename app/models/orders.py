@@ -21,6 +21,8 @@ class Order(db.Model, UserMixin):
     # one-to-many relationship with user
     owner = db.relationship("User", back_populates="orders")
 
+    # one-to-many relationship with reviews
+    reviews = db.relationship("Review", back_populates="order")
 
     def to_dict(self):
         return {

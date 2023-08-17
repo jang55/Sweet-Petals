@@ -18,6 +18,9 @@ class Recipe(db.Model, UserMixin):
     created_at = db.Column(db.DateTime(timezone=True), default=db.func.now())
     updated_at = db.Column(db.DateTime(timezone=True), default=db.func.now())
 
+    # one-to-many relationship with user
+    user = db.relationship("User", back_populates="recipes")
+
 
     def to_dict(self):
         return {
