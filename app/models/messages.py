@@ -18,7 +18,7 @@ class Message(db.Model, UserMixin):
     updated_at = db.Column(db.DateTime(timezone=True), default=db.func.now())
 
     # many to many relationship between admin and customers
-    admin = db.relationship('User', foreign_keys=[admin_id], back_populates='admin_message')
+    admin = db.relationship('User', foreign_keys=[admin_id], back_populates='admin_messages')
     customer = db.relationship('User', foreign_keys=[customer_id], back_populates='customer_messages')
 
 
