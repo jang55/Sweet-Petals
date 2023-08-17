@@ -22,12 +22,10 @@ class Recipe(db.Model, UserMixin):
     def to_dict(self):
         return {
             'id': self.id,
-            'order_id': self.order_id,
-            'color_one': self.color_one,
-            'color_two': self.color_two,
-            'color_three': self.color_three,
-            'style': self.style,
-            'flavor': self.flavor,
+            'user_id': self.user_id,
+            'title': self.title,
+            'ingredients': self.ingredients,
+            'description': self.description,
             'created_at': self.created_at,
             'updated_at': self.updated_at
         }
