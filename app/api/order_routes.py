@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import Order, Cupcake, Cookie, Cheesecake, db
-from app.forms import OrderForm, CupcakeForm, CheesecakeForm, CookieForm
+from app.models import Order, Cupcake, Cookie, Cheesecake, db, Review
+from app.forms import OrderForm, CupcakeForm, CheesecakeForm, CookieForm, ReviewForm
 import random
 from datetime import datetime
 from .helper_functions import generate_random_id
@@ -25,6 +25,9 @@ def validation_errors_to_error_messages(validation_errors):
         for error in validation_errors[field]:
             errorMessages[field] = error
     return errorMessages
+
+
+# *******************************************************
 
 
 # gets all the orders created
@@ -55,6 +58,11 @@ def get_all_orders():
 
 
 
+# *******************************************************
+
+
+
+
 # gets one single order details
 @order_routes.route('/<int:id>')
 @login_required
@@ -75,9 +83,11 @@ def get_order_detail(id):
     if order.cookies:
         current_order["Cookies"] = [cookie.to_dict() for cookie in order.cookies]
 
-
     return current_order
 
+
+
+# *******************************************************
 
 
 # creates a new order
@@ -102,6 +112,8 @@ def create_order():
     return {"errors": validation_errors_to_error_messages(form.errors)}, 400
 
 
+
+# *******************************************************
 
 
 # creates a new cupcake order to add to the order
@@ -129,6 +141,11 @@ def create_cupcake(id):
     return {"errors": validation_errors_to_error_messages(form.errors)}, 400
 
 
+
+# *******************************************************
+
+
+
 # creates a new cheesecake order to add to the order
 @order_routes.route("/<int:id>/cheesecakes", methods=["POST"])
 @login_required
@@ -152,6 +169,11 @@ def create_cheesecake(id):
 
 
 
+
+# *******************************************************
+
+
+
 # creates a new cookie order to add to the order
 @order_routes.route("/<int:id>/cookies", methods=["POST"])
 @login_required
@@ -171,6 +193,11 @@ def create_cookie(id):
 
         return new_cookie_order.to_dict()
     return {"errors": validation_errors_to_error_messages(form.errors)}, 400
+
+
+
+
+# *******************************************************
 
 
 
@@ -205,6 +232,11 @@ def edit_a_order(id):
 
 
 
+
+# *******************************************************
+
+
+
 # edit a cupcake order
 @order_routes.route("/<int:order_id>/cupcakes/<int:cupcake_id>", methods=["PUT", "PATCH"])
 @login_required
@@ -234,6 +266,8 @@ def edit_a_cupcake_order(order_id, cupcake_id):
 
 
 
+# *******************************************************
+
 
 # edit a cheesecake order
 @order_routes.route("/<int:order_id>/cheesecakes/<int:cheesecake_id>", methods=["PUT", "PATCH"])
@@ -261,6 +295,9 @@ def edit_a_cheesecake_order(order_id, cheesecake_id):
 
 
 
+# *******************************************************
+
+
 
 # edit a cookie order
 @order_routes.route("/<int:order_id>/cookies/<int:cookie_id>", methods=["PUT", "PATCH"])
@@ -286,6 +323,10 @@ def edit_a_cookie_order(order_id, cookie_id):
     return {"errors": validation_errors_to_error_messages(form.errors)}, 400
 
 
+
+# *******************************************************
+
+
 # delete an order
 @order_routes.route("/<int:id>", methods=["DELETE"])
 @login_required
@@ -302,6 +343,9 @@ def delete_a_order(id):
     db.session.commit()
     return jsonify({"message": "Order succesfully deleted!"}), 200
 
+
+
+# *******************************************************
 
 
 
@@ -323,6 +367,8 @@ def delete_a_cupcake(order_id, cupcake_id):
 
 
 
+# *******************************************************
+
 
 # delete an cheesecake order
 @order_routes.route("/<int:order_id>/cheesecakes/<int:cheesecake_id>", methods=["DELETE"])
@@ -342,6 +388,7 @@ def delete_a_cheesecake(order_id, cheesecake_id):
 
 
 
+# *******************************************************
 
 
 # delete an cookie order
@@ -363,3 +410,30 @@ def delete_a_cookie(order_id, cookie_id):
 
 
 
+# *******************************************************
+
+
+# creates a new review
+@order_routes.route("/<int:id>/reviews", methods=["POST"])
+@login_required
+def create_review(id):
+    form = ReviewForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+
+    if form.validate_on_submit():
+        data = form.data
+        new_review = Review(
+            user_id=current_user.get_id(),
+            order_id=id,
+            review=data["review"],
+            stars=data["stars"]
+        )
+        db.session.add(new_review)
+        db.session.commit()
+
+        return new_review.to_dict()
+    return {"errors": validation_errors_to_error_messages(form.errors)}, 400
+
+
+
+# *******************************************************

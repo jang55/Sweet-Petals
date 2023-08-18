@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify
 from flask_login import login_required, current_user
-from app.models import User, Order
+from app.models import User, Order, Review
 
 user_routes = Blueprint('users', __name__)
 
@@ -50,3 +50,12 @@ def get_all_current_user_orders():
         all_orders.append(current_order)
 
     return {"Orders": all_orders}
+
+
+
+# gets all the users reviews
+@user_routes.route('/reviews')
+@login_required
+def get_all_users_reviews():
+    reviews = Review.query.filter(Review.user_id == current_user.get_id()).all()
+    return {"Reviews": [review.to_dict() for review in reviews]}
