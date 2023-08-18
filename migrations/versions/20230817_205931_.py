@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: fb83f09b913c
+Revision ID: 7102d0de21cb
 Revises: 
-Create Date: 2023-08-16 22:08:13.808644
+Create Date: 2023-08-17 20:59:31.491539
 
 """
 from alembic import op
@@ -15,7 +15,7 @@ SCHEMA = os.environ.get("SCHEMA")
 
 
 # revision identifiers, used by Alembic.
-revision = 'fb83f09b913c'
+revision = '7102d0de21cb'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -70,6 +70,7 @@ def upgrade():
     )
     op.create_table('cheesecakes',
     sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('order_id', sa.Integer(), nullable=False),
     sa.Column('flavor', sa.String(length=40), nullable=False),
     sa.Column('strawberries', sa.Boolean(), nullable=True),
@@ -81,6 +82,7 @@ def upgrade():
     op.create_table('cookies',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('order_id', sa.Integer(), nullable=False),
+    sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('flavor', sa.String(length=40), nullable=False),
     sa.Column('created_at', sa.DateTime(timezone=True), nullable=True),
     sa.Column('updated_at', sa.DateTime(timezone=True), nullable=True),
@@ -90,6 +92,7 @@ def upgrade():
     op.create_table('cupcakes',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('order_id', sa.Integer(), nullable=False),
+    sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('color_one', sa.String(length=40), nullable=False),
     sa.Column('color_two', sa.String(length=40), nullable=True),
     sa.Column('color_three', sa.String(length=40), nullable=True),
@@ -123,7 +126,6 @@ def upgrade():
         op.execute(f"ALTER TABLE cheesecakes SET SCHEMA {SCHEMA};")
         op.execute(f"ALTER TABLE cupcakes SET SCHEMA {SCHEMA};")
         op.execute(f"ALTER TABLE cookies SET SCHEMA {SCHEMA};")
-
 
 
 def downgrade():

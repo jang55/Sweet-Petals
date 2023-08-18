@@ -5,7 +5,6 @@ from app.models import Cupcake
 
 
 class CupcakeForm(FlaskForm):
-    order_id = IntegerField('Order id', validators=[DataRequired()])
     color_one = StringField('Color one', validators=[DataRequired()])
     color_two = StringField('Color two')
     color_three = StringField('Color three')

@@ -12,6 +12,7 @@ class Cupcake(db.Model, UserMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     order_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("orders.id")), nullable=False)
+    user_id = db.Column(db.Integer, nullable=False)
     color_one = db.Column(db.String(40), nullable=False)
     color_two = db.Column(db.String(40))
     color_three = db.Column(db.String(40))
@@ -27,6 +28,7 @@ class Cupcake(db.Model, UserMixin):
         return {
             'id': self.id,
             'order_id': self.order_id,
+            'user_id': self.user_id,
             'color_one': self.color_one,
             'color_two': self.color_two,
             'color_three': self.color_three,

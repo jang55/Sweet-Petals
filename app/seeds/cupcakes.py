@@ -4,9 +4,9 @@ from sqlalchemy.sql import text
 
 
 def seed_cupcakes():
-    cupcake_one = Cupcake(order_id=1, color_one="red", color_two="white", color_three="blue", style="semi-floral", flavor="vanilla")
-    cupcake_two = Cupcake(order_id=7, color_one="green", color_two="white", style="floral", flavor="chocolate")
-    cupcake_three = Cupcake(order_id=8, color_one="purple", style="simple-swirl", flavor="lemon")
+    cupcake_one = Cupcake(order_id=1, user_id=1, color_one="red", color_two="white", color_three="blue", style="semi-floral", flavor="vanilla")
+    cupcake_two = Cupcake(order_id=7, user_id=8, color_one="green", color_two="white", style="floral", flavor="chocolate")
+    cupcake_three = Cupcake(order_id=8, user_id=1, color_one="purple", style="simple-swirl", flavor="lemon")
 
     db.session.add(cupcake_one)
     db.session.add(cupcake_two)

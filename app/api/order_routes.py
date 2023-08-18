@@ -1,8 +1,30 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import Order, Cupcake, Cookie, Cheesecake
+from app.models import Order, Cupcake, Cookie, Cheesecake, db
+from app.forms import OrderForm, CupcakeForm, CheesecakeForm, CookieForm
+import random
+from datetime import datetime
+from .helper_functions import generate_random_id
+
 
 order_routes = Blueprint('orders', __name__)
+
+# # creates validation errors format
+# def validation_errors_to_error_messages(validation_errors):
+#     print(validation_errors)
+#     errorMessages = []
+#     for field in validation_errors:
+#         for error in validation_errors[field]:
+#             errorMessages.append(f"{field} : {error}")
+#     return errorMessages
+
+# creates validation errors format
+def validation_errors_to_error_messages(validation_errors):
+    errorMessages = {}
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages[field] = error
+    return errorMessages
 
 
 # gets all the orders created
@@ -26,18 +48,119 @@ def get_order_detail(id):
 
 
 
-
-@order_routes.route("/orders", methods=["POST"])
+# creates a new order
+@order_routes.route("/", methods=["POST"])
 @login_required
 def create_order():
-    pass
+    form = OrderForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+    if form.validate_on_submit():
+        data = form.data
+        format ='%Y-%m-%d %H:%M'
+        new_order = Order(
+            owner_id=current_user.get_id(),
+            order_number=generate_random_id(), 
+            pick_up_time=datetime.strptime(data["pick_up_time"], format)
+        )
+        db.session.add(new_order)
+        db.session.commit()
+
+        return new_order.to_dict()
+    return {"errors": validation_errors_to_error_messages(form.errors)}, 400
 
 
 
 
+# creates a new cupcake order to add to the order
+@order_routes.route("/<int:id>/cupcakes", methods=["POST"])
+@login_required
+def create_cupcake(id):
+    form = CupcakeForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+    if form.validate_on_submit():
+        data = form.data
+        new_cupcake_order = Cupcake(
+            order_id=id,
+            user_id=current_user.get_id(),
+            color_one=data["color_one"],
+            color_two=data["color_two"],
+            color_three=data["color_three"],
+            style=data["style"],
+            flavor=data["flavor"],
+        )
+        db.session.add(new_cupcake_order)
+        db.session.commit()
 
-# @order_routes.route("", methods=[])
-# @login_required
+        return new_cupcake_order.to_dict()
+    return {"errors": validation_errors_to_error_messages(form.errors)}, 400
+
+
+# creates a new cheesecake order to add to the order
+@order_routes.route("/<int:id>/cheesecakes", methods=["POST"])
+@login_required
+def create_cheesecake(id):
+    form = CheesecakeForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+    if form.validate_on_submit():
+        data = form.data
+        new_cheesecake_order = Cheesecake(
+            order_id=id,
+            user_id=current_user.get_id(),
+            flavor=data["flavor"],
+            strawberries=data["strawberries"]
+        )
+        db.session.add(new_cheesecake_order)
+        db.session.commit()
+
+        return new_cheesecake_order.to_dict()
+    return {"errors": validation_errors_to_error_messages(form.errors)}, 400
+
+
+
+# creates a new cookie order to add to the order
+@order_routes.route("/<int:id>/cookies", methods=["POST"])
+@login_required
+def create_cookie(id):
+    form = CookieForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+    if form.validate_on_submit():
+        data = form.data
+        new_cookie_order = Cookie(
+            order_id=id,
+            user_id=current_user.get_id(),
+            flavor=data["flavor"],
+        )
+        db.session.add(new_cookie_order)
+        db.session.commit()
+
+        return new_cookie_order.to_dict()
+    return {"errors": validation_errors_to_error_messages(form.errors)}, 400
+
+
+
+@order_routes.route("/<int:id>", methods=["PUT", "PATCH"])
+@login_required
+def edit_a_order(id):
+    form = OrderForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+    order = Order.query.get(id)
+
+    if order is None:
+        return jsonify({"message": "Server not found"}), 404
+
+    if current_user.to_dict()["role"] == "admin":
+        pass
+    elif str(order.owner_id) != current_user.get_id():
+        return {"errors": [{"Unauthorized": "Unauthorized Action"}]}, 401
+
+    if form.validate_on_submit():
+        data = form.data
+        format ='%Y-%m-%d %H:%M'
+        order.pick_up_time=datetime.strptime(data["pick_up_time"], format)
+        order.order_completed = data["order_completed"]
+        db.session.commit()
+        return order.to_dict()
+    return {"errors": validation_errors_to_error_messages(form.errors)}, 400
 
 
 

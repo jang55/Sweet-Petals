@@ -5,5 +5,4 @@ from app.models import Cookie
 
 
 class CookieForm(FlaskForm):
-    order_id = IntegerField('Order id', validators=[DataRequired()])
     flavor = StringField('Flavor', validators=[DataRequired()])
