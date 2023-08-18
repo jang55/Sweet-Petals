@@ -56,6 +56,7 @@ def create_order():
     form["csrf_token"].data = request.cookies["csrf_token"]
     if form.validate_on_submit():
         data = form.data
+        # this is the format that the date is suppose to be in
         format ='%Y-%m-%d %H:%M'
         new_order = Order(
             owner_id=current_user.get_id(),
@@ -79,6 +80,7 @@ def create_cupcake(id):
     form["csrf_token"].data = request.cookies["csrf_token"]
     if form.validate_on_submit():
         data = form.data
+        # create the cupcake with this 
         new_cupcake_order = Cupcake(
             order_id=id,
             user_id=current_user.get_id(),
@@ -103,6 +105,7 @@ def create_cheesecake(id):
     form["csrf_token"].data = request.cookies["csrf_token"]
     if form.validate_on_submit():
         data = form.data
+        # create the cheesecake with this
         new_cheesecake_order = Cheesecake(
             order_id=id,
             user_id=current_user.get_id(),
@@ -125,6 +128,7 @@ def create_cookie(id):
     form["csrf_token"].data = request.cookies["csrf_token"]
     if form.validate_on_submit():
         data = form.data
+        # create the cookie with this
         new_cookie_order = Cookie(
             order_id=id,
             user_id=current_user.get_id(),
@@ -144,11 +148,14 @@ def create_cookie(id):
 def edit_a_order(id):
     form = OrderForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
+    # query for the order
     order = Order.query.get(id)
 
     if order is None:
         return jsonify({"message": "Order not found"}), 404
 
+    # all admins are allow to make changes to the order
+    # incase they want to adjust order completed to true
     if current_user.to_dict()["role"] == "admin":
         pass
     elif str(order.owner_id) != current_user.get_id():
@@ -156,6 +163,7 @@ def edit_a_order(id):
 
     if form.validate_on_submit():
         data = form.data
+        # format for the date
         format ='%Y-%m-%d %H:%M'
         order.pick_up_time=datetime.strptime(data["pick_up_time"], format)
         order.order_completed = data["order_completed"]
@@ -176,6 +184,8 @@ def edit_a_cupcake_order(order_id, cupcake_id):
     if cupcake is None:
         return jsonify({"message": "Cupcake not found"}), 404
 
+    # validates if the current user is the appropiate user for this order
+    # validates if the order is the correct order as well
     if str(cupcake.user_id) != current_user.get_id() or str(cupcake.order_id) != str(order_id):
         return {"errors": [{"Unauthorized": "Unauthorized Action"}]}, 401
 
@@ -190,6 +200,58 @@ def edit_a_cupcake_order(order_id, cupcake_id):
         return cupcake.to_dict()
     return {"errors": validation_errors_to_error_messages(form.errors)}, 400
 
+
+
+
+# edit a cheesecake order
+@order_routes.route("/<int:order_id>/cheesecakes/<int:cheesecake_id>", methods=["PUT", "PATCH"])
+@login_required
+def edit_a_cheesecake_order(order_id, cheesecake_id):
+    form = CheesecakeForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+    cheesecake = Cheesecake.query.get(cheesecake_id)
+
+    if cheesecake is None:
+        return jsonify({"message": "Cheesecake not found"}), 404
+
+    # validates if the current user is the appropiate user for this order
+    # validates if the order is the correct order as well
+    if str(cheesecake.user_id) != current_user.get_id() or str(cheesecake.order_id) != str(order_id):
+        return {"errors": [{"Unauthorized": "Unauthorized Action"}]}, 401
+
+    if form.validate_on_submit():
+        data = form.data
+        cheesecake.flavor=data["flavor"]
+        cheesecake.strawberries=data["strawberries"]
+        db.session.commit()
+        return cheesecake.to_dict()
+    return {"errors": validation_errors_to_error_messages(form.errors)}, 400
+
+
+
+
+# edit a cookie order
+@order_routes.route("/<int:order_id>/cookies/<int:cookie_id>", methods=["PUT", "PATCH"])
+@login_required
+def edit_a_cookie_order(order_id, cookie_id):
+    form = CookieForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+    cookie = Cookie.query.get(cookie_id)
+
+    if cookie is None:
+        return jsonify({"message": "Cookie not found"}), 404
+
+    # validates if the current user is the appropiate user for this order
+    # validates if the order is the correct order as well
+    if str(cookie.user_id) != current_user.get_id() or str(cookie.order_id) != str(order_id):
+        return {"errors": [{"Unauthorized": "Unauthorized Action"}]}, 401
+
+    if form.validate_on_submit():
+        data = form.data
+        cookie.flavor=data["flavor"]
+        db.session.commit()
+        return cookie.to_dict()
+    return {"errors": validation_errors_to_error_messages(form.errors)}, 400
 
 
 
