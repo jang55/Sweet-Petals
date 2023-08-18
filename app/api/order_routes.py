@@ -254,6 +254,23 @@ def edit_a_cookie_order(order_id, cookie_id):
     return {"errors": validation_errors_to_error_messages(form.errors)}, 400
 
 
+# delete an order
+@order_routes.route("/<int:id>", methods=["DELETE"])
+@login_required
+def delete_a_order(id):
+    order = Order.query.get(id)
+
+    if order is None:
+        return jsonify({"message": "Order not found"}), 404
+
+    if str(order.owner_id) != current_user.get_id():
+        return {"errors": [{"Unauthorized": "Unauthorized Action"}]}, 401
+
+    db.session.delete(order)
+    db.session.commit()
+    return jsonify({"message": "Order succesfully deleted!"}), 200
+
+
 
 # @order_routes.route("", methods=[])
 # @login_required
