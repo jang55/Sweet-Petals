@@ -32,7 +32,31 @@ def validation_errors_to_error_messages(validation_errors):
 @login_required
 def get_all_orders():
     orders = Order.query.all()
-    return {"Orders": [order.to_dict() for order in orders]}
+
+    all_orders = []
+
+# loop through each order and set the dessert order to each one
+    for order in orders:
+        current_order = order.to_dict()
+        cupcakes = None
+        cheesecakes = None
+        cookies = None
+
+        if order.cupcakes:
+            cupcakes = [cupcake.to_dict() for cupcake in order.cupcakes]
+            current_order["Cupcakes"] = cupcakes
+
+        if order.cheesecakes:
+            cheesecakes = [cheesecake.to_dict() for cheesecake in order.cheesecakes]
+            current_order["Cheesecakes"] = cheesecakes
+
+        if order.cookies:
+            cookies = [cookie.to_dict() for cookie in order.cookies]
+            current_order["Cookies"] = cookies
+
+        all_orders.append(current_order)
+
+    return {"Orders": all_orders}
 
 
 # gets one single order details
