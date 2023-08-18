@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify
-from flask_login import login_required
-from app.models import User
+from flask_login import login_required, current_user
+from app.models import User, Order
 
 user_routes = Blueprint('users', __name__)
 
@@ -23,3 +23,30 @@ def user(id):
     """
     user = User.query.get(id)
     return user.to_dict()
+
+
+
+# gets all the current user orders created
+@user_routes.route('/orders')
+@login_required
+def get_all_current_user_orders():
+    orders = Order.query.filter(Order.owner_id == current_user.get_id()).all()
+
+    all_orders = []
+
+# loop through each order and set the dessert order to each one
+    for order in orders:
+        current_order = order.to_dict()
+
+        if order.cupcakes:
+            current_order["Cupcakes"] = [cupcake.to_dict() for cupcake in order.cupcakes]
+
+        if order.cheesecakes:
+            current_order["Cheesecakes"] = [cheesecake.to_dict() for cheesecake in order.cheesecakes]
+
+        if order.cookies:
+            current_order["Cookies"] = [cookie.to_dict() for cookie in order.cookies]
+
+        all_orders.append(current_order)
+
+    return {"Orders": all_orders}

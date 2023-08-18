@@ -38,25 +38,21 @@ def get_all_orders():
 # loop through each order and set the dessert order to each one
     for order in orders:
         current_order = order.to_dict()
-        cupcakes = None
-        cheesecakes = None
-        cookies = None
 
         if order.cupcakes:
-            cupcakes = [cupcake.to_dict() for cupcake in order.cupcakes]
-            current_order["Cupcakes"] = cupcakes
+            current_order["Cupcakes"] = [cupcake.to_dict() for cupcake in order.cupcakes]
 
         if order.cheesecakes:
-            cheesecakes = [cheesecake.to_dict() for cheesecake in order.cheesecakes]
-            current_order["Cheesecakes"] = cheesecakes
+            current_order["Cheesecakes"] = [cheesecake.to_dict() for cheesecake in order.cheesecakes]
 
         if order.cookies:
-            cookies = [cookie.to_dict() for cookie in order.cookies]
-            current_order["Cookies"] = cookies
+            current_order["Cookies"] = [cookie.to_dict() for cookie in order.cookies]
 
         all_orders.append(current_order)
 
     return {"Orders": all_orders}
+
+
 
 
 # gets one single order details
@@ -68,7 +64,19 @@ def get_order_detail(id):
     if order is None:
         return {"error": "Order not found"}, 404
 
-    return order.to_dict()
+    current_order = order.to_dict()
+
+    if order.cupcakes:
+        current_order["Cupcakes"] = [cupcake.to_dict() for cupcake in order.cupcakes]
+
+    if order.cheesecakes:
+        current_order["Cheesecakes"] = [cheesecake.to_dict() for cheesecake in order.cheesecakes]
+
+    if order.cookies:
+        current_order["Cookies"] = [cookie.to_dict() for cookie in order.cookies]
+
+
+    return current_order
 
 
 
