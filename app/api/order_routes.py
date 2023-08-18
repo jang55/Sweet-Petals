@@ -272,13 +272,42 @@ def delete_a_order(id):
 
 
 
-# @order_routes.route("", methods=[])
-# @login_required
-# @order_routes.route("", methods=[])
-# @login_required
-# @order_routes.route("", methods=[])
-# @login_required
-# @order_routes.route("", methods=[])
-# @login_required
-# @order_routes.route("", methods=[])
-# @login_required
+
+# delete an cupcake order
+@order_routes.route("/<int:order_id>/cupcakes/<int:cupcake_id>", methods=["DELETE"])
+@login_required
+def delete_a_cupcake(order_id, cupcake_id):
+    cupcake = Cupcake.query.get(cupcake_id)
+
+    if cupcake is None:
+        return jsonify({"message": "Cupcake not found"}), 404
+
+    if str(cupcake.user_id) != current_user.get_id() or str(cupcake.order_id) != str(order_id):
+        return {"errors": [{"Unauthorized": "Unauthorized Action"}]}, 401
+
+    db.session.delete(cupcake)
+    db.session.commit()
+    return jsonify({"message": "Cupcake succesfully deleted!"}), 200
+
+
+
+
+# delete an cheesecake order
+@order_routes.route("/<int:order_id>/cheesecakes/<int:cheesecake_id>", methods=["DELETE"])
+@login_required
+def delete_a_cheesecake(order_id, cheesecake_id):
+    cheesecake = Cheesecake.query.get(cheesecake_id)
+
+    if cheesecake is None:
+        return jsonify({"message": "Cheesecake not found"}), 404
+
+    if str(cheesecake.user_id) != current_user.get_id() or str(cheesecake.order_id) != str(order_id):
+        return {"errors": [{"Unauthorized": "Unauthorized Action"}]}, 401
+
+    db.session.delete(cheesecake)
+    db.session.commit()
+    return jsonify({"message": "Cheesecake succesfully deleted!"}), 200
+
+
+
+
