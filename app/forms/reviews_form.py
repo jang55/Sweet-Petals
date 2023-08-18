@@ -10,8 +10,14 @@ def validate_stars(form, field):
     if stars > 5 or stars < 1:
         raise ValidationError("Star rating needs to be between 1 to 5.")
 
+def validate_reviews(form, field):
+    review = form.data["review"]
+
+    if len(review) > 300:
+        raise ValidationError("Review can not exceed 300 characters.")
+
 
 class ReviewForm(FlaskForm):
-    review = StringField('Review', validators=[DataRequired()])
+    review = StringField('Review', validators=[DataRequired(), validate_reviews])
     stars = IntegerField('Stars', validators=[DataRequired(), validate_stars])
     image_url = StringField('Image url')
