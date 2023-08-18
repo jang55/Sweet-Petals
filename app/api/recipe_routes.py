@@ -5,8 +5,8 @@ from app.models import Recipe
 recipe_routes = Blueprint('recipes', __name__)
 
 
-@recipe_routes.route('/')
-@login_required
+# @recipe_routes.route('/')
+# @login_required
 
 
 

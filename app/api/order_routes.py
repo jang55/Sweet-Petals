@@ -5,6 +5,7 @@ from app.models import Order, Cupcake, Cookie, Cheesecake
 order_routes = Blueprint('orders', __name__)
 
 
+# gets all the orders created
 @order_routes.route('/')
 @login_required
 def get_all_orders():
@@ -12,7 +13,7 @@ def get_all_orders():
     return {"Orders": [order.to_dict() for order in orders]}
 
 
-
+# gets one single order details
 @order_routes.route('/<int:id>')
 @login_required
 def get_order_detail(id):
@@ -29,22 +30,24 @@ def get_order_detail(id):
 @order_routes.route("/orders", methods=["POST"])
 @login_required
 def create_order():
+    pass
 
 
 
 
-@order_routes.route("", methods=[])
-@login_required
+
+# @order_routes.route("", methods=[])
+# @login_required
 
 
 
-@order_routes.route("", methods=[])
-@login_required
-@order_routes.route("", methods=[])
-@login_required
-@order_routes.route("", methods=[])
-@login_required
-@order_routes.route("", methods=[])
-@login_required
-@order_routes.route("", methods=[])
-@login_required
+# @order_routes.route("", methods=[])
+# @login_required
+# @order_routes.route("", methods=[])
+# @login_required
+# @order_routes.route("", methods=[])
+# @login_required
+# @order_routes.route("", methods=[])
+# @login_required
+# @order_routes.route("", methods=[])
+# @login_required

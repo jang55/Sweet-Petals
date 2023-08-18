@@ -5,8 +5,8 @@ from app.models import Review
 review_routes = Blueprint('reviews', __name__)
 
 
-@review_routes.route('/')
-@login_required
+# @review_routes.route('/')
+# @login_required
 
 
 
