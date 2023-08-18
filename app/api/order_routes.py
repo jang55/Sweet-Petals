@@ -311,3 +311,23 @@ def delete_a_cheesecake(order_id, cheesecake_id):
 
 
 
+
+# delete an cookie order
+@order_routes.route("/<int:order_id>/cookies/<int:cookie_id>", methods=["DELETE"])
+@login_required
+def delete_a_cookie(order_id, cookie_id):
+    cookie = Cookie.query.get(cookie_id)
+
+    if cookie is None:
+        return jsonify({"message": "Cookie not found"}), 404
+
+    if str(cookie.user_id) != current_user.get_id() or str(cookie.order_id) != str(order_id):
+        return {"errors": [{"Unauthorized": "Unauthorized Action"}]}, 401
+
+    db.session.delete(cookie)
+    db.session.commit()
+    return jsonify({"message": "Cookie succesfully deleted!"}), 200
+
+
+
+
