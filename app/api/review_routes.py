@@ -72,3 +72,25 @@ def edit_a_review(id):
         return review.to_dict()
     return {"errors": validation_errors_to_error_messages(form.errors)}, 400
 
+
+
+# *******************************************************
+
+
+# delete an review
+@review_routes.route("/<int:id>", methods=["DELETE"])
+@login_required
+def delete_a_review(id):
+    review = Review.query.get(id)
+
+    if review is None:
+        return jsonify({"message": "Review not found"}), 404
+
+    if str(review.user_id) != current_user.get_id():
+        return {"errors": [{"Unauthorized": "Unauthorized Action"}]}, 401
+
+    db.session.delete(review)
+    db.session.commit()
+    return jsonify({"message": "Review succesfully deleted!"}), 200
+
+
