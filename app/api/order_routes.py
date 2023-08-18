@@ -138,6 +138,7 @@ def create_cookie(id):
 
 
 
+# edit a order
 @order_routes.route("/<int:id>", methods=["PUT", "PATCH"])
 @login_required
 def edit_a_order(id):
@@ -146,7 +147,7 @@ def edit_a_order(id):
     order = Order.query.get(id)
 
     if order is None:
-        return jsonify({"message": "Server not found"}), 404
+        return jsonify({"message": "Order not found"}), 404
 
     if current_user.to_dict()["role"] == "admin":
         pass
@@ -161,6 +162,34 @@ def edit_a_order(id):
         db.session.commit()
         return order.to_dict()
     return {"errors": validation_errors_to_error_messages(form.errors)}, 400
+
+
+
+# edit a cupcake order
+@order_routes.route("/<int:order_id>/cupcakes/<int:cupcake_id>", methods=["PUT", "PATCH"])
+@login_required
+def edit_a_cupcake_order(order_id, cupcake_id):
+    form = CupcakeForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+    cupcake = Cupcake.query.get(cupcake_id)
+
+    if cupcake is None:
+        return jsonify({"message": "Cupcake not found"}), 404
+
+    if str(cupcake.user_id) != current_user.get_id() or str(cupcake.order_id) != str(order_id):
+        return {"errors": [{"Unauthorized": "Unauthorized Action"}]}, 401
+
+    if form.validate_on_submit():
+        data = form.data
+        cupcake.color_one=data["color_one"]
+        cupcake.color_two=data["color_two"]
+        cupcake.color_three=data["color_three"]
+        cupcake.style=data["style"]
+        cupcake.flavor=data["flavor"]
+        db.session.commit()
+        return cupcake.to_dict()
+    return {"errors": validation_errors_to_error_messages(form.errors)}, 400
+
 
 
 
