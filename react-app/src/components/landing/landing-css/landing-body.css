@@ -1,0 +1,20 @@
+.landing-main-body-container {
+    display: grid;
+    grid-template-rows: 0.3fr 1fr;
+    /* height: 1500px; */
+    width: 100%;
+}
+
+.landing-body-wrapper-1 {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    background-color: rgb(237, 227, 240);
+    display: flex;
+}
+
+
+.landing-body-wrapper-2 {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    /* background-color: rgb(81, 255, 0); */
+}

@@ -32,9 +32,9 @@ function Navigation({ isLoaded }){
                     <img src={logo} alt='cupcake-logo'className='nav-logo'/>
                 </NavLink>
                 <ul className='nav-list-wrapper'>
-                    <li>
+                    {/* <li>
                         <NavLink exact to="/">Home</NavLink>
-                    </li>
+                    </li> */}
                     <li>
                         <NavLink exact to="/reviews">Reviews</NavLink>
                     </li>

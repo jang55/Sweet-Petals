@@ -1,4 +1,4 @@
-.landing-outer-container {
+/* .landing-outer-container {
     width: 1200px;
     max-width: 1200px;
     background-color: red;
@@ -13,7 +13,7 @@
 .landing-container {
     display: grid;
     grid-template-columns: repeat(10, 1fr);
-}
+} */
 
 
 /* .landing-outer-container {
