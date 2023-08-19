@@ -4,7 +4,7 @@ import { Route, Switch } from "react-router-dom";
 // import SignupFormPage from "./components/SignupFormPage";
 // import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
-import Navigation from "./components/navigation/Navigation"
+import Navigation from "./components/navigation/Navigation";
 import LandingPage from "./components/landing/LandingPage";
 import Modal from "./utils/Modal";
 
