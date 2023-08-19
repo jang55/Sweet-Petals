@@ -8,35 +8,48 @@ function CupcakeForm() {
             <form>
                 <h1>Create a Cupcake!</h1>
                 <label >
-                    <p className="form-input-label">
+                    <p className="cupcake-input-label">
                         Color One <span>*</span>
                     </p>
-                    <input required>
+                    <input 
+                    required
+                    className="cupcake-input-field"
+                    >
                     </input>
                 </label>
                 <label >
-                    <p className="form-input-label">
+                    <p className="cupcake-input-label">
                         Color Two 
                     </p>
-                    <input></input>
+                    <input
+                    className="cupcake-input-field"
+                    ></input>
                 </label>
                 <label >
-                    <p className="form-input-label">
+                    <p className="cupcake-input-label">
                         Color Three
                     </p>
-                    <input></input>
+                    <input
+                    className="cupcake-input-field"
+                    ></input>
                 </label>
                 <label >
-                    <p className="form-input-label">
+                    <p className="cupcake-input-label">
                         style <span>*</span>
                     </p>
-                    <input></input>
+                    <input
+                    required
+                    className="cupcake-input-field"
+                    ></input>
                 </label>
                 <label >
-                    <p className="form-input-label">
+                    <p className="cupcake-input-label">
                         flavor <span>*</span>
                     </p>
-                    <input></input>
+                    <input
+                    required
+                    className="cupcake-input-field"
+                    ></input>
                 </label>
             </form>
         </div>

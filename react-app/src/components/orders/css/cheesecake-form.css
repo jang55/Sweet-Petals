@@ -1,10 +1,10 @@
-.cupcake-form-container {
+.cheesecake-form-container {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.cupcake-input-label {
+.cheesecake-input-label {
     color: #616b71;
     text-align: left;
     /* font-weight: bold; */
@@ -14,12 +14,12 @@
     letter-spacing: 0.02em;
 }
 
-.cupcake-input-label > span {
+.cheesecake-input-label > span {
     color: red;
     font-size: 10px;
 }
 
-.cupcake-input-field {
+.cheesecake-input-field {
     width: 95%;
     height: 20px;
     outline: none;
