@@ -1,0 +1,8 @@
+.create-order-container {
+    padding-top: 75px;
+}
+
+.c-order-buttons-wrap {
+    display: flex;
+    justify-content: center;
+}
