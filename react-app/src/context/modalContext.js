@@ -18,6 +18,11 @@ export const ModalProvider = ({ children }) => {
   };
 
 
+  const signupModal = () => {
+    setType("SIGNUP");
+  };
+
+
 
   return (
     <ModalContext.Provider
@@ -27,6 +32,7 @@ export const ModalProvider = ({ children }) => {
         type,
         setType,
         loginModal,
+        signupModal,
       }}
     >
       {children}

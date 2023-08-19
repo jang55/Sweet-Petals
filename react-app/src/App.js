@@ -6,6 +6,7 @@ import { Route, Switch } from "react-router-dom";
 import { authenticate } from "./store/session";
 import Navigation from "./components/navigation/Navigation"
 import LandingPage from "./components/landing/LandingPage";
+import Modal from "./utils/Modal";
 
 function App() {
   const dispatch = useDispatch();
@@ -16,6 +17,7 @@ function App() {
 
   return (
     <>
+      <Modal />
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>

@@ -40,7 +40,7 @@ function Navigation({ isLoaded }){
                         >
                             <RxHamburgerMenu className='nav-menu-button'/>
                             {openMenu && 
-                            <div className='nav-menu' onClick={e => e.preventDefault()}>
+                            <div className='nav-menu'>
                                 <div onClick={e => loginModal()}>Login</div>
                             </div>}
                         </li>

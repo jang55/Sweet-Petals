@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 
-import { ModalProvider} from "./context/modalContext";
+import { ModalProvider } from "./context/modalContext";
 import configureStore from "./store";
 import * as sessionActions from "./store/session";
 import App from "./App";
