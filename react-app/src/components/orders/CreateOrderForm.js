@@ -11,13 +11,22 @@ function CreateOrderForm() {
     return (
         <div className="create-order-container">
             <div className="c-order-buttons-wrap">
-                <button onClick={e => setCurrentForm("Cupcakes")} >
+                <button 
+                onClick={e => setCurrentForm("Cupcakes")} 
+                className={`c-order-buttons ${currentForm === "Cupcakes" ? "c-o-active-button" : ""}`}
+                >
                     Cupcakes
                 </button>
-                <button onClick={e => setCurrentForm("Cheesecakes")} >
+                <button 
+                onClick={e => setCurrentForm("Cheesecakes")} 
+                className={`c-order-buttons ${currentForm === "Cheesecakes" ? "c-o-active-button" : ""}`}
+                >
                     Cheesecakes
                 </button>
-                <button onClick={e => setCurrentForm("Cookies")} >
+                <button 
+                onClick={e => setCurrentForm("Cookies")} 
+                className={`c-order-buttons ${currentForm === "Cookies" ? "c-o-active-button" : ""}`}
+                >
                     Cookies
                 </button>
             </div>
