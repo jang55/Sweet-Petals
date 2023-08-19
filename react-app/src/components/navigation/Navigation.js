@@ -39,7 +39,7 @@ function Navigation({ isLoaded }){
                         <NavLink exact to="/reviews">Reviews</NavLink>
                     </li>
                     <li>
-                        <NavLink exact to="/reviews">Create Order</NavLink>
+                        <NavLink exact to="/orders/new">Create Order</NavLink>
                     </li>
                     
                     {isLoaded && (

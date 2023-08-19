@@ -1,12 +1,13 @@
 .nav-outer-container {
-    /* width: vw; */
+    width: 100vw;
     height: 70px;
     box-shadow: 0px 4px 5px 0px rgba(65, 63, 63, 0.1);
     margin-bottom: 9px;
     display: flex;
     flex-direction: row;
     justify-content: center;
-    /* position: absolute; */
+    position: absolute;
+    z-index: 20;
 }
 
 .nav-container {
