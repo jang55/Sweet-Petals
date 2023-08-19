@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
-import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { NavLink, useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 // import ProfileButton from './ProfileButton';
 import { RxHamburgerMenu } from "react-icons/rx";
 import { useState, useEffect } from 'react';
 import {ModalContext} from "../../context/modalContext"
 import logo from "../../images/SWEET_PETALS.png" 
+import { logout } from '../../store/session';
 import "./nav.css"
 
 
@@ -13,6 +14,8 @@ function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state.session.user);
     const { loginModal, signupModal, type } = useContext(ModalContext);
     const [openMenu, setOpenMenu] = useState(false);
+    const dispatch = useDispatch()
+    const history = useHistory();
 
     useEffect(() => {
         console.log(type)
@@ -20,6 +23,11 @@ function Navigation({ isLoaded }){
 
     const toggleMenu = () => {
         setOpenMenu(!openMenu);
+    }
+
+    const logoutHandler = async () => {
+        await dispatch(logout())
+        return history.push('/')
     }
 
 	return (
@@ -46,6 +54,7 @@ function Navigation({ isLoaded }){
                             <div className='nav-menu'>
                                 <div onClick={e => loginModal()}>Login</div>
                                 <div onClick={e => signupModal()}>Signup</div>
+                                <div onClick={logoutHandler}>Logout</div>
                             </div>}
                         </li>
                     )}
