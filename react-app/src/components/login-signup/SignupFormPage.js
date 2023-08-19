@@ -1,13 +1,14 @@
 import { Link, Redirect } from "react-router-dom";
-import { useState} from "react";
+import { useState, useContext} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { signUp } from "../../store/session";
+import { ModalContext } from "../../context/modalContext";
 import "./css/signup.css";
 
 function SignupFormPage() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
-
+  const { loginModal } = useContext(ModalContext)
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -108,12 +109,15 @@ function SignupFormPage() {
                   </div>
 
                   <p className="signup-term">
-                    By registering, you agree to Accord's Term of Agreement and
+                    By registering, you agree to Sweet Petals Term of Agreement and
                     Services
                   </p>
-                  <Link className="already-have-an-account" to="/login">
+                  <p 
+                  className="already-have-an-account" 
+                  onClick={e => loginModal(e)}
+                  >
                     Already have an account?
-                  </Link>
+                  </p>
                 </form>
               </div>
             </div>
