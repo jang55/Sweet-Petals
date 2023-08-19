@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../store/session";
+import { ModalContext } from "../../context/modalContext";
 import "./css/login.css"
 
 function LoginFormPage() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
-
+  const { signupModal } = useContext(ModalContext)
   const [credentials, setCredentials] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
@@ -28,6 +29,11 @@ function LoginFormPage() {
   const demoLogin = async (e) => {
     e.preventDefault();
     await dispatch(login("Demo", "password"));
+  };
+
+  const demoAdminLogin = async (e) => {
+    e.preventDefault();
+    await dispatch(login("DemoAdmin", "password"));
   };
 
   return (
@@ -98,21 +104,30 @@ function LoginFormPage() {
                   >
                     <p className="register-container">
                       Need an account?
-                      <span>
-                        <Link to="/signup" className="register-link">
+                      <span className="register-link" onClick={e => signupModal(e)}>
                           Register
-                        </Link>
                       </span>
                     </p>
-                    <p className="register-container">
-                      Login as
-                      <span
-                        className="demo-user-link"
-                        onClick={(e) => demoLogin(e)}
-                      >
-                        Demo User
-                      </span>
-                    </p>
+                    <div>
+                      <p className="register-container">
+                        Login as
+                        <span
+                          className="demo-user-link"
+                          onClick={(e) => demoLogin(e)}
+                        >
+                          Demo User
+                        </span>
+                      </p>
+                      <p className="register-container">
+                        Login as
+                        <span
+                          className="demo-user-link"
+                          onClick={(e) => demoAdminLogin(e)}
+                        >
+                          Demo Admin User
+                        </span>
+                      </p>
+                    </div>
                   </div>
                 </form>
               </div>

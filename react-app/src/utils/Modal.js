@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { ModalContext } from "../context/modalContext";
 import "./css/Modal.css";
 import LoginFormPage from "../components/login-signup/LoginFormPage";
+import SignupFormPage from "../components/login-signup/SignupFormPage";
 
 export default function Modal(props) {
     const { type, setType } = useContext(ModalContext);
@@ -31,7 +32,7 @@ export default function Modal(props) {
             <div className="closeButtonWrapper"></div>
             {/* EXAMPLE HOW TO SET UP A MODAL PAGE */}
             {type === "LOGIN" && <LoginFormPage />}
-            {type === "SIGNUP" && <LoginFormPage />}
+            {type === "SIGNUP" && <SignupFormPage />}
             </div>
             <div className="modalBackdrop" onClick={handleContent} />
         </div>

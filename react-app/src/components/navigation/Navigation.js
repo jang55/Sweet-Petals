@@ -11,7 +11,7 @@ import "./nav.css"
 
 function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state.session.user);
-    const { loginModal, type } = useContext(ModalContext);
+    const { loginModal, signupModal, type } = useContext(ModalContext);
     const [openMenu, setOpenMenu] = useState(false);
 
     useEffect(() => {
@@ -45,6 +45,7 @@ function Navigation({ isLoaded }){
                             {openMenu && 
                             <div className='nav-menu'>
                                 <div onClick={e => loginModal()}>Login</div>
+                                <div onClick={e => signupModal()}>Signup</div>
                             </div>}
                         </li>
                     )}

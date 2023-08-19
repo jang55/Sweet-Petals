@@ -1,4 +1,4 @@
-.login-container {
+.signup-container {
     overflow: hidden;
     display: flex;
     justify-content: center;
@@ -8,7 +8,7 @@
     border-radius: 5px;
 }
 
-.login-container-2 {
+.signup-container-2 {
     box-shadow:1px 1px 10px#1f2124;
     padding: 0px 10px;
     display: flex;
@@ -19,31 +19,31 @@
     margin: 10px;
 }
 
-.login-container-3 {
+.signup-container-3 {
     padding: 20px;
     width: 100%;
     text-align: center;
     margin-bottom: 8px;
     overflow: visible;
-    height: 350px;
+    height: fit-content;
     display: flex;
     align-items: center;
     flex-direction: column;
 }
 
-.login-container-4 {
+.signup-container-4 {
     display: flex;
     justify-content: center;
     width: inherit;
     max-width: 960px;
 }
 
-.login-container-5 {
+.signup-container-5 {
     width: 100%;
     max-width: 400px;
 }
 
-.login-container-6 {
+.signup-container-6 {
     display: flex;
     width: 100%;
     flex-direction: column;
@@ -51,22 +51,21 @@
 
 /*  ---------------------------------------- Form Section ---------------------------------------------*/
 
-.form-login-header {
-    font-size: 24px;
+.form-signup-header {
+    font-size: 22px;
     color: rgb(99, 91, 91);
-    margin-bottom: 0px;
+    margin-bottom: 10px;
 }
 
-.form-login-message {
+.form-signup-message {
     color: #616b71;
     font-size: 15px;
-    margin-top: 5px;
 }
 
 .form-input-label {
     color: #616b71;
     text-align: left;
-    /* font-weight: bold; */
+    font-weight: bold;
     text-transform: uppercase;
     font-size: 12px;
     margin-bottom: 8px;
@@ -90,15 +89,15 @@ font-size: 10px;
     color: rgb(0, 0, 0);
 }
 
-
-.login-button-container {
+.signup-button-container {
     margin-top: 12px;
     display: flex;
     justify-content: center;
     padding-top: 10px;
+
 }
 
-.login-button {
+.signup-button {
     border: none;
     width: 100%;
     border-radius: 3px;
@@ -108,7 +107,7 @@ font-size: 10px;
     padding: 12px;
 }
 
-.login-button:hover {
+.signup-button:hover {
     background-color: rgb(147, 36, 36);
     box-shadow: none;
     cursor: pointer;
@@ -120,43 +119,32 @@ font-size: 10px;
     font-size: 14px;
     color: #3d3d42;
 }
-.register-link {
+
+.already-have-an-account {
+    margin-top: 25px;
+    display: flex;
+    justify-items: flex-start;
+    font-size: 14px;
+    color: #3d3d42;
     text-decoration: none;
     color: #00aeff;
-    margin-left: 10px;
-    cursor: pointer;
 }
 
-.register-link:hover {
+.already-have-an-account:hover {
     text-decoration: underline;
 }
 
-/* ERRORS */
-
-.form-input-label-error {
-    color: #FA777C;
-    text-align: left;
-    font-weight: bold;
-    text-transform: uppercase;
+.signup-term {
+    color: #3d3d42;
     font-size: 12px;
-    margin-bottom: 8px;
-    letter-spacing: 0.02em;
+    text-align: left;
 }
 
-.form-input-label-error-span {
-    font-size: 10px;
-    font-style: italic;
-}
-
-/*  DEMO */
-
-.demo-user-link {
-    text-decoration: none;
-    color: #00aeff;
-    margin-left: 5px;
-    cursor: pointer;
-}
-
-.demo-user-link:hover {
-    text-decoration: underline;
+.display-name-message {
+    font-size: 12px;
+    text-align: left;
+    color: white;
+    user-select: none;
+    margin-top: 6px;
+    margin-bottom: 20px;
 }
