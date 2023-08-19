@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import { RxHamburgerMenu } from "react-icons/rx";
 import { useState, useEffect } from 'react';
 import {ModalContext} from "../../context/modalContext"
+import logo from "../../images/SWEET_PETALS.png" 
 import "./nav.css"
 
 
@@ -24,7 +25,9 @@ function Navigation({ isLoaded }){
 	return (
         <div className='nav-outer-container'>
             <div className='nav-container'>
-                <div>logo</div>
+                <NavLink to="/" >
+                    <img src={logo} alt='cupcake-logo'className='nav-logo'/>
+                </NavLink>
                 <ul className='nav-list-wrapper'>
                     <li>
                         <NavLink exact to="/">Home</NavLink>

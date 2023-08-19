@@ -2,14 +2,15 @@
 
 body {
     background-color: var(--main-bg-color);
-    display: flex;
-    justify-content: center;
-    height: 100%;
-    width: 100%;
+    /* display: flex;
+    justify-content: center; */
+    /* height: 100%; */
+    /* width: 100%; */
 }
 
 
 :root {
     --main-bg-color: rgb(239, 213, 217);
     --main-bg-button: rgb(235, 186, 194);
+    --main-input-color:  #e9d5b3;
 }
