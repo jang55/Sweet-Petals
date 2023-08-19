@@ -1,5 +1,28 @@
-.landing-container {
+.landing-outer-container {
     width: 1200px;
     max-width: 1200px;
     background-color: red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    height: 1500px;
 }
+
+
+.landing-container {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+}
+
+
+/* .landing-outer-container {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+} */
+
+
+/* .landing-container {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+}  */

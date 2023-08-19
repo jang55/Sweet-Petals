@@ -1,11 +1,10 @@
 import React, { useContext } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-// import ProfileButton from './ProfileButton';
 import { RxHamburgerMenu } from "react-icons/rx";
 import { useState, useEffect } from 'react';
 import {ModalContext} from "../../context/modalContext"
-import logo from "../../images/SWEET_PETALS.png" 
+import logo from "../../images/SWEET_PETALS_wlogo.png" 
 import { logout } from '../../store/session';
 import "./nav.css"
 
@@ -16,10 +15,6 @@ function Navigation({ isLoaded }){
     const [openMenu, setOpenMenu] = useState(false);
     const dispatch = useDispatch()
     const history = useHistory();
-
-    useEffect(() => {
-        console.log(type)
-    }, [type])
 
     const toggleMenu = () => {
         setOpenMenu(!openMenu);
@@ -33,7 +28,7 @@ function Navigation({ isLoaded }){
 	return (
         <div className='nav-outer-container'>
             <div className='nav-container'>
-                <NavLink to="/" >
+                <NavLink to="/" className="nav-logo-wrapper">
                     <img src={logo} alt='cupcake-logo'className='nav-logo'/>
                 </NavLink>
                 <ul className='nav-list-wrapper'>
@@ -41,7 +36,7 @@ function Navigation({ isLoaded }){
                         <NavLink exact to="/">Home</NavLink>
                     </li>
                     <li>
-                        <NavLink exact to="/">Reviews</NavLink>
+                        <NavLink exact to="/reviews">Reviews</NavLink>
                     </li>
                     
                     {isLoaded && (

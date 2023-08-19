@@ -4,7 +4,7 @@
     justify-content: center;
     align-items: center;
     height: 100%;
-    background-color: rgb(215, 131, 131);
+    background-color: rgb(243, 183, 183);
     border-radius: 5px;
 }
 
@@ -13,7 +13,7 @@
     padding: 0px 10px;
     display: flex;
     flex-direction: row;
-    background-color: var(--main-bg-color);
+    background-color: rgb(242, 238, 239);
     width: 450px;
     border-radius: 5px;
     margin: 10px;
