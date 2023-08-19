@@ -7,7 +7,6 @@
 .cookie-input-label {
     color: #616b71;
     text-align: left;
-    /* font-weight: bold; */
     text-transform: uppercase;
     font-size: 12px;
     margin-bottom: 8px;
@@ -21,7 +20,7 @@
 
 .cookie-input-field {
     width: 95%;
-    height: 20px;
+    /* height: 20px; */
     outline: none;
     padding: 10px;
     font-size: 17px;
