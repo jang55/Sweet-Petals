@@ -13,9 +13,9 @@ export const ModalProvider = ({ children }) => {
   //     setType("login");
   //   };
 
-  // const createServerModal = () => {
-  //   setType("Create Server");
-  // };
+  const loginModal = () => {
+    setType("LOGIN");
+  };
 
 
 
@@ -26,7 +26,7 @@ export const ModalProvider = ({ children }) => {
         setIsModalOpen,
         type,
         setType,
-        // toggleLogin,
+        loginModal,
       }}
     >
       {children}

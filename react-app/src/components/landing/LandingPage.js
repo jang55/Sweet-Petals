@@ -1,12 +1,14 @@
-
-
+import LandingBody from "./LandingBody"
+import LandingFooter from "./LandingFooter"
+import "./landing-css/landing-page.css"
 
 function LandingPage() {
 
 
     return (
-        <div>
-            LandingPage
+        <div className="landing-container">
+            <LandingBody />
+            <LandingFooter />
         </div>
     )
 }
