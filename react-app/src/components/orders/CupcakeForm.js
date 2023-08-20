@@ -23,10 +23,10 @@ function CupcakeForm() {
                       Color One <span>*</span>
                     </p>
                     <input value={hsvaToHex(hsva)} required className="cupcake-input-field"></input>
-                    {/* <Fragment>
-      <Wheel className="color-wheel-one" color={hsva} onChange={(color) => setHsva({ ...hsva, ...color.hsva })} />
-      <div style={{ width: '100%', height: 34, background: hsvaToHex(hsva) }}></div>
-    </Fragment> */}
+                    <Fragment>
+      {/* <Wheel style={{ width: "34px", height: "34px",}} className="color-wheel-one" color={hsva} onChange={(color) => setHsva({ ...hsva, ...color.hsva })} /> */}
+      {/* <div style={{ width: '100%', height: 34, background: hsvaToHex(hsva) }}></div> */}
+    </Fragment>
                   </label>
                   <label>
                     <p className="cupcake-input-label">Color Two</p>
