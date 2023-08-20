@@ -100,15 +100,17 @@ function LoginFormPage() {
                     </button>
                   </div>
                   <div
-                    style={{ display: "flex", justifyContent: "space-between" }}
+                    // style={{ display: "flex", justifyContent: "space-between" }}
                   >
-                    <p className="register-container">
-                      Need an account?
-                      <span className="register-link" onClick={e => signupModal(e)}>
-                          Register
-                      </span>
-                    </p>
-                    <div>
+                    <div className="reg-wrap-continer">
+                      <p >
+                        Don't have an account?
+                        <span className="register-link" onClick={e => signupModal(e)}>
+                            Sign Up
+                        </span>
+                      </p>
+                    </div>
+                    <div className="demo-login-wrapper">
                       <p className="register-container">
                         Login as
                         <span
