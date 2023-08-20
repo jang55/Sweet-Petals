@@ -3,7 +3,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 550px;
+    height: fit-content;
     background-color: var(--main-bg-button);
     border-radius: 5px;
     /* width: fit-content; */
@@ -27,7 +27,7 @@
     text-align: center;
     margin-bottom: 8px;
     overflow: visible;
-    height: 470px;
+    height: fit-content;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -49,6 +49,8 @@
     display: flex;
     width: 100%;
     flex-direction: column;
+    /* justify-content: center;
+    align-items: flex-start; */
 }
 
 /*  ---------------------------------------- Form Section ---------------------------------------------*/
@@ -75,7 +77,7 @@
     letter-spacing: 0.02em;
 }
 
-.cupcake-input-label > span {
+.required {
     color: red;
     font-size: 10px;
 }
@@ -131,6 +133,26 @@
 
 /* Color Wheels */
 
+.remove {
+    display: flex;
+    cursor: pointer;
+    font-size: 13px;
+    width: fit-content;
+}
+.remove:hover {
+    color: red;
+}
+
+.add-color {
+    display: flex;
+    margin-top: 15px;
+    cursor: pointer;
+    width: fit-content;
+}
+
+.add-color:hover {
+    color: #00aeff;
+}
 
 .cupcake-color-one {
     position: relative;
@@ -140,7 +162,7 @@
     /* width: 50px!important;
     height: 50px!important; */
     position: absolute!important;
-    top: -55px;
+    top: 1px;
     right: -10px;
     /* display: none!important; */
 }
@@ -173,7 +195,7 @@
     /* width: 50px!important;
     height: 50px!important; */
     position: absolute!important;
-    top: -55px;
+    top: -124px;
     right: -10px;
     /* display: none!important; */
 }
