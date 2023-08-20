@@ -3,6 +3,7 @@ import { useState } from "react";
 
 function CheesecakeForm() {
   const [strawberries, setStrawberries] = useState(false);
+  const [cheesecakeFlavor, setCheesecakeFlavor] = useState("")
 
   return (
     <div className="cheesecake-container">
@@ -17,10 +18,21 @@ function CheesecakeForm() {
                       <p className="cheesecake-input-label">
                         flavor <span>*</span>
                       </p>
-                      <input
+                      <select
                         className="cheesecake-input-field"
+                        defaultValue={""}
                         required
-                      ></input>
+                        onChange={(e) =>setCheesecakeFlavor(e.target.value)}
+                      >
+                        <option disabled value="">Select a flavor...</option>
+                        <option value="orinal">Original</option>
+                        <option value="matcha">Matcha</option>
+                        <option value="pumpkin">Pumpkin</option>
+                        <option value="brown sugar and chocolate swirl">Brown Sugar and Chocolate Swirl</option>
+                        <option value="double chocolate almond">Double Chocolate Almond</option>
+                        <option value="butter pecan">Butter Pecan</option>
+                        <option value="peanut butter cup">Peanut Butter Cup</option>
+                      </select>
                     </label>
                     <div className="cheese-straw-input-wrap">
                       <label>
