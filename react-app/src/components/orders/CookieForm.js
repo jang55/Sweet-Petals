@@ -27,7 +27,7 @@ function CookieForm() {
                         required
                       >
                         <option disabled value="">
-                          Select a Cookie...
+                          Select one...
                         </option>
                         <option value="chocolate chip">
                           Chocolate Chip (6)

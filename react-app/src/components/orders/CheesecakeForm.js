@@ -13,7 +13,7 @@ function CheesecakeForm() {
             <div className="cheesecake-container-5">
               <div className="cheesecake-container-6">
                   <form>
-                    <h1>Choose a Cheesecake flavor!</h1>
+                    <h1 className="cheesecake-h1">Choose a Cheesecake flavor!</h1>
                     <label>
                       <p className="cheesecake-input-label">
                         flavor <span>*</span>
@@ -24,7 +24,7 @@ function CheesecakeForm() {
                         required
                         onChange={(e) =>setCheesecakeFlavor(e.target.value)}
                       >
-                        <option disabled value="">Select a flavor...</option>
+                        <option disabled value="">Select one...</option>
                         <option value="orinal">Original</option>
                         <option value="matcha">Matcha</option>
                         <option value="pumpkin">Pumpkin</option>

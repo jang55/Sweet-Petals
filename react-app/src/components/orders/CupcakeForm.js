@@ -1,9 +1,14 @@
 import "./css/cupcake-form.css";
-import { useState } from "react";
+import { useState, Fragment } from "react";
+import Wheel from '@uiw/react-color-wheel';
+import { hsvaToHex } from '@uiw/color-convert';
 
 function CupcakeForm() {
   const [flavor, setFlavor] = useState("")
+  const [hsva, setHsva] = useState({ h: 214, s: 43, v: 90, a: 1 });
     
+  console.log(hsva)
+
   return (
     <div className="cupcake-container">
       <div className="cupcake-container-2">
@@ -17,7 +22,11 @@ function CupcakeForm() {
                     <p className="cupcake-input-label">
                       Color One <span>*</span>
                     </p>
-                    <input required className="cupcake-input-field"></input>
+                    <input value={hsvaToHex(hsva)} required className="cupcake-input-field"></input>
+                    {/* <Fragment>
+      <Wheel className="color-wheel-one" color={hsva} onChange={(color) => setHsva({ ...hsva, ...color.hsva })} />
+      <div style={{ width: '100%', height: 34, background: hsvaToHex(hsva) }}></div>
+    </Fragment> */}
                   </label>
                   <label>
                     <p className="cupcake-input-label">Color Two</p>
