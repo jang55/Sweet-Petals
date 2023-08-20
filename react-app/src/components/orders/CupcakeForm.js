@@ -93,7 +93,7 @@ function CupcakeForm() {
                           }
                         />
                       </Fragment>
-                      <span className="remove" onClick={e => setAddColorTwo(false)}>remove</span>
+                      {!addColorThree && <span className="remove" onClick={e => setAddColorTwo(false)}>remove</span>}
                     </label>
                   ) : (
                     <div
