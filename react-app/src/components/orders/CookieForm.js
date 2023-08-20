@@ -13,7 +13,7 @@ function CookieForm() {
             <div className="cookie-container-5">
               <div className="cookie-container-6">
                   <form>
-                    <h1>Choose a Cookie flavor!</h1>
+                    <h1 className="cookie-h1">Choose a Cookie flavor!</h1>
                     <label htmlFor="cookie-selection">
                       <p className="cookie-input-label">
                         flavor <span>*</span>

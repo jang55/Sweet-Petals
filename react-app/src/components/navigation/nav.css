@@ -25,6 +25,7 @@
     align-items: center;
     justify-content: space-between;
     width: 250px;
+    margin-right: 5px;
 }
 
 /* .nav-logo-wrapper {
