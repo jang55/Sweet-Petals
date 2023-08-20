@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { RxHamburgerMenu } from "react-icons/rx";
+import { RiShoppingCart2Line } from "react-icons/ri"
 import { useState, useEffect } from 'react';
 import {ModalContext} from "../../context/modalContext"
 import logo from "../../images/SWEET_PETALS_wlogo.png" 
@@ -56,6 +57,11 @@ function Navigation({ isLoaded }){
                             </div>}
                         </li>
                     )}
+                    <li className='nav-shopping-wrapper'>
+                        <RiShoppingCart2Line className='nav-shopping-cart' />
+                        <div className='nav-shopping-count'></div>
+                        <div className='nav-shopping-cart-items'></div>
+                    </li>
                 </ul>
             </div>
         </div>

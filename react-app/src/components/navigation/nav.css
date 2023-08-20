@@ -24,7 +24,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    width: 200px;
+    width: 250px;
 }
 
 /* .nav-logo-wrapper {
@@ -69,4 +69,35 @@
     position: absolute;
     top: 40px;
     z-index: 5;
+}
+
+.nav-shopping-wrapper {
+    position: relative;
+}
+
+.nav-shopping-cart {
+    font-size: 20px;
+    margin-top: 5px;
+}
+
+.nav-shopping-count {
+    width: 15px;
+    height: 15px;
+    background-color: red;
+    border-radius: 10px;
+    position: absolute;
+    top: -2px;
+    right: -5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.nav-shopping-cart-items {
+    font-size: 20px;
+    margin-top: 5px;
 }

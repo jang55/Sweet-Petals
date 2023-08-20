@@ -12,7 +12,7 @@ function CheesecakeForm() {
             <div className="cheesecake-container-5">
               <div className="cheesecake-container-6">
                   <form>
-                    <h1>Choose a Cheesecake!</h1>
+                    <h1>Choose a Cheesecake flavor!</h1>
                     <label>
                       <p className="cheesecake-input-label">
                         flavor <span>*</span>
