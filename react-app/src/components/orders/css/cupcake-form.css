@@ -30,3 +30,11 @@
     background-color: var(--main-input-color);
     color: rgb(0, 0, 0);
 }
+
+
+.cupcake-submit-button {
+    margin-top: 10px;
+    cursor: pointer;
+    background-color: var(--main-bg-button);
+    padding: 3px;
+}

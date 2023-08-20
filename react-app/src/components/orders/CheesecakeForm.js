@@ -1,33 +1,51 @@
-import "./css/cheesecake-form.css"
-
+import "./css/cheesecake-form.css";
+import { useState } from "react";
 
 function CheesecakeForm() {
+  const [strawberries, setStrawberries] = useState(false);
 
-    return (
-        <div className="cheesecake-form-container">
-            <form>
-                <h1>Choose a Cheesecake!</h1>
-                <label >
-                    <p className="cheesecake-input-label">
+  return (
+    <div className="cookie-container">
+      <div className="cookie-container-2">
+        <div className="cookie-container-3">
+          <div className="cookie-container-4">
+            <div className="cookie-container-5">
+              <div className="cookie-container-6">
+                  <form>
+                    <h1>Choose a Cheesecake!</h1>
+                    <label>
+                      <p className="cheesecake-input-label">
                         flavor <span>*</span>
-                    </p>
-                    <input
-                    className="cheesecake-input-field"
-                    required
-                    ></input>
-                </label>
-                <label >
-                    <p className="cheesecake-input-label">
-                        Strawberries? 
-                    </p>
-                    <input
-                    className="cheesecake-input-field"
-                    ></input>
-                </label>
-            </form>
+                      </p>
+                      <input
+                        className="cheesecake-input-field"
+                        required
+                      ></input>
+                    </label>
+                    <div className="cheese-straw-input-wrap">
+                      <label>
+                        <p className="cheesecake-input-label">Strawberries?</p>
+                      </label>
+                      <select
+                        className="cheesecake-select-field"
+                        value={strawberries}
+                        onChange={(e) => setStrawberries(e.target.value)}
+                      >
+                        <option value={false}>No</option>
+                        <option value={true}>Yes</option>
+                      </select>
+                    </div>
+                    <button className="cheesecake-submit-button" type="submit">
+                      Add to cart
+                    </button>
+                  </form>
+              </div>
+            </div>
+          </div>
         </div>
-    )
+      </div>
+    </div>
+  );
 }
 
-
-export default CheesecakeForm
+export default CheesecakeForm;
