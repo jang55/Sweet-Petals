@@ -1,3 +1,60 @@
+.cupcake-container {
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 550px;
+    background-color: var(--main-bg-button);
+    border-radius: 5px;
+    /* width: fit-content; */
+    margin: 50px auto;
+}
+
+.cupcake-container-2 {
+    box-shadow:1px 1px 10px#1f2124;
+    padding: 0px 10px;
+    display: flex;
+    flex-direction: row;
+    background-color: antiquewhite;
+    width: 450px;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+.cupcake-container-3 {
+    padding: 20px;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 8px;
+    overflow: visible;
+    height: 470px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.cupcake-container-4 {
+    display: flex;
+    justify-content: center;
+    width: inherit;
+    max-width: 960px;
+}
+
+.cupcake-container-5 {
+    width: 100%;
+    max-width: 400px;
+}
+
+.cupcake-container-6 {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+
+/*  ---------------------------------------- Form Section ---------------------------------------------*/
+
+
+
 .cupcake-form-container {
     display: flex;
     justify-content: center;
@@ -34,6 +91,13 @@
 
 .cupcake-submit-button {
     margin-top: 10px;
+    cursor: pointer;
+    background-color: var(--main-bg-button);
+    padding: 3px;
+}
+
+.cupcake-submit-button {
+    margin-top: 20px;
     cursor: pointer;
     background-color: var(--main-bg-button);
     padding: 3px;

@@ -5,12 +5,12 @@ function CheesecakeForm() {
   const [strawberries, setStrawberries] = useState(false);
 
   return (
-    <div className="cookie-container">
-      <div className="cookie-container-2">
-        <div className="cookie-container-3">
-          <div className="cookie-container-4">
-            <div className="cookie-container-5">
-              <div className="cookie-container-6">
+    <div className="cheesecake-container">
+      <div className="cheesecake-container-2">
+        <div className="cheesecake-container-3">
+          <div className="cheesecake-container-4">
+            <div className="cheesecake-container-5">
+              <div className="cheesecake-container-6">
                   <form>
                     <h1>Choose a Cheesecake!</h1>
                     <label>

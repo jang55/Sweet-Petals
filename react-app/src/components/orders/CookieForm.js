@@ -24,6 +24,7 @@ function CookieForm() {
                         onChange={(e) => setSelectedCookie(e.target.value)}
                         id="cookie-selection"
                         defaultValue=""
+                        required
                       >
                         <option disabled value="">
                           Select a Cookie...

@@ -3,9 +3,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
-    background-color: rgb(243, 183, 183);
+    height: 500px;
+    background-color: var(--main-bg-button);
     border-radius: 5px;
+    /* width: fit-content; */
+    margin: 50px auto;
 }
 
 .cookie-container-2 {
@@ -92,7 +94,7 @@
 } */
 
 .cookie-submit-button {
-    margin-top: 10px;
+    margin-top: 185px;
     cursor: pointer;
     background-color: var(--main-bg-button);
     padding: 3px;
