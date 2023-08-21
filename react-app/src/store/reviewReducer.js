@@ -44,31 +44,61 @@ const updateReviewActions = (review) => ({
 // ***************************
 
 const deleteReviewActions = (review) => ({
-  type: UPDATE_REVIEW,
+  type: DELETE_REVIEW,
   payload: review,
 });
 
 // ******************** Thunk Creators *************************************
 
+// check to see if this is calling the right url path because of the following "/" at the end
 export const getAllReviewsThunk = () => async (dispatch) => {
-  const response = await fetch("/api/auth/", {
+  const response = await fetch("/api/reviews/", {
     headers: {
       "Content-Type": "application/json",
     },
   });
+
   if (response.ok) {
     const data = await response.json();
-    if (data.errors) {
-      return;
-    }
-
-    dispatch(setUser(data));
+    dispatch(getAllReviewsActions(data));
+    return data;
   }
 };
 
 // ***************************
 
+export const getAllUserReviewsThunk = () => async (dispatch) => {
+  const response = await fetch("/api/users/reviews", {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(getAllUsersReviewsActions(data.Reviews));
+    return data;
+  }
+};
+
 // ***************************
+
+export const getReviewThunk = (reviewId) => async (dispatch) => {
+  const response = await fetch(`/api/reviews/${reviewId}`, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(getReviewActions(data));
+    return data;
+  } else {
+    const err = await response.json();
+    return err;
+  }
+};
 
 // ***************************
 
@@ -79,8 +109,18 @@ const initialState = {};
 export default function reviewReducer(state = initialState, action) {
   const newState = {};
   switch (action.type) {
-    // case SET_USER:
-    //   return { user: action.payload };
+    case GET_ALL_REVIEWS:
+      const reviews = action.payload;
+      reviews.forEach((review) => {
+        newState[review.id] = review;
+      });
+      return newState;
+    case GET_USER_REVIEWS:
+      const userReviews = action.payload;
+      userReviews.forEach((review) => {
+        newState[review.id] = review;
+      });
+      return newState;
     // case REMOVE_USER:
     //   return { user: null };
     default:
