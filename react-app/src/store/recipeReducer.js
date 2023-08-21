@@ -43,8 +43,8 @@ const deleteRecipeActions = (recipe) => ({
 // ******************** Thunk Creators *************************************
 
 // check to see if this is calling the right url path because of the following "/" at the end
-export const getAllReviewsThunk = () => async (dispatch) => {
-  const response = await fetch("/api/reviews/", {
+export const getAllRecipesThunk = () => async (dispatch) => {
+  const response = await fetch("/api/recipes/", {
     headers: {
       "Content-Type": "application/json",
     },
@@ -52,15 +52,15 @@ export const getAllReviewsThunk = () => async (dispatch) => {
 
   if (response.ok) {
     const data = await response.json();
-    dispatch(getAllReviewsActions(data));
+    dispatch(getAllRecipesActions(data.Recipes));
     return data;
   }
 };
 
 // ***************************
 
-export const getAllUserReviewsThunk = () => async (dispatch) => {
-  const response = await fetch("/api/users/reviews", {
+export const getRecipeThunk = (recipeId) => async (dispatch) => {
+  const response = await fetch(`/api/recipes/${recipeId}`, {
     headers: {
       "Content-Type": "application/json",
     },
@@ -68,23 +68,7 @@ export const getAllUserReviewsThunk = () => async (dispatch) => {
 
   if (response.ok) {
     const data = await response.json();
-    dispatch(getAllUsersReviewsActions(data.Reviews));
-    return data;
-  }
-};
-
-// ***************************
-
-export const getReviewThunk = (reviewId) => async (dispatch) => {
-  const response = await fetch(`/api/reviews/${reviewId}`, {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-
-  if (response.ok) {
-    const data = await response.json();
-    dispatch(getReviewActions(data));
+    dispatch(getRecipeActions(data));
     return data;
   } else {
     const err = await response.json();
@@ -94,70 +78,70 @@ export const getReviewThunk = (reviewId) => async (dispatch) => {
 
 // ***************************
 
-export const createReviewThunk =
-  (orderId, review, stars) => async (dispatch) => {
-    const response = await fetch(`/api/orders/${orderId}/reviews`, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        review,
-        stars,
-      }),
-    });
+// export const createReviewThunk =
+//   (orderId, review, stars) => async (dispatch) => {
+//     const response = await fetch(`/api/orders/${orderId}/reviews`, {
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify({
+//         review,
+//         stars,
+//       }),
+//     });
 
-    if (response.ok) {
-      const data = await response.json();
-      dispatch(getAllReviewsThunk());
-      return data;
-    } else {
-      const err = await response.json();
-      return err;
-    }
-  };
-
-// ***************************
-
-export const updateReviewThunk =
-  (reviewId, review, stars) => async (dispatch) => {
-    const response = await fetch(`/api/reviews/${reviewId}`, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        review,
-        stars,
-      }),
-    });
-
-    if (response.ok) {
-      const data = await response.json();
-      dispatch(getAllReviewsThunk());
-      return data;
-    } else {
-      const err = await response.json();
-      return err;
-    }
-  };
+//     if (response.ok) {
+//       const data = await response.json();
+//       dispatch(getAllReviewsThunk());
+//       return data;
+//     } else {
+//       const err = await response.json();
+//       return err;
+//     }
+//   };
 
 // ***************************
 
-export const deleteReviewThunk = (reviewId) => async (dispatch) => {
-  const response = await fetch(`/api/reviews/${reviewId}`, {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+// export const updateReviewThunk =
+//   (reviewId, review, stars) => async (dispatch) => {
+//     const response = await fetch(`/api/reviews/${reviewId}`, {
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify({
+//         review,
+//         stars,
+//       }),
+//     });
 
-  if (response.ok) {
-    const data = await response.json();
-    dispatch(getAllReviewsThunk());
-    return data;
-  } else {
-    const err = await response.json();
-    return err;
-  }
-};
+//     if (response.ok) {
+//       const data = await response.json();
+//       dispatch(getAllReviewsThunk());
+//       return data;
+//     } else {
+//       const err = await response.json();
+//       return err;
+//     }
+//   };
+
+// ***************************
+
+// export const deleteReviewThunk = (reviewId) => async (dispatch) => {
+//   const response = await fetch(`/api/reviews/${reviewId}`, {
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//   });
+
+//   if (response.ok) {
+//     const data = await response.json();
+//     dispatch(getAllReviewsThunk());
+//     return data;
+//   } else {
+//     const err = await response.json();
+//     return err;
+//   }
+// };
 
 // ***************************
 
