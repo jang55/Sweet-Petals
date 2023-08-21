@@ -102,6 +102,50 @@ export const getReviewThunk = (reviewId) => async (dispatch) => {
 
 // ***************************
 
+export const createReviewThunk =
+  (orderId, review, stars) => async (dispatch) => {
+    const response = await fetch(`/api/orders/${orderId}/reviews`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        review,
+        stars,
+      }),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      dispatch(getAllReviewsThunk());
+      return data;
+    } else {
+      const err = await response.json();
+      return err;
+    }
+  };
+
+// ***************************
+
+export const updateReviewThunk = (reviewId) => async (dispatch) => {
+  const response = await fetch(`/api/reviews/${reviewId}`, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(getAllReviewsThunk());
+    return data;
+  } else {
+    const err = await response.json();
+    return err;
+  }
+};
+
+// ***************************
+// ***************************
+
 // ***************** Reducer *************************************
 
 const initialState = {};
