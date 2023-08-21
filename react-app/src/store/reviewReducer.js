@@ -126,7 +126,31 @@ export const createReviewThunk =
 
 // ***************************
 
-export const updateReviewThunk = (reviewId) => async (dispatch) => {
+export const updateReviewThunk =
+  (reviewId, review, stars) => async (dispatch) => {
+    const response = await fetch(`/api/reviews/${reviewId}`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        review,
+        stars,
+      }),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      dispatch(getAllReviewsThunk());
+      return data;
+    } else {
+      const err = await response.json();
+      return err;
+    }
+  };
+
+// ***************************
+
+export const deleteReviewThunk = (reviewId) => async (dispatch) => {
   const response = await fetch(`/api/reviews/${reviewId}`, {
     headers: {
       "Content-Type": "application/json",
@@ -143,7 +167,6 @@ export const updateReviewThunk = (reviewId) => async (dispatch) => {
   }
 };
 
-// ***************************
 // ***************************
 
 // ***************** Reducer *************************************
@@ -165,8 +188,6 @@ export default function reviewReducer(state = initialState, action) {
         newState[review.id] = review;
       });
       return newState;
-    // case REMOVE_USER:
-    //   return { user: null };
     default:
       return state;
   }
