@@ -71,7 +71,7 @@ const initialState = {
     cookies: {}
 };
 
-export default function reviewReducer(state = initialState, action) {
+export default function cartReducer(state = initialState, action) {
     let newState = { ...state };
     switch (action.type) {
         case ADD_CUPCAKE:

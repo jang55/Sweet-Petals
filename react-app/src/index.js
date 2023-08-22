@@ -7,6 +7,10 @@ import { ModalProvider } from "./context/modalContext";
 import { InfoProvider } from "./context/InfoContext";
 import configureStore from "./store";
 import * as sessionActions from "./store/session";
+import * as orderActions from "./store/orderReducer";
+import * as reviewActions from "./store/reviewReducer";
+import * as recipeActions from "./store/recipeReducer";
+import * as cartActions from "./store/cartReducer";
 import App from "./App";
 
 import "./index.css";
@@ -16,6 +20,10 @@ const store = configureStore();
 if (process.env.NODE_ENV !== "production") {
   window.store = store;
   window.sessionActions = sessionActions;
+  window.orderActions = orderActions;
+  window.reviewActions = reviewActions;
+  window.recipeActions = recipeActions;
+  window.cartActions = cartActions;
 }
 
 // Wrap the application with the Modal provider and render the Modal component
