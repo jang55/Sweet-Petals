@@ -1,0 +1,209 @@
+.cupcake-container {
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    background-color: var(--main-bg-button);
+    border-radius: 5px;
+    /* width: fit-content; */
+    margin: auto;
+    padding: 30px 0px;
+    margin-top: 50px;
+}
+
+.cupcake-container-2 {
+    box-shadow:1px 1px 10px#1f2124;
+    padding: 0px 10px;
+    display: flex;
+    flex-direction: row;
+    background-color: antiquewhite;
+    width: 450px;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+.cupcake-container-3 {
+    padding: 20px;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 8px;
+    overflow: visible;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.cupcake-container-4 {
+    display: flex;
+    justify-content: center;
+    width: inherit;
+    max-width: 960px;
+}
+
+.cupcake-container-5 {
+    width: 100%;
+    max-width: 400px;
+}
+
+.cupcake-container-6 {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    /* justify-content: center;
+    align-items: flex-start; */
+}
+
+/*  ---------------------------------------- Form Section ---------------------------------------------*/
+
+
+
+.cupcake-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cupcake-h1 {
+    margin: 0px;
+}
+
+.cupcake-input-label {
+    color: #616b71;
+    text-align: left;
+    /* font-weight: bold; */
+    text-transform: uppercase;
+    font-size: 12px;
+    margin-bottom: 8px;
+    letter-spacing: 0.02em;
+}
+
+.required {
+    color: red;
+    font-size: 10px;
+}
+
+.cupcake-input-field {
+    width: 95%;
+    outline: none;
+    padding: 10px;
+    font-size: 17px;
+    border-radius: 2px;
+    border: none;
+    background-color: var(--main-input-color);
+    color: var(--main-text-color);
+}
+
+.cupcake-select-field {
+    width: 100%;
+    outline: none;
+    padding: 10px;
+    font-size: 17px;
+    border-radius: 2px;
+    border: none;
+    background-color: var(--main-input-color);
+    color: var(--main-text-color);
+}
+
+
+.cupcake-submit-button {
+    margin-top: 10px;
+    cursor: pointer;
+    background-color: var(--main-bg-button);
+    padding: 3px;
+}
+
+.cupcake-submit-button {
+    margin-top: 20px;
+    cursor: pointer;
+    background-color: var(--main-bg-button);
+    padding: 5px;
+    border-radius: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--main-text-color);
+    border: 2px solid var(--main-text-color);
+}
+
+.cupcake-submit-button:hover {
+    background-color: pink;
+}
+
+
+
+
+
+/* Color Wheels */
+
+.remove {
+    display: flex;
+    cursor: pointer;
+    font-size: 13px;
+    width: fit-content;
+}
+.remove:hover {
+    color: red;
+}
+
+.add-color {
+    display: flex;
+    margin-top: 15px;
+    cursor: pointer;
+    width: fit-content;
+    font-size: 14px;
+}
+
+.add-color:hover {
+    color: #00aeff;
+}
+
+.cupcake-color-one {
+    position: relative;
+}
+
+.color-wheel-one {
+    /* width: 50px!important;
+    height: 50px!important; */
+    position: absolute!important;
+    top: 1px;
+    right: -10px;
+    /* display: none!important; */
+}
+
+
+.cupcake-color-two {
+    position: relative;
+}
+
+
+.color-wheel-two {
+    /* width: 50px!important;
+    height: 50px!important; */
+    position: absolute!important;
+    top: -55px;
+    right: -10px;
+    /* display: none!important; */
+}
+
+
+
+
+
+.cupcake-color-three {
+    position: relative;
+}
+
+
+.color-wheel-three {
+    /* width: 50px!important;
+    height: 50px!important; */
+    position: absolute!important;
+    top: -124px;
+    right: -10px;
+    /* display: none!important; */
+}
+
+
+.wheel-not-active {
+    display: none!important;
+}

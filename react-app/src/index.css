@@ -6,13 +6,19 @@ body {
     justify-content: center; */
     /* height: 100%; */
     /* width: 100%; */
-    margin: 10px 0px;
-    position: relative;
+    /* margin: 10px 0px; */
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: var(--main-text-color);
+
+    /* setting position relative will mess with MODALS */
+    /* position: relative; */
 }
+
 
 
 :root {
     --main-bg-color: rgb(239, 213, 217);
     --main-bg-button: rgb(235, 186, 194);
     --main-input-color:  #e9d5b3;
+    --main-text-color: rgba(125, 104, 104, 0.836);
 }

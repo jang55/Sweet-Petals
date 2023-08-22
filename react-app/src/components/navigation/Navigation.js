@@ -2,8 +2,10 @@ import React, { useContext } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { RxHamburgerMenu } from "react-icons/rx";
+import { RiShoppingCart2Line } from "react-icons/ri"
 import { useState, useEffect } from 'react';
 import {ModalContext} from "../../context/modalContext"
+import { InfoContext } from "../../context/InfoContext" 
 import logo from "../../images/SWEET_PETALS_wlogo.png" 
 import { logout } from '../../store/session';
 import "./nav.css"
@@ -12,12 +14,18 @@ import "./nav.css"
 function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state.session.user);
     const { loginModal, signupModal, type } = useContext(ModalContext);
+    const { cartCount, setCartCount } = useContext(InfoContext);
     const [openMenu, setOpenMenu] = useState(false);
+    const [openShoppingCart, setOpenShoppingCart] = useState(false);
     const dispatch = useDispatch()
     const history = useHistory();
 
     const toggleMenu = () => {
         setOpenMenu(!openMenu);
+    }
+
+    const toggleShoppingCart = () => {
+        setOpenShoppingCart(!openShoppingCart);
     }
 
     const logoutHandler = async () => {
@@ -56,6 +64,14 @@ function Navigation({ isLoaded }){
                             </div>}
                         </li>
                     )}
+                    <li className='nav-shopping-wrapper'>
+                        <RiShoppingCart2Line 
+                        className='nav-shopping-cart' 
+                        onClick={toggleShoppingCart}
+                        />
+                        {cartCount >= 1 && <div className='nav-shopping-count'>{cartCount}</div>}
+                        {openShoppingCart && <div className='nav-shopping-cart-items'></div>}
+                    </li>
                 </ul>
             </div>
         </div>

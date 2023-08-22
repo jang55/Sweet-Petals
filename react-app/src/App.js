@@ -6,6 +6,7 @@ import { Route, Switch } from "react-router-dom";
 import { authenticate } from "./store/session";
 import Navigation from "./components/navigation/Navigation";
 import LandingPage from "./components/landing/LandingPage";
+import CreateOrderForm from "./components/orders/CreateOrderForm";
 import Modal from "./utils/Modal";
 
 function App() {
@@ -26,10 +27,10 @@ function App() {
           </Route>
           {/* <Route path="/login" >
             <LoginFormPage />
-          </Route>
-          <Route path="/signup">
-            <SignupFormPage />
           </Route> */}
+          <Route path="/orders/new">
+            <CreateOrderForm />
+          </Route>
         </Switch>
       )}
     </>
