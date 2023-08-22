@@ -9,6 +9,8 @@ body {
     /* margin: 10px 0px; */
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     color: var(--main-text-color);
+    padding: 0px;
+    margin: 0px;
 
     /* setting position relative will mess with MODALS */
     /* position: relative; */

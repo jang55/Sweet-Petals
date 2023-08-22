@@ -52,7 +52,7 @@ const deleteReviewActions = (review) => ({
 
 // check to see if this is calling the right url path because of the following "/" at the end
 export const getAllReviewsThunk = () => async (dispatch) => {
-  const response = await fetch("/api/reviews/", {
+  const response = await fetch("/api/reviews", {
     headers: {
       "Content-Type": "application/json",
     },
@@ -105,6 +105,7 @@ export const getReviewThunk = (reviewId) => async (dispatch) => {
 export const createReviewThunk =
   (orderId, review, stars) => async (dispatch) => {
     const response = await fetch(`/api/orders/${orderId}/reviews`, {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
@@ -129,6 +130,7 @@ export const createReviewThunk =
 export const updateReviewThunk =
   (reviewId, review, stars) => async (dispatch) => {
     const response = await fetch(`/api/reviews/${reviewId}`, {
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
@@ -152,6 +154,7 @@ export const updateReviewThunk =
 
 export const deleteReviewThunk = (reviewId) => async (dispatch) => {
   const response = await fetch(`/api/reviews/${reviewId}`, {
+    method: "DELETE",
     headers: {
       "Content-Type": "application/json",
     },
@@ -159,7 +162,7 @@ export const deleteReviewThunk = (reviewId) => async (dispatch) => {
 
   if (response.ok) {
     const data = await response.json();
-    dispatch(getAllReviewsThunk());
+    dispatch(deleteReviewActions(data));
     return data;
   } else {
     const err = await response.json();
@@ -174,7 +177,7 @@ export const deleteReviewThunk = (reviewId) => async (dispatch) => {
 const initialState = {};
 
 export default function reviewReducer(state = initialState, action) {
-  const newState = {};
+  let newState = {};
   switch (action.type) {
     case GET_ALL_REVIEWS:
       const reviews = action.payload;
@@ -187,6 +190,10 @@ export default function reviewReducer(state = initialState, action) {
       userReviews.forEach((review) => {
         newState[review.id] = review;
       });
+      return newState;
+    case DELETE_REVIEW:
+      newState = { ...state };
+      delete newState[action.payload.id];
       return newState;
     default:
       return state;

@@ -81,6 +81,7 @@ export const getRecipeThunk = (recipeId) => async (dispatch) => {
 export const createRecipeThunk =
   (title, ingredients, description) => async (dispatch) => {
     const response = await fetch(`/api/recipes`, {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
@@ -106,6 +107,7 @@ export const createRecipeThunk =
 export const updateRecipeThunk =
   (recipeId, title, ingredients, description) => async (dispatch) => {
     const response = await fetch(`/api/recipes/${recipeId}`, {
+      method: "UPDATE",
       headers: {
         "Content-Type": "application/json",
       },
@@ -130,6 +132,7 @@ export const updateRecipeThunk =
 
 export const deleteRecipeThunk = (recipeId) => async (dispatch) => {
   const response = await fetch(`/api/recipes/${recipeId}`, {
+    method: "DELETE",
     headers: {
       "Content-Type": "application/json",
     },
@@ -137,7 +140,7 @@ export const deleteRecipeThunk = (recipeId) => async (dispatch) => {
 
   if (response.ok) {
     const data = await response.json();
-    dispatch(getAllRecipesThunk());
+    dispatch(deleteRecipeActions(data));
     return data;
   } else {
     const err = await response.json();
@@ -152,13 +155,20 @@ export const deleteRecipeThunk = (recipeId) => async (dispatch) => {
 const initialState = {};
 
 export default function recipeReducer(state = initialState, action) {
-  const newState = {};
+  let newState = {};
   switch (action.type) {
     case GET_ALL_RECIPES:
       const recipes = action.payload;
       recipes.forEach((recipe) => {
         newState[recipe.id] = recipe;
       });
+      return newState;
+    case GET_RECIPE:
+      newState[action.payload.id] = action.payload;
+      return newState;
+    case DELETE_RECIPE:
+      newState = { ...state };
+      delete newState[action.payload];
       return newState;
     default:
       return state;

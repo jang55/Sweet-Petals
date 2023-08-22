@@ -21,50 +21,50 @@ const DELETE_COOKIE_ORDER = "orders/DELETE_COOKIE_ORDER";
 // ******************** Action Creators *************************************
 
 const getAllOrdersActions = (orders) => ({
-    type: GET_ALL_ORDERS,
-    payload: orders,
+  type: GET_ALL_ORDERS,
+  payload: orders,
 });
 
 // ***************************
 
 const getAllUsersOrdersActions = (orders) => ({
-    type: GET_USER_ORDERS,
-    payload: orders,
+  type: GET_USER_ORDERS,
+  payload: orders,
 });
 
 // ***************************
 
 const getOrderActions = (order) => ({
-    type: GET_ORDER,
-    payload: order,
+  type: GET_ORDER,
+  payload: order,
 });
 
 // ***************************
 
 const createOrderAction = (order) => ({
-    type: CREATE_ORDER,
-    payload: order,
+  type: CREATE_ORDER,
+  payload: order,
 });
 
 // ***************************
 
 const createCupcakeOrderAction = (cupakeOrder) => ({
-    type: CREATE_CUPCAKE_ORDER,
-    payload: cupakeOrder,
+  type: CREATE_CUPCAKE_ORDER,
+  payload: cupakeOrder,
 });
 
 // ***************************
 
 const createCeesecakeOrderAction = (cheesecakeOrder) => ({
-    type: CREATE_CHEESECAKE_ORDER,
-    payload: cheesecakeOrder,
+  type: CREATE_CHEESECAKE_ORDER,
+  payload: cheesecakeOrder,
 });
 
 // ***************************
 
 const createCookieOrderAction = (cookieOrder) => ({
-    type: CREATE_COOKIE_ORDER,
-    payload: cookieOrder,
+  type: CREATE_COOKIE_ORDER,
+  payload: cookieOrder,
 });
 
 // // ***************************
@@ -73,29 +73,29 @@ const createCookieOrderAction = (cookieOrder) => ({
 // // ***************************
 
 const updateOrderAction = (order) => ({
-    type: UPDATE_ORDER,
-    payload: order,
+  type: UPDATE_ORDER,
+  payload: order,
 });
 
 // ***************************
 
 const updateCupcakeOrderAction = (cupakeOrder) => ({
-    type: UPDATE_CUPCAKE_ORDER,
-    payload: cupakeOrder,
+  type: UPDATE_CUPCAKE_ORDER,
+  payload: cupakeOrder,
 });
 
 // ***************************
 
 const updateCeesecakeOrderAction = (cheesecakeOrder) => ({
-    type: UPDATE_CHEESECAKE_ORDER,
-    payload: cheesecakeOrder,
+  type: UPDATE_CHEESECAKE_ORDER,
+  payload: cheesecakeOrder,
 });
 
 // ***************************
 
 const updateCookieOrderAction = (cookieOrder) => ({
-    type: UPDATE_COOKIE_ORDER,
-    payload: cookieOrder,
+  type: UPDATE_COOKIE_ORDER,
+  payload: cookieOrder,
 });
 
 // // ***************************
@@ -104,177 +104,405 @@ const updateCookieOrderAction = (cookieOrder) => ({
 // // ***************************
 
 const deleteOrderAction = (order) => ({
-    type: DELETE_ORDER,
-    payload: order,
+  type: DELETE_ORDER,
+  payload: order,
 });
 
 // ***************************
 
 const deleteCupcakeOrderAction = (cupakeOrder) => ({
-    type: DELETE_CUPCAKE_ORDER,
-    payload: cupakeOrder,
+  type: DELETE_CUPCAKE_ORDER,
+  payload: cupakeOrder,
 });
 
 // ***************************
 
 const deleteCeesecakeOrderAction = (cheesecakeOrder) => ({
-    type: DELETE_CHEESECAKE_ORDER,
-    payload: cheesecakeOrder,
+  type: DELETE_CHEESECAKE_ORDER,
+  payload: cheesecakeOrder,
 });
 
 // ***************************
 
 const deleteCookieOrderAction = (cookieOrder) => ({
-    type: DELETE_COOKIE_ORDER,
-    payload: cookieOrder,
+  type: DELETE_COOKIE_ORDER,
+  payload: cookieOrder,
 });
 
+// ******************** Thunk Creators *************************************
+// get all the orders
+
+export const getAllOrdersThunk = () => async (dispatch) => {
+  const response = await fetch("/api/orders", {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(getAllOrdersActions(data));
+    return data;
+  }
+};
+
+// ***************************
+
+export const getAllUserOrdersThunk = () => async (dispatch) => {
+  const response = await fetch("/api/users/orders", {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(getAllUsersOrdersActions(data.Orders));
+    return data;
+  }
+};
+
+// ***************************
+
+export const getOrderThunk = (orderId) => async (dispatch) => {
+  const response = await fetch(`/api/orders/${orderId}`, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(getOrderActions(data));
+    return data;
+  } else {
+    const err = await response.json();
+    return err;
+  }
+};
+
+// ***************************
+// create the orders
+
+export const createOrderThunk = (pick_up_time) => async (dispatch) => {
+  const response = await fetch(`/api/orders/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      pick_up_time,
+    }),
+  });
+
+  if (response.ok) {
+    const data = await response.json();
+    // dispatch(getAllUserOrdersThunk());
+    return data;
+  } else {
+    const err = await response.json();
+    return err;
+  }
+};
+
+// ***************************
+
+export const createCupcakeOrderThunk =
+  (orderId, color_one, color_two, color_three, style, flavor) =>
+  async (dispatch) => {
+    const response = await fetch(`/api/orders/${orderId}/cupcakes`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        color_one,
+        color_two,
+        color_three,
+        style,
+        flavor,
+      }),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      // dispatch(getAllUserOrdersThunk());
+      return data;
+    } else {
+      const err = await response.json();
+      return err;
+    }
+  };
+
+// ***************************
+
+export const createCheesecakesOrderThunk =
+  (orderId, flavor, strawberries) => async (dispatch) => {
+    const response = await fetch(`/api/orders/${orderId}/cheesecakes`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        flavor,
+        strawberries,
+      }),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      // dispatch(getAllUserOrdersThunk());
+      return data;
+    } else {
+      const err = await response.json();
+      return err;
+    }
+  };
+
+// ***************************
+
+export const createCookiesOrderThunk =
+  (orderId, flavor) => async (dispatch) => {
+    const response = await fetch(`/api/orders/${orderId}/cookies`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        flavor,
+      }),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      // dispatch(getAllUserOrdersThunk());
+      return data;
+    } else {
+      const err = await response.json();
+      return err;
+    }
+  };
+
+// ***************************
+// update the orders
+
+export const updateOrderThunk = (pick_up_time) => async (dispatch) => {
+  const response = await fetch(`/api/orders/`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      pick_up_time,
+    }),
+  });
+
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(getAllUserOrdersThunk());
+    return data;
+  } else {
+    const err = await response.json();
+    return err;
+  }
+};
+
+// ***************************
+
+export const updateCupcakeOrderThunk =
+  (orderId, cupcakeId, color_one, color_two, color_three, style, flavor) =>
+  async (dispatch) => {
+    const response = await fetch(
+      `/api/orders/${orderId}/cupcakes/${cupcakeId}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          color_one,
+          color_two,
+          color_three,
+          style,
+          flavor,
+        }),
+      }
+    );
+
+    if (response.ok) {
+      const data = await response.json();
+      dispatch(getAllUserOrdersThunk());
+      return data;
+    } else {
+      const err = await response.json();
+      return err;
+    }
+  };
+
+// ***************************
+
+export const updateCheesecakesOrderThunk =
+  (orderId, cheesecakeId, flavor, strawberries) => async (dispatch) => {
+    const response = await fetch(
+      `/api/orders/${orderId}/cheesecakes/${cheesecakeId}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          flavor,
+          strawberries,
+        }),
+      }
+    );
+
+    if (response.ok) {
+      const data = await response.json();
+      dispatch(getAllUserOrdersThunk());
+      return data;
+    } else {
+      const err = await response.json();
+      return err;
+    }
+  };
+
+// ***************************
+
+export const updateCookiesOrderThunk =
+  (orderId, cookieId, flavor) => async (dispatch) => {
+    const response = await fetch(`/api/orders/${orderId}/cookies/${cookieId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        flavor,
+      }),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      dispatch(getAllUserOrdersThunk());
+      return data;
+    } else {
+      const err = await response.json();
+      return err;
+    }
+  };
+
+// ***************************
+// delete orders thunks
+
+export const deleteOrderThunk = (orderId) => async (dispatch) => {
+  const response = await fetch(`/api/orders/${orderId}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(getAllUserOrdersThunk());
+    return data;
+  } else {
+    const err = await response.json();
+    return err;
+  }
+};
+
+// ***************************
+
+export const deleteCupcakeOrderThunk =
+  (orderId, cupcakeId) => async (dispatch) => {
+    const response = await fetch(
+      `/api/orders/${orderId}/cupcakes/${cupcakeId}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    if (response.ok) {
+      const data = await response.json();
+      dispatch(getAllUserOrdersThunk());
+      return data;
+    } else {
+      const err = await response.json();
+      return err;
+    }
+  };
+
+// ***************************
+
+export const deleteCheesecakesOrderThunk =
+  (orderId, cheesecakeId) => async (dispatch) => {
+    const response = await fetch(
+      `/api/orders/${orderId}/cheesecakes/${cheesecakeId}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    if (response.ok) {
+      const data = await response.json();
+      dispatch(getAllUserOrdersThunk());
+      return data;
+    } else {
+      const err = await response.json();
+      return err;
+    }
+  };
+
+// ***************************
+
+export const deleteCookiesOrderThunk =
+  (orderId, cookieId) => async (dispatch) => {
+    const response = await fetch(`/api/orders/${orderId}/cookies/${cookieId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      dispatch(getAllUserOrdersThunk());
+      return data;
+    } else {
+      const err = await response.json();
+      return err;
+    }
+  };
 
 
 
+//***************** Reducer *************************************
 
+const initialState = {};
 
-// // ******************** Thunk Creators *************************************
-
-// // check to see if this is calling the right url path because of the following "/" at the end
-// export const getAllReviewsThunk = () => async (dispatch) => {
-//   const response = await fetch("/api/reviews/", {
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//   });
-
-//   if (response.ok) {
-//     const data = await response.json();
-//     dispatch(getAllReviewsActions(data));
-//     return data;
-//   }
-// };
-
-// // ***************************
-
-// export const getAllUserReviewsThunk = () => async (dispatch) => {
-//   const response = await fetch("/api/users/reviews", {
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//   });
-
-//   if (response.ok) {
-//     const data = await response.json();
-//     dispatch(getAllUsersReviewsActions(data.Reviews));
-//     return data;
-//   }
-// };
-
-// // ***************************
-
-// export const getReviewThunk = (reviewId) => async (dispatch) => {
-//   const response = await fetch(`/api/reviews/${reviewId}`, {
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//   });
-
-//   if (response.ok) {
-//     const data = await response.json();
-//     dispatch(getReviewActions(data));
-//     return data;
-//   } else {
-//     const err = await response.json();
-//     return err;
-//   }
-// };
-
-// // ***************************
-
-// export const createReviewThunk =
-//   (orderId, review, stars) => async (dispatch) => {
-//     const response = await fetch(`/api/orders/${orderId}/reviews`, {
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify({
-//         review,
-//         stars,
-//       }),
-//     });
-
-//     if (response.ok) {
-//       const data = await response.json();
-//       dispatch(getAllReviewsThunk());
-//       return data;
-//     } else {
-//       const err = await response.json();
-//       return err;
-//     }
-//   };
-
-// // ***************************
-
-// export const updateReviewThunk =
-//   (reviewId, review, stars) => async (dispatch) => {
-//     const response = await fetch(`/api/reviews/${reviewId}`, {
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify({
-//         review,
-//         stars,
-//       }),
-//     });
-
-//     if (response.ok) {
-//       const data = await response.json();
-//       dispatch(getAllReviewsThunk());
-//       return data;
-//     } else {
-//       const err = await response.json();
-//       return err;
-//     }
-//   };
-
-// // ***************************
-
-// export const deleteReviewThunk = (reviewId) => async (dispatch) => {
-//   const response = await fetch(`/api/reviews/${reviewId}`, {
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//   });
-
-//   if (response.ok) {
-//     const data = await response.json();
-//     dispatch(getAllReviewsThunk());
-//     return data;
-//   } else {
-//     const err = await response.json();
-//     return err;
-//   }
-// };
-
-// // ***************************
-
-// // ***************** Reducer *************************************
-
-// const initialState = {};
-
-// export default function reviewReducer(state = initialState, action) {
-//   const newState = {};
-//   switch (action.type) {
-//     case GET_ALL_REVIEWS:
-//       const reviews = action.payload;
-//       reviews.forEach((review) => {
-//         newState[review.id] = review;
-//       });
-//       return newState;
-//     case GET_USER_REVIEWS:
-//       const userReviews = action.payload;
-//       userReviews.forEach((review) => {
-//         newState[review.id] = review;
-//       });
-//       return newState;
-//     default:
-//       return state;
-//   }
-// }
+export default function orderReducer(state = initialState, action) {
+  let newState = {};
+  switch (action.type) {
+    case GET_ALL_ORDERS:
+      const orders = action.payload;
+      orders.forEach((order) => {
+        newState[order.id] = order;
+      });
+      return newState;
+    case GET_USER_ORDERS:
+      const userOrders = action.payload;
+      userOrders.forEach((order) => {
+        newState[order.id] = order;
+      });
+      return newState;
+    default:
+      return state;
+  }
+}
