@@ -1,18 +1,19 @@
 import "./css/cookie-form.css";
 import { useState } from "react";
-import { addCookieAction } from "../../store/cartReducer";
+import { addCookieAction, subtractCookieAction } from "../../store/cartReducer";
 import { useDispatch } from "react-redux";
 
 function CookieForm() {
   const [selectedCookie, setSelectedCookie] = useState("");
+  const [amount, setAmount] = useState(1);
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const formRes = {
-      // id: Math.floor(Math.random() * 16777215),
-      flavor: selectedCookie
+      flavor: selectedCookie,
+      amount: amount,
     }
     console.log(formRes)
     dispatch(addCookieAction(formRes));
