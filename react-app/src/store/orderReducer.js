@@ -213,7 +213,7 @@ export const createOrderThunk = (pick_up_time) => async (dispatch) => {
 // ***************************
 
 export const createCupcakeOrderThunk =
-  (orderId, color_one, color_two, color_three, style, flavor) =>
+  (orderId, color_one, color_two, color_three, style, flavor, amount) =>
   async (dispatch) => {
     const response = await fetch(`/api/orders/${orderId}/cupcakes`, {
       method: "POST",
@@ -226,6 +226,7 @@ export const createCupcakeOrderThunk =
         color_three,
         style,
         flavor,
+        amount,
       }),
     });
 
@@ -242,7 +243,7 @@ export const createCupcakeOrderThunk =
 // ***************************
 
 export const createCheesecakesOrderThunk =
-  (orderId, flavor, strawberries) => async (dispatch) => {
+  (orderId, flavor, strawberries, amount) => async (dispatch) => {
     const response = await fetch(`/api/orders/${orderId}/cheesecakes`, {
       method: "POST",
       headers: {
@@ -251,6 +252,7 @@ export const createCheesecakesOrderThunk =
       body: JSON.stringify({
         flavor,
         strawberries,
+        amount,
       }),
     });
 
@@ -267,7 +269,7 @@ export const createCheesecakesOrderThunk =
 // ***************************
 
 export const createCookiesOrderThunk =
-  (orderId, flavor) => async (dispatch) => {
+  (orderId, flavor, amount) => async (dispatch) => {
     const response = await fetch(`/api/orders/${orderId}/cookies`, {
       method: "POST",
       headers: {
@@ -275,6 +277,7 @@ export const createCookiesOrderThunk =
       },
       body: JSON.stringify({
         flavor,
+        amount,
       }),
     });
 
@@ -322,7 +325,7 @@ export const updateOrderThunk = (pick_up_time) => async (dispatch) => {
 // ***************************
 
 export const updateCupcakeOrderThunk =
-  (orderId, cupcakeId, color_one, color_two, color_three, style, flavor) =>
+  (orderId, cupcakeId, color_one, color_two, color_three, style, flavor, amount) =>
   async (dispatch) => {
     const response = await fetch(
       `/api/orders/${orderId}/cupcakes/${cupcakeId}`,
@@ -337,6 +340,7 @@ export const updateCupcakeOrderThunk =
           color_three,
           style,
           flavor,
+          amount,
         }),
       }
     );
@@ -354,7 +358,7 @@ export const updateCupcakeOrderThunk =
 // ***************************
 
 export const updateCheesecakesOrderThunk =
-  (orderId, cheesecakeId, flavor, strawberries) => async (dispatch) => {
+  (orderId, cheesecakeId, flavor, strawberries, amount) => async (dispatch) => {
     const response = await fetch(
       `/api/orders/${orderId}/cheesecakes/${cheesecakeId}`,
       {
@@ -365,6 +369,7 @@ export const updateCheesecakesOrderThunk =
         body: JSON.stringify({
           flavor,
           strawberries,
+          amount,
         }),
       }
     );
@@ -382,7 +387,7 @@ export const updateCheesecakesOrderThunk =
 // ***************************
 
 export const updateCookiesOrderThunk =
-  (orderId, cookieId, flavor) => async (dispatch) => {
+  (orderId, cookieId, flavor, amount) => async (dispatch) => {
     const response = await fetch(`/api/orders/${orderId}/cookies/${cookieId}`, {
       method: "PUT",
       headers: {
@@ -390,6 +395,7 @@ export const updateCookiesOrderThunk =
       },
       body: JSON.stringify({
         flavor,
+        amount
       }),
     });
 
