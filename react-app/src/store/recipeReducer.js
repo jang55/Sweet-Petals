@@ -160,12 +160,6 @@ export default function recipeReducer(state = initialState, action) {
         newState[recipe.id] = recipe;
       });
       return newState;
-    // case GET_USER_REVIEWS:
-    //   const userReviews = action.payload;
-    //   userReviews.forEach((review) => {
-    //     newState[review.id] = review;
-    //   });
-    //   return newState;
     default:
       return state;
   }

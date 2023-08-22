@@ -1,52 +1,138 @@
-// // constants
-// const GET_ALL_REVIEWS = "reviews/GET_ALL_REVIEWS";
-// const GET_USER_REVIEWS = "reviews/GET_USER_REVIEWS";
-// const GET_REVIEW = "reviews/GET_REVIEW";
-// const CREATE_REVIEW = "reviews/CREATE_REVIEW";
-// const UPDATE_REVIEW = "reviews/UPDATE_REVIEW";
-// const DELETE_REVIEW = "reviews/DELETE_REVIEW";
+// constants
+const GET_ALL_ORDERS = "orders/GET_ALL_ORDERS";
+const GET_USER_ORDERS = "orders/GET_USER_ORDERS";
+const GET_ORDER = "orders/GET_ORDER";
 
-// // ******************** Action Creators *************************************
+const CREATE_ORDER = "orders/CREATE_ORDER";
+const CREATE_CUPCAKE_ORDER = "orders/CREATE_CUPCAKE_ORDER";
+const CREATE_CHEESECAKE_ORDER = "orders/CREATE_CHEESECAKE_ORDER";
+const CREATE_COOKIE_ORDER = "orders/CREATE_COOKIE_ORDER";
 
-// const getAllReviewsActions = (reviews) => ({
-//   type: GET_ALL_REVIEWS,
-//   payload: reviews,
-// });
+const UPDATE_ORDER = "orders/UPDATE_ORDER";
+const UPDATE_CUPCAKE_ORDER = "orders/UPDATE_CUPCAKE_ORDER";
+const UPDATE_CHEESECAKE_ORDER = "orders/UPDATE_CHEESECAKE_ORDER";
+const UPDATE_COOKIE_ORDER = "orders/UPDATE_COOKIE_ORDER";
+
+const DELETE_ORDER = "orders/DELETE_ORDER";
+const DELETE_CUPCAKE_ORDER = "orders/DELETE_CUPCAKE_ORDER";
+const DELETE_CHEESECAKE_ORDER = "orders/DELETE_CHEESECAKE_ORDER";
+const DELETE_COOKIE_ORDER = "orders/DELETE_COOKIE_ORDER";
+
+// ******************** Action Creators *************************************
+
+const getAllOrdersActions = (orders) => ({
+    type: GET_ALL_ORDERS,
+    payload: orders,
+});
+
+// ***************************
+
+const getAllUsersOrdersActions = (orders) => ({
+    type: GET_USER_ORDERS,
+    payload: orders,
+});
+
+// ***************************
+
+const getOrderActions = (order) => ({
+    type: GET_ORDER,
+    payload: order,
+});
+
+// ***************************
+
+const createOrderAction = (order) => ({
+    type: CREATE_ORDER,
+    payload: order,
+});
+
+// ***************************
+
+const createCupcakeOrderAction = (cupakeOrder) => ({
+    type: CREATE_CUPCAKE_ORDER,
+    payload: cupakeOrder,
+});
+
+// ***************************
+
+const createCeesecakeOrderAction = (cheesecakeOrder) => ({
+    type: CREATE_CHEESECAKE_ORDER,
+    payload: cheesecakeOrder,
+});
+
+// ***************************
+
+const createCookieOrderAction = (cookieOrder) => ({
+    type: CREATE_COOKIE_ORDER,
+    payload: cookieOrder,
+});
 
 // // ***************************
-
-// const getAllUsersReviewsActions = (reviews) => ({
-//   type: GET_USER_REVIEWS,
-//   payload: reviews,
-// });
-
+// // ***************************
+// // ***************************
 // // ***************************
 
-// const getReviewActions = (review) => ({
-//   type: GET_REVIEW,
-//   payload: review,
-// });
+const updateOrderAction = (order) => ({
+    type: UPDATE_ORDER,
+    payload: order,
+});
+
+// ***************************
+
+const updateCupcakeOrderAction = (cupakeOrder) => ({
+    type: UPDATE_CUPCAKE_ORDER,
+    payload: cupakeOrder,
+});
+
+// ***************************
+
+const updateCeesecakeOrderAction = (cheesecakeOrder) => ({
+    type: UPDATE_CHEESECAKE_ORDER,
+    payload: cheesecakeOrder,
+});
+
+// ***************************
+
+const updateCookieOrderAction = (cookieOrder) => ({
+    type: UPDATE_COOKIE_ORDER,
+    payload: cookieOrder,
+});
 
 // // ***************************
-
-// const createReviewAction = (review) => ({
-//   type: CREATE_REVIEW,
-//   payload: review,
-// });
-
+// // ***************************
+// // ***************************
 // // ***************************
 
-// const updateReviewActions = (review) => ({
-//   type: UPDATE_REVIEW,
-//   payload: review,
-// });
+const deleteOrderAction = (order) => ({
+    type: DELETE_ORDER,
+    payload: order,
+});
 
-// // ***************************
+// ***************************
 
-// const deleteReviewActions = (review) => ({
-//   type: DELETE_REVIEW,
-//   payload: review,
-// });
+const deleteCupcakeOrderAction = (cupakeOrder) => ({
+    type: DELETE_CUPCAKE_ORDER,
+    payload: cupakeOrder,
+});
+
+// ***************************
+
+const deleteCeesecakeOrderAction = (cheesecakeOrder) => ({
+    type: DELETE_CHEESECAKE_ORDER,
+    payload: cheesecakeOrder,
+});
+
+// ***************************
+
+const deleteCookieOrderAction = (cookieOrder) => ({
+    type: DELETE_COOKIE_ORDER,
+    payload: cookieOrder,
+});
+
+
+
+
+
 
 // // ******************** Thunk Creators *************************************
 
