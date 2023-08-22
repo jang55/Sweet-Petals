@@ -121,6 +121,26 @@ function subtractCheesecake(allCheesecakes, cheesecake) {
   return allCheesecakes;
 }
 
+function addCupcake(allCupcakes, cupcake) {
+  if (cupcake.id in allCupcakes) {
+    allCupcakes[cupcake.id].amount =
+      allCupcakes[cupcake.id].amount + 1;
+  } else {
+    allCupcakes[cupcake.id] = cupcake;
+  }
+
+  return allCupcakes;
+}
+
+function subtractCupcake(allCupcakes, cupcake) {
+  if (cupcake.id in allCupcakes) {
+    allCupcakes[cupcake.id].amount =
+      allCupcakes[cupcake.id].amount - 1;
+  }
+
+  return allCupcakes;
+}
+
 // ***************** Reducer *************************************
 
 const initialState = {
@@ -133,7 +153,8 @@ export default function cartReducer(state = initialState, action) {
   let newState = { ...state };
   switch (action.type) {
     case ADD_CUPCAKE:
-      newState.cupcakes[action.payload.id] = action.payload;
+      const add_cupcake = addCupcake(newState.cupcakes, action.payload)
+      newState.cupcakes = add_cupcake;
       return newState;
     case ADD_CHEESECAKE:
       const add_cheesecake = addCheesecake(newState.cheesecakes, action.payload)
@@ -144,7 +165,9 @@ export default function cartReducer(state = initialState, action) {
       newState.cookies = add_cookies;
       return newState;
     case SUBTRACT_CUPCAKE:
-      return
+      const subtract_cupcake = subtractCupcake(newState.cupcakes, action.payload)
+      newState.cupcakes = subtract_cupcake;
+      return newState;
     case SUBTRACT_CHEESECAKE:
       const subtract_cheesecake = subtractCheesecake(newState.cheesecakes, action.payload)
       newState.cheesecakes = subtract_cheesecake;

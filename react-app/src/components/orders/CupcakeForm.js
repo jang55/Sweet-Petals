@@ -2,15 +2,21 @@ import "./css/cupcake-form.css";
 import { useState, Fragment, useEffect } from "react";
 import Wheel from "@uiw/react-color-wheel";
 import { hsvaToHex } from "@uiw/color-convert";
+import { useDispatch } from "react-redux";
+import { addCupcakeAction, subtractCupcakeAction } from "../../store/cartReducer";
 
 function CupcakeForm() {
   const [flavor, setFlavor] = useState("");
   const [hsvaOne, setHsvaOne] = useState({ h: 214, s: 43, v: 90, a: 1 });
   const [hsvaTwo, setHsvaTwo] = useState({ h: 214, s: 43, v: 90, a: 1 });
   const [hsvaThree, setHsvaThree] = useState({ h: 214, s: 43, v: 90, a: 1 });
+  const [style, setStyle] = useState("");
+  const [amount, setAmount] = useState(1);
   const [openWheel, setOpenWheel] = useState("");
   const [addColorTwo, setAddColorTwo] = useState(false);
   const [addColorThree, setAddColorThree] = useState(false);
+  const dispatch = useDispatch();
+
 
   useEffect(() => {
     document.addEventListener("mouseup", function (event) {
@@ -23,7 +29,38 @@ function CupcakeForm() {
     });
   }, []);
 
-  // console.log(hsvaOne);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const formRes = {
+      id: flavor+style+(hsvaToHex(hsvaOne))+(hsvaTwo?hsvaToHex(hsvaTwo):"")+(hsvaThree?hsvaToHex(hsvaThree):""),
+      flavor: flavor,
+      style: style,
+      color_one: hsvaToHex(hsvaOne),
+      color_two: hsvaToHex(hsvaTwo),
+      color_threw: hsvaToHex(hsvaThree),
+      amount: amount,
+    }
+    dispatch(addCupcakeAction(formRes));
+    return;
+  }
+
+  // const handleSubtractSubmit = (e) => {
+  //   e.preventDefault();
+    
+  //   const formRes = {
+  //     id: flavor+style+(hsvaToHex(hsvaOne))+(hsvaTwo?hsvaToHex(hsvaTwo):"")+(hsvaThree?hsvaToHex(hsvaThree):""),
+  //     flavor: flavor,
+  //     style: style,
+  //     color_one: hsvaToHex(hsvaOne),
+  //     color_two: hsvaToHex(hsvaTwo),
+  //     color_threw: hsvaToHex(hsvaThree),
+  //     amount: amount,
+  //   }
+  //   console.log(formRes)
+  //   dispatch(subtractCupcakeAction(formRes));
+  //   return;
+  // }
+
 
   return (
     <div className="cupcake-container">
@@ -32,7 +69,7 @@ function CupcakeForm() {
           <div className="cupcake-container-4">
             <div className="cupcake-container-5">
               <div className="cupcake-container-6">
-                <form>
+                <form onSubmit={handleSubmit}>
                   <h1 className="cupcake-h1">Create a Cupcake!</h1>
                   <p>Choose atleast one color for the frosting</p>
                   {/* Color one wheel */}
@@ -147,7 +184,7 @@ function CupcakeForm() {
                     <select
                       className="cupcake-select-field"
                       defaultValue={""}
-                      onChange={(e) => setFlavor(e.target.value)}
+                      onChange={(e) => setStyle(e.target.value)}
                       required
                     >
                       <option disabled value="">
