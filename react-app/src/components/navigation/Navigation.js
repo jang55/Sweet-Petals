@@ -8,6 +8,7 @@ import {ModalContext} from "../../context/modalContext"
 import { InfoContext } from "../../context/InfoContext" 
 import logo from "../../images/SWEET_PETALS_wlogo.png" 
 import { logout } from '../../store/session';
+import ShoppingCart from '../shopping-cart/ShoppingCart';
 import "./nav.css"
 
 
@@ -70,7 +71,7 @@ function Navigation({ isLoaded }){
                         onClick={toggleShoppingCart}
                         />
                         {cartCount >= 1 && <div className='nav-shopping-count'>{cartCount}</div>}
-                        {openShoppingCart && <div className='nav-shopping-cart-items'></div>}
+                        {openShoppingCart && <div className='nav-shopping-cart-items'><ShoppingCart /></div>}
                     </li>
                 </ul>
             </div>

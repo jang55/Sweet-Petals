@@ -4,11 +4,11 @@ from sqlalchemy.sql import text
 
 
 def seed_cookies():
-    cookie_one = Cookie(order_id=2, user_id=3, flavor="chocolate-chip")
-    cookie_two = Cookie(order_id=4, user_id=5, flavor="snicker-doodle")
-    cookie_three = Cookie(order_id=5, user_id=6, flavor="ube")
-    cookie_four = Cookie(order_id=1, user_id=1, flavor="peanut-butter")
-    cookie_five = Cookie(order_id=6, user_id=7, flavor="chocolate-chip")
+    cookie_one = Cookie(order_id=2, user_id=3, flavor="chocolate-chip", amount=1)
+    cookie_two = Cookie(order_id=4, user_id=5, flavor="snicker-doodle", amount=1)
+    cookie_three = Cookie(order_id=5, user_id=6, flavor="ube", amount=1)
+    cookie_four = Cookie(order_id=1, user_id=1, flavor="peanut-butter", amount=1)
+    cookie_five = Cookie(order_id=6, user_id=7, flavor="chocolate-chip", amount=1)
 
     db.session.add(cookie_one)
     db.session.add(cookie_two)

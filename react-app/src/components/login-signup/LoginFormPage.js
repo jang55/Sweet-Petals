@@ -42,9 +42,9 @@ function LoginFormPage() {
         <div className="login-container-3">
           {/* HEADING AND WELCOME BACK MESSAGE */}
           <div>
-            <h1 className="form-login-header">Welcome back!</h1>
+            <h1 className="form-login-header">Welcome to Sweet Petals!</h1>
             <p className="form-login-message">
-              We're so excited to see you again!
+              Please log in to continue!
             </p>
           </div>
           <div className="login-container-4">

@@ -133,6 +133,7 @@ def create_cupcake(id):
             color_three=data["color_three"],
             style=data["style"],
             flavor=data["flavor"],
+            amount=data["amount"],
         )
         db.session.add(new_cupcake_order)
         db.session.commit()
@@ -159,7 +160,8 @@ def create_cheesecake(id):
             order_id=id,
             user_id=current_user.get_id(),
             flavor=data["flavor"],
-            strawberries=data["strawberries"]
+            strawberries=data["strawberries"],
+            amount=data["amount"],
         )
         db.session.add(new_cheesecake_order)
         db.session.commit()
@@ -187,6 +189,7 @@ def create_cookie(id):
             order_id=id,
             user_id=current_user.get_id(),
             flavor=data["flavor"],
+            amount=data["amount"],
         )
         db.session.add(new_cookie_order)
         db.session.commit()
@@ -260,6 +263,7 @@ def edit_a_cupcake_order(order_id, cupcake_id):
         cupcake.color_three=data["color_three"]
         cupcake.style=data["style"]
         cupcake.flavor=data["flavor"]
+        cupcake.amount=data["amount"]
         db.session.commit()
         return cupcake.to_dict()
     return {"errors": validation_errors_to_error_messages(form.errors)}, 400
@@ -289,6 +293,7 @@ def edit_a_cheesecake_order(order_id, cheesecake_id):
         data = form.data
         cheesecake.flavor=data["flavor"]
         cheesecake.strawberries=data["strawberries"]
+        cheesecake.amount=data["amount"]
         db.session.commit()
         return cheesecake.to_dict()
     return {"errors": validation_errors_to_error_messages(form.errors)}, 400
@@ -318,6 +323,7 @@ def edit_a_cookie_order(order_id, cookie_id):
     if form.validate_on_submit():
         data = form.data
         cookie.flavor=data["flavor"]
+        cookie.amount=data["amount"]
         db.session.commit()
         return cookie.to_dict()
     return {"errors": validation_errors_to_error_messages(form.errors)}, 400

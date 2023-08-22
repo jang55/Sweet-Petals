@@ -6,3 +6,4 @@ from app.models import Cookie
 
 class CookieForm(FlaskForm):
     flavor = StringField('Flavor', validators=[DataRequired()])
+    amount = IntegerField("Amount", validators=[DataRequired()])

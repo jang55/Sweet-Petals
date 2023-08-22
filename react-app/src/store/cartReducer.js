@@ -38,10 +38,17 @@ export const removeCheesecakeAction = (cheesecake) => ({
 
 // ***************************
 
-export const addCookieAction = (cookie) => ({
-    type: ADD_COOKIE,
-    payload: cookie,
-});
+// export const addCookieAction = (cookie) => ({
+//     type: ADD_COOKIE,
+//     payload: cookie,
+// });
+export const addCookieAction = (cookie) => {
+    console.log("hit action")
+    return {
+        type: ADD_COOKIE,
+        payload: cookie,
+    }
+} ;
 
 // ***************************
 
@@ -73,6 +80,7 @@ const initialState = {
 
 export default function cartReducer(state = initialState, action) {
     let newState = { ...state };
+    console.log("in reducer")
     switch (action.type) {
         case ADD_CUPCAKE:
             newState.cupcakes[action.payload.id] = action.payload;
@@ -81,6 +89,7 @@ export default function cartReducer(state = initialState, action) {
             newState.cheesecakes[action.payload.id] = action.payload;
             return newState;
         case ADD_COOKIE:
+            console.log("hit reducer")
             newState.cookies[action.payload.id] = action.payload;
             return newState;
         case REMOVE_CUPCAKE:

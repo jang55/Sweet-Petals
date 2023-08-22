@@ -7,3 +7,4 @@ from app.models import Cheesecake
 class CheesecakeForm(FlaskForm):
     flavor = StringField('Flavor', validators=[DataRequired()])
     strawberries = BooleanField('Strawberries')
+    amount = IntegerField("Amount", validators=[DataRequired()])

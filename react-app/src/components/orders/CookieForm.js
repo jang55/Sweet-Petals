@@ -1,9 +1,23 @@
 import "./css/cookie-form.css";
 import { useState } from "react";
+import { addCookieAction } from "../../store/cartReducer";
+import { useDispatch } from "react-redux";
 
 function CookieForm() {
   const [selectedCookie, setSelectedCookie] = useState("");
+  const dispatch = useDispatch();
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const formRes = {
+      // id: Math.floor(Math.random() * 16777215),
+      flavor: selectedCookie
+    }
+    console.log(formRes)
+    dispatch(addCookieAction(formRes));
+    return;
+  }
 
   return (
     <div className="cookie-container">
@@ -12,7 +26,7 @@ function CookieForm() {
           <div className="cookie-container-4">
             <div className="cookie-container-5">
               <div className="cookie-container-6">
-                  <form>
+                  <form onSubmit={handleSubmit}>
                     <h1 className="cookie-h1">Choose a Cookie flavor!</h1>
                     <label htmlFor="cookie-selection">
                       <p className="cookie-input-label">

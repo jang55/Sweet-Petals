@@ -18,6 +18,7 @@ class Cupcake(db.Model, UserMixin):
     color_three = db.Column(db.String(40))
     style = db.Column(db.String(40), nullable=False)
     flavor = db.Column(db.String(40), nullable=False)
+    amount = db.Column(db.Integer, nullable=False)
     created_at = db.Column(db.DateTime(timezone=True), default=db.func.now())
     updated_at = db.Column(db.DateTime(timezone=True), default=db.func.now())
 
@@ -34,6 +35,7 @@ class Cupcake(db.Model, UserMixin):
             'color_three': self.color_three,
             'style': self.style,
             'flavor': self.flavor,
+            'amount': self.amount,
             'created_at': self.created_at,
             'updated_at': self.updated_at
         }

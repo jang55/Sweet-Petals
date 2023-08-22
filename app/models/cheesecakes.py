@@ -15,6 +15,7 @@ class Cheesecake(db.Model, UserMixin):
     order_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("orders.id")), nullable=False)
     flavor = db.Column(db.String(40), nullable=False)
     strawberries = db.Column(db.Boolean(), default=False)
+    amount = db.Column(db.Integer, nullable=False)
     created_at = db.Column(db.DateTime(timezone=True), default=db.func.now())
     updated_at = db.Column(db.DateTime(timezone=True), default=db.func.now())
 
@@ -29,6 +30,7 @@ class Cheesecake(db.Model, UserMixin):
             'user_id': self.user_id,
             'flavor': self.flavor,
             'strawberries': self.strawberries,
+            'amount': self.amount,
             'created_at': self.created_at,
             'updated_at': self.updated_at
         }

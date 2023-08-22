@@ -10,3 +10,4 @@ class CupcakeForm(FlaskForm):
     color_three = StringField('Color three')
     style = StringField('Style', validators=[DataRequired()])
     flavor = StringField('Flavor', validators=[DataRequired()])
+    amount = IntegerField("Amount", validators=[DataRequired()])

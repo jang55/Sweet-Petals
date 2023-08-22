@@ -15,7 +15,6 @@ function CupcakeForm() {
   useEffect(() => {
     document.addEventListener("mouseup", function (event) {
       const colorWheel = document.getElementsByClassName("wheel-active")[0];
-      console.log(colorWheel);
       if (event.target != colorWheel && event.target.parentNode != colorWheel) {
         if (colorWheel && colorWheel.style) {
           setOpenWheel("");

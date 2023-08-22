@@ -4,11 +4,11 @@ from sqlalchemy.sql import text
 
 
 def seed_cheesecakes():
-    cheesecake_one = Cheesecake(order_id=1, user_id=1, flavor="macha")
-    cheesecake_two = Cheesecake(order_id=3, user_id=4, flavor="original", strawberries=True)
-    cheesecake_three = Cheesecake(order_id=4, user_id=5, flavor="original", strawberries=True)
-    cheesecake_four = Cheesecake(order_id=5, user_id=6, flavor="original")
-    cheesecake_five = Cheesecake(order_id=8, user_id=1, flavor="original", strawberries=True)
+    cheesecake_one = Cheesecake(order_id=1, user_id=1, flavor="macha", amount=1)
+    cheesecake_two = Cheesecake(order_id=3, user_id=4, flavor="original", strawberries=True, amount=1)
+    cheesecake_three = Cheesecake(order_id=4, user_id=5, flavor="original", strawberries=True, amount=1)
+    cheesecake_four = Cheesecake(order_id=5, user_id=6, flavor="original", amount=1)
+    cheesecake_five = Cheesecake(order_id=8, user_id=1, flavor="original", strawberries=True, amount=1)
 
     db.session.add(cheesecake_one)
     db.session.add(cheesecake_two)

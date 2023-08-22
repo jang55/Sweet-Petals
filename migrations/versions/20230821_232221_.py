@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 7102d0de21cb
+Revision ID: 46eea8beab1e
 Revises: 
-Create Date: 2023-08-17 20:59:31.491539
+Create Date: 2023-08-21 23:22:21.237192
 
 """
 from alembic import op
@@ -14,8 +14,9 @@ environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
 
 
+
 # revision identifiers, used by Alembic.
-revision = '7102d0de21cb'
+revision = '46eea8beab1e'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -74,6 +75,7 @@ def upgrade():
     sa.Column('order_id', sa.Integer(), nullable=False),
     sa.Column('flavor', sa.String(length=40), nullable=False),
     sa.Column('strawberries', sa.Boolean(), nullable=True),
+    sa.Column('amount', sa.Integer(), nullable=False),
     sa.Column('created_at', sa.DateTime(timezone=True), nullable=True),
     sa.Column('updated_at', sa.DateTime(timezone=True), nullable=True),
     sa.ForeignKeyConstraint(['order_id'], ['orders.id'], ),
@@ -84,6 +86,7 @@ def upgrade():
     sa.Column('order_id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('flavor', sa.String(length=40), nullable=False),
+    sa.Column('amount', sa.Integer(), nullable=False),
     sa.Column('created_at', sa.DateTime(timezone=True), nullable=True),
     sa.Column('updated_at', sa.DateTime(timezone=True), nullable=True),
     sa.ForeignKeyConstraint(['order_id'], ['orders.id'], ),
@@ -98,6 +101,7 @@ def upgrade():
     sa.Column('color_three', sa.String(length=40), nullable=True),
     sa.Column('style', sa.String(length=40), nullable=False),
     sa.Column('flavor', sa.String(length=40), nullable=False),
+    sa.Column('amount', sa.Integer(), nullable=False),
     sa.Column('created_at', sa.DateTime(timezone=True), nullable=True),
     sa.Column('updated_at', sa.DateTime(timezone=True), nullable=True),
     sa.ForeignKeyConstraint(['order_id'], ['orders.id'], ),
