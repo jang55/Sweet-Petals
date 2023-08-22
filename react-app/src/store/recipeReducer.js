@@ -94,7 +94,7 @@ export const createRecipeThunk =
 
     if (response.ok) {
       const data = await response.json();
-      dispatch(getAllRecipesThunk());
+      dispatch(createRecipeAction(data));
       return data;
     } else {
       const err = await response.json();
@@ -120,7 +120,7 @@ export const updateRecipeThunk =
 
     if (response.ok) {
       const data = await response.json();
-      dispatch(getAllRecipesThunk());
+      dispatch(updateRecipeActions(data));
       return data;
     } else {
       const err = await response.json();
@@ -164,6 +164,14 @@ export default function recipeReducer(state = initialState, action) {
       });
       return newState;
     case GET_RECIPE:
+      newState[action.payload.id] = action.payload;
+      return newState;
+    case CREATE_RECIPE:
+      newState = { ...state };
+      newState[action.payload.id] = action.payload;
+      return newState;
+    case UPDATE_RECIPE:
+      newState = { ...state };
       newState[action.payload.id] = action.payload;
       return newState;
     case DELETE_RECIPE:

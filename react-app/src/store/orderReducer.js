@@ -117,7 +117,7 @@ const deleteCupcakeOrderAction = (cupakeOrder) => ({
 
 // ***************************
 
-const deleteCeesecakeOrderAction = (cheesecakeOrder) => ({
+const deleteCheesecakeOrderAction = (cheesecakeOrder) => ({
   type: DELETE_CHEESECAKE_ORDER,
   payload: cheesecakeOrder,
 });
@@ -180,6 +180,11 @@ export const getOrderThunk = (orderId) => async (dispatch) => {
     return err;
   }
 };
+
+
+
+
+
 
 // ***************************
 // create the orders
@@ -283,6 +288,13 @@ export const createCookiesOrderThunk =
     }
   };
 
+
+
+
+
+
+
+
 // ***************************
 // update the orders
 
@@ -299,7 +311,7 @@ export const updateOrderThunk = (pick_up_time) => async (dispatch) => {
 
   if (response.ok) {
     const data = await response.json();
-    dispatch(getAllUserOrdersThunk());
+    dispatch(getOrderThunk(data.id));
     return data;
   } else {
     const err = await response.json();
@@ -331,7 +343,7 @@ export const updateCupcakeOrderThunk =
 
     if (response.ok) {
       const data = await response.json();
-      dispatch(getAllUserOrdersThunk());
+      dispatch(getOrderThunk(data.order_id));
       return data;
     } else {
       const err = await response.json();
@@ -359,7 +371,7 @@ export const updateCheesecakesOrderThunk =
 
     if (response.ok) {
       const data = await response.json();
-      dispatch(getAllUserOrdersThunk());
+      dispatch(getOrderThunk(data.order_id));
       return data;
     } else {
       const err = await response.json();
@@ -383,7 +395,7 @@ export const updateCookiesOrderThunk =
 
     if (response.ok) {
       const data = await response.json();
-      dispatch(getAllUserOrdersThunk());
+      dispatch(getOrderThunk(data.order_id));
       return data;
     } else {
       const err = await response.json();
@@ -404,7 +416,7 @@ export const deleteOrderThunk = (orderId) => async (dispatch) => {
 
   if (response.ok) {
     const data = await response.json();
-    dispatch(getAllUserOrdersThunk());
+    dispatch(deleteOrderAction(data));
     return data;
   } else {
     const err = await response.json();
@@ -428,7 +440,7 @@ export const deleteCupcakeOrderThunk =
 
     if (response.ok) {
       const data = await response.json();
-      dispatch(getAllUserOrdersThunk());
+      dispatch(getOrderThunk(orderId));
       return data;
     } else {
       const err = await response.json();
@@ -452,7 +464,7 @@ export const deleteCheesecakesOrderThunk =
 
     if (response.ok) {
       const data = await response.json();
-      dispatch(getAllUserOrdersThunk());
+      dispatch(getOrderThunk(orderId));
       return data;
     } else {
       const err = await response.json();
@@ -473,7 +485,7 @@ export const deleteCookiesOrderThunk =
 
     if (response.ok) {
       const data = await response.json();
-      dispatch(getAllUserOrdersThunk());
+      dispatch(getOrderThunk(orderId));
       return data;
     } else {
       const err = await response.json();
@@ -501,6 +513,17 @@ export default function orderReducer(state = initialState, action) {
       userOrders.forEach((order) => {
         newState[order.id] = order;
       });
+      return newState;
+    case GET_ORDER:
+      newState[action.payload.id] = action.payload;
+      return newState;      
+    case UPDATE_ORDER:
+      newState = { ...state };
+      newState[action.payload.id] = action.payload;
+      return newState;
+    case DELETE_ORDER:
+      newState = { ...state };
+      delete newState[action.payload];
       return newState;
     default:
       return state;

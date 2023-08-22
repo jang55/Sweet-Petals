@@ -117,7 +117,7 @@ export const createReviewThunk =
 
     if (response.ok) {
       const data = await response.json();
-      dispatch(getAllReviewsThunk());
+      dispatch(createReviewAction(data));
       return data;
     } else {
       const err = await response.json();
@@ -142,7 +142,7 @@ export const updateReviewThunk =
 
     if (response.ok) {
       const data = await response.json();
-      dispatch(getAllReviewsThunk());
+      dispatch(updateReviewActions(data));
       return data;
     } else {
       const err = await response.json();
@@ -190,6 +190,14 @@ export default function reviewReducer(state = initialState, action) {
       userReviews.forEach((review) => {
         newState[review.id] = review;
       });
+      return newState;
+    case CREATE_REVIEW:
+      newState = { ...state };
+      newState[action.payload.id] = action.payload;
+      return newState;
+    case UPDATE_REVIEW:
+      newState = { ...state };
+      newState[action.payload.id] = action.payload;
       return newState;
     case DELETE_REVIEW:
       newState = { ...state };
