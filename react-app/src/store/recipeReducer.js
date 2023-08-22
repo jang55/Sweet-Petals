@@ -78,70 +78,72 @@ export const getRecipeThunk = (recipeId) => async (dispatch) => {
 
 // ***************************
 
-// export const createReviewThunk =
-//   (orderId, review, stars) => async (dispatch) => {
-//     const response = await fetch(`/api/orders/${orderId}/reviews`, {
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify({
-//         review,
-//         stars,
-//       }),
-//     });
+export const createRecipeThunk =
+  (title, ingredients, description) => async (dispatch) => {
+    const response = await fetch(`/api/recipes`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        title,
+        ingredients,
+        description,
+      }),
+    });
 
-//     if (response.ok) {
-//       const data = await response.json();
-//       dispatch(getAllReviewsThunk());
-//       return data;
-//     } else {
-//       const err = await response.json();
-//       return err;
-//     }
-//   };
-
-// ***************************
-
-// export const updateReviewThunk =
-//   (reviewId, review, stars) => async (dispatch) => {
-//     const response = await fetch(`/api/reviews/${reviewId}`, {
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify({
-//         review,
-//         stars,
-//       }),
-//     });
-
-//     if (response.ok) {
-//       const data = await response.json();
-//       dispatch(getAllReviewsThunk());
-//       return data;
-//     } else {
-//       const err = await response.json();
-//       return err;
-//     }
-//   };
+    if (response.ok) {
+      const data = await response.json();
+      dispatch(getAllRecipesThunk());
+      return data;
+    } else {
+      const err = await response.json();
+      return err;
+    }
+  };
 
 // ***************************
 
-// export const deleteReviewThunk = (reviewId) => async (dispatch) => {
-//   const response = await fetch(`/api/reviews/${reviewId}`, {
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//   });
+export const updateRecipeThunk =
+  (recipeId, title, ingredients, description) => async (dispatch) => {
+    const response = await fetch(`/api/recipes/${recipeId}`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        title,
+        ingredients,
+        description,
+      }),
+    });
 
-//   if (response.ok) {
-//     const data = await response.json();
-//     dispatch(getAllReviewsThunk());
-//     return data;
-//   } else {
-//     const err = await response.json();
-//     return err;
-//   }
-// };
+    if (response.ok) {
+      const data = await response.json();
+      dispatch(getAllRecipesThunk());
+      return data;
+    } else {
+      const err = await response.json();
+      return err;
+    }
+  };
+
+// ***************************
+
+export const deleteRecipeThunk = (recipeId) => async (dispatch) => {
+  const response = await fetch(`/api/recipes/${recipeId}`, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(getAllRecipesThunk());
+    return data;
+  } else {
+    const err = await response.json();
+    return err;
+  }
+};
 
 // ***************************
 
@@ -152,12 +154,12 @@ const initialState = {};
 export default function recipeReducer(state = initialState, action) {
   const newState = {};
   switch (action.type) {
-    // case GET_ALL_REVIEWS:
-    //   const reviews = action.payload;
-    //   reviews.forEach((review) => {
-    //     newState[review.id] = review;
-    //   });
-    //   return newState;
+    case GET_ALL_RECIPES:
+      const recipes = action.payload;
+      recipes.forEach((recipe) => {
+        newState[recipe.id] = recipe;
+      });
+      return newState;
     // case GET_USER_REVIEWS:
     //   const userReviews = action.payload;
     //   userReviews.forEach((review) => {
