@@ -83,6 +83,9 @@ export const removeAllCartItems = () => ({
 
 function addCookie(allCookies, cookie) {
   if (cookie.flavor in allCookies) {
+    if (allCookies[cookie.flavor].amount >= 10) {
+      return allCookies;
+    }
     allCookies[cookie.flavor].amount =
       allCookies[cookie.flavor].amount + 1;
   } else {
@@ -103,6 +106,10 @@ function subtractCookie(allCookies, cookie) {
 
 function addCheesecake(allCheesecakes, cheesecake) {
   if (cheesecake.id in allCheesecakes) {
+    if (allCheesecakes[cheesecake.id].amount >= 10) {
+      return allCheesecakes;
+    }
+
     allCheesecakes[cheesecake.id].amount =
       allCheesecakes[cheesecake.id].amount + 1;
   } else {
@@ -123,6 +130,10 @@ function subtractCheesecake(allCheesecakes, cheesecake) {
 
 function addCupcake(allCupcakes, cupcake) {
   if (cupcake.id in allCupcakes) {
+    if(allCupcakes[cupcake.id].amount >= 10) {
+      return allCupcakes;
+    }
+
     allCupcakes[cupcake.id].amount =
       allCupcakes[cupcake.id].amount + 1;
   } else {

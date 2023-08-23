@@ -37,7 +37,7 @@ function CupcakeForm() {
       style: style,
       color_one: hsvaToHex(hsvaOne),
       color_two: hsvaToHex(hsvaTwo),
-      color_threw: hsvaToHex(hsvaThree),
+      color_three: hsvaToHex(hsvaThree),
       type: "cupcake",
       amount: amount,
     }
@@ -191,10 +191,10 @@ function CupcakeForm() {
                       <option disabled value="">
                         Select one...
                       </option>
-                      <option value="semi floral">Semi Floral</option>
-                      <option value="floral">Floral</option>
-                      <option value="swirl">Swirl</option>
-                      <option value="cactus">Cactus</option>
+                      <option value="Semi-Floral">Semi Floral</option>
+                      <option value="Floral">Floral</option>
+                      <option value="Swirl">Swirl</option>
+                      <option value="Cactus">Cactus</option>
                     </select>
                   </label>
                   <label>
@@ -210,9 +210,9 @@ function CupcakeForm() {
                       <option disabled value="">
                         Select one...
                       </option>
-                      <option value="vanilla">Vanilla</option>
-                      <option value="chocolate">Chocolate</option>
-                      <option value="lemon">Lemon</option>
+                      <option value="Vanilla">Vanilla</option>
+                      <option value="Chocolate">Chocolate</option>
+                      <option value="Lemon">Lemon</option>
                     </select>
                   </label>
                   <button className="cupcake-submit-button" type="submit">

@@ -1,0 +1,173 @@
+/* .cart-container {
+    overflow: hidden;
+} */
+
+.cart-items-wrap {
+    overflow: hidden scroll;
+    /* position: absolute; */
+    /* background-color: red; */
+    max-height: 350px;
+    margin-left: 10px;
+}
+
+.cart-items-handler {
+    margin-left: 10px;
+    margin-top: 5px; 
+    grid-column-start: 1;
+    grid-column-end: 5;
+}
+
+.cart-dollar-sign {
+    font-size: 16px;
+    font-weight: bolder;
+}
+
+
+/*********************Style for the cupcakes ****************/
+.cart-cupcake-title {
+    margin: 0px;
+    margin-bottom: 5px;
+    font-weight: bolder;
+    font-size: 17px;
+}
+.cart-cupcake-wrapper{
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    margin-right: 10px;
+    margin-bottom: 15px;
+}
+
+.cart-cupcake-flavor {
+    font-size: 14px;
+    margin: 1px;
+    margin-left: 6px;
+    grid-column-start: 1;
+    grid-column-end: 6;
+}
+
+.cart-cupcake-style {
+    font-size: 14px;
+    margin: 1px;
+    margin-left: 6px;
+    grid-column-start: 1;
+    grid-column-end: 5;
+}
+
+
+.cart-cupcake-color-wrap {
+    display: flex;
+    grid-column-start: 6;
+    grid-column-end: 10;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+
+.cart-cupcake-color-wrap div {
+    margin: 3px;
+
+}
+
+.cart-cupcake-colors {
+    width: 20px;
+    height: 20px;
+    /* width: 6%;
+    height: 20px; */
+}
+
+.cart-cupcake-price {
+    font-size: 15px;
+    margin-top: 6px;
+    grid-column-start: 8;
+    grid-column-end: 10;
+    grid-row-start: 3;
+    grid-row-end: 4;
+}
+
+/*********************Style for the cheesecakes ****************/
+
+
+.cart-cheesecake-title {
+    margin: 0px;
+    margin-bottom: 5px;
+    font-weight: bolder;
+    font-size: 17px;
+}    
+.cart-cheesecake-wrapper {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    margin-right: 10px;
+    margin-bottom: 15px;
+}
+
+.cart-cheesecake-flavor{
+    grid-column-start: 1;
+    grid-column-end: 10;
+    font-size: 14px;
+    margin: 1px;
+    margin-left: 6px;
+}
+
+.cart-cheesecake-strawberries {
+    grid-column-start: 1;
+    grid-column-end: 10;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    font-size: 14px;
+    margin: 1px;
+    margin-left: 6px;
+}
+
+.cart-cheesecake-price {
+    font-size: 15px;
+    margin-top: 6px;
+    grid-column-start: 8;
+    grid-column-end: 10;
+    grid-row-start: 3;
+    grid-row-end: 4;
+}
+
+/*********************Style for the cookies ****************/
+
+
+.cart-cookie-title {
+    margin: 0px;
+    margin-bottom: 5px;
+    font-weight: bolder;
+    font-size: 17px;
+}    
+.cart-cookie-wrapper {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    margin-right: 10px;
+    margin-bottom: 15px;
+}
+
+.cart-cookie-flavor{
+    grid-column-start: 1;
+    grid-column-end: 10;
+    font-size: 14px;
+    margin: 1px;
+    margin-left: 6px;
+}
+
+.cart-cookie-strawberries {
+    grid-column-start: 1;
+    grid-column-end: 10;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    font-size: 14px;
+    margin: 1px;
+    margin-left: 6px;
+}
+
+.cart-cookie-price {
+    font-size: 15px;
+    margin-top: 6px;
+    grid-column-start: 8;
+    grid-column-end: 10;
+    grid-row-start: 2;
+    grid-row-end: 3;
+}

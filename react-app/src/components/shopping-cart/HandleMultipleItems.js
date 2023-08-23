@@ -13,7 +13,7 @@ import { useDispatch } from "react-redux";
 
 
 
-function handleMultipleItems({ dessert }) {
+function HandleMultipleItems({ dessert }) {
     const dispatch = useDispatch();
 
     const handleAddingItem = (e) => {
@@ -59,12 +59,12 @@ function handleMultipleItems({ dessert }) {
 
 
     return (
-        <div>
-            <button onClick={handleSubtractingItem}>-</button>
-            <input type="integer"></input>
-            {dessert && dessert.amount < 10 && <button onClick={handleAddingItem}>+</button>}
+        <div className="cart-items-handler">
+            <button onClick={handleSubtractingItem} style={{width: "30%", textAlign: "center", cursor: "pointer"}}>-</button>
+            <input disabled={true} value={dessert.amount <= 10 ? dessert.amount : 10} type="number" style={{width: "18%", textAlign: "center"}}></input>
+            {dessert && dessert.amount < 10 && <button onClick={handleAddingItem} style={{width: "30%", textAlign: "center", cursor: "pointer"}}>+</button>}
         </div>
     );
 }
 
-export default handleMultipleItems;
+export default HandleMultipleItems;

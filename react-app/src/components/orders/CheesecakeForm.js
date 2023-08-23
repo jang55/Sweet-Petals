@@ -45,13 +45,13 @@ function CheesecakeForm() {
                         onChange={(e) =>setCheesecakeFlavor(e.target.value)}
                       >
                         <option disabled value="">Select one...</option>
-                        <option value="original">Original</option>
-                        <option value="matcha">Matcha</option>
-                        <option value="pumpkin">Pumpkin</option>
-                        <option value="brown sugar and chocolate swirl">Brown Sugar and Chocolate Swirl</option>
-                        <option value="double chocolate almond">Double Chocolate Almond</option>
-                        <option value="butter pecan">Butter Pecan</option>
-                        <option value="peanut butter cup">Peanut Butter Cup</option>
+                        <option value="Original">Original</option>
+                        <option value="Matcha">Matcha</option>
+                        <option value="Pumpkin">Pumpkin</option>
+                        <option value="Brown Sugar and Chocolate Swirl">Brown Sugar and Chocolate Swirl</option>
+                        <option value="Double Chocolate Almond">Double Chocolate Almond</option>
+                        <option value="Butter Pecan">Butter Pecan</option>
+                        <option value="Peanut Butter Cup">Peanut Butter Cup</option>
                       </select>
                     </label>
                     <div className="cheese-straw-input-wrap">
