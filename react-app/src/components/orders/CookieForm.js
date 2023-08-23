@@ -14,6 +14,7 @@ function CookieForm() {
     const formRes = {
       flavor: selectedCookie,
       amount: amount,
+      type: "cookie"
     }
     console.log(formRes)
     dispatch(addCookieAction(formRes));

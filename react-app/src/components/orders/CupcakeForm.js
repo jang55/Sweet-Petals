@@ -38,6 +38,7 @@ function CupcakeForm() {
       color_one: hsvaToHex(hsvaOne),
       color_two: hsvaToHex(hsvaTwo),
       color_threw: hsvaToHex(hsvaThree),
+      type: "cupcake",
       amount: amount,
     }
     dispatch(addCupcakeAction(formRes));

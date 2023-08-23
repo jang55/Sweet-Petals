@@ -18,6 +18,7 @@ function CheesecakeForm() {
       flavor: cheesecakeFlavor,
       strawberries: strawberries,
       amount: amount,
+      type: "cheesecake"
     }
     console.log(formRes)
     dispatch(addCheesecakeAction(formRes));
