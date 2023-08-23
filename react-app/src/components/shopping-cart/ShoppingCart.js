@@ -162,7 +162,7 @@ function ShoppingCart() {
       )}
     {cupcakes.length > 0 || cheesecakes.length > 0 || cookies.length > 0 && <div className="cart-checkout-wrapper">
         <p className="cart-subtotal" >Subtotal: ${subTotal}.00</p>
-        <button className="cart-checkout" >Checkout</button>
+        <button className="cart-checkout" disabled={subTotal === 0}>Checkout</button>
       </div>}
     </div>
   );
