@@ -1,7 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import HandleMultipleItems from "./HandleMultipleItems";
 import "./shopping-cart.css"
+import {
+  removeCheesecakeAction,
+  removeCookieAction,
+  removeCupcakeAction,
+} from "../../store/cartReducer";
+import { InfoContext } from "../../context/InfoContext";
+
 
 
 function ShoppingCart() {
@@ -9,7 +16,11 @@ function ShoppingCart() {
   const [cupcakes, setCupcakes] = useState([]);
   const [cheesecakes, setCheesecakes] = useState([]);
   const [cookies, setCookies] = useState([]);
+  const [subTotal, setSubTotal] = useState(0);
+  const dispatch = useDispatch();
+  const { setCartCount } = useContext(InfoContext);
 
+// sets all the dessert items into an array
   useEffect(() => {
     if (cart && cart.cupcakes) {
       setCupcakes(Object.values(cart.cupcakes));
@@ -24,24 +35,69 @@ function ShoppingCart() {
     }
   }, [cart]);
 
+
+// sets the amount of items and subtotal price
   useEffect(() => {
-    console.log(cupcakes);
-    console.log(cheesecakes);
-    console.log(cookies);
-  }, [cupcakes, cheesecakes, cookies]);
+    let totalItems = 0;
+    let totalPrice = 0;
+    if (cupcakes && cupcakes.length > 0) {
+      cupcakes.forEach(cupcake => {
+        totalItems += cupcake.amount;
+        totalPrice += cupcake.amount * 30;
+      })
+    }
+
+    if (cheesecakes && cheesecakes.length > 0) {
+      cheesecakes.forEach(cheesecake => {
+        totalItems += cheesecake.amount
+
+        if (cheesecake.strawberries) {
+          totalPrice += cheesecake.amount * 20;
+        } else {
+          totalPrice += cheesecake.amount * 18;
+        }
+      })
+    }
+
+    if (cookies && cookies.length > 0) {
+      cookies.forEach(cookie => {
+        totalItems += cookie.amount;
+        totalPrice += cookie.amount * 10;
+      })
+    }
+    setCartCount(totalItems);
+    setSubTotal(totalPrice);
+  }, [cupcakes, cheesecakes, cookies])
+
+
+
+// handles removing items in cart with one click
+  const handleRemove = (e, dessert) => {
+    e.preventDefault();
+
+    if (dessert.type === "cupcake") {
+        dispatch(removeCupcakeAction(dessert));
+    } else if (dessert.type === "cheesecake") {
+        dispatch(removeCheesecakeAction(dessert));
+    } else if (dessert.type === "cookie") {
+        dispatch(removeCookieAction(dessert));
+    }
+
+    return;
+  }
 
   return (
     <div className="cart-container">
-      <h3>Your shopping cart</h3>
+      <h3 className="cart-h3">Shopping Cart</h3>
       {!cupcakes.length && !cheesecakes.length && !cookies.length ? (
-        <p>Your cart is empty</p>
+        <p className="cart-empty-message">Your cart is empty</p>
       ) : (
         <div className="cart-items-wrap">
           {cupcakes && cupcakes.length > 0 &&
           <div>
             <p className="cart-cupcake-title">Cupcakes</p>
             {cupcakes.map(cupcake => {
-  
+
               return (
                 <div key={cupcake.id} className="cart-cupcake-wrapper">
                   <p className="cart-cupcake-flavor">Flavor: {cupcake.flavor}</p>
@@ -65,6 +121,7 @@ function ShoppingCart() {
                   </span>
                   <HandleMultipleItems dessert={cupcake}/>
                   <span className="cart-cupcake-price"><span className="cart-dollar-sign">$</span>{cupcake.amount * 30}.00</span>
+                  <span className="cart-remove" onClick={e => handleRemove(e, cupcake)} >remove</span>
                 </div>
               )
             })}
@@ -81,6 +138,7 @@ function ShoppingCart() {
                   <p className="cart-cheesecake-strawberries" >Strawberries: {cheesecake.strawberries ? "Yes" : "No"}</p>
                   <HandleMultipleItems dessert={cheesecake}/>
                   {cheesecake.strawberries ? <span className="cart-cheesecake-price"><span className="cart-dollar-sign">$</span>{cheesecake.amount * 20}.00</span> : <span className="cart-cheesecake-price"><span className="cart-dollar-sign">$</span>{cheesecake.amount * 18}.00</span>}
+                  <span className="cart-remove" onClick={e => handleRemove(e, cheesecake)}>remove</span>
                 </div>
               )
             }))}
@@ -95,12 +153,17 @@ function ShoppingCart() {
                   <p className="cart-cookie-flavor" >Flavor: {cookie.flavor}</p>
                   <HandleMultipleItems dessert={cookie}/>
                   <span className="cart-cookie-price"><span className="cart-dollar-sign">$</span>{cookie.amount * 10}.00</span>
+                  <span className="cart-remove" onClick={e => handleRemove(e, cookie)}>remove</span>
                 </div>
               )
             }))}
           </div>}
         </div>
       )}
+    {cupcakes.length > 0 || cheesecakes.length > 0 || cookies.length > 0 && <div className="cart-checkout-wrapper">
+        <p className="cart-subtotal" >Subtotal: ${subTotal}.00</p>
+        <button className="cart-checkout" >Checkout</button>
+      </div>}
     </div>
   );
 }

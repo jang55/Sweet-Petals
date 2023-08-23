@@ -72,7 +72,8 @@ function CupcakeForm() {
               <div className="cupcake-container-6">
                 <form onSubmit={handleSubmit}>
                   <h1 className="cupcake-h1">Create a Cupcake!</h1>
-                  <p>Choose atleast one color for the frosting</p>
+                  <p>Each order is a dozen cupcakes.</p>
+                  <p>Choose atleast one color for the frosting.</p>
                   {/* Color one wheel */}
                   <label className="cupcake-color-one">
                     <p className="cupcake-input-label">
@@ -91,8 +92,8 @@ function CupcakeForm() {
                       ></div>
                       <Wheel
                         // pointer = {{left:0, top:0 }}
-                        width = {100}
-                        height = {100}
+                        width = {110}
+                        height = {110}
                         className={`color-wheel-one ${
                           openWheel === "wheel-one"
                             ? "wheel-active"
@@ -122,6 +123,8 @@ function CupcakeForm() {
                           onClick={(e) => setOpenWheel("wheel-two")}
                         ></div>
                         <Wheel
+                          width = {110}
+                          height = {110}
                           className={`color-wheel-two ${
                             openWheel === "wheel-two"
                               ? "wheel-active"
@@ -159,6 +162,8 @@ function CupcakeForm() {
                           onClick={(e) => setOpenWheel("wheel-three")}
                         ></div>
                         <Wheel
+                          width = {110}
+                          height = {110}
                           className={`color-wheel-three ${
                             openWheel === "wheel-three"
                               ? "wheel-active"

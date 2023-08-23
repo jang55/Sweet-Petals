@@ -46,20 +46,20 @@ function CookieForm() {
                           Select one...
                         </option>
                         <option value="Chocolate Chip">
-                          Chocolate Chip (6)
+                          Chocolate Chip (12)
                         </option>
-                        <option value="Peanut Butter">Peanut Butter (6)</option>
-                        <option value="Snickerdoodle">Snickerdoodle (6)</option>
-                        <option value="Ube Crinkle">Ube Crinkle (6)</option>
+                        <option value="Peanut Butter">Peanut Butter (12)</option>
+                        <option value="Snickerdoodle">Snickerdoodle (12)</option>
+                        <option value="Ube Crinkle">Ube Crinkle (12)</option>
                         <option value="Chocolate Crinkle">
-                          Chocolate Crinkle (6)
+                          Chocolate Crinkle (12)
                         </option>
-                        <option value="Sugar Cookies">Sugar Cookies (6)</option>
+                        <option value="Sugar Cookies">Sugar Cookies (12)</option>
                         <option value="White Chocolate Macadamia">
-                          White Chocolate Macadamia (6)
+                          White Chocolate Macadamia (12)
                         </option>
                         <option value="Chewy M&M Cookies">
-                          Chewy M&M Cookies (6)
+                          Chewy M&M Cookies (12)
                         </option>
                       </select>
                     </label>
