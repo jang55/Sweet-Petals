@@ -61,8 +61,8 @@ function HandleMultipleItems({ dessert }) {
     return (
         <div className="cart-items-handler">
             <button onClick={handleSubtractingItem} style={{width: "30%", textAlign: "center", cursor: "pointer"}}>-</button>
-            <input disabled={true} value={dessert.amount <= 10 ? dessert.amount : 10} type="number" style={{width: "18%", textAlign: "center"}}></input>
-            {dessert && dessert.amount < 10 && <button onClick={handleAddingItem} style={{width: "30%", textAlign: "center", cursor: "pointer"}}>+</button>}
+            <input className="cart-amount-input" disabled={true} value={dessert.amount <= 10 ? dessert.amount : 10} type="text" ></input>
+            <button onClick={handleAddingItem} disabled={dessert && dessert.amount === 10 } style={{width: "30%", textAlign: "center", cursor: "pointer"}}>+</button>
         </div>
     );
 }

@@ -90,6 +90,9 @@ function CupcakeForm() {
                         onClick={(e) => setOpenWheel("wheel-one")}
                       ></div>
                       <Wheel
+                        // pointer = {{left:0, top:0 }}
+                        width = {100}
+                        height = {100}
                         className={`color-wheel-one ${
                           openWheel === "wheel-one"
                             ? "wheel-active"
