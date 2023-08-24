@@ -6,6 +6,7 @@ import {
   removeCheesecakeAction,
   removeCookieAction,
   removeCupcakeAction,
+  removeAllCartItems,
 } from "../../store/cartReducer";
 import moment from "moment";
 import { InfoContext } from "../../context/InfoContext";
@@ -21,7 +22,7 @@ function ShoppingCart() {
   const [minDate, setMinDate] = useState("");
   const [pickUpDate, setPickUpDate] = useState("")
   const [pickUpTime, setPickUpTime] = useState("")
-  const { setCartCount } = useContext(InfoContext);
+  const { setCartCount, setOpenShoppingCart } = useContext(InfoContext);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -149,6 +150,9 @@ function ShoppingCart() {
       }
 
       await dispatch(orderActions.getAllUserOrdersThunk());
+      setOpenShoppingCart(false);
+      setCartCount(0);
+      dispatch(removeAllCartItems());
       history.push("/");
     }
   }

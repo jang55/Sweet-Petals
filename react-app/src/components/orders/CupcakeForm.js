@@ -50,8 +50,8 @@ function CupcakeForm() {
       flavor: flavor,
       style: style,
       color_one: hsvaToHex(hsvaOne),
-      color_two: hsvaToHex(hsvaTwo),
-      color_three: hsvaToHex(hsvaThree),
+      color_two: addColorTwo ? hsvaToHex(hsvaTwo) : null,
+      color_three: addColorThree ? hsvaToHex(hsvaThree) : null,
       type: "cupcake",
       amount: amount,
     }

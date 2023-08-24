@@ -15,9 +15,8 @@ import "./nav.css"
 function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state.session.user);
     const { loginModal, signupModal, type } = useContext(ModalContext);
-    const { cartCount, setCartCount } = useContext(InfoContext);
+    const { cartCount, setCartCount, openShoppingCart, setOpenShoppingCart } = useContext(InfoContext);
     const [openMenu, setOpenMenu] = useState(false);
-    const [openShoppingCart, setOpenShoppingCart] = useState(false);
     const dispatch = useDispatch()
     const history = useHistory();
 

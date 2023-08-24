@@ -197,7 +197,12 @@ export default function cartReducer(state = initialState, action) {
       delete newState.cookies[action.payload.flavor];
       return newState;
     case RESET_CART:
-      return initialState;
+      newState = {
+        cupcakes: {},
+        cheesecakes: {},
+        cookies: {},
+      }
+      return newState;
     default:
       return state;
   }
