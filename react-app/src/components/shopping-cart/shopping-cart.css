@@ -299,6 +299,7 @@
     /* font-size: 12px; */
     /* margin-top: 10px; */
     margin-left: 10px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .cart-pickup-time {
@@ -307,7 +308,13 @@
     grid-column-end: 11;
     grid-row-start: 2;
     grid-row-end: 3; 
-    margin-left: 10px;
+    margin-left: 0px;
+    height: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.cart-time-message {
+    width: 136px;
 }
 
 .cart-pickup-time:invalid + span::after {

@@ -17,7 +17,9 @@ function ShoppingCart() {
   const [cheesecakes, setCheesecakes] = useState([]);
   const [cookies, setCookies] = useState([]);
   const [subTotal, setSubTotal] = useState(0);
-  const [minDate, setMinDate] = useState("")
+  const [minDate, setMinDate] = useState("");
+  const [pickUpDate, setPickUpDate] = useState("")
+  const [pickUpTime, setPickUpTime] = useState("")
   const dispatch = useDispatch();
   const { setCartCount } = useContext(InfoContext);
 
@@ -240,7 +242,7 @@ function ShoppingCart() {
             <input className="cart-pickup-date" type="date" min={minDate}></input>
           </label>
           <label className="cart-pickup-time-wrapper">
-            Choose a pick up time:
+            <span className="cart-time-message">Choose time between 9AM - 6PM:</span>
             <input className="cart-pickup-time" type="time" min="09:00" max="18:00"></input>
             <span class="validity"></span>
           </label>
