@@ -7,6 +7,7 @@ import {
   removeCookieAction,
   removeCupcakeAction,
 } from "../../store/cartReducer";
+import moment from "moment";
 import { InfoContext } from "../../context/InfoContext";
 import * as orderActions from "../../store/orderReducer";
 
@@ -16,6 +17,7 @@ function ShoppingCart() {
   const [cheesecakes, setCheesecakes] = useState([]);
   const [cookies, setCookies] = useState([]);
   const [subTotal, setSubTotal] = useState(0);
+  const [minDate, setMinDate] = useState("")
   const dispatch = useDispatch();
   const { setCartCount } = useContext(InfoContext);
 
@@ -68,6 +70,17 @@ function ShoppingCart() {
     setSubTotal(totalPrice);
   }, [cupcakes, cheesecakes, cookies]);
 
+
+
+
+  // sets up the min date for the input date box
+  useEffect(() => {
+    const date = moment().add(2, 'days').format().slice(0, 10);
+    setMinDate(date) 
+
+  })
+
+
   // handles removing items in cart with one click
   const handleRemove = (e, dessert) => {
     e.preventDefault();
@@ -83,18 +96,20 @@ function ShoppingCart() {
     return;
   };
 
-  // const handleCreatingOrders = async (e) => {
-  //   e.preventDefault();
 
-  //   const newOrder = await dispatch(orderActions)
+// handles the submission of all orders
+  const handleCreatingOrders = async (e) => {
+    e.preventDefault();
 
-  //   if (cupcakes.length > 0) {
-  //     await cupcakes.forEach( async (cupcake) => {
-  //       await dispatch(orderActions.createCupcakeOrderThunk())
-  //     })
-  //   }
+    const newOrder = await dispatch(orderActions)
 
-  // }
+    if (cupcakes.length > 0) {
+      await cupcakes.forEach( async (cupcake) => {
+        await dispatch(orderActions.createCupcakeOrderThunk())
+      })
+    }
+
+  }
 
   return (
     <div className="cart-container">
@@ -218,12 +233,21 @@ function ShoppingCart() {
       {(cupcakes.length > 0 ||
         cheesecakes.length > 0 ||
         cookies.length > 0) && (
-        <div className="cart-checkout-wrapper">
+        <form className="cart-checkout-wrapper" >
           <p className="cart-subtotal">Subtotal: ${subTotal}.00</p>
-          <button className="cart-checkout" disabled={subTotal === 0}>
+          <label className="cart-pickup-date-wrapper">
+            Choose a pick up date:
+            <input className="cart-pickup-date" type="date" min={minDate}></input>
+          </label>
+          <label className="cart-pickup-time-wrapper">
+            Choose a pick up time:
+            <input className="cart-pickup-time" type="time" min="09:00" max="18:00"></input>
+            <span class="validity"></span>
+          </label>
+          <button className="cart-checkout" disabled={subTotal === 0 || 0}>
             Checkout
           </button>
-        </div>
+        </form>
       )}
     </div>
   );

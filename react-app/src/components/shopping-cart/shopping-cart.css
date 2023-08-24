@@ -253,22 +253,93 @@
 .cart-checkout-wrapper {
     display: grid;
     grid-template-columns: repeat(11, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-rows: 0.2fr 0.3fr 0.8fr 0.8fr;
     position: absolute;
     bottom: 0;
     width: 100%;
+    /* background-color: rgb(189, 189, 189); */
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    /* color: white */
+}
+
+.cart-pickup-date-wrapper {
+    font-size: 13px;
+    grid-column-start: 1;
+    grid-column-end: 12;
+    grid-row-start: 1;
+    grid-row-end: 2; 
+    margin-top: 10px;
+    /* font-family: Arial, Helvetica, sans-serif; */
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: center;
+    align-items: center;
+    /* padding-bottom: 12px; */
+}
+
+.cart-pickup-time-wrapper {
+    font-size: 13px;
+    grid-column-start: 1;
+    grid-column-end: 12;
+    grid-row-start: 2;
+    grid-row-end: 3; 
+    margin-top: 10px;
+    /* font-family: Arial, Helvetica, sans-serif; */
+    display: flex;
+    /* flex-direction: column; */
+    /* justify-content: center; */
+    border-bottom: 1px solid gray;
+    padding-bottom: 15px;
+    margin-left: 19px;
+    margin-right: 19px;
+}
+
+.cart-pickup-date {
+    /* font-size: 12px; */
+    /* margin-top: 10px; */
+    margin-left: 10px;
+}
+
+.cart-pickup-time {
+    position: relative;
+    grid-column-start: 2;
+    grid-column-end: 11;
+    grid-row-start: 2;
+    grid-row-end: 3; 
+    margin-left: 10px;
+}
+
+.cart-pickup-time:invalid + span::after {
+    position: absolute;
+    content: "✖";
+    padding-left: 5px;
+    color: red;
+    font-size: 15px;
+}
+
+.cart-pickup-time:valid + span::after {
+    position: absolute;
+    content: "✓";
+    padding-left: 5px;
+    color: green;
+    font-size: 15px;
 }
 
 .cart-subtotal {
     grid-column-start: 6;
     grid-column-end: 11;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    margin: 6px 0px;
+    height:fit-content;
 }
 
 .cart-checkout {
     grid-column-start: 3;
     grid-column-end: 10;
-    grid-row-start: 2;
-    grid-row-end: 3;
+    grid-row-start: 4;
+    grid-row-end: 5;
     height: 30px;
     cursor: pointer;
     /* background-color: var(--main-bg-button); */
@@ -283,3 +354,4 @@
 .cart-checkout:hover {
     background-color: pink;
 }
+
