@@ -35,6 +35,7 @@
 .nav-logo {
     width: 170px;
     height: 85px;
+    margin-top: 10px;
 }
 
 .nav-list-wrapper > li {
@@ -87,7 +88,7 @@
 .nav-shopping-count {
     width: 17px;
     height: 17px;
-    background-color: rgb(251, 66, 66);
+    background-color: rgba(229, 76, 76, 0.77);
     border-radius: 10px;
     position: absolute;
     top: -2px;

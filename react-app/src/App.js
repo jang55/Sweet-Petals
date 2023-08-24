@@ -7,6 +7,7 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/navigation/Navigation";
 import LandingPage from "./components/landing/LandingPage";
 import CreateOrderForm from "./components/orders/CreateOrderForm";
+import UsersOrders from "./components/orders/UsersOrders";
 import Modal from "./utils/Modal";
 
 function App() {
@@ -25,9 +26,9 @@ function App() {
           <Route exact path="/" >
             <LandingPage />
           </Route>
-          {/* <Route path="/login" >
-            <LoginFormPage />
-          </Route> */}
+          <Route path="/orders/users" >
+            <UsersOrders />
+          </Route>
           <Route path="/orders/new">
             <CreateOrderForm />
           </Route>
