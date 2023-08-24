@@ -38,6 +38,7 @@ function CheesecakeForm() {
               <div className="cheesecake-container-6">
                   <form onSubmit={handleSubmit}>
                     <h1 className="cheesecake-h1">Choose a Cheesecake flavor!</h1>
+                    <p >Each order is a dozen of cheesecake bites!</p>
                     <label>
                       <p className="cheesecake-input-label">
                         flavor <span>*</span>

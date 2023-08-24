@@ -219,7 +219,7 @@ function ShoppingCart() {
               <p className="cart-cheesecake-title">Cheesecakes</p>
               {cheesecakes.map((cheesecake) => {
                 return (
-                  <div className="cart-cheesecake-wrapper">
+                  <div className="cart-cheesecake-wrapper" key={cheesecake.id}>
                     <p className="cart-cheesecake-flavor">
                       Flavor: {cheesecake.flavor}
                     </p>
@@ -254,7 +254,7 @@ function ShoppingCart() {
               <p className="cart-cookie-title">Cookies</p>
               {cookies.map((cookie) => {
                 return (
-                  <div className="cart-cookie-wrapper">
+                  <div className="cart-cookie-wrapper" key={cookie.id}>
                     <p className="cart-cookie-flavor">
                       Flavor: {cookie.flavor}
                     </p>
