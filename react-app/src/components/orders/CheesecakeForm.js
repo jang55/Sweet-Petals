@@ -1,8 +1,9 @@
 import "./css/cheesecake-form.css";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { addCheesecakeAction } from "../../store/cartReducer";
 import { useDispatch } from "react-redux";
 import { InfoContext } from "../../context/InfoContext";
+import { useSelector } from "react-redux";
 
 function CheesecakeForm() {
   const [strawberries, setStrawberries] = useState(false);
@@ -10,12 +11,26 @@ function CheesecakeForm() {
   const [amount, setAmount] = useState(1);
   const dispatch = useDispatch();
   const { setCartCount } = useContext(InfoContext);
+  const cart = useSelector((state) => state.cartState);
+  const [cheesecakes, setCheesecakes] = useState({});
+
+
+  useEffect(() => {
+
+    if (cart && cart.cheesecakes) {
+      setCheesecakes(cart.cheesecakes);
+    }
+  }, [cart]);
 
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // setCartCount(prevCount => prevCount + amount)
+    if (!cheesecakes[cheesecakeFlavor+String(strawberries)]) {
+      setCartCount(prevCount => prevCount + amount);
+    } else if(cheesecakes[cheesecakeFlavor+String(strawberries)] && cheesecakes[cheesecakeFlavor+String(strawberries)].amount < 10) {
+      setCartCount(prevCount => prevCount + amount);
+    } 
 
     const formRes = {
       id: cheesecakeFlavor+String(strawberries),

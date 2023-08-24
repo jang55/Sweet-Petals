@@ -1,19 +1,33 @@
 import "./css/cookie-form.css";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { addCookieAction, subtractCookieAction } from "../../store/cartReducer";
 import { useDispatch } from "react-redux";
 import { InfoContext } from "../../context/InfoContext";
+import { useSelector } from "react-redux";
 
 function CookieForm() {
   const [selectedCookie, setSelectedCookie] = useState("");
   const [amount, setAmount] = useState(1);
   const dispatch = useDispatch();
   const { setCartCount } = useContext(InfoContext);
+  const cart = useSelector((state) => state.cartState);
+  const [cookies, setCookies] = useState({});
+
+  useEffect(() => {
+    if (cart && cart.cookies) {
+      setCookies(cart.cookies);
+    }
+  }, [cart]);
   
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!cookies[selectedCookie]) {
+      setCartCount(prevCount => prevCount + amount);
+    } else if(cookies[selectedCookie] && cookies[selectedCookie].amount < 10) {
+      setCartCount(prevCount => prevCount + amount);
+    } 
     
-    // setCartCount(prevCount => prevCount + amount);
 
     const formRes = {
       flavor: selectedCookie,

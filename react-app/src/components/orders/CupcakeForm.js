@@ -19,8 +19,8 @@ function CupcakeForm() {
   const [openWheel, setOpenWheel] = useState("");
   const [addColorTwo, setAddColorTwo] = useState(false);
   const [addColorThree, setAddColorThree] = useState(false);
-  // const { setCartCount } = useContext(InfoContext);
-  // const [cupcakes, setCupcakes] = useState([]);
+  const { setCartCount } = useContext(InfoContext);
+  const [cupcakes, setCupcakes] = useState({});
   const dispatch = useDispatch();
 
 
@@ -35,15 +35,20 @@ function CupcakeForm() {
     });
   }, []);
 
-  // useEffect(() => {
-  //   if (cart && cart.cupcakes) {
-  //     setCupcakes(Object.values(cart.cupcakes));
-  //   }
-
-  // }, [cart]);
+  useEffect(() => {
+    if (cart && cart.cupcakes) {
+      setCupcakes(cart.cupcakes);
+    }
+  }, [cart]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!cupcakes[flavor+style+(hsvaToHex(hsvaOne))+(hsvaTwo?hsvaToHex(hsvaTwo):"")+(hsvaThree?hsvaToHex(hsvaThree):"")]) {
+      setCartCount(prevCount => prevCount + amount);
+    } else if(cupcakes[flavor+style+(hsvaToHex(hsvaOne))+(hsvaTwo?hsvaToHex(hsvaTwo):"")+(hsvaThree?hsvaToHex(hsvaThree):"")] && cupcakes[flavor+style+(hsvaToHex(hsvaOne))+(hsvaTwo?hsvaToHex(hsvaTwo):"")+(hsvaThree?hsvaToHex(hsvaThree):"")].amount < 10) {
+      setCartCount(prevCount => prevCount + amount);
+    } 
 
     const formRes = {
       id: flavor+style+(hsvaToHex(hsvaOne))+(hsvaTwo?hsvaToHex(hsvaTwo):"")+(hsvaThree?hsvaToHex(hsvaThree):""),
