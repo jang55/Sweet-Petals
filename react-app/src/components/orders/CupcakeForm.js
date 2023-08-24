@@ -1,11 +1,15 @@
 import "./css/cupcake-form.css";
-import { useState, Fragment, useEffect } from "react";
+import { useState, Fragment, useEffect, useContext } from "react";
 import Wheel from "@uiw/react-color-wheel";
 import { hsvaToHex } from "@uiw/color-convert";
 import { useDispatch } from "react-redux";
 import { addCupcakeAction, subtractCupcakeAction } from "../../store/cartReducer";
+import { InfoContext } from "../../context/InfoContext";
+import { useSelector } from "react-redux";
+
 
 function CupcakeForm() {
+  const cart = useSelector((state) => state.cartState);
   const [flavor, setFlavor] = useState("");
   const [hsvaOne, setHsvaOne] = useState({ h: 214, s: 43, v: 90, a: 1 });
   const [hsvaTwo, setHsvaTwo] = useState({ h: 214, s: 43, v: 90, a: 1 });
@@ -15,6 +19,8 @@ function CupcakeForm() {
   const [openWheel, setOpenWheel] = useState("");
   const [addColorTwo, setAddColorTwo] = useState(false);
   const [addColorThree, setAddColorThree] = useState(false);
+  // const { setCartCount } = useContext(InfoContext);
+  // const [cupcakes, setCupcakes] = useState([]);
   const dispatch = useDispatch();
 
 
@@ -29,8 +35,16 @@ function CupcakeForm() {
     });
   }, []);
 
+  // useEffect(() => {
+  //   if (cart && cart.cupcakes) {
+  //     setCupcakes(Object.values(cart.cupcakes));
+  //   }
+
+  // }, [cart]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
     const formRes = {
       id: flavor+style+(hsvaToHex(hsvaOne))+(hsvaTwo?hsvaToHex(hsvaTwo):"")+(hsvaThree?hsvaToHex(hsvaThree):""),
       flavor: flavor,

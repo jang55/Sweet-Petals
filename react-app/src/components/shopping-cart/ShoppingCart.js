@@ -10,6 +10,7 @@ import {
 import moment from "moment";
 import { InfoContext } from "../../context/InfoContext";
 import * as orderActions from "../../store/orderReducer";
+import { useHistory } from "react-router-dom";
 
 function ShoppingCart() {
   const cart = useSelector((state) => state.cartState);
@@ -20,8 +21,9 @@ function ShoppingCart() {
   const [minDate, setMinDate] = useState("");
   const [pickUpDate, setPickUpDate] = useState("")
   const [pickUpTime, setPickUpTime] = useState("")
-  const dispatch = useDispatch();
   const { setCartCount } = useContext(InfoContext);
+  const dispatch = useDispatch();
+  const history = useHistory();
 
   // sets all the dessert items into an array
   useEffect(() => {
@@ -94,7 +96,6 @@ function ShoppingCart() {
     } else if (dessert.type === "cookie") {
       dispatch(removeCookieAction(dessert));
     }
-
     return;
   };
 
@@ -103,14 +104,53 @@ function ShoppingCart() {
   const handleCreatingOrders = async (e) => {
     e.preventDefault();
 
-    const newOrder = await dispatch(orderActions)
+    const newOrder = await dispatch(orderActions.createOrderThunk(`${pickUpDate} ${pickUpTime}`))
 
-    if (cupcakes.length > 0) {
-      await cupcakes.forEach( async (cupcake) => {
-        await dispatch(orderActions.createCupcakeOrderThunk())
-      })
+    if (newOrder) {
+    // handles creating all orders for cupcakes
+      if (cupcakes.length > 0) {
+        for (let i = 0; i < cupcakes.length; i++) {
+          const cupcake = cupcakes[i];
+          await dispatch(orderActions.createCupcakeOrderThunk(
+            newOrder.id,
+            cupcake.color_one,
+            cupcake.color_two,
+            cupcake.color_three,
+            cupcake.style,
+            cupcake.flavor,
+            cupcake.amount,
+          ))
+        }
+      }
+
+    // handles creating all orders for cheesecakes
+      if (cheesecakes.length > 0) {
+        for (let i = 0; i < cheesecakes.length; i++) {
+          const cheesecake = cheesecakes[i];
+          await dispatch(orderActions.createCheesecakesOrderThunk(
+            newOrder.id,
+            cheesecake.flavor,
+            cheesecake.strawberries,
+            cheesecake.amount,
+          ))
+        }
+      }
+
+    // handles creating all orders for cookies
+      if (cookies.length > 0) {
+        for (let i = 0; i < cookies.length; i++) {
+          const coookie = cookies[i];
+          await dispatch(orderActions.createCookiesOrderThunk(
+            newOrder.id,
+            coookie.flavor,
+            coookie.amount,
+          ))
+        }
+      }
+
+      await dispatch(orderActions.getAllUserOrdersThunk());
+      history.push("/");
     }
-
   }
 
   return (
@@ -235,18 +275,18 @@ function ShoppingCart() {
       {(cupcakes.length > 0 ||
         cheesecakes.length > 0 ||
         cookies.length > 0) && (
-        <form className="cart-checkout-wrapper" >
+        <form className="cart-checkout-wrapper" onSubmit={handleCreatingOrders}>
           <p className="cart-subtotal">Subtotal: ${subTotal}.00</p>
           <label className="cart-pickup-date-wrapper">
             Choose a pick up date:
-            <input className="cart-pickup-date" type="date" min={minDate}></input>
+            <input className="cart-pickup-date" type="date" min={minDate} onChange={e => setPickUpDate(e.target.value)}></input>
           </label>
           <label className="cart-pickup-time-wrapper">
             <span className="cart-time-message">Choose time between 9AM - 6PM:</span>
-            <input className="cart-pickup-time" type="time" min="09:00" max="18:00"></input>
+            <input className="cart-pickup-time" type="time" min="09:00" max="18:00" onChange={e => setPickUpTime(e.target.value)}></input>
             <span class="validity"></span>
           </label>
-          <button className="cart-checkout" disabled={subTotal === 0 || 0}>
+          <button type="submit" className={`${(subTotal === 0 || pickUpTime === "" || pickUpDate === "") ? "cart-checkout-not-valid" : "cart-checkout"}`} disabled={(subTotal === 0 || pickUpTime === "" || pickUpDate === "")}>
             Checkout
           </button>
         </form>
