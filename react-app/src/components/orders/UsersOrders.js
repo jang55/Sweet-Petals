@@ -19,7 +19,12 @@ function UsersOrders() {
     }, [])
 
     useEffect(() => {
-        setOrders(Object.values(usersOrders));
+        function compareNumbers(a, b) {
+            return new Date(a.pick_up_time).getTime() - new Date(b.pick_up_time).getTime();
+        }
+
+        const sortedOrders = Object.values(usersOrders).sort(compareNumbers)
+        setOrders(sortedOrders);
     }, [usersOrders])
 
 

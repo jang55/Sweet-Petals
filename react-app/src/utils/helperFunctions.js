@@ -1,3 +1,5 @@
+import moment from "moment";
+
 //a helper function that converts the month into a full month string
 const monthToFullMonth = (month) => {
     if (month === "Jan") {
@@ -104,31 +106,71 @@ const wasItCreatedYesterday = (day) => {
 
 };
 
+
+// // helper function to check to see if the message was created the day before
+// const isItTomrrow = (date) => {
+//     const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+//     const nextDay = moment().add(2, 'days').format("llll");
+//     console.log(nextDay, "moment")
+//     console.log(date, "date")
+//     // const currentWkDay = new Date().toString().slice(0, 3)
+//     // const currentDate = new Date().toString()
+
+//     if (nextDay.slice(0, 3) === "Sun" && date.slice(0, 3) === "Sat" ) {
+//         return true;
+//     }
+
+//     // find the index of what day it is
+//     const indexOfPickUpDay = weekdays.indexOf(date.slice(0, 3))
+//     const indexOfTomrrowDay = weekdays.indexOf(nextDay.slice(0, 3))
+//     // console.log(indexOfPickUpDay, "pick up")
+//     // console.log(indexOfTomrrowDay, "current day")
+
+//     // checks to see if the index is only 1 place behind
+//     if (Math.abs(indexOfTomrrowDay - indexOfPickUpDay) === 1) {
+//         return true;
+//     }
+
+//     return false;
+// };
+
+// helper function to check to see if the message was created the day before
+const isItTomrrow = (date) => {
+    const formattedDate = `${date.slice(0, 3)}, ${date.slice(8, 11)} ${date.slice(5, 7)}, ${date.slice(12, 16)}`
+    const nextDay = moment().add(1, 'days').format("llll").slice(0, 17);
+    return formattedDate === nextDay
+}
+
 // converts the date created into a proper format to be displayed
 export const dateFormat = (date) => {
+    // console.log(date)
   // get the new date
     const newDate = new Date();
     let newFormattedDate = "";
   // gets the time of the created at date and split between HR/MIN
-    const time = date.slice(16, 21);
+    const time = date.slice(17, 22);
 
+    // console.log(date.slice(8, 11), "reg date")
+    // console.log(newDate.toString().slice(4, 7), "new date")
   // if the chat was made today, it will set the time today
   // with format of "Today at 1:18 AM"
-    if (newDate.toString().slice(0, 3) === date.slice(0, 3)) {
+    if ((newDate.toString().slice(0, 3) === date.slice(0, 3)) && (Number(newDate.toString().slice(8, 10)) === Number(date.slice(5, 7))) && (newDate.toString().slice(4, 7) === date.slice(8, 11))) {
         newFormattedDate += `Today at ${timeConversion(time)}`;
 
         return newFormattedDate;
     }
 
-    if (wasItCreatedYesterday(date.toString().slice(0, 3))) {
-        newFormattedDate += `Yesterday at ${timeConversion(time)}`;
+    if (isItTomrrow(date)) {
+        newFormattedDate += `Tomorrow at ${timeConversion(time)}`;
         return newFormattedDate;
     }
 
   // if no conditions met, it will return date as format of "08/01/23 8:07 PM"
-    newFormattedDate += `${monthToNum(date.slice(8, 11))}/`;
-    newFormattedDate += `${date.slice(5, 7)}/`;
-    newFormattedDate += `${date.slice(14, 16)} `;
+    newFormattedDate += `${date.slice(0, 3)}, `;
+    // newFormattedDate += `${monthToNum(date.slice(8, 11))}-`;
+    newFormattedDate += `${date.slice(8, 11)} `;
+    newFormattedDate += `${date.slice(5, 7)}, `;
+    newFormattedDate += `${date.slice(12, 16)} `;
     newFormattedDate += `${timeConversion(time)}`;
 
     return newFormattedDate;
