@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { signUp } from "../../store/session";
 import { ModalContext } from "../../context/modalContext";
 import "./css/signup.css";
+import LoginFormModal from "../modal-pages/LoginFormModal";
 
 function SignupFormPage() {
   const dispatch = useDispatch();
@@ -114,9 +115,9 @@ function SignupFormPage() {
                   </p>
                   <p 
                   className="already-have-an-account" 
-                  // onClick={e => loginModal(e)}
                   >
                     Already have an account?
+                    <LoginFormModal />
                   </p>
                 </form>
               </div>

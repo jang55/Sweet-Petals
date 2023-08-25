@@ -52,6 +52,8 @@ function Navigation({ isLoaded }){
                     <li>
                         <NavLink exact to="/orders/new">Create Order</NavLink>
                     </li>
+                    <div><LoginFormModal /></div>
+                    <div><SignupFormModal /></div>
                     
                     {isLoaded && (
                         <li 
@@ -65,9 +67,7 @@ function Navigation({ isLoaded }){
                                 <div onClick={e => signupModal()}>Signup</div> */}
                                 <div onClick={logoutHandler}>Logout</div>
                                 <NavLink to="/orders/users">My orders</NavLink>
-                                {/* <div><SignupFormModal /></div> */}
                             </div>}
-                                <div><LoginFormModal /></div>
                         </li>
                     )}
                     <li className='nav-shopping-wrapper'>

@@ -2,13 +2,12 @@ import React, { useState, useContext } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../store/session";
-import { ModalContext } from "../../context/modalContext";
 import "./css/login.css"
+import SignupFormModal from "../modal-pages/SignupFormModal";
 
 function LoginFormPage() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
-  // const { signupModal } = useContext(ModalContext)
   const [credentials, setCredentials] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
@@ -106,7 +105,7 @@ function LoginFormPage() {
                       <p >
                         Don't have an account?
                         <span className="register-link" >
-                            Sign Up
+                            <SignupFormModal />
                         </span>
                       </p>
                     </div>
