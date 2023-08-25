@@ -6,7 +6,9 @@ function DeleteOrder() {
 
 
     return (
-        <div>delete order</div>
+        <div>
+            <h1>Are you you want to delete this order?</h1>
+        </div>
     )
 }
 
