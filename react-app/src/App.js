@@ -8,7 +8,7 @@ import Navigation from "./components/navigation/Navigation";
 import LandingPage from "./components/landing/LandingPage";
 import CreateOrderForm from "./components/orders/CreateOrderForm";
 import UsersOrders from "./components/orders/UsersOrders";
-import Modal from "./utils/Modal";
+// import Modal from "./utils/Modal";
 
 function App() {
   const dispatch = useDispatch();
