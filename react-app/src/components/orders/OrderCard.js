@@ -1,5 +1,7 @@
 import { dateFormat } from "../../utils/helperFunctions";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import {ModalContext} from "../../context/modalContext"
+
 
 function OrderCard({ order, pageType }) {
     const [cupcakes, setCupcakes] = useState([]);
@@ -7,6 +9,7 @@ function OrderCard({ order, pageType }) {
     const [cookies, setCookies] = useState([]);
     const [subTotal, setSubTotal] = useState(0);
     const [showMore, setShowMore] = useState(false)
+    const { deleteOrderModal } = useContext(ModalContext);
 
     useEffect(() => {
         if (order && order.Cupcakes) {
@@ -58,7 +61,7 @@ function OrderCard({ order, pageType }) {
                 <p className="order-received">Have you received your order? {order.order_completed ? "Yes" : "No"}</p>
                 <p className="order-subtotal">Subtotal: ${subTotal}.00</p>
                 <div className="orders-functions">
-                    <button>Delete</button>
+                    <button onClick={deleteOrderModal}>Delete</button>
                     <button>Edit</button>
                     <button>Add Review</button>
                 </div>
