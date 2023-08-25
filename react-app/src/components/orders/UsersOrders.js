@@ -12,12 +12,15 @@ function UsersOrders() {
     const [isLoaded, setIsLoaded] = useState(false);
     const dispatch = useDispatch();
 
+// dispatch the thunk to set redux for users orders
     useEffect(() => {
         dispatch(getAllUserOrdersThunk()).then(() => {
             setIsLoaded(true)
         });
     }, [])
 
+// get the values for each object and sorts them from most recent pickup
+// to latest pick up
     useEffect(() => {
         function compareNumbers(a, b) {
             return new Date(a.pick_up_time).getTime() - new Date(b.pick_up_time).getTime();

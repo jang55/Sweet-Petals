@@ -20,8 +20,8 @@ function ShoppingCart() {
   const [cookies, setCookies] = useState([]);
   const [subTotal, setSubTotal] = useState(0);
   const [minDate, setMinDate] = useState("");
-  const [pickUpDate, setPickUpDate] = useState("")
-  const [pickUpTime, setPickUpTime] = useState("")
+  const [pickUpDate, setPickUpDate] = useState("");
+  const [pickUpTime, setPickUpTime] = useState("");
   const { setCartCount, setOpenShoppingCart } = useContext(InfoContext);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -153,7 +153,7 @@ function ShoppingCart() {
       setOpenShoppingCart(false);
       setCartCount(0);
       dispatch(removeAllCartItems());
-      history.push("/");
+      history.push("/orders/users");
     }
   }
 

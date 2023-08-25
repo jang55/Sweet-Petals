@@ -9,6 +9,7 @@ import { InfoContext } from "../../context/InfoContext"
 import logo from "../../images/SWEET_PETALS_wlogo.png" 
 import { logout } from '../../store/session';
 import ShoppingCart from '../shopping-cart/ShoppingCart';
+import UsersOrders from '../orders/UsersOrders';
 import "./nav.css"
 
 
@@ -61,6 +62,7 @@ function Navigation({ isLoaded }){
                                 <div onClick={e => loginModal()}>Login</div>
                                 <div onClick={e => signupModal()}>Signup</div>
                                 <div onClick={logoutHandler}>Logout</div>
+                                <NavLink to="/orders/users">My orders</NavLink>
                             </div>}
                         </li>
                     )}
