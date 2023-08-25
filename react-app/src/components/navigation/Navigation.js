@@ -10,12 +10,14 @@ import logo from "../../images/SWEET_PETALS_wlogo.png"
 import { logout } from '../../store/session';
 import ShoppingCart from '../shopping-cart/ShoppingCart';
 import UsersOrders from '../orders/UsersOrders';
+import SignupFormModal from '../modal-pages/SignupFormModal';
+import LoginFormModal from '../modal-pages/LoginFormModal';
 import "./nav.css"
 
 
 function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state.session.user);
-    const { loginModal, signupModal, type } = useContext(ModalContext);
+    // const { loginModal, signupModal, type } = useContext(ModalContext);
     const { cartCount, setCartCount, openShoppingCart, setOpenShoppingCart } = useContext(InfoContext);
     const [openMenu, setOpenMenu] = useState(false);
     const dispatch = useDispatch()
@@ -59,11 +61,13 @@ function Navigation({ isLoaded }){
                             <RxHamburgerMenu className='nav-menu-button'/>
                             {openMenu && 
                             <div className='nav-menu'>
-                                <div onClick={e => loginModal()}>Login</div>
-                                <div onClick={e => signupModal()}>Signup</div>
+                                {/* <div onClick={e => loginModal()}>Login</div>
+                                <div onClick={e => signupModal()}>Signup</div> */}
                                 <div onClick={logoutHandler}>Logout</div>
                                 <NavLink to="/orders/users">My orders</NavLink>
+                                {/* <div><SignupFormModal /></div> */}
                             </div>}
+                                <div><LoginFormModal /></div>
                         </li>
                     )}
                     <li className='nav-shopping-wrapper'>

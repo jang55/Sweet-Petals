@@ -8,7 +8,7 @@ import "./css/login.css"
 function LoginFormPage() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
-  const { signupModal } = useContext(ModalContext)
+  // const { signupModal } = useContext(ModalContext)
   const [credentials, setCredentials] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
@@ -105,7 +105,7 @@ function LoginFormPage() {
                     <div className="reg-wrap-continer">
                       <p >
                         Don't have an account?
-                        <span className="register-link" onClick={e => signupModal(e)}>
+                        <span className="register-link" >
                             Sign Up
                         </span>
                       </p>

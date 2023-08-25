@@ -8,7 +8,7 @@ import "./css/signup.css";
 function SignupFormPage() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
-  const { loginModal } = useContext(ModalContext)
+  // const { loginModal } = useContext(ModalContext)
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -114,7 +114,7 @@ function SignupFormPage() {
                   </p>
                   <p 
                   className="already-have-an-account" 
-                  onClick={e => loginModal(e)}
+                  // onClick={e => loginModal(e)}
                   >
                     Already have an account?
                   </p>

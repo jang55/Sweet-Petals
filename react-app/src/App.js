@@ -19,7 +19,7 @@ function App() {
 
   return (
     <>
-      <Modal />
+      {/* <Modal /> */}
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
