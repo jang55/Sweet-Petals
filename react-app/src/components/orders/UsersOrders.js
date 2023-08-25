@@ -35,7 +35,7 @@ function UsersOrders() {
         isLoaded && <div className="users-orders-container">
             <h1>My Orders</h1>
             {orders.map(order => (
-                <div key={order.id}>
+                <div key={order.id} className="order-outer-wrapper">
                     <OrderCard order={order} />
                 </div>
             ))}

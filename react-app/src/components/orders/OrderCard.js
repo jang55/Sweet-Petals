@@ -1,11 +1,12 @@
 import { dateFormat } from "../../utils/helperFunctions";
 import { useState, useEffect } from "react";
 
-function OrderCard({ order }) {
+function OrderCard({ order, pageType }) {
     const [cupcakes, setCupcakes] = useState([]);
     const [cheesecakes, setCheesecakes] = useState([]);
     const [cookies, setCookies] = useState([]);
     const [subTotal, setSubTotal] = useState(0);
+    const [showMore, setShowMore] = useState(false)
 
     useEffect(() => {
         if (order && order.Cupcakes) {
@@ -21,11 +22,50 @@ function OrderCard({ order }) {
         }
     }, [order]);
 
+     // sets the amount of items and subtotal price
+    useEffect(() => {
+        let totalPrice = 0;
+
+        if (cupcakes && cupcakes.length > 0) {
+            cupcakes.forEach((cupcake) => {
+                totalPrice += cupcake.amount * 30;
+            });
+        }
+
+        if (cheesecakes && cheesecakes.length > 0) {
+            cheesecakes.forEach((cheesecake) => {
+                if (cheesecake.strawberries) {
+                totalPrice += cheesecake.amount * 20;
+                } else {
+                totalPrice += cheesecake.amount * 18;
+                }
+            });
+        }
+
+        if (cookies && cookies.length > 0) {
+            cookies.forEach((cookie) => {
+                totalPrice += cookie.amount * 10;
+            });
+        }
+            setSubTotal(totalPrice);
+    }, [cupcakes, cheesecakes, cookies]);
+
     return (
-        <fieldset className="order-wrapper">
+        <fieldset className={showMore ? "order-wrapper-more" : "order-wrapper-less"}>
             <legend className="order-number">Orders ID: {order.order_number} </legend>
-            <p>Pick up Date/Time: {dateFormat(order.pick_up_time)}</p>
-            <p>Have you received your order? {order.order_completed ? "Yes" : "No"}</p>
+            <div className="order-information-wrapper">
+                <p className="order-pickup">Pick up Date/Time: {dateFormat(order.pick_up_time)}</p>
+                <p className="order-received">Have you received your order? {order.order_completed ? "Yes" : "No"}</p>
+                <p className="order-subtotal">Subtotal: ${subTotal}.00</p>
+                <div className="orders-functions">
+                    <button>Delete</button>
+                    <button>Edit</button>
+                    <button>Add Review</button>
+                </div>
+                {/* <div>
+                    <button>Order Done</button>
+                </div> */}
+            </div>
             <div className="order-items-wrapper">
             {cupcakes && cupcakes.length > 0 && (
                 <div className="order-cupcake-container">
@@ -83,6 +123,7 @@ function OrderCard({ order }) {
                         <p className="order-cheesecake-strawberries">
                         Strawberries: {cheesecake.strawberries ? "Yes" : "No"}
                         </p>
+                        <span className="order-cheesecake-amount">Amount: {cheesecake.amount}</span>
                         {cheesecake.strawberries ? (
                         <span className="order-cheesecake-price">
                             <span className="order-dollar-sign">$</span>
@@ -108,6 +149,7 @@ function OrderCard({ order }) {
                         <p className="order-cookie-flavor">
                         Flavor: {cookie.flavor}
                         </p>
+                        <span className="order-cookie-amount">Amount: {cookie.amount}</span>
                         <span className="order-cookie-price">
                         <span className="order-dollar-sign">$</span>
                         {cookie.amount * 10}.00
@@ -118,6 +160,7 @@ function OrderCard({ order }) {
                 </div>
             )}
         </div>
+        {showMore ? <p className="more-less" onClick={e => setShowMore(!showMore)}>Less...</p> : <p className="more-less" onClick={e => setShowMore(!showMore)}>More...</p>}
         </fieldset>
     )
 }

@@ -19,8 +19,10 @@ body {
 
 
 :root {
-    --main-bg-color: rgb(239, 213, 217);
-    --main-bg-button: rgb(235, 186, 194);
+    /* --main-bg-color: rgb(239, 213, 217); */
+    /* --main-bg-button: rgb(235, 186, 194); */
+    --main-bg-color: rgb(247, 236, 238);
+    --main-bg-button: rgb(236, 208, 213);
     --main-input-color:  #e9d5b3;
     --main-text-color: rgba(125, 104, 104, 0.836);
 }

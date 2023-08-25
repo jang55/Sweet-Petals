@@ -2,13 +2,34 @@
     padding-top: 70px;
     max-width: 1050px;
     margin: auto;
-
 }
 
-.order-wrapper {
+/* .order-outer-wrapper {
+    height: 1000px
+} */
+
+.order-wrapper-more {
+    /* height: fit-content; */
+    margin: 20px;
+    border-radius: 7px;
+    /* padding-bottom: auto; */
+    position: relative;
+}
+
+.order-wrapper-less {
     height: 300px;
     margin: 20px;
     border-radius: 7px;
+    overflow: hidden;
+    position: relative;
+}
+
+.more-less {
+    position: absolute;
+    bottom: -10px;
+    right: 10px;
+    cursor: pointer;
+    color: black;
 }
 
 .order-number {
@@ -102,6 +123,52 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
 }
+
+/*************** order information wrapper ************************/
+
+.order-information-wrapper {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    margin-bottom: 20px;
+}
+
+.order-pickup {
+    grid-column-start: 1;
+    grid-column-end: 6;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    margin: 5px;
+}
+
+.order-received {
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    margin: 5px;
+}
+
+.order-subtotal {
+    grid-column-start: 1;
+    grid-column-end: 5;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    margin: 5px;
+    height:fit-content;
+}
+
+.orders-functions {
+    grid-column-start: 8;
+    grid-column-end: 11;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+
+
+
+
+
 
 
 /*********************Style for the cupcakes ****************/
@@ -220,6 +287,16 @@
     margin-left: 6px;
 }
 
+.order-cheesecake-amount {
+    grid-column-start: 1;
+    grid-column-end: 7;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    margin-top: 7px;
+    margin-left: 5px;
+    font-size: 14px;
+}
+
 .order-cheesecake-price {
     font-size: 15px;
     margin-top: 7px;
@@ -267,6 +344,16 @@
     font-size: 14px;
     margin: 1px;
     margin-left: 6px;
+}
+
+.order-cookie-amount {
+    grid-column-start: 1;
+    grid-column-end: 7;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    margin-top: 7px;
+    margin-left: 5px;
+    font-size: 14px;
 }
 
 .order-cookie-price {
