@@ -6,7 +6,7 @@ function DeleteOrderModal() {
     const [showModal, setShowModal] = useState(false);
     return (
         <>
-        <button  onClick={() => setShowModal(true)}>Delete</button>
+        <button className="order-buttons" onClick={() => setShowModal(true)}>Delete</button>
         {showModal && (
             <Modal onClose={() => setShowModal(false)}>
             <DeleteOrder />

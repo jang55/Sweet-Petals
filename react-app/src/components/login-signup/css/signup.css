@@ -109,7 +109,7 @@ font-size: 10px;
 }
 
 .signup-button:hover {
-    background-color: var(--main-bg-button);
+    background-color: pink;
     box-shadow: none;
     cursor: pointer;
 }

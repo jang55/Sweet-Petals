@@ -109,7 +109,23 @@ font-size: 10px;
 }
 
 .login-button:hover {
-    background-color: var(--main-bg-button);
+    background-color: pink;
+    box-shadow: none;
+    cursor: pointer;
+}
+
+.login-button-nav {
+    border: none;
+    width: 100%;
+    border-radius: 10px;
+    background-color:  rgb(241, 168, 179);
+    color: white;
+    font-size: 16px;
+    padding: 6px;
+}
+
+.login-button-nav:hover {
+    background-color: pink;
     box-shadow: none;
     cursor: pointer;
 }

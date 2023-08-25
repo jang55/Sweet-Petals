@@ -6,7 +6,8 @@ function LoginFormModal() {
     const [showModal, setShowModal] = useState(false);
     return (
         <>
-        <button  onClick={() => setShowModal(true)}>Log In</button>
+        {/* this style button is iin the login.css */}
+        <button className='login-button-nav' onClick={() => setShowModal(true)}>Log In</button>
         {showModal && (
             <Modal onClose={() => setShowModal(false)}>
             <LoginFormPage />

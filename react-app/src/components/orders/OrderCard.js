@@ -3,7 +3,7 @@ import { useState, useEffect, useContext } from "react";
 import DeleteOrderModal from "../modal-pages/DeleteOrderModal";
 
 
-function OrderCard({ order, pageType }) {
+function OrderCard({ order, pageType, validOrder }) {
     const [cupcakes, setCupcakes] = useState([]);
     const [cheesecakes, setCheesecakes] = useState([]);
     const [cookies, setCookies] = useState([]);
@@ -56,13 +56,13 @@ function OrderCard({ order, pageType }) {
         <fieldset className={showMore ? "order-wrapper-more" : "order-wrapper-less"}>
             <legend className="order-number">Orders ID: {order.order_number} </legend>
             <div className="order-information-wrapper">
-                <p className="order-pickup">Pick up Date/Time: {dateFormat(order.pick_up_time)}</p>
-                <p className="order-received">Have you received your order? {order.order_completed ? "Yes" : "No"}</p>
-                <p className="order-subtotal">Subtotal: ${subTotal}.00</p>
-                <div className="orders-functions">
-                    <DeleteOrderModal />
-                    <button>Edit</button>
-                    <button>Add Review</button>
+                <p className="order-pickup">Pick up Date/Time: <span className="order-info-text">{dateFormat(order.pick_up_time)}</span></p>
+                <p className="order-received">Have you received your order? {order.order_completed ? <span className="order-info-text">Yes</span> : <span className="order-info-text">No</span>}</p>
+                <p className="order-subtotal">Subtotal: <span className="order-info-text">${subTotal}.00</span></p>
+                <div className="order-functions">
+                    {validOrder && <DeleteOrderModal />}
+                    {validOrder && <button className="order-buttons">Edit</button>}
+                    {!validOrder && <button className="order-buttons">Add Review</button>}
                 </div>
                 {/* <div>
                     <button>Order Done</button>

@@ -9,6 +9,7 @@ import { getAllUserOrdersThunk } from "../../store/orderReducer";
 function UsersOrders() {
     const usersOrders = useSelector(state => state.orderState);
     const [orders, setOrders] = useState([]);
+    const [oldOrders, setOldOrders] = useState([]);
     const [isLoaded, setIsLoaded] = useState(false);
     const dispatch = useDispatch();
 
@@ -26,8 +27,26 @@ function UsersOrders() {
             return new Date(a.pick_up_time).getTime() - new Date(b.pick_up_time).getTime();
         }
 
-        const sortedOrders = Object.values(usersOrders).sort(compareNumbers)
-        setOrders(sortedOrders);
+        function checkOldOrders(a) {
+            return new Date(a.pick_up_time).getTime() < new Date().getTime();
+        }
+
+        const oldOrders = [];
+        const activeOrders = []
+        // const sortedOrders = Object.values(usersOrders).sort(compareNumbers)
+
+        const allOrders = Object.values(usersOrders)
+        for (let i=0; i<allOrders.length; i++) {
+            const order = allOrders[i];
+            if (checkOldOrders(order)) {
+                oldOrders.push(order);
+            } else {
+                activeOrders.push(order);
+            }
+        }
+
+        setOrders(activeOrders.sort(compareNumbers));
+        setOldOrders(oldOrders.sort(compareNumbers))
     }, [usersOrders])
 
 
@@ -36,7 +55,14 @@ function UsersOrders() {
             <h1>My Orders</h1>
             {orders.map(order => (
                 <div key={order.id} className="order-outer-wrapper">
-                    <OrderCard order={order} />
+                    <OrderCard order={order} validOrder={true} />
+                </div>
+            ))}
+            <div className="orders-break-line"></div>
+            <h2>Previous orders</h2>
+            {oldOrders.map(order => (
+                <div key={order.id} className="order-outer-wrapper">
+                    <OrderCard order={order} validOrder={false} />
                 </div>
             ))}
         </div>

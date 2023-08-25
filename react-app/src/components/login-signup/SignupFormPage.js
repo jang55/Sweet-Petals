@@ -1,5 +1,5 @@
-import { Link, Redirect } from "react-router-dom";
-import { useState, useContext} from "react";
+import { Redirect } from "react-router-dom";
+import { useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { signUp } from "../../store/session";
 import "./css/signup.css";

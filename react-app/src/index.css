@@ -22,7 +22,7 @@ body {
     /* --main-bg-color: rgb(239, 213, 217); */
     /* --main-bg-button: rgb(235, 186, 194); */
     --main-bg-color: rgb(247, 236, 238);
-    --main-bg-button: rgb(236, 208, 213);
+    --main-bg-button: rgba(237, 214, 218, 0.659);
     --main-input-color:  #e9d5b3;
-    --main-text-color: rgba(125, 104, 104, 0.836);
+    --main-text-color: rgba(88, 86, 92, 0.887);
 }
