@@ -3,21 +3,17 @@ import { NavLink, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { RxHamburgerMenu } from "react-icons/rx";
 import { RiShoppingCart2Line } from "react-icons/ri"
-import { useState, useEffect } from 'react';
-import {ModalContext} from "../../context/modalContext"
+import { useState } from 'react';
 import { InfoContext } from "../../context/InfoContext" 
 import logo from "../../images/SWEET_PETALS_wlogo.png" 
 import { logout } from '../../store/session';
 import ShoppingCart from '../shopping-cart/ShoppingCart';
-import UsersOrders from '../orders/UsersOrders';
-import SignupFormModal from '../modal-pages/SignupFormModal';
 import LoginFormModal from '../modal-pages/LoginFormModal';
 import "./nav.css"
 
 
 function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state.session.user);
-    // const { loginModal, signupModal, type } = useContext(ModalContext);
     const { cartCount, setCartCount, openShoppingCart, setOpenShoppingCart } = useContext(InfoContext);
     const [openMenu, setOpenMenu] = useState(false);
     const dispatch = useDispatch()
@@ -52,11 +48,11 @@ function Navigation({ isLoaded }){
                     <li>
                         <NavLink exact to="/orders/new">Create Order</NavLink>
                     </li>
-                    <div><LoginFormModal /></div>
-                    <div><SignupFormModal /></div>
+                    {/* <div><LoginFormModal /></div> */}
+                    {/* <div><SignupFormModal /></div> */}
                     
-                    {isLoaded && (
-                        <li 
+                    {(!sessionUser ? <div><LoginFormModal /></div> :
+                        (isLoaded && <li 
                         className='nav-menu-wrapper'
                         onClick={toggleMenu}
                         >
@@ -65,10 +61,10 @@ function Navigation({ isLoaded }){
                             <div className='nav-menu'>
                                 {/* <div onClick={e => loginModal()}>Login</div>
                                 <div onClick={e => signupModal()}>Signup</div> */}
-                                <div onClick={logoutHandler}>Logout</div>
                                 <NavLink to="/orders/users">My orders</NavLink>
+                                <div onClick={logoutHandler}>Logout</div>
                             </div>}
-                        </li>
+                        </li>)
                     )}
                     <li className='nav-shopping-wrapper'>
                         <RiShoppingCart2Line 
