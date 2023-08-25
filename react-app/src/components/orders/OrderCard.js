@@ -66,9 +66,9 @@ function OrderCard({ order, pageType, validOrder }) {
         <p className="order-received">
           Have you received your order?{" "}
           {order.order_completed ? (
-            <span className="order-info-text">Yes</span>
+            <span className="order-info-text">Yes <span class="validity-received-yes">✓</span></span>
           ) : (
-            <span className="order-info-text">No</span>
+            <span className="order-info-text">No <span class="validity-received-no">✖</span></span>
           )}
         </p>
         <p className="order-subtotal">

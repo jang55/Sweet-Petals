@@ -165,6 +165,21 @@
     margin: 5px;
 }
 
+.validity-received-no {
+    position: absolute;
+    padding-left: 5px;
+    color: red;
+    font-size: 15px;
+}
+
+.validity-received-yes {
+    position: absolute;
+    content: "✓";
+    padding-left: 5px;
+    color: green;
+    font-size: 15px;
+}
+
 .order-subtotal {
     grid-column-start: 1;
     grid-column-end: 5;
@@ -175,14 +190,28 @@
 }
 
 .order-functions {
-    grid-column-start: 9;
-    grid-column-end: 12;
+    grid-column-start: 8;
+    grid-column-end: 13;
     grid-row-start: 1;
-    grid-row-end: 2;
+    grid-row-end: 3;
 }
 
 .order-buttons {
+    width: 100px;
+    padding: 5px;
+    font-size: 15px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin: 10px;
+    cursor: pointer;
+    background-color: var(--main-bg-button);
+    /* border: none; */
+    border-radius: 5px;
+    border: 1px solid black;
+}
 
+.order-buttons:hover {
+    border: none;
+    color: rgb(103, 95, 95);
 }
 
 

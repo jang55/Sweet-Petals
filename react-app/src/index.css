@@ -11,11 +11,11 @@ body {
     color: var(--main-text-color);
     padding: 0px;
     margin: 0px;
-
+    /* overflow: hidden scroll; */
+    overflow-x: hidden;
     /* setting position relative will mess with MODALS */
     /* position: relative; */
 }
-
 
 
 :root {

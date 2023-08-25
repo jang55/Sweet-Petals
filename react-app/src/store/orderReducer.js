@@ -422,7 +422,7 @@ export const deleteOrderThunk = (orderId) => async (dispatch) => {
 
   if (response.ok) {
     const data = await response.json();
-    dispatch(deleteOrderAction(data));
+    dispatch(getAllUserOrdersThunk());
     return data;
   } else {
     const err = await response.json();

@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import { Modal } from "../../context/modalContext";
-import DeleteOrder from "./DeleteOrder";
+import DeleteOrder from "../orders/DeleteOrder";
 
 function DeleteOrderModal({ order }) {
   const [showModal, setShowModal] = useState(false);
   return (
     <>
       <button className="order-buttons" onClick={() => setShowModal(true)}>
-        Delete
+        Cancel
       </button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <DeleteOrder order={order} />
+          <DeleteOrder order={order} setShowModal={setShowModal} />
         </Modal>
       )}
     </>

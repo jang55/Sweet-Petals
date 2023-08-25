@@ -1,0 +1,59 @@
+.delete-order-container {
+    /* display: grid;
+    grid-template-rows: 0.5fr 0.5fr 0.5fr 0.7fr; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.delete-order-h1 {
+    margin: 10px;
+    font-size: 27px;
+}
+
+.delete-order-warning-message {
+    margin: 10px;
+}
+
+.delete-order-date-wrap {
+    margin: 10px;
+}
+
+.delete-order-date {
+    color: rgb(36, 34, 34);
+    font-weight: bold;
+}
+
+.delete-order-buttons-wrap {
+    justify-content: space-between;
+    margin: 7px 20px;
+    /* width: 200px; */
+    margin: 10px;
+}
+
+.delete-order-button {
+    width: 180px;
+    height: 50px;
+    margin: 0px 30px;
+    font-size: 20px;
+    cursor: pointer;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.delete-order-close-button {
+    background-color: rgb(152, 148, 148);
+}
+
+.delete-order-close-button:hover {
+    background-color: rgb(114, 114, 114);
+}
+
+.delete-order-confirm-button {
+    background-color: rgb(227, 82, 82);
+}
+.delete-order-confirm-button:hover {
+    background-color: rgba(254, 0, 0, 0.9);
+}
