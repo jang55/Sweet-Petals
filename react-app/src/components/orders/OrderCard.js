@@ -1,8 +1,10 @@
 import { dateFormat } from "../../utils/helperFunctions";
 import { useState, useEffect, useContext } from "react";
 import DeleteOrderModal from "../modal-pages/DeleteOrderModal";
+import { useSelector } from "react-redux";
 
 function OrderCard({ order, pageType, validOrder }) {
+  const user = useSelector((state) => state.session);
   const [cupcakes, setCupcakes] = useState([]);
   const [cheesecakes, setCheesecakes] = useState([]);
   const [cookies, setCookies] = useState([]);
@@ -63,25 +65,42 @@ function OrderCard({ order, pageType, validOrder }) {
             {dateFormat(order.pick_up_time)}
           </span>
         </p>
-        <p className="order-received">
-          Have you received your order?{" "}
-          {order.order_completed ? (
-            <span className="order-info-text">Yes <span class="validity-received-yes">✓</span></span>
+        <span className="order-received">
+          {user && user.role === "admin" ? (
+            <span>Have the customer received their order? </span>
           ) : (
-            <span className="order-info-text">No <span class="validity-received-no">✖</span></span>
+            <span>Have you received your order? </span>
           )}
-        </p>
+          {order.order_completed ? (
+            <span className="order-info-text">
+              Yes <span class="validity-received-yes">✓</span>
+            </span>
+          ) : (
+            <span className="order-info-text">
+              No <span class="validity-received-no">✖</span>
+            </span>
+          )}
+        </span>
         <p className="order-subtotal">
           Subtotal: <span className="order-info-text">${subTotal}.00</span>
         </p>
-        <div className="order-functions">
-          {validOrder && <DeleteOrderModal order={order} />}
-          {validOrder && <button className="order-buttons">Edit</button>}
-          {!validOrder && <button className="order-buttons">Add Review</button>}
-        </div>
-        {/* <div>
-                    <button>Order Done</button>
-                </div> */}
+        {user && user.role === "admin" ? (
+          <div className="order-functions">
+            {order.order_completed ? (
+              <button>Complete</button>
+            ) : (
+              <button>Incomplete</button>
+            )}
+          </div>
+        ) : (
+          <div className="order-functions">
+            {validOrder && <DeleteOrderModal order={order} />}
+            {validOrder && <button className="order-buttons">Edit</button>}
+            {!validOrder && (
+              <button className="order-buttons">Add Review</button>
+            )}
+          </div>
+        )}
       </div>
       <div className="order-items-wrapper">
         {cupcakes && cupcakes.length > 0 && (
