@@ -23,7 +23,7 @@ function CupcakeForm() {
   const [cupcakes, setCupcakes] = useState({});
   const dispatch = useDispatch();
 
-
+// handles closing the color wheel
   useEffect(() => {
     document.addEventListener("mouseup", function (event) {
       const colorWheel = document.getElementsByClassName("wheel-active")[0];
