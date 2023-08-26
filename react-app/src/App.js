@@ -6,6 +6,7 @@ import Navigation from "./components/navigation/Navigation";
 import LandingPage from "./components/landing/LandingPage";
 import CreateOrderForm from "./components/orders/CreateOrderForm";
 import UsersOrders from "./components/orders/UsersOrders";
+import AllOrders from "./components/orders/AllOrders";
 
 function App() {
   const dispatch = useDispatch();
@@ -21,6 +22,9 @@ function App() {
         <Switch>
           <Route exact path="/" >
             <LandingPage />
+          </Route>
+          <Route exact path="/orders" >
+            <AllOrders />
           </Route>
           <Route path="/orders/users" >
             <UsersOrders />

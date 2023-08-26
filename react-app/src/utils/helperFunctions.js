@@ -58,6 +58,11 @@ const monthToNum = (month) => {
   }
 };
 
+
+
+
+
+
 // convert the time to look correctly without
 // any extra or missing 0's and not military time
 const timeConversion = (time) => {
@@ -83,6 +88,12 @@ const timeConversion = (time) => {
   return res;
 };
 
+
+
+
+
+
+
 // helper function to check to see if the message was created the day before
 const wasItCreatedYesterday = (day) => {
   const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -103,6 +114,12 @@ const wasItCreatedYesterday = (day) => {
 
   return false;
 };
+
+
+
+
+
+
 
 // // helper function to check to see if the message was created the day before
 // const isItTomrrow = (date) => {
@@ -131,6 +148,12 @@ const wasItCreatedYesterday = (day) => {
 //     return false;
 // };
 
+
+
+
+
+
+
 // helper function to check to see if the message was created the day before
 const isItTomrrow = (date) => {
   const formattedDate = `${date.slice(0, 3)}, ${date.slice(8, 11)} ${date.slice(
@@ -140,6 +163,14 @@ const isItTomrrow = (date) => {
   const nextDay = moment().add(1, "days").format("llll").slice(0, 17);
   return formattedDate === nextDay;
 };
+
+
+
+
+
+
+
+
 
 // converts the date created into a proper format to be displayed
 export const dateFormat = (date) => {
@@ -180,6 +211,13 @@ export const dateFormat = (date) => {
   return newFormattedDate;
 };
 
+
+
+
+
+
+
+
 // converts the date created into a proper format to be displayed
 export const dateFormatTwo = (date) => {
   // get the new date
@@ -198,3 +236,30 @@ export const dateFormatTwo = (date) => {
 
   return newFormattedDate;
 };
+
+
+
+
+
+
+
+
+
+// converts the date created into a proper format to be be sent to backend
+export const dateFormatTooBackend = (date) => {
+  // get the new date
+  console.log(date, "function to backend")
+  let newFormattedDate = "";
+  // gets the time of the created at date and split between HR/MIN
+  const time = date.slice(17, 22);
+  
+
+  // if no conditions met, it will return date as format of "08/01/23 8:07 PM"
+  newFormattedDate += `${date.slice(12, 16)}-`;
+  newFormattedDate += `${monthToNum(date.slice(8, 11))}-`;
+  newFormattedDate += `${date.slice(5, 7)} `;
+  newFormattedDate += time
+
+  return newFormattedDate;
+};
+

@@ -13,6 +13,9 @@ import { InfoContext } from "../../context/InfoContext";
 import * as orderActions from "../../store/orderReducer";
 import { useHistory } from "react-router-dom";
 
+
+
+
 function ShoppingCart() {
   const cart = useSelector((state) => state.cartState);
   const [cupcakes, setCupcakes] = useState([]);
@@ -75,7 +78,8 @@ function ShoppingCart() {
     setSubTotal(totalPrice);
   }, [cupcakes, cheesecakes, cookies]);
 
-
+  console.log(pickUpDate);
+  console.log(pickUpTime)
 
 
   // sets up the min date for the input date box
@@ -167,9 +171,9 @@ function ShoppingCart() {
           {cupcakes && cupcakes.length > 0 && (
             <div>
               <p className="cart-cupcake-title">Cupcakes</p>
-              {cupcakes.map((cupcake) => {
+              {cupcakes.map((cupcake, i) => {
                 return (
-                  <div key={cupcake.id} className="cart-cupcake-wrapper">
+                  <div key={`${cupcake.id}${i}`} className="cart-cupcake-wrapper">
                     <p className="cart-cupcake-flavor">
                       Flavor: {cupcake.flavor}
                     </p>
@@ -217,9 +221,9 @@ function ShoppingCart() {
           {cheesecakes && cheesecakes.length > 0 && (
             <div>
               <p className="cart-cheesecake-title">Cheesecakes</p>
-              {cheesecakes.map((cheesecake) => {
+              {cheesecakes.map((cheesecake, i) => {
                 return (
-                  <div className="cart-cheesecake-wrapper" key={cheesecake.id}>
+                  <div className="cart-cheesecake-wrapper" key={`${cheesecake.id}${i}`}>
                     <p className="cart-cheesecake-flavor">
                       Flavor: {cheesecake.flavor}
                     </p>
@@ -252,9 +256,9 @@ function ShoppingCart() {
           {cookies && cookies.length > 0 && (
             <div>
               <p className="cart-cookie-title">Cookies</p>
-              {cookies.map((cookie) => {
+              {cookies.map((cookie, i) => {
                 return (
-                  <div className="cart-cookie-wrapper" key={cookie.id}>
+                  <div className="cart-cookie-wrapper" key={`${cookie.id}${i}`}>
                     <p className="cart-cookie-flavor">
                       Flavor: {cookie.flavor}
                     </p>
@@ -288,7 +292,7 @@ function ShoppingCart() {
           <label className="cart-pickup-time-wrapper">
             <span className="cart-time-message">Choose time between 9AM - 6PM:</span>
             <input className="cart-pickup-time" type="time" min="09:00" max="18:00" onChange={e => setPickUpTime(e.target.value)}></input>
-            <span class="validity"></span>
+            <span className="validity"></span>
           </label>
           <button type="submit" className={`${(subTotal === 0 || pickUpTime === "" || pickUpDate === "") ? "cart-checkout-not-valid" : "cart-checkout"}`} disabled={(subTotal === 0 || pickUpTime === "" || pickUpDate === "")}>
             Checkout

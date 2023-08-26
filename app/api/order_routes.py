@@ -34,6 +34,10 @@ def validation_errors_to_error_messages(validation_errors):
 @order_routes.route('/')
 @login_required
 def get_all_orders():
+    
+    if current_user.to_dict()["role"] != "admin":
+        return {"errors": [{"Unauthorized": "Unauthorized Action"}]}, 401
+
     orders = Order.query.all()
 
     all_orders = []
@@ -208,6 +212,7 @@ def create_cookie(id):
 @order_routes.route("/<int:id>", methods=["PUT", "PATCH"])
 @login_required
 def edit_a_order(id):
+    print("hit function *******************************")
     form = OrderForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
     # query for the order

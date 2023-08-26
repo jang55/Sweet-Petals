@@ -28,9 +28,9 @@ function UsersOrders() {
         }
 
         function checkOldOrders(a) {
-            return new Date(a.pick_up_time).getTime() < new Date().getTime();
+            // return new Date(a.pick_up_time).getTime() < new Date().getTime();
             // use this one when you have are able to complete the orders with admin user
-            // return new Date(a.pick_up_time).getTime() < new Date().getTime() && a.order_complete === true;
+            return new Date(a.pick_up_time).getTime() < new Date().getTime() && a.order_completed === true;
         }
 
         const oldOrders = [];

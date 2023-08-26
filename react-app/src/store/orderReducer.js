@@ -133,7 +133,7 @@ const deleteCookieOrderAction = (cookieOrder) => ({
 // get all the orders
 
 export const getAllOrdersThunk = () => async (dispatch) => {
-  const response = await fetch("/api/orders", {
+  const response = await fetch("/api/orders/", {
     headers: {
       "Content-Type": "application/json",
     },
@@ -141,8 +141,11 @@ export const getAllOrdersThunk = () => async (dispatch) => {
 
   if (response.ok) {
     const data = await response.json();
-    dispatch(getAllOrdersActions(data));
+    dispatch(getAllOrdersActions(data.Orders));
     return data;
+  } else {
+    const err = await response.json();
+    return err;
   }
 };
 
@@ -301,20 +304,21 @@ export const createCookiesOrderThunk =
 // ***************************
 // update the orders
 
-export const updateOrderThunk = (pick_up_time) => async (dispatch) => {
-  const response = await fetch(`/api/orders/`, {
+export const updateOrderThunk = (orderId, pick_up_time, order_completed) => async (dispatch) => {
+  const response = await fetch(`/api/orders/${orderId}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
       pick_up_time,
+      order_completed,
     }),
   });
 
   if (response.ok) {
     const data = await response.json();
-    dispatch(getOrderThunk(data.id));
+    dispatch(getAllOrdersThunk());
     return data;
   } else {
     const err = await response.json();

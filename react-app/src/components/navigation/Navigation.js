@@ -61,6 +61,7 @@ function Navigation({ isLoaded }){
                             <div className='nav-menu'>
                                 {/* <div onClick={e => loginModal()}>Login</div>
                                 <div onClick={e => signupModal()}>Signup</div> */}
+                                <NavLink to="/orders">All orders</NavLink>
                                 <NavLink to="/orders/users">My orders</NavLink>
                                 <div onClick={logoutHandler}>Logout</div>
                             </div>}

@@ -2,6 +2,9 @@ import { dateFormat } from "../../utils/helperFunctions";
 import { useState, useEffect, useContext } from "react";
 import DeleteOrderModal from "../modal-pages/DeleteOrderModal";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { updateOrderThunk } from "../../store/orderReducer";
+import { dateFormatTooBackend } from "../../utils/helperFunctions";
 
 function OrderCard({ order, pageType, validOrder }) {
   const user = useSelector((state) => state.session);
@@ -10,6 +13,7 @@ function OrderCard({ order, pageType, validOrder }) {
   const [cookies, setCookies] = useState([]);
   const [subTotal, setSubTotal] = useState(0);
   const [showMore, setShowMore] = useState(false);
+  const dispatch = useDispatch()
 
   useEffect(() => {
     if (order && order.Cupcakes) {
@@ -52,6 +56,15 @@ function OrderCard({ order, pageType, validOrder }) {
     }
     setSubTotal(totalPrice);
   }, [cupcakes, cheesecakes, cookies]);
+  
+
+  // handles completion button
+  const handleCompleteButton = () => {
+    const pickUpTime = dateFormatTooBackend(order.pick_up_time)
+    dispatch(updateOrderThunk(order.id, pickUpTime, !order.order_completed));
+  }
+
+
 
   return (
     <fieldset
@@ -66,30 +79,30 @@ function OrderCard({ order, pageType, validOrder }) {
           </span>
         </p>
         <span className="order-received">
-          {user && user.role === "admin" ? (
+          {user && user.user.role === "admin" ? (
             <span>Have the customer received their order? </span>
           ) : (
             <span>Have you received your order? </span>
           )}
           {order.order_completed ? (
             <span className="order-info-text">
-              Yes <span class="validity-received-yes">✓</span>
+              Yes <span className="validity-received-yes">✓</span>
             </span>
           ) : (
             <span className="order-info-text">
-              No <span class="validity-received-no">✖</span>
+              No <span className="validity-received-no">✖</span>
             </span>
           )}
         </span>
         <p className="order-subtotal">
           Subtotal: <span className="order-info-text">${subTotal}.00</span>
         </p>
-        {user && user.role === "admin" ? (
+        {user && user.user.role === "admin" ? (
           <div className="order-functions">
             {order.order_completed ? (
-              <button>Complete</button>
+              <button onClick={handleCompleteButton} className="order-buttons" >Incompleted</button>
             ) : (
-              <button>Incomplete</button>
+              <button onClick={handleCompleteButton} className="order-buttons" >Completed</button>
             )}
           </div>
         ) : (
