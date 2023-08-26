@@ -1,413 +1,405 @@
 .users-orders-container {
-    padding-top: 70px;
-    max-width: 1050px;
-    margin: auto;
+  padding-top: 70px;
+  max-width: 1050px;
+  margin: auto;
 }
 
-/* .order-outer-wrapper {
-    height: 1000px
-} */
+.order-outer-wrapper {
+  height: fit-content;
+}
 
 .order-wrapper-more {
-    height: fit-content;
-    margin: 20px;
-    border-radius: 7px;
-    /* padding-bottom: auto; */
-    position: relative;
-    background-color: rgb(242, 239, 236);
-    box-shadow: 0px 0px 5px 3px rgba(65, 63, 63, 0.2);
+  height: fit-content;
+  margin: 20px;
+  border-radius: 7px;
+  /* padding-bottom: auto; */
+  position: relative;
+  background-color: rgb(242, 239, 236);
+  box-shadow: 0px 0px 5px 3px rgba(65, 63, 63, 0.2);
 }
 
 .order-wrapper-less {
-    height: 300px;
-    margin: 20px;
-    border-radius: 7px;
-    overflow: hidden;
-    position: relative;
-    background-color: rgb(242, 239, 236);
-    box-shadow: 0px 0px 5px 3px rgba(65, 63, 63, 0.2);
+  height: 300px;
+  margin: 20px;
+  border-radius: 7px;
+  overflow: hidden;
+  position: relative;
+  background-color: rgb(242, 239, 236);
+  box-shadow: 0px 0px 5px 3px rgba(65, 63, 63, 0.2);
 }
 
 .more-less {
-    position: absolute;
-    bottom: -10px;
-    right: 10px;
-    cursor: pointer;
-    color: black;
+  position: absolute;
+  bottom: -10px;
+  right: 10px;
+  cursor: pointer;
+  color: black;
 }
 
 .order-number {
-    color: rgb(52, 49, 49);
-    border: 1px solid rgb(52, 49, 49);
-    padding: 5px;
-    margin-left: 10px;
-    border-radius: 7px;
-    background-color: rgb(242, 239, 236);
+  color: rgb(52, 49, 49);
+  border: 1px solid rgb(52, 49, 49);
+  padding: 5px;
+  margin-left: 10px;
+  border-radius: 7px;
+  background-color: rgb(242, 239, 236);
 }
 
 .order-h3 {
-    background-color: rgb(189, 189, 189);
-    margin: 0px;
-    padding: 17px 0px;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: sans-serif;
-    font-size: 20px;
-    margin-bottom: 15px;
+  background-color: rgb(189, 189, 189);
+  margin: 0px;
+  padding: 17px 0px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: sans-serif;
+  font-size: 20px;
+  margin-bottom: 15px;
 }
 
 .orders-break-line {
-    border: 1px solid gray;
-    margin-top: 70px;
-    margin-bottom: 50px;
+  border: 1px solid gray;
+  margin-top: 70px;
+  margin-bottom: 50px;
 }
 
 .order-empty-message {
-    font-size: 20px;
-    margin: 15px;
+  font-size: 20px;
+  margin: 15px;
 }
 
 .order-items-wrap {
-    overflow: hidden scroll;
-    /* position: absolute; */
-    /* background-color: red; */
-    max-height: 340px;
-    margin-left: 10px;
+  overflow: hidden scroll;
+  /* position: absolute; */
+  /* background-color: red; */
+  max-height: 340px;
+  margin-left: 10px;
 }
 
 /* width */
 .order-items-wrap::-webkit-scrollbar {
-    width: 3px;
-    height: 10px;
+  width: 3px;
+  height: 10px;
 }
 
-  /* Track */
+/* Track */
 .order-items-wrap::-webkit-scrollbar-track {
-    /* background: #aeaeae; */
-    border-radius: 15px;
+  /* background: #aeaeae; */
+  border-radius: 15px;
 }
 
-  /* Handle */
+/* Handle */
 .order-items-wrap::-webkit-scrollbar-thumb {
-    border-radius: 15px;
-    background: rgb(189, 189, 189);
+  border-radius: 15px;
+  background: rgb(189, 189, 189);
 }
 
 .order-items-handler {
-    /* margin-left: 10px; */
-    margin-top: 5px; 
-    grid-column-start: 1;
-    grid-column-end: 5;
-    /* grid-row-start: 3;
+  /* margin-left: 10px; */
+  margin-top: 5px;
+  grid-column-start: 1;
+  grid-column-end: 5;
+  /* grid-row-start: 3;
     grid-row-end: 4; */
-    /* display: flex; */
-    text-align: center;
+  /* display: flex; */
+  text-align: center;
 }
 
 .order-amount-input {
-    width: 18%;
-    text-align: center;
+  width: 18%;
+  text-align: center;
 }
 
 .order-remove {
-    display: flex;
-    cursor: pointer;
-    font-size: 13px;
-    width: fit-content;
-    margin-left: 10px;
-    margin-top: 10px;
+  display: flex;
+  cursor: pointer;
+  font-size: 13px;
+  width: fit-content;
+  margin-left: 10px;
+  margin-top: 10px;
 }
 .order-remove:hover {
-    color: red;
+  color: red;
 }
 
 .order-dollar-sign {
-    font-size: 16px;
-    font-weight: bolder;
+  font-size: 16px;
+  font-weight: bolder;
 }
 
 .order-items-wrapper {
-    /* overflow: hidden scroll; */
-    height: 200px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+  /* overflow: hidden scroll; */
+  height: fit-content;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .order-info-text {
-    color: rgb(36, 34, 34);
-    font-weight: bold;
+  color: rgb(36, 34, 34);
+  font-weight: bold;
 }
 
 /*************** order information wrapper ************************/
 
 .order-information-wrapper {
-    display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    margin-bottom: 20px;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  margin-bottom: 20px;
 }
 
 .order-pickup {
-    grid-column-start: 1;
-    grid-column-end: 6;
-    grid-row-start: 1;
-    grid-row-end: 2;
-    margin: 5px;
+  grid-column-start: 1;
+  grid-column-end: 6;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  margin: 5px;
 }
 
 .order-received {
-    grid-column-start: 1;
-    grid-column-end: 4;
-    grid-row-start: 2;
-    grid-row-end: 3;
-    margin: 5px;
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  margin: 5px;
 }
 
 .validity-received-no {
-    position: absolute;
-    padding-left: 5px;
-    color: red;
-    font-size: 15px;
+  position: absolute;
+  padding-left: 5px;
+  color: red;
+  font-size: 15px;
 }
 
 .validity-received-yes {
-    position: absolute;
-    content: "✓";
-    padding-left: 5px;
-    color: green;
-    font-size: 15px;
+  position: absolute;
+  content: "✓";
+  padding-left: 5px;
+  color: green;
+  font-size: 15px;
 }
 
 .order-subtotal {
-    grid-column-start: 1;
-    grid-column-end: 5;
-    grid-row-start: 3;
-    grid-row-end: 4;
-    margin: 5px;
-    height:fit-content;
+  grid-column-start: 1;
+  grid-column-end: 5;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  margin: 5px;
+  height: fit-content;
 }
 
 .order-functions {
-    grid-column-start: 8;
-    grid-column-end: 13;
-    grid-row-start: 1;
-    grid-row-end: 3;
+  grid-column-start: 8;
+  grid-column-end: 13;
+  grid-row-start: 1;
+  grid-row-end: 3;
 }
 
 .order-buttons {
-    width: 100px;
-    padding: 5px;
-    font-size: 15px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    margin: 10px;
-    cursor: pointer;
-    background-color: var(--main-bg-button);
-    /* border: none; */
-    border-radius: 5px;
-    border: 1px solid black;
+  width: 100px;
+  padding: 5px;
+  font-size: 15px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  margin: 10px;
+  cursor: pointer;
+  background-color: var(--main-bg-button);
+  /* border: none; */
+  border-radius: 5px;
+  border: 1px solid black;
 }
 
 .order-buttons:hover {
-    border: none;
-    color: rgb(103, 95, 95);
+  color: rgb(103, 95, 95);
+  background-color: rgb(234, 191, 198);
 }
-
-
-
-
 
 /*********************Style for the cupcakes ****************/
 .order-cupcake-title {
-    margin: 0px;
-    margin-bottom: 10px;
-    font-weight: bolder;
-    font-size: 19px;
-    border-bottom: 1px solid gray;
-    margin-right: 10px;
-    padding-bottom: 4px;
-    display: flex;
-    justify-content: center;
+  margin: 0px;
+  margin-bottom: 10px;
+  font-weight: bolder;
+  font-size: 19px;
+  border-bottom: 1px solid gray;
+  margin-right: 10px;
+  padding-bottom: 4px;
+  display: flex;
+  justify-content: center;
 }
-.order-cupcake-wrapper{
-    display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    margin-right: 10px;
-    margin-bottom: 30px;
+.order-cupcake-wrapper {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  margin-right: 10px;
+  margin-bottom: 30px;
 }
 
 .order-cupcake-flavor {
-    font-size: 14px;
-    margin: 1px;
-    margin-left: 6px;
-    grid-column-start: 1;
-    grid-column-end: 6;
+  font-size: 14px;
+  margin: 1px;
+  margin-left: 6px;
+  grid-column-start: 1;
+  grid-column-end: 6;
 }
 
 .order-cupcake-style {
-    font-size: 14px;
-    margin: 1px;
-    margin-left: 6px;
-    grid-column-start: 1;
-    grid-column-end: 6;
+  font-size: 14px;
+  margin: 1px;
+  margin-left: 6px;
+  grid-column-start: 1;
+  grid-column-end: 6;
 }
 
-
 .order-cupcake-color-wrap {
-    display: flex;
-    grid-column-start: 6;
-    grid-column-end: 10;
-    grid-row-start: 1;
-    grid-row-end: 3;
+  display: flex;
+  grid-column-start: 6;
+  grid-column-end: 10;
+  grid-row-start: 1;
+  grid-row-end: 3;
 }
 
 .order-cupcake-color-wrap div {
-    margin: 3px;
-
+  margin: 3px;
 }
 
 .order-cupcake-colors {
-    width: 40px;
-    height: 40px;
-    /* width: 6%;
+  width: 40px;
+  height: 40px;
+  /* width: 6%;
     height: 40px; */
 }
 
 .order-cupcake-amount {
-    grid-column-start: 1;
-    grid-column-end: 7;
-    grid-row-start: 3;
-    grid-row-end: 4;
-    margin-top: 7px;
-    margin-left: 5px;
-    font-size: 14px;
+  grid-column-start: 1;
+  grid-column-end: 7;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  margin-top: 7px;
+  margin-left: 5px;
+  font-size: 14px;
 }
 
 .order-cupcake-price {
-    font-size: 15px;
-    margin-top: 7px;
-    grid-column-start: 8;
-    grid-column-end: 10;
-    grid-row-start: 3;
-    grid-row-end: 4;
+  font-size: 15px;
+  margin-top: 7px;
+  grid-column-start: 8;
+  grid-column-end: 10;
+  grid-row-start: 3;
+  grid-row-end: 4;
 }
 
 /*********************Style for the cheesecakes ****************/
 
-
 .order-cheesecake-title {
-    margin: 0px;
-    margin-bottom: 10px;
-    font-weight: bolder;
-    font-size: 19px;
-    border-bottom: 1px solid gray;
-    margin-right: 10px;
-    padding-bottom: 4px;
-    display: flex;
-    justify-content: center;
-}    
+  margin: 0px;
+  margin-bottom: 10px;
+  font-weight: bolder;
+  font-size: 19px;
+  border-bottom: 1px solid gray;
+  margin-right: 10px;
+  padding-bottom: 4px;
+  display: flex;
+  justify-content: center;
+}
 .order-cheesecake-wrapper {
-    display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    margin-right: 10px;
-    margin-bottom: 30px;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  margin-right: 10px;
+  margin-bottom: 30px;
 }
 
-.order-cheesecake-flavor{
-    grid-column-start: 1;
-    grid-column-end: 10;
-    font-size: 14px;
-    margin: 1px;
-    margin-left: 6px;
+.order-cheesecake-flavor {
+  grid-column-start: 1;
+  grid-column-end: 10;
+  font-size: 14px;
+  margin: 1px;
+  margin-left: 6px;
 }
 
 .order-cheesecake-strawberries {
-    grid-column-start: 1;
-    grid-column-end: 10;
-    grid-row-start: 2;
-    grid-row-end: 3;
-    font-size: 14px;
-    margin: 1px;
-    margin-left: 6px;
+  grid-column-start: 1;
+  grid-column-end: 10;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  font-size: 14px;
+  margin: 1px;
+  margin-left: 6px;
 }
 
 .order-cheesecake-amount {
-    grid-column-start: 1;
-    grid-column-end: 7;
-    grid-row-start: 3;
-    grid-row-end: 4;
-    margin-top: 7px;
-    margin-left: 5px;
-    font-size: 14px;
+  grid-column-start: 1;
+  grid-column-end: 7;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  margin-top: 7px;
+  margin-left: 5px;
+  font-size: 14px;
 }
 
 .order-cheesecake-price {
-    font-size: 15px;
-    margin-top: 7px;
-    grid-column-start: 8;
-    grid-column-end: 10;
-    grid-row-start: 3;
-    grid-row-end: 4;
+  font-size: 15px;
+  margin-top: 7px;
+  grid-column-start: 8;
+  grid-column-end: 10;
+  grid-row-start: 3;
+  grid-row-end: 4;
 }
 
 /*********************Style for the cookies ****************/
 
-
 .order-cookie-title {
-    margin: 0px;
-    margin-bottom: 10px;
-    margin-right: 10px;
-    font-weight: bolder;
-    font-size: 19px;
-    border-bottom: 1px solid gray;
-    padding-bottom: 4px;
-    display: flex;
-    justify-content: center;
-}    
+  margin: 0px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  font-weight: bolder;
+  font-size: 19px;
+  border-bottom: 1px solid gray;
+  padding-bottom: 4px;
+  display: flex;
+  justify-content: center;
+}
 .order-cookie-wrapper {
-    display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    margin-right: 10px;
-    margin-bottom: 30px;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  margin-right: 10px;
+  margin-bottom: 30px;
 }
 
-.order-cookie-flavor{
-    grid-column-start: 1;
-    grid-column-end: 10;
-    font-size: 14px;
-    margin: 1px;
-    margin-left: 6px;
+.order-cookie-flavor {
+  grid-column-start: 1;
+  grid-column-end: 10;
+  font-size: 14px;
+  margin: 1px;
+  margin-left: 6px;
 }
 
 .order-cookie-strawberries {
-    grid-column-start: 1;
-    grid-column-end: 10;
-    grid-row-start: 2;
-    grid-row-end: 3;
-    font-size: 14px;
-    margin: 1px;
-    margin-left: 6px;
+  grid-column-start: 1;
+  grid-column-end: 10;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  font-size: 14px;
+  margin: 1px;
+  margin-left: 6px;
 }
 
 .order-cookie-amount {
-    grid-column-start: 1;
-    grid-column-end: 7;
-    grid-row-start: 2;
-    grid-row-end: 3;
-    margin-top: 7px;
-    margin-left: 5px;
-    font-size: 14px;
+  grid-column-start: 1;
+  grid-column-end: 7;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  margin-top: 7px;
+  margin-left: 5px;
+  font-size: 14px;
 }
 
 .order-cookie-price {
-    font-size: 15px;
-    margin-top: 7px;
-    grid-column-start: 8;
-    grid-column-end: 10;
-    grid-row-start: 2;
-    grid-row-end: 3;
+  font-size: 15px;
+  margin-top: 7px;
+  grid-column-start: 8;
+  grid-column-end: 10;
+  grid-row-start: 2;
+  grid-row-end: 3;
 }

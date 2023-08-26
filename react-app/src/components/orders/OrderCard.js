@@ -200,7 +200,8 @@ function OrderCard({ order, pageType, validOrder }) {
           </div>
         )}
       </div>
-      {showMore ? (
+
+      {Math.max(cupcakes.length, cheesecakes.length, cookies.length) > 1 ? showMore ? (
         <p className="more-less" onClick={(e) => setShowMore(!showMore)}>
           Less...
         </p>
@@ -208,7 +209,7 @@ function OrderCard({ order, pageType, validOrder }) {
         <p className="more-less" onClick={(e) => setShowMore(!showMore)}>
           More...
         </p>
-      )}
+      ) : <></>}
     </fieldset>
   );
 }

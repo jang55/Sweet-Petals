@@ -25,4 +25,6 @@ body {
     --main-bg-button: rgba(237, 214, 218, 0.659);
     --main-input-color:  #e9d5b3;
     --main-text-color: rgba(88, 86, 92, 0.887);
+    --main-form-color: rgb(242, 239, 236);
+    --main-select-color: rgb(228, 224, 220);
 }

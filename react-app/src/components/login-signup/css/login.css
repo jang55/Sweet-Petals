@@ -112,6 +112,7 @@ font-size: 10px;
     background-color: pink;
     box-shadow: none;
     cursor: pointer;
+    border-radius: 3px;
 }
 
 .login-button-nav {
@@ -126,8 +127,10 @@ font-size: 10px;
 
 .login-button-nav:hover {
     background-color: pink;
+    /* background-color: rgb(96, 91, 92); */
     box-shadow: none;
     cursor: pointer;
+    border-radius: 10px;
 }
 
 .register-container {
