@@ -262,8 +262,8 @@ export const dateFormatTooBackend = (date) => {
 
 
 // check dates to see if the order is within a day
-export const checkDateMiliseconds = (date) => {
-  return Math.abs(new Date(date).getTime() - new Date().getTime()) < 86400000;
+export const checkDateMiliseconds = (date) => {                  // mili sec for a day times 2
+  return Math.abs(new Date(date).getTime() - new Date().getTime()) < (86400000 * 2);
 }
 
 
