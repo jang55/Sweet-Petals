@@ -525,7 +525,7 @@ export default function orderReducer(state = initialState, action) {
       });
       return newState;
     case GET_ORDER:
-      newState[action.payload.id] = action.payload;
+      newState = {...action.payload};
       return newState;      
     case UPDATE_ORDER:
       newState = { ...state };
