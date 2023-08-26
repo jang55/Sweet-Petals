@@ -13,7 +13,7 @@
     padding: 0px 10px;
     display: flex;
     flex-direction: row;
-    background-color: antiquewhite;
+    background-color: var(--main-form-color);
     width: 450px;
     height: 460px;
     border-radius: 5px;
@@ -86,7 +86,7 @@ font-size: 10px;
     font-size: 17px;
     border-radius: 2px;
     border: none;
-    background-color: var(--main-input-color);
+    background-color: var(--main-select-color);
     color: rgb(0, 0, 0);
 }
 

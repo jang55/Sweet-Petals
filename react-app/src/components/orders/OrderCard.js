@@ -55,7 +55,7 @@ function OrderCard({ order, pageType, validOrder }) {
 
   return (
     <fieldset
-      className={showMore ? "order-wrapper-more" : "order-wrapper-less"}
+      className={showMore ? "order-wrapper-more" : (Math.max(cupcakes.length, cheesecakes.length, cookies.length) > 1 ? "order-wrapper-less-gradient" :"order-wrapper-less")}
     >
       <legend className="order-number">Orders ID: {order.order_number} </legend>
       <div className="order-information-wrapper">

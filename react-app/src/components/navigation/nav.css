@@ -104,7 +104,7 @@
 
 
 .nav-shopping-cart-items {
-    background-color:rgb(242, 239, 236);
+    background-color:var(--main-form-color);
     width: 290px;
     height: 585px;
     position: absolute;
