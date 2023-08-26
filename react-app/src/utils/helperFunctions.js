@@ -59,6 +59,36 @@ const monthToNum = (month) => {
 };
 
 
+//a helper function that converts the month into a month index
+const monthToMonthIndex = (month) => {
+  if (month === "Jan") {
+    return "0";
+  } else if (month === "Feb") {
+    return "1";
+  } else if (month === "Mar") {
+    return "2";
+  } else if (month === "Apr") {
+    return "3";
+  } else if (month === "May") {
+    return "4";
+  } else if (month === "Jun") {
+    return "5";
+  } else if (month === "Jul") {
+    return "6";
+  } else if (month === "Aug") {
+    return "7";
+  } else if (month === "Sep") {
+    return "8";
+  } else if (month === "Oct") {
+    return "9";
+  } else if (month === "Nov") {
+    return "10";
+  } else {
+    return "11";
+  }
+};
+
+
 
 
 
@@ -245,7 +275,6 @@ export const dateFormatTwo = (date) => {
 // converts the date created into a proper format to be be sent to backend
 export const dateFormatTooBackend = (date) => {
   // get the new date
-  console.log(date, "function to backend")
   let newFormattedDate = "";
   // gets the time of the created at date and split between HR/MIN
   const time = date.slice(17, 22);
@@ -261,12 +290,44 @@ export const dateFormatTooBackend = (date) => {
 };
 
 
-// check dates to see if the order is within a day
-export const checkDateMiliseconds = (date) => {                  // mili sec for a day times 2
-  return Math.abs(new Date(date).getTime() - new Date().getTime()) < (86400000 * 2);
+
+
+// makes it so that users order past a certain date can not do anything unless order is marked ompleted
+export function disableOlderOrders(a) {
+  return new Date(a.pick_up_time).getTime() < new Date().getTime();
 }
 
 
-export function disableOlderOrders(a) {
-  return new Date(a.pick_up_time).getTime() < new Date().getTime();
+
+
+// converts the date created into a proper format to be be used for new Date()
+// currently setting this value as a string, will not work properly with new date
+// export const dateFormatForNewDate = (date) => {
+//   // get the new date
+//   let newFormattedDate = "";
+//   // gets the time of the created at date and split between HR/MIN
+//   const time = date.slice(17, 22);
+//   const timeArr = time.split(":");
+  
+
+//   // if no conditions met, it will return date as format of "08/01/23 8:07 PM"
+//   newFormattedDate += `${Number(date.slice(12, 16))}, `;
+//   newFormattedDate += `${Number(monthToMonthIndex(date.slice(8, 11)))}, `;
+//   newFormattedDate += `${Number(date.slice(5, 7))}, `;
+//   newFormattedDate += `${Number(timeArr[0])}, `
+//   newFormattedDate += `${Number(timeArr[1])}`
+
+//   return newFormattedDate;
+// };
+
+
+
+// check dates to see if the order is within a day
+export const checkDateMiliseconds = (date) => {               
+  const time = date.slice(17, 22);
+  const timeArr = time.split(":");
+  const pickUpDate = new Date(Number(date.slice(12, 16)), Number(monthToMonthIndex(date.slice(8, 11))), Number(date.slice(5, 7)), Number(timeArr[0]), Number(timeArr[1]))
+                                                            // mili sec for a day times 2
+  return Math.abs(pickUpDate.getTime() - new Date().getTime()) < (86400000 * 2);
+  // return Math.abs(new Date(date).getTime() - new Date().getTime()) < (86400000 * 1.6);
 }

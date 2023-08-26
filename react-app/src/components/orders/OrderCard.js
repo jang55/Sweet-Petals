@@ -1,10 +1,12 @@
 import { dateFormat } from "../../utils/helperFunctions";
 import { useState, useEffect, useContext } from "react";
 import DeleteOrderModal from "../modal-pages/DeleteOrderModal";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useSelector,  useDispatch } from "react-redux";
 import { updateOrderThunk } from "../../store/orderReducer";
 import { dateFormatTooBackend, checkDateMiliseconds, disableOlderOrders } from "../../utils/helperFunctions";
+import { useHistory } from "react-router-dom";
+
+
 
 function OrderCard({ order, pageType, validOrder }) {
   const user = useSelector((state) => state.session);
@@ -13,7 +15,8 @@ function OrderCard({ order, pageType, validOrder }) {
   const [cookies, setCookies] = useState([]);
   const [subTotal, setSubTotal] = useState(0);
   const [showMore, setShowMore] = useState(false);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const history = useHistory();
 
   useEffect(() => {
     if (order && order.Cupcakes) {
@@ -66,6 +69,9 @@ function OrderCard({ order, pageType, validOrder }) {
     dispatch(updateOrderThunk(order.id, pickUpTime, !order.order_completed));
   }
 
+  const handleEditButton = () => {
+    history.push(`/orders/${order.id}`)
+  }
 
 
   return (
@@ -117,7 +123,7 @@ function OrderCard({ order, pageType, validOrder }) {
         ) : (
           <div className="order-functions">
             {validOrder && !disableOlderOrders(order) && <DeleteOrderModal order={order} />}
-            {validOrder && !disableOlderOrders(order) && <button className="order-buttons">Edit</button>}
+            {validOrder && !disableOlderOrders(order) && <button className="order-buttons" onClick={handleEditButton} >Edit</button>}
             {!validOrder && (
               <button className="order-buttons">Add Review</button>
             )}
