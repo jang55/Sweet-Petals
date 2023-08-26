@@ -242,9 +242,6 @@ export const dateFormatTwo = (date) => {
 
 
 
-
-
-
 // converts the date created into a proper format to be be sent to backend
 export const dateFormatTooBackend = (date) => {
   // get the new date
@@ -263,3 +260,13 @@ export const dateFormatTooBackend = (date) => {
   return newFormattedDate;
 };
 
+
+// check dates to see if the order is within a day
+export const checkDateMiliseconds = (date) => {
+  return Math.abs(new Date(date).getTime() - new Date().getTime()) < 86400000;
+}
+
+
+export function disableOlderOrders(a) {
+  return new Date(a.pick_up_time).getTime() < new Date().getTime();
+}

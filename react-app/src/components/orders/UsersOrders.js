@@ -13,12 +13,16 @@ function UsersOrders() {
     const [isLoaded, setIsLoaded] = useState(false);
     const dispatch = useDispatch();
 
+
+
 // dispatch the thunk to set redux for users orders
     useEffect(() => {
         dispatch(getAllUserOrdersThunk()).then(() => {
             setIsLoaded(true)
         });
     }, [])
+
+
 
 // get the values for each object and sorts them from most recent pickup
 // to latest pick up
@@ -52,6 +56,7 @@ function UsersOrders() {
     }, [usersOrders])
 
 
+    
     return(
         isLoaded && <div className="users-orders-container">
             <h1>My Orders</h1>

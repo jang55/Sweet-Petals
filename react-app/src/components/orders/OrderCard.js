@@ -4,7 +4,7 @@ import DeleteOrderModal from "../modal-pages/DeleteOrderModal";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { updateOrderThunk } from "../../store/orderReducer";
-import { dateFormatTooBackend } from "../../utils/helperFunctions";
+import { dateFormatTooBackend, checkDateMiliseconds, disableOlderOrders } from "../../utils/helperFunctions";
 
 function OrderCard({ order, pageType, validOrder }) {
   const user = useSelector((state) => state.session);
@@ -56,6 +56,8 @@ function OrderCard({ order, pageType, validOrder }) {
     }
     setSubTotal(totalPrice);
   }, [cupcakes, cheesecakes, cookies]);
+
+
   
 
   // handles completion button
@@ -105,10 +107,17 @@ function OrderCard({ order, pageType, validOrder }) {
               <button onClick={handleCompleteButton} className="order-buttons" >Completed</button>
             )}
           </div>
+        ) : checkDateMiliseconds(order.pick_up_time) ? (
+          <div className="order-functions">
+            {!validOrder && (
+              <button className="order-buttons">Add Review</button>
+            )}
+            {validOrder && <p className="order-info-text">Order can not be canceled or changed due to being less than 2 days for pick up time.</p>}
+          </div>
         ) : (
           <div className="order-functions">
-            {validOrder && <DeleteOrderModal order={order} />}
-            {validOrder && <button className="order-buttons">Edit</button>}
+            {validOrder && !disableOlderOrders(order) && <DeleteOrderModal order={order} />}
+            {validOrder && !disableOlderOrders(order) && <button className="order-buttons">Edit</button>}
             {!validOrder && (
               <button className="order-buttons">Add Review</button>
             )}
