@@ -20,7 +20,7 @@ function UsersOrders() {
         dispatch(getAllUserOrdersThunk()).then(() => {
             setIsLoaded(true)
         });
-    }, [])
+    }, [dispatch])
 
 
 

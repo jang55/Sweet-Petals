@@ -290,6 +290,15 @@ export const dateFormatTooBackend = (date) => {
 };
 
 
+// check dates to see if the order is within a day
+export const checkDateMiliseconds = (date) => {               
+  const time = date.slice(17, 22);
+  const timeArr = time.split(":");
+  const pickUpDate = new Date(Number(date.slice(12, 16)), Number(monthToMonthIndex(date.slice(8, 11))), Number(date.slice(5, 7)), Number(timeArr[0]), Number(timeArr[1]))
+                                                             // mili sec for a day times 2
+  return Math.abs(pickUpDate.getTime() - new Date().getTime()) < (86400000 * 2);
+  // return Math.abs(new Date(date).getTime() - new Date().getTime()) < (86400000 * 1.6);
+}
 
 
 // makes it so that users order past a certain date can not do anything unless order is marked ompleted
@@ -320,14 +329,3 @@ export function disableOlderOrders(a) {
 //   return newFormattedDate;
 // };
 
-
-
-// check dates to see if the order is within a day
-export const checkDateMiliseconds = (date) => {               
-  const time = date.slice(17, 22);
-  const timeArr = time.split(":");
-  const pickUpDate = new Date(Number(date.slice(12, 16)), Number(monthToMonthIndex(date.slice(8, 11))), Number(date.slice(5, 7)), Number(timeArr[0]), Number(timeArr[1]))
-                                                            // mili sec for a day times 2
-  return Math.abs(pickUpDate.getTime() - new Date().getTime()) < (86400000 * 2);
-  // return Math.abs(new Date(date).getTime() - new Date().getTime()) < (86400000 * 1.6);
-}

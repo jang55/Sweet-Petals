@@ -1,5 +1,5 @@
-import React, { createContext, useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { createContext, useState } from "react";
+
 
 export const InfoContext = createContext();
 

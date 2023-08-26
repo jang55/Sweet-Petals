@@ -76,18 +76,15 @@ function ShoppingCart() {
     }
     setCartCount(totalItems);
     setSubTotal(totalPrice);
-  }, [cupcakes, cheesecakes, cookies]);
+  }, [cupcakes, cheesecakes, cookies, setCartCount]);
 
-  console.log(pickUpDate);
-  console.log(pickUpTime)
 
 
   // sets up the min date for the input date box
   useEffect(() => {
     const date = moment().add(2, 'days').format().slice(0, 10);
     setMinDate(date) 
-
-  })
+  }, [setMinDate])
 
 
   // handles removing items in cart with one click

@@ -3,7 +3,7 @@ import { useState, Fragment, useEffect, useContext } from "react";
 import Wheel from "@uiw/react-color-wheel";
 import { hsvaToHex } from "@uiw/color-convert";
 import { useDispatch } from "react-redux";
-import { addCupcakeAction, subtractCupcakeAction } from "../../store/cartReducer";
+import { addCupcakeAction} from "../../store/cartReducer";
 import { InfoContext } from "../../context/InfoContext";
 import { useSelector } from "react-redux";
 
@@ -27,7 +27,7 @@ function CupcakeForm() {
   useEffect(() => {
     document.addEventListener("mouseup", function (event) {
       const colorWheel = document.getElementsByClassName("wheel-active")[0];
-      if (event.target != colorWheel && event.target.parentNode != colorWheel) {
+      if (event.target !== colorWheel && event.target.parentNode !== colorWheel) {
         if (colorWheel && colorWheel.style) {
           setOpenWheel("");
         }
@@ -64,22 +64,6 @@ function CupcakeForm() {
     return;
   }
 
-  // const handleSubtractSubmit = (e) => {
-  //   e.preventDefault();
-    
-  //   const formRes = {
-  //     id: flavor+style+(hsvaToHex(hsvaOne))+(hsvaTwo?hsvaToHex(hsvaTwo):"")+(hsvaThree?hsvaToHex(hsvaThree):""),
-  //     flavor: flavor,
-  //     style: style,
-  //     color_one: hsvaToHex(hsvaOne),
-  //     color_two: hsvaToHex(hsvaTwo),
-  //     color_threw: hsvaToHex(hsvaThree),
-  //     amount: amount,
-  //   }
-  //   console.log(formRes)
-  //   dispatch(subtractCupcakeAction(formRes));
-  //   return;
-  // }
 
 
   return (

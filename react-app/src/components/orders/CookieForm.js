@@ -1,6 +1,6 @@
 import "./css/cookie-form.css";
 import { useState, useContext, useEffect } from "react";
-import { addCookieAction, subtractCookieAction } from "../../store/cartReducer";
+import { addCookieAction } from "../../store/cartReducer";
 import { useDispatch } from "react-redux";
 import { InfoContext } from "../../context/InfoContext";
 import { useSelector } from "react-redux";

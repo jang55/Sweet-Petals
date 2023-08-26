@@ -18,7 +18,7 @@ function AllOrders() {
         dispatch(getAllOrdersThunk()).then(() => {
             setIsLoaded(true)
         });
-    }, [])
+    }, [dispatch])
 
 // get the values for each object and sorts them from most recent pickup
 // to latest pick up
