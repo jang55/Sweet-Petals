@@ -69,8 +69,6 @@ function EditOrderDetails() {
     setSubTotal(totalPrice);
   }, [cupcakes, cheesecakes, cookies]);
 
-
-
   return (
     isLoaded &&
     order.user_id === user.id && (
@@ -99,8 +97,24 @@ function EditOrderDetails() {
               <p className="edit-cheesecake-title">Cheesecakes</p>
               {cheesecakes.map((cheesecake, i) => (
                 <div key={`${cheesecake.id}${i}`}>
-                  <EditCheesecake 
-                  cheesecake={cheesecake} 
+                  <EditCheesecake
+                    cheesecake={cheesecake}
+                    hoverShowEdit={hoverShowEdit}
+                    setHoverShowEdit={setHoverShowEdit}
+                    showEditForm={showEditForm}
+                    setShowEditForm={setShowEditForm}
+                  />
+                </div>
+              ))}
+            </>
+          )}
+          {cookies && cookies.length > 0 && (
+            <div>
+              <p className="edit-cookie-title">Cookies</p>
+              {cookies.map((cookie, i) => (
+                <div key={`${cookie.id}${i}`}>
+                  <EditCookie 
+                  cookie={cookie} 
                   hoverShowEdit={hoverShowEdit}
                   setHoverShowEdit={setHoverShowEdit}
                   showEditForm={showEditForm}
@@ -108,9 +122,8 @@ function EditOrderDetails() {
                   />
                 </div>
               ))}
-            </>
+            </div>
           )}
-          {cookies && cookies.length > 0 && <EditCookie cookies={cookies} />}
           <p className="order-subtotal">
             Subtotal: <span className="order-info-text">${subTotal}.00</span>
           </p>

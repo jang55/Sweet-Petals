@@ -1,0 +1,134 @@
+.edit-cookie-wrapper-in-edit-form {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    border-radius: 5px;
+    margin: 5px 30px;
+    padding: 15px;
+    background-color: rgb(244, 244, 244);
+    border: 1px solid gray;
+}
+
+.edit-cookie-wrapper {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    border-radius: 5px;
+    margin: 5px 30px;
+    padding: 15px;
+    box-shadow: 0px 0px 1px 0px gray;
+}
+
+.edit-cookie-wrapper:hover {
+    background-color: rgb(218, 215, 215);
+}
+
+
+.edit-cookie-title {
+    margin: 20px;
+    /* margin-bottom: 10px; */
+    font-weight: bolder;
+    font-size: 19px;
+    border-bottom: 1px solid gray;
+    padding-bottom: 4px;
+    display: flex;
+    justify-content: center;
+}
+
+.edit-cookie-flavor {
+    font-size: 20px;
+    margin: 1px;
+    margin-left: 6px;
+    grid-column-start: 1;
+    grid-column-end: 6;
+}
+
+.edit-flavor-text {
+    font-weight: bolder;
+}
+
+.edit-cookie-select-field {
+    width: 50%;
+    outline: none;
+    padding: 5px;
+    font-size: 17px;
+    border-radius: 2px;
+    border: none;
+    background-color: var(--main-select-color);
+    color: var(--main-text-color);
+}
+
+.edit-items-cookie-handler {
+    grid-column-start: 2;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    margin-top: 10px;
+} 
+
+.edit-cookie-price {
+    font-size: 15px;
+    margin-top: 15px;
+    grid-column-start: 7;
+    grid-column-end: 9;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    font-weight: bolder;
+}
+
+.edit-cookie-text {
+    grid-column-start: 10;
+    grid-column-end: 12;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    margin-top: 15px;
+    margin-left: 50px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.edit-cookie-text:hover {
+    color: rgb(244, 240, 240);
+}
+
+.edit-cookie-text-save {
+    grid-column-start: 9;
+    grid-column-end: 12;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    margin-top: 15px;
+    margin-left: 80px;
+    cursor: pointer;
+    font-size: 15px;
+    background-color: var(--main-bg-button);
+    width: 113px;
+    border: 1px solid black;
+}
+
+.edit-cookie-remove {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    display: flex;
+    cursor: pointer;
+    font-size: 13px;
+    width: fit-content;
+    margin-left: 10px;
+    margin-top: 23px;
+}
+
+
+.edit-cookie-remove:hover {
+    color: red;
+}
+
+.edit-cookie-amount {
+    grid-column-start: 1;
+    grid-column-end: 7;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    margin-top: 7px;
+    margin-left: 5px;
+    font-size: 20px;
+}

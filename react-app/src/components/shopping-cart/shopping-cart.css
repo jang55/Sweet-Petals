@@ -235,6 +235,7 @@
   display: flex;
   justify-content: center;
 }
+
 .cart-cookie-wrapper {
   display: grid;
   grid-template-columns: repeat(10, 1fr);
