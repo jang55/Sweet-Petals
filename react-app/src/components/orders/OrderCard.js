@@ -127,7 +127,7 @@ function OrderCard({ order, pageType, validOrder }) {
         ) : (
           <div className="order-functions">
             {validOrder && !disableOlderOrders(order) && <DeleteOrderModal order={order} />}
-            {validOrder && !disableOlderOrders(order) && <button className="order-buttons" onClick={handleEditButton} >Edit</button>}
+            {validOrder && !disableOlderOrders(order) && <button className="order-buttons" onClick={handleEditButton} >Change</button>}
             {!validOrder && (
               <button className="order-buttons">Add Review</button>
             )}

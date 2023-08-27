@@ -31,7 +31,7 @@ function SignupFormPage() {
     if(password.length < 8) {
       errors.password = "Password needs to be atleast 8 characters long"
     }
-    console.log(errors)
+
     if(Object.values(errors).length > 0) {
       setErrors({...errors});
       return;
