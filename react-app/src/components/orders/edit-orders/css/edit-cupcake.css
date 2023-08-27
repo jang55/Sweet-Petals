@@ -1,0 +1,232 @@
+/* ************** cupcakes edit ********************* */
+.edit-cupcake-wrapper-in-edit-form {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    border-radius: 5px;
+    margin: 0px 10px;
+    padding: 30px;
+    background-color: rgb(244, 244, 244);
+}
+
+.edit-cupcake-wrapper {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    border-radius: 5px;
+    margin: 0px 10px;
+    padding: 15px 30px;
+}
+
+.edit-cupcake-wrapper:hover {
+    background-color: rgb(218, 215, 215);
+}
+
+.edit-cupcake-select-field {
+    width: 50%;
+    outline: none;
+    padding: 5px;
+    font-size: 17px;
+    border-radius: 2px;
+    border: none;
+    background-color: var(--main-select-color);
+    color: var(--main-text-color);
+}
+
+.edit-cupcake-flavor {
+    font-size: 20px;
+    margin: 1px;
+    margin-left: 6px;
+    grid-column-start: 1;
+    grid-column-end: 5;
+}
+
+.edit-flavor-text {
+    font-weight: bolder;
+}
+
+.edit-cupcake-style {
+    font-size: 20px;
+    /* margin: 1px;
+    margin-left: 6px; */
+    grid-column-start: 1;
+    grid-column-end: 5;
+    margin: 5px 6px;
+}
+
+.edit-style-text {
+    font-weight: bolder;
+}
+
+
+.edit-cupcake-color-wrap {
+    display: flex;
+    flex-direction: column;
+    grid-column-start: 5;
+    grid-column-end: 8;
+    grid-row-start: 1;
+    grid-row-end: 4;
+}
+
+.edit-cupcake-color-wrap div {
+    margin: 3px;
+}
+
+.edit-cupcake-colors {
+    width: 35px;
+    height: 35px;
+    /* width: 6%;
+      height: 20px; */
+}
+
+.edit-cupcake-text {
+    grid-column-start: 10;
+    grid-column-end: 12;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    margin-top: 15px;
+    margin-left: 50px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.edit-cupcake-text:hover {
+    color: rgb(244, 240, 240);
+}
+
+.edit-cupcake-text-save {
+    grid-column-start: 9;
+    grid-column-end: 12;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    margin-top: 15px;
+    margin-left: 80px;
+    cursor: pointer;
+    font-size: 15px;
+    background-color: var(--main-bg-button);
+    width: 113px;
+    border: 1px solid black;
+}
+
+.edit-items-handler {
+    grid-column-start: 2;
+    grid-column-end: 4;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    margin-top: 10px;
+}
+
+.edit-amount-input {
+    height: 24px;
+    width: 18%;
+    text-align: center;
+    font-size: 15px;
+}
+
+.edit-remove {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    display: flex;
+    cursor: pointer;
+    font-size: 13px;
+    width: fit-content;
+    margin-left: 10px;
+    margin-top: 23px;
+}
+
+
+.edit-remove:hover {
+    color: red;
+}
+
+.edit-cupcake-price {
+    font-size: 15px;
+    margin-top: 15px;
+    grid-column-start: 7;
+    grid-column-end: 9;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    font-weight: bolder;
+}
+
+.edit-cupcake-amount {
+    grid-column-start: 1;
+    grid-column-end: 7;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    margin-top: 7px;
+    margin-left: 5px;
+    font-size: 20px;
+}
+
+.edit-amount-text {
+    font-weight: bolder;
+}
+
+.edit-minus-color {
+    font-size: 23px;
+    margin-left: 10px;
+}
+
+.edit-plus-color {
+    font-size: 23px;
+    margin-left: 7px;
+}
+
+
+
+/******************* color wheel *****************/
+.edit-cupcake-color-one {
+    position: relative;
+}
+
+
+.edit-color-wheel-one {
+    /* width: 50px!important;
+    height: 50px!important; */
+    position: absolute!important;
+    top: 1px;
+    /* right: 35px; */
+    left: 60px;
+    /* display: none!important; */
+}
+
+
+.edit-cupcake-color-two {
+    position: relative;
+}
+
+
+.edit-color-wheel-two {
+    /* width: 50px!important;
+    height: 50px!important; */
+    position: absolute!important;
+    top: -40px;
+    left: 60px;
+    /* display: none!important; */
+}
+
+
+
+
+
+.edit-cupcake-color-three {
+    position: relative;
+}
+
+
+.edit-color-wheel-three {
+    /* width: 50px!important;
+    height: 50px!important; */
+    position: absolute!important;
+    top: -81px;
+    left: 60px;
+    /* display: none!important; */
+}
+
+
+.wheel-not-active {
+    display: none!important;
+}

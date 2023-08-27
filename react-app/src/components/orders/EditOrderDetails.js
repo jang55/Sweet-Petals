@@ -16,6 +16,10 @@ function EditOrderDetails() {
   const [cheesecakes, setCheesecakes] = useState([]);
   const [cookies, setCookies] = useState([]);
   const [subTotal, setSubTotal] = useState(0);
+  const [hoverShowEdit, setHoverShowEdit] = useState("");
+  const [showEditForm, setShowEditForm] = useState("")
+  
+  
 
   useEffect(() => {
     dispatch(getOrderThunk(orderId)).then(() => {
@@ -75,8 +79,8 @@ function EditOrderDetails() {
             <>
               <p className="cart-cupcake-title">Cupcakes</p>
               {cupcakes.map((cupcake, i) => (
-                <div key={`${cupcake.id}${i}`} className="cart-cupcake-wrapper">
-                  <EditCupcake cupcake={cupcake} />
+                <div key={`${cupcake.id}${i}`} >
+                  <EditCupcake cupcake={cupcake} hoverShowEdit={hoverShowEdit} setHoverShowEdit={setHoverShowEdit} showEditForm={showEditForm} setShowEditForm={setShowEditForm} />
                 </div>
               ))}
             </>
