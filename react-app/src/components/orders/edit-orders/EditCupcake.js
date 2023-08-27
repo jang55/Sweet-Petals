@@ -4,6 +4,7 @@ import { hsvaToHex, hexToHsva } from "@uiw/color-convert";
 import { useDispatch } from "react-redux";
 import "./css/edit-cupcake.css"
 import {AiOutlineMinusCircle, AiFillPlusCircle, } from "react-icons/ai";
+import { deleteCupcakeOrderThunk, updateCupcakeOrderThunk } from "../../../store/orderReducer";
 
 
 function EditCupcake({ cupcake, hoverShowEdit, setHoverShowEdit, showEditForm, setShowEditForm}) {
@@ -48,17 +49,29 @@ function EditCupcake({ cupcake, hoverShowEdit, setHoverShowEdit, showEditForm, s
     });
   }, []);
 
-  // handles removing items in cart with one click
-  const handleRemove = (e, dessert) => {
+  // handle editting the cupcake order
+  const handleEditCupcake = (e) => {
     e.preventDefault();
 
-    // if (dessert.type === "cupcake") {
-    //   dispatch(removeCupcakeAction(dessert));
-    // } else if (dessert.type === "cheesecake") {
-    //   dispatch(removeCheesecakeAction(dessert));
-    // } else if (dessert.type === "cookie") {
-    //   dispatch(removeCookieAction(dessert));
-    // }
+    dispatch(updateCupcakeOrderThunk(
+      cupcake.order_id,
+      cupcake.id,
+      hsvaToHex(hsvaOne),
+      hsvaToHex(hsvaTwo),
+      hsvaToHex(hsvaThree),
+      style,
+      flavor,
+      amount
+    ))
+    
+      setShowEditForm("");
+  }
+
+  // handles removing items in cart with one click
+  const handleRemove = (e) => {
+    e.preventDefault();
+
+    dispatch(deleteCupcakeOrderThunk(cupcake.order_id, cupcake.id));
     return;
   };
 
@@ -207,12 +220,12 @@ function EditCupcake({ cupcake, hoverShowEdit, setHoverShowEdit, showEditForm, s
           <span className="cart-dollar-sign" >$</span>
           {cupcake.amount * 30}.00
         </span>
-        <span className="edit-remove" onClick={(e) => handleRemove(e, cupcake)}>
+        <span className="edit-remove" onClick={handleRemove}>
           remove
         </span>
-        <button className="edit-cupcake-text-save" >Save Changes</button>
+        <button className="edit-cupcake-text-save" onClick={handleEditCupcake}>Save Changes</button>
       </div> :
-      (<div className="edit-cupcake-wrapper" onMouseEnter={e => setHoverShowEdit(`${cupcake.id}cupcake`)} onMouseLeave={e => setHoverShowEdit("")}>
+      (<div className="edit-cupcake-wrapper" onMouseEnter={e => setHoverShowEdit(`${cupcake.id}cupcake`)} onMouseLeave={e => setHoverShowEdit("")} >
 
                     <p className="edit-cupcake-flavor" >
                       Flavor: <span className="edit-flavor-text">{cupcake.flavor}</span>

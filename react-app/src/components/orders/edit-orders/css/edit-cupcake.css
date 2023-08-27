@@ -9,6 +9,17 @@
     background-color: rgb(244, 244, 244);
 }
 
+.edit-cupcake-title {
+    margin: 20px;
+    /* margin-bottom: 10px; */
+    font-weight: bolder;
+    font-size: 19px;
+    border-bottom: 1px solid gray;
+    padding-bottom: 4px;
+    display: flex;
+    justify-content: center;
+}
+
 .edit-cupcake-wrapper {
     display: grid;
     grid-template-columns: repeat(10, 1fr);

@@ -11,15 +11,14 @@ function EditOrderDetails() {
   const { orderId } = useParams();
   const dispatch = useDispatch();
   const order = useSelector((state) => state.orderState);
+  const user = useSelector((state) => state.session);
   const [isLoaded, setIsLoaded] = useState(false);
   const [cupcakes, setCupcakes] = useState([]);
   const [cheesecakes, setCheesecakes] = useState([]);
   const [cookies, setCookies] = useState([]);
   const [subTotal, setSubTotal] = useState(0);
   const [hoverShowEdit, setHoverShowEdit] = useState("");
-  const [showEditForm, setShowEditForm] = useState("")
-  
-  
+  const [showEditForm, setShowEditForm] = useState("");
 
   useEffect(() => {
     dispatch(getOrderThunk(orderId)).then(() => {
@@ -70,23 +69,47 @@ function EditOrderDetails() {
     setSubTotal(totalPrice);
   }, [cupcakes, cheesecakes, cookies]);
 
+
+  console.log(cheesecakes)
+
   return (
-    isLoaded && (
+    isLoaded &&
+    order.user_id === user.id && (
       <div className="edit-order-container">
-        <h1>Change your orders</h1>
+        <h1>Order Details</h1>
+        <p>You can make changes to your order here on this page.</p>
         <div className="edit-order-wrapper">
           {cupcakes && cupcakes.length > 0 && (
             <>
-              <p className="cart-cupcake-title">Cupcakes</p>
+              <p className="edit-cupcake-title">Cupcakes</p>
               {cupcakes.map((cupcake, i) => (
-                <div key={`${cupcake.id}${i}`} >
-                  <EditCupcake cupcake={cupcake} hoverShowEdit={hoverShowEdit} setHoverShowEdit={setHoverShowEdit} showEditForm={showEditForm} setShowEditForm={setShowEditForm} />
+                <div key={`${cupcake.id}${i}`}>
+                  <EditCupcake
+                    cupcake={cupcake}
+                    hoverShowEdit={hoverShowEdit}
+                    setHoverShowEdit={setHoverShowEdit}
+                    showEditForm={showEditForm}
+                    setShowEditForm={setShowEditForm}
+                  />
                 </div>
               ))}
             </>
           )}
           {cheesecakes && cheesecakes.length > 0 && (
-            <EditCheesecake cheesecakes={cheesecakes} />
+            <>
+              <p className="edit-cheesecake-title">Cheesecakes</p>
+              {cheesecakes.map((cheesecake, i) => (
+                <div key={`${cheesecake.id}${i}`}>
+                  <EditCheesecake 
+                  cheesecake={cheesecake} 
+                  hoverShowEdit={hoverShowEdit}
+                  setHoverShowEdit={setHoverShowEdit}
+                  showEditForm={showEditForm}
+                  setShowEditForm={setShowEditForm}
+                  />
+                </div>
+              ))}
+            </>
           )}
           {cookies && cookies.length > 0 && <EditCookie cookies={cookies} />}
           <p className="order-subtotal">

@@ -1,0 +1,80 @@
+.edit-cheesecake-wrapper-in-edit-form {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    border-radius: 5px;
+    margin: 0px 10px;
+    padding: 30px;
+    background-color: rgb(244, 244, 244);
+}
+
+.edit-cheesecake-title {
+    margin: 20px;
+    /* margin-bottom: 10px; */
+    font-weight: bolder;
+    font-size: 19px;
+    border-bottom: 1px solid gray;
+    padding-bottom: 4px;
+    display: flex;
+    justify-content: center;
+}
+
+.edit-cheesecake-wrapper {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    border-radius: 5px;
+    margin: 0px 10px;
+    padding: 15px 30px;
+}
+
+.edit-cheesecake-wrapper:hover {
+    background-color: rgb(218, 215, 215);
+}
+
+.edit-cheesecake-flavor {
+    font-size: 20px;
+    margin: 1px;
+    margin-left: 6px;
+    grid-column-start: 1;
+    grid-column-end: 5;
+}
+
+.edit-flavor-text {
+    font-weight: bolder;
+}
+
+.edit-cheesecake-strawberries {
+    font-size: 20px;
+    margin: 1px;
+    margin-left: 6px;
+    grid-column-start: 1;
+    grid-column-end: 5;
+}
+
+.edit-strawberries-text {
+    font-weight: bolder;
+}
+
+.edit-cheesecake-select-field {
+    width: 50%;
+    outline: none;
+    padding: 5px;
+    font-size: 17px;
+    border-radius: 2px;
+    border: none;
+    background-color: var(--main-select-color);
+    color: var(--main-text-color);
+}
+
+.edit-cheesecake-select-field-yes-no {
+    outline: none;
+    padding: 5px;
+    font-size: 17px;
+    border-radius: 2px;
+    border: none;
+    background-color: var(--main-select-color);
+    color: var(--main-text-color);
+    margin-left: 10px;
+    margin-top: 10px;
+}
