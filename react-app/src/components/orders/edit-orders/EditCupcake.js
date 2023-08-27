@@ -223,6 +223,7 @@ function EditCupcake({ cupcake, hoverShowEdit, setHoverShowEdit, showEditForm, s
         <span className="edit-remove" onClick={handleRemove}>
           remove
         </span>
+        <span className="edit-cancel" onClick={e => setShowEditForm("")}>Cancel</span>
         <button className="edit-cupcake-text-save" onClick={handleEditCupcake}>Save Changes</button>
       </div> :
       (<div className="edit-cupcake-wrapper" onMouseEnter={e => setHoverShowEdit(`${cupcake.id}cupcake`)} onMouseLeave={e => setHoverShowEdit("")} >

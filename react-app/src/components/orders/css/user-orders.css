@@ -187,6 +187,25 @@
   margin: 5px;
 }
 
+.order-owner-contact {
+  grid-column-start: 5;
+  grid-column-end: 8;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  margin: 5px;
+}
+
+
+.order-owner-name {
+  grid-column-start: 5;
+  grid-column-end: 8;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  margin: 5px;
+}
+
+
+
 .validity-received-no {
   position: absolute;
   padding-left: 5px;

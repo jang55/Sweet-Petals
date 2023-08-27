@@ -26,9 +26,10 @@
 
 .edit-cookie-title {
     margin: 20px;
+    margin-top: 60px;
     /* margin-bottom: 10px; */
     font-weight: bolder;
-    font-size: 19px;
+    font-size: 30px;
     border-bottom: 1px solid gray;
     padding-bottom: 4px;
     display: flex;
@@ -56,6 +57,7 @@
     border: none;
     background-color: var(--main-select-color);
     color: var(--main-text-color);
+    cursor: pointer;
 }
 
 .edit-items-cookie-handler {
@@ -100,9 +102,29 @@
     margin-left: 80px;
     cursor: pointer;
     font-size: 15px;
-    background-color: var(--main-bg-button);
+    background-color: rgb(241, 168, 179);
+    color: white;
+    border-radius: 6px;
     width: 113px;
     border: 1px solid black;
+}
+
+.edit-cookie-text-save:hover {
+    background-color: rgb(253, 206, 214);
+}
+
+.edit-cookie-cancel {
+    grid-column-start: 9;
+    grid-column-end: 12;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    margin-top: 20px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.edit-cookie-cancel:hover {
+    color: rgb(170, 165, 165);
 }
 
 .edit-cookie-remove {

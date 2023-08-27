@@ -6,6 +6,7 @@ import { getOrderThunk } from "../../store/orderReducer";
 import EditCheesecake from "./edit-orders/EditCheesecake";
 import EditCookie from "./edit-orders/EditCookie";
 import EditCupcake from "./edit-orders/EditCupcake";
+import { dateFormat } from "../../utils/helperFunctions";
 
 function EditOrderDetails() {
   const { orderId } = useParams();
@@ -76,6 +77,29 @@ function EditOrderDetails() {
         <h1>Order Details</h1>
         <p>You can make changes to your order here on this page.</p>
         <div className="edit-order-wrapper">
+        <div className="edit-info-wrap">
+          <p className="order-pickup">
+            Pick up Date/Time:{" "}
+            <span className="order-info-text">
+              {dateFormat(order.pick_up_time)}
+            </span>
+          </p>
+          <span className="order-received">
+          <span>Have you received your order? </span>
+            {order.order_completed ? (
+              <span className="order-info-text">
+                Yes <span className="validity-received-yes">✓</span>
+              </span>
+            ) : (
+              <span className="order-info-text">
+                No <span className="validity-received-no">✖</span>
+              </span>
+            )}
+          </span>
+          <p className="order-subtotal">
+            Subtotal: <span className="order-info-text">${subTotal}.00</span>
+          </p>
+        </div>
           {cupcakes && cupcakes.length > 0 && (
             <>
               <p className="edit-cupcake-title">Cupcakes</p>
@@ -124,9 +148,6 @@ function EditOrderDetails() {
               ))}
             </div>
           )}
-          <p className="order-subtotal">
-            Subtotal: <span className="order-info-text">${subTotal}.00</span>
-          </p>
         </div>
       </div>
     )

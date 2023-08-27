@@ -127,6 +127,7 @@ function EditCheesecake({
       >
         remove
       </span>
+      <span className="edit-cancel" onClick={e => setShowEditForm("")}>Cancel</span>
       <button className="edit-cupcake-text-save" onClick={handleEditCheesecake}>
         Save Changes
       </button>

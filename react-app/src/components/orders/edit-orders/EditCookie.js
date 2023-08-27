@@ -105,6 +105,7 @@ function EditCookie({
       >
         remove
       </span>
+      <span className="edit-cookie-cancel" onClick={e => setShowEditForm("")}>Cancel</span>
       <button className="edit-cookie-text-save" onClick={handleCookieEdit}>
         Save Changes
       </button>

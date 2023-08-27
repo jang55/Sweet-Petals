@@ -12,8 +12,9 @@
 .edit-cheesecake-title {
     margin: 20px;
     /* margin-bottom: 10px; */
+    margin-top: 60px;
     font-weight: bolder;
-    font-size: 19px;
+    font-size: 30px;
     border-bottom: 1px solid gray;
     padding-bottom: 4px;
     display: flex;
@@ -67,6 +68,7 @@
     border: none;
     background-color: var(--main-select-color);
     color: var(--main-text-color);
+    cursor: pointer;
 }
 
 .edit-cheesecake-select-field-yes-no {
@@ -79,4 +81,5 @@
     color: var(--main-text-color);
     margin-left: 10px;
     margin-top: 10px;
+    cursor: pointer;
 }

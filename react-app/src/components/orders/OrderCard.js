@@ -8,8 +8,10 @@ import { useHistory } from "react-router-dom";
 
 
 
+
 function OrderCard({ order, pageType, validOrder }) {
   const user = useSelector((state) => state.session);
+  const orderOwner = useSelector(state => state.userState[order.owner_id]);
   const [cupcakes, setCupcakes] = useState([]);
   const [cheesecakes, setCheesecakes] = useState([]);
   const [cookies, setCookies] = useState([]);
@@ -102,6 +104,8 @@ function OrderCard({ order, pageType, validOrder }) {
             </span>
           )}
         </span>
+        {(user && user.user.role === "admin") && <span className="order-owner-name">Name: <span className="order-info-text">{orderOwner.username}</span></span>}
+        {(user && user.user.role === "admin") && <span className="order-owner-contact">Contact: <span className="order-info-text">{orderOwner.email}</span></span>}
         <p className="order-subtotal">
           Subtotal: <span className="order-info-text">${subTotal}.00</span>
         </p>

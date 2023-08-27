@@ -8,6 +8,8 @@
 .edit-order-wrapper {
     background-color: var(--main-form-color);
     margin: 20px;
+    margin-bottom: 80px;
+    padding-bottom: 40px;
     border-radius: 7px;
     /* padding-bottom: auto; */
     position: relative;
@@ -15,6 +17,9 @@
 }
 
 
-
+.edit-info-wrap {
+    margin: 20px;
+    padding-top: 20px;
+}
 
 
