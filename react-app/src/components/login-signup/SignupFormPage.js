@@ -11,14 +11,31 @@ function SignupFormPage() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState({});
   const [showLoginPage, setShowLoginPage] = useState(false)
 
   if (sessionUser) return <Redirect to="/app" />;
 
+  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrors({});
+    const errors = {};
+    
+    if(password !== confirmPassword) {
+      errors.password = "Passwords did not match"
+    }
+    
+    if(password.length < 8) {
+      errors.password = "Password needs to be atleast 8 characters long"
+    }
+    console.log(errors)
+    if(Object.values(errors).length > 0) {
+      setErrors({...errors});
+      return;
+    }
 
     const data = await dispatch(signUp(username, email, password));
     if (data) {
@@ -101,6 +118,26 @@ function SignupFormPage() {
                         onChange={(e) => setPassword(e.target.value)}
                         required
                       />{" "}
+
+                      {errors.password ? (
+                        <p className="form-input-label-error">
+                          Confirm Password -{" "}
+                          <span className="form-input-label-error-span">
+                            {errors.password}
+                          </span>
+                        </p>
+                      ) : (
+                        <p className="form-input-label">
+                          Confirm Password <span>*</span>
+                        </p>
+                      )}
+                      <input
+                        type="password"
+                        className="form-input-field"
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        required
+                      />{" "}
                     </div>
 
                     <div className="signup-button-container">
@@ -114,13 +151,13 @@ function SignupFormPage() {
                       Services
                     </p>
                     <p 
-                    className="already-have-an-account" 
+                    className="signup-message"
                     onClick={e => setShowLoginPage(true)}
                     >
                       Already have an account?
-                      {/* <span className="register-link" >
-                                Sign Up
-                      </span> */}
+                      <span className="register-link" >
+                                Log In
+                      </span>
                     </p>
                   </form>
                 </div>
