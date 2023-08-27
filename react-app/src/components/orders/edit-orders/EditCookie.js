@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import "./css/edit-cookie.css"
+import "./css/edit-cookie.css";
+import { deleteCookiesOrderThunk, updateCookiesOrderThunk } from "../../../store/orderReducer";
+
+
 
 
 function EditCookie({
@@ -19,33 +22,25 @@ function EditCookie({
     setIsLoaded(true);
   }, [cookie]);
 
-
-  // handles the editing of a cookie order 
+  // handles the editing of a cookie order
   const handleCookieEdit = (e) => {
     e.preventDefault();
+    dispatch(updateCookiesOrderThunk(cookie.order_id, cookie.id, selectedCookie, amount));
+    setShowEditForm("");
     return;
-  }
-
-
+  };
 
   // handles removing items in cart with one click
   const handleRemove = (e) => {
     e.preventDefault();
-
-    // if (dessert.type === "cupcake") {
-    //   dispatch(removeCupcakeAction(dessert));
-    // } else if (dessert.type === "cookie") {
-    //   dispatch(removecookieAction(dessert));
-    // } else if (dessert.type === "cookie") {
-    //   dispatch(removeCookieAction(dessert));
-    // }
+    dispatch(deleteCookiesOrderThunk(cookie.order_id, cookie.id));
     return;
   };
 
   return isLoaded && showEditForm === `${cookie.id}cookie` ? (
     <div className="edit-cookie-wrapper-in-edit-form">
       <p className="edit-cookie-flavor">
-        Flavor: {" "}
+        Flavor:{" "}
         <select
           className="edit-cookie-select-field"
           onChange={(e) => setSelectedCookie(e.target.value)}
@@ -104,7 +99,10 @@ function EditCookie({
         <span className="cart-dollar-sign">$</span>
         {cookie.amount * 10}.00
       </span>
-      <span className="edit-cookie-remove" onClick={(e) => handleRemove(e, cookie)}>
+      <span
+        className="edit-cookie-remove"
+        onClick={(e) => handleRemove(e, cookie)}
+      >
         remove
       </span>
       <button className="edit-cookie-text-save" onClick={handleCookieEdit}>
@@ -112,17 +110,14 @@ function EditCookie({
       </button>
     </div>
   ) : (
-    
-    
-    
-    
-    
     <div
       className="edit-cookie-wrapper"
       onMouseEnter={(e) => setHoverShowEdit(`${cookie.id}cookie`)}
       onMouseLeave={(e) => setHoverShowEdit("")}
     >
-      <p className="edit-cookie-flavor">Flavor: <span className="edit-flavor-text">{cookie.flavor}</span></p>
+      <p className="edit-cookie-flavor">
+        Flavor: <span className="edit-flavor-text">{cookie.flavor}</span>
+      </p>
       <span className="edit-cookie-price">
         <span className="cart-dollar-sign">$</span>
         {cookie.amount * 10}.00
