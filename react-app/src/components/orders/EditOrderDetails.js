@@ -70,7 +70,6 @@ function EditOrderDetails() {
   }, [cupcakes, cheesecakes, cookies]);
 
 
-  console.log(cheesecakes)
 
   return (
     isLoaded &&

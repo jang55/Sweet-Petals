@@ -57,8 +57,8 @@ function EditCupcake({ cupcake, hoverShowEdit, setHoverShowEdit, showEditForm, s
       cupcake.order_id,
       cupcake.id,
       hsvaToHex(hsvaOne),
-      hsvaToHex(hsvaTwo),
-      hsvaToHex(hsvaThree),
+      addColorTwo ? hsvaToHex(hsvaTwo) : null,
+      addColorThree ? hsvaToHex(hsvaThree) : null,
       style,
       flavor,
       amount

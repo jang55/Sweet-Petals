@@ -1,7 +1,9 @@
-import HandleMultipleItems from "../../shopping-cart/HandleMultipleItems";
-import { useState, useContext, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import "./css/edit-cheesecake.css";
+import { deleteCheesecakesOrderThunk, updateCheesecakesOrderThunk } from "../../../store/orderReducer";
+
+
 
 function EditCheesecake({
   cheesecake,
@@ -10,30 +12,32 @@ function EditCheesecake({
   showEditForm,
   setShowEditForm,
 }) {
-  const [strawberries, setStrawberries] = useState(cheesecake.flavor);
+
+
+  const [strawberries, setStrawberries] = useState(cheesecake.strawberries);
   const [cheesecakeFlavor, setCheesecakeFlavor] = useState(
-    cheesecake.strawberries
+    cheesecake.flavor
   );
   const [amount, setAmount] = useState(1);
   const [isLoaded, setIsLoaded] = useState(false);
+  const dispatch = useDispatch()
 
   useEffect(() => {
     setIsLoaded(true);
   }, [cheesecake]);
 
-  const handleEditCheesecake = () => {};
+  const handleEditCheesecake = (e) => {
+    e.preventDefault();
+    dispatch(updateCheesecakesOrderThunk(cheesecake.order_id, cheesecake.id, cheesecakeFlavor, strawberries, amount));
+    setShowEditForm("");
+  };
+
+
 
   // handles removing items in cart with one click
-  const handleRemove = (e, dessert) => {
+  const handleRemove = (e) => {
     e.preventDefault();
-
-    // if (dessert.type === "cupcake") {
-    //   dispatch(removeCupcakeAction(dessert));
-    // } else if (dessert.type === "cheesecake") {
-    //   dispatch(removeCheesecakeAction(dessert));
-    // } else if (dessert.type === "cookie") {
-    //   dispatch(removeCookieAction(dessert));
-    // }
+    dispatch(deleteCheesecakesOrderThunk(cheesecake.order_id, cheesecake.id))
     return;
   };
 
@@ -119,7 +123,7 @@ function EditCheesecake({
       )}
       <span
         className="edit-remove"
-        onClick={(e) => handleRemove(e, cheesecake)}
+        onClick={handleRemove}
       >
         remove
       </span>
