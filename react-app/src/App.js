@@ -8,6 +8,7 @@ import CreateOrderForm from "./components/orders/CreateOrderForm";
 import UsersOrders from "./components/orders/UsersOrders";
 import AllOrders from "./components/orders/AllOrders";
 import EditOrderDetails from "./components/orders/EditOrderDetails";
+import AllReviews from "./components/reviews/AllReviews";
 
 function App() {
   const dispatch = useDispatch();
@@ -35,6 +36,9 @@ function App() {
           </Route>
           <Route path="/orders/:orderId">
             <EditOrderDetails />
+          </Route>
+          <Route exact path="/reviews">
+            <AllReviews />
           </Route>
         </Switch>
       )}
