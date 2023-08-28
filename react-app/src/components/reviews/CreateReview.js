@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import "./css/create-review.css";
 import { dateFormat } from "../../utils/helperFunctions";
-import { createReviewThunk } from "../../store/reviewReducer";
+import { createReviewThunk, uploadReviewImageThunk } from "../../store/reviewReducer";
 import { useHistory } from "react-router-dom";
 
 
@@ -16,8 +16,15 @@ function CreateReview({ order, setShowModal }) {
   const createReviewHandler = async (e) => {
     e.preventDefault();
 
-    await dispatch(createReviewThunk(order.id, review, stars))
+    const newReview = await dispatch(createReviewThunk(order.id, review, stars))
+    
+    if (image) {
+      const formData = new FormData();
+      formData.append("image_url", image);
+      await dispatch(uploadReviewImageThunk(newReview.id, formData));
+    
     setShowModal(false);
+    }
     
   };
 
