@@ -54,7 +54,10 @@ def get_all_orders():
 
         if order.cookies:
             current_order["Cookies"] = [cookie.to_dict() for cookie in order.cookies]
-
+        
+        if order.reviews:
+            current_order["Reviews"] = [review.to_dict() for review in order.reviews]
+        
         all_orders.append(current_order)
 
     return {"Orders": all_orders}

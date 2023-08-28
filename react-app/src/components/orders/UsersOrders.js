@@ -4,6 +4,7 @@ import OrderCard from "./OrderCard";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { getAllUserOrdersThunk } from "../../store/orderReducer";
+import { getAllReviewsThunk } from "../../store/reviewReducer";
 
 
 function UsersOrders() {
@@ -17,7 +18,10 @@ function UsersOrders() {
 
 // dispatch the thunk to set redux for users orders
     useEffect(() => {
-        dispatch(getAllUserOrdersThunk()).then(() => {
+        dispatch(getAllUserOrdersThunk())
+        .then(() => {
+            dispatch(getAllReviewsThunk())
+        }).then(() => {
             setIsLoaded(true)
         });
     }, [dispatch])

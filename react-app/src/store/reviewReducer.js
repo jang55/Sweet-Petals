@@ -52,7 +52,7 @@ const deleteReviewActions = (review) => ({
 
 // check to see if this is calling the right url path because of the following "/" at the end
 export const getAllReviewsThunk = () => async (dispatch) => {
-  const response = await fetch("/api/reviews", {
+  const response = await fetch("/api/reviews/", {
     headers: {
       "Content-Type": "application/json",
     },
@@ -60,8 +60,11 @@ export const getAllReviewsThunk = () => async (dispatch) => {
 
   if (response.ok) {
     const data = await response.json();
-    dispatch(getAllReviewsActions(data));
+    dispatch(getAllReviewsActions(data.Reviews));
     return data;
+  } else {
+    const err = await response.json();
+    return err;
   }
 };
 

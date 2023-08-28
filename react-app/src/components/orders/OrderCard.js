@@ -12,11 +12,13 @@ import { useHistory } from "react-router-dom";
 function OrderCard({ order, pageType, validOrder }) {
   const user = useSelector((state) => state.session);
   const orderOwner = useSelector(state => state.userState[order.owner_id]);
+  // const allReviews= useSelector(state => Object.values(state.reviewState));
   const [cupcakes, setCupcakes] = useState([]);
   const [cheesecakes, setCheesecakes] = useState([]);
   const [cookies, setCookies] = useState([]);
   const [subTotal, setSubTotal] = useState(0);
   const [showMore, setShowMore] = useState(false);
+  const [orderReview, setOrderReview] = useState();
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -32,7 +34,23 @@ function OrderCard({ order, pageType, validOrder }) {
     if (order && order.Cookies) {
       setCookies(order.Cookies);
     }
+
+    if(order && order.Reviews) {
+      setOrderReview(order.Reviews)
+    }
+
   }, [order]);
+
+  // useEffect(() => {
+  //   if (allReviews) {
+  //     const review = allReviews.find(review => Number(review.order_id) === Number(order.id));
+  //     setOrderReview(review)
+  //     console.log(review, `review: ${order.id}, ${order.order_number} `)
+  //   }
+  // }, [allReviews])
+
+  console.log(orderReview)
+
 
   // sets the amount of items and subtotal price
   useEffect(() => {
@@ -120,7 +138,7 @@ function OrderCard({ order, pageType, validOrder }) {
         ) : checkDateMiliseconds(order.pick_up_time) ? (
           <div className="order-functions">
             {!validOrder && (
-              <button className="order-buttons">Add Review</button>
+              orderReview && orderReview.length >= 1 ? <p className="order-info-text">This order already has a review.</p> : <button className="order-buttons">Add Review</button>
             )}
             {validOrder && <p className="order-info-text">Order can not be canceled or changed due to being less than 2 days for pick up time.</p>}
           </div>
@@ -129,7 +147,7 @@ function OrderCard({ order, pageType, validOrder }) {
             {validOrder && !disableOlderOrders(order) && <DeleteOrderModal order={order} />}
             {validOrder && !disableOlderOrders(order) && <button className="order-buttons" onClick={handleEditButton} >Change</button>}
             {!validOrder && (
-              <button className="order-buttons">Add Review</button>
+              orderReview && orderReview.length >= 1 ? <p className="order-info-text">This order already has a review.</p> : <button className="order-buttons">Add Review</button>
             )}
           </div>
         )}
