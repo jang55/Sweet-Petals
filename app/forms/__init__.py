@@ -6,3 +6,4 @@ from .cookie_form import CookieForm
 from .cupcake_form import CupcakeForm
 from .recipe_form import RecipeForm
 from .reviews_form import ReviewForm
+from .image_form import ImageForm

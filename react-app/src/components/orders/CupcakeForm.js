@@ -74,7 +74,7 @@ function CupcakeForm() {
             <div className="cupcake-container-5">
               <div className="cupcake-container-6">
                 <form onSubmit={handleSubmit}>
-                  <h1 className="cupcake-h1">Create a Cupcake!</h1>
+                  <h1 className="cupcake-h1">Customize a Cupcake!</h1>
                   <p>Each order is a dozen cupcakes.</p>
                   <p>Choose atleast one color for the frosting.</p>
                   {/* Color one wheel */}

@@ -175,6 +175,40 @@ export const deleteReviewThunk = (reviewId) => async (dispatch) => {
 
 // ***************************
 
+export const uploadReviewImageThunk =
+  (reviewId, image) => async (dispatch) => {
+    const res = await fetch(`/api/reviews/${reviewId}/image`, {
+      method: "PUT",
+      body: image,
+    });
+
+    if (res.ok) {
+      const updatedReview = await res.json();
+      await dispatch(updateReviewActions(updatedReview));
+      return updatedReview;
+    } else {
+      const error = await res.json();
+      return error;
+    }
+  };
+
+export const removeReviewImageThunk = (reviewId) => async (dispatch) => {
+  const res = await fetch(`/api/reviews/${reviewId}/image/remove`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (res.ok) {
+    const data = await res.json();
+    return data;
+  }
+};
+
+
+
+
 // ***************** Reducer *************************************
 
 const initialState = {};

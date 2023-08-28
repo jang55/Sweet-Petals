@@ -1,7 +1,10 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import Review, db
-from app.forms import ReviewForm
+from app.forms import ReviewForm, ImageForm
+from werkzeug.utils import secure_filename
+from app.aws_helpers import *
+
 
 review_routes = Blueprint('reviews', __name__)
 
@@ -94,3 +97,40 @@ def delete_a_review(id):
     return jsonify({"message": "Review succesfully deleted!"}), 200
 
 
+# *******************************************************
+
+@review_routes.route("/<int:id>/image", methods=["PUT", "PATCH"])
+@login_required
+def add_review_image(id):
+    review = Review.query.get(id)
+    if not review:
+        return jsonify({"message": "Review not found"}), 404
+
+    form = ImageForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+
+    if form.validate_on_submit():
+        image = form.data["image_url"]
+        image.filename = get_unique_filename(image.filename)
+        upload = upload_file_to_s3(image)
+
+        if "url" in upload:
+            url = upload["url"]
+            review.image_url = url
+            db.session.commit()
+            return review.to_dict()
+
+    return {"errors": validation_errors_to_error_messages(form.errors)}, 401
+
+
+# *******************************************************
+
+@review_routes.route("/<int:id>/image/remove", methods=["PUT", "PATCH"])
+@login_required
+def remove_review_image(id):
+    review = Review.query.get(id)
+
+    review.image_url = None
+    db.session.commit()
+
+    return review.to_dict()

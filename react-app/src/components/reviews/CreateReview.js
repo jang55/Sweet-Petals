@@ -10,31 +10,20 @@ import { useHistory } from "react-router-dom";
 function CreateReview({ order, setShowModal }) {
   const [stars, setStars] = useState(0);
   const [review, setReview] = useState("");
-  const [errors, setErrors] = useState({});
-  // const {setNewReview} = useReview();
-
+  const [image, setImage] = useState("")
   const dispatch = useDispatch();
 
-  const submitHandler = async (e) => {
+  const createReviewHandler = async (e) => {
     e.preventDefault();
 
-      try {
-        await dispatch(createReviewThunk(order.id, review, stars))
-        setShowModal(false);
-      } catch (err) {
-        if (err.status === 403) {
-          setErrors({ alreadyCreated: "Review already exist for this spot" });
-        }
-        const data = await err.json();
-        if (data && data.errors) {
-          setErrors(data.errors);
-        }
-      }
+    await dispatch(createReviewThunk(order.id, review, stars))
+    setShowModal(false);
+    
   };
 
   return (
     <>
-      <form className="create-review-container" onSubmit={submitHandler}>
+      <form className="create-review-container" encType="multipart/form-data" onSubmit={createReviewHandler}>
         <h2>Write a review for your order!</h2>
         <fieldset className="c-review-wrapper">
       <legend className="order-number">Orders ID: {order.order_number} </legend>
@@ -59,18 +48,6 @@ function CreateReview({ order, setShowModal }) {
         </span>
         </div>
         </fieldset>
-        <ul className="c-review-errors-container">
-          <li>
-            {errors.review && (
-              <p className="errors">
-                Review is required with atleast 10 characters
-              </p>
-            )}
-          </li>
-          <li>
-            {errors.alreadyCreated && <p className="errors">{errors.alreadyCreated}</p>}
-          </li>
-        </ul>
         <textarea
           placeholder="Leave your review here..."
           className="c-review-textbox"
@@ -78,6 +55,11 @@ function CreateReview({ order, setShowModal }) {
           onChange={(e) => setReview(e.target.value)}
       ></textarea>
         <StarRating stars={stars} setStars={setStars} />
+        <input
+              type="file"
+              accept="image/*"
+              onChange={(e) => setImage(e.target.files[0])}
+            />
         <button
         className={
           review.length >= 10 && stars !== 0
