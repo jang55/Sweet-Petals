@@ -1,0 +1,139 @@
+/************* styling for the stars *************************** */
+#star-buttons {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 25px;
+}
+
+.on {
+  color: rgba(235, 235, 33, 0.844);
+}
+
+.off {
+  color: #ccc;
+}
+
+.star {
+  font-size: 35px;
+}
+
+.star-rating-container {
+  display: flex;
+  align-items: center;
+  margin: 10px;
+}
+
+#star-text {
+  font-size: 20px;
+  padding-top: 4px;
+}
+
+/**************************************** */
+.create-review-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 40px;
+}
+
+.c-review-wrapper {
+  height: 90px;
+  width: 355px;
+  /* margin: 20px; */
+  border-radius: 7px;
+  overflow: hidden;
+  position: relative;
+  background-color: rgb(242, 239, 236);
+  box-shadow: 0px 0px 5px 3px rgba(65, 63, 63, 0.2);
+}
+
+.c-review-information-wrapper {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  margin-bottom: 20px;
+}
+
+.c-review-pickup {
+  grid-column-start: 1;
+  grid-column-end: 11;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  margin: 5px;
+}
+
+.c-review-received {
+  grid-column-start: 1;
+  grid-column-end: 11;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  margin: 5px;
+}
+
+.order-subtotal {
+  grid-column-start: 1;
+  grid-column-end: 5;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  margin: 5px;
+  height: fit-content;
+}
+
+.c-review-textbox {
+  width: 95%;
+  height: 150px;
+  resize: none;
+  background-color: var(--main-select-color);
+  border: 1px solid black;
+  font-size: 15px;
+  font-weight: bold;
+  box-shadow: 0px 0px 5px 3px rgba(65, 63, 63, 0.2);
+  border-radius: 7px;
+  padding: 5px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: var(--main-text-color);
+}
+
+.c-review-textbox:focus {
+  background-color: white;
+}
+
+.c-review-errors-container {
+  align-self: flex-start;
+  padding-left: 10px;
+}
+.c-review-errors-container li {
+  list-style-type: none;
+}
+
+.c-review-submit-button {
+  border: none;
+  width: 95%;
+  border-radius: 3px;
+  background-color: rgb(241, 168, 179);
+  color: white;
+  font-size: 16px;
+  padding: 12px;
+  margin-bottom: 20px;
+}
+
+.c-review-submit-button:hover {
+  background-color: pink;
+  box-shadow: none;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.c-review-submit-button-not-ready {
+  border: none;
+  width: 95%;
+  background-color: rgb(175, 172, 172);
+  border-radius: 3px;
+  color: white;
+  font-size: 16px;
+  padding: 12px;
+  margin-bottom: 20px;
+}

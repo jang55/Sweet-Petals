@@ -5,6 +5,7 @@ import { useSelector,  useDispatch } from "react-redux";
 import { updateOrderThunk } from "../../store/orderReducer";
 import { dateFormatTooBackend, checkDateMiliseconds, disableOlderOrders } from "../../utils/helperFunctions";
 import { useHistory } from "react-router-dom";
+import AddReviewModal from "../modal-pages/AddReviewModal";
 
 
 
@@ -138,7 +139,7 @@ function OrderCard({ order, pageType, validOrder }) {
         ) : checkDateMiliseconds(order.pick_up_time) ? (
           <div className="order-functions">
             {!validOrder && (
-              orderReview && orderReview.length >= 1 ? <p className="order-info-text">This order already has a review.</p> : <button className="order-buttons">Add Review</button>
+              orderReview && orderReview.length >= 1 ? <p className="order-info-text">This order already has a review.</p> : <AddReviewModal order={order} />
             )}
             {validOrder && <p className="order-info-text">Order can not be canceled or changed due to being less than 2 days for pick up time.</p>}
           </div>
@@ -147,7 +148,7 @@ function OrderCard({ order, pageType, validOrder }) {
             {validOrder && !disableOlderOrders(order) && <DeleteOrderModal order={order} />}
             {validOrder && !disableOlderOrders(order) && <button className="order-buttons" onClick={handleEditButton} >Change</button>}
             {!validOrder && (
-              orderReview && orderReview.length >= 1 ? <p className="order-info-text">This order already has a review.</p> : <button className="order-buttons">Add Review</button>
+              orderReview && orderReview.length >= 1 ? <p className="order-info-text">This order already has a review.</p> : <AddReviewModal order={order}/ >
             )}
           </div>
         )}

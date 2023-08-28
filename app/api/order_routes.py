@@ -90,6 +90,9 @@ def get_order_detail(id):
     if order.cookies:
         current_order["Cookies"] = [cookie.to_dict() for cookie in order.cookies]
 
+    if order.reviews:
+        current_order["Reviews"] = [review.to_dict() for review in order.reviews]
+        
     return current_order
 
 
@@ -433,6 +436,11 @@ def delete_a_cookie(order_id, cookie_id):
 def create_review(id):
     form = ReviewForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
+
+    reviews = Review.query.filter(Review.order_id == int(id)).all()
+
+    if len(reviews) >= 1:
+        return {"errors": [{"Forbidden": "Forbidden Action"}]}, 403
 
     if form.validate_on_submit():
         data = form.data
