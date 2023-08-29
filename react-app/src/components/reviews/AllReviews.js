@@ -82,7 +82,7 @@ function AllReviews() {
                 <div className="all-reviews-wrapper" >
                     <div className="average-container">
                         <div className="average-rating-text">
-                            Averge Rating: <span>{totalAverage}</span>
+                            Averge Rating: <span className="avg-num">{totalAverage}/5</span>
                         </div>
                         <div className="star-average-bar-wrapper">
                             <div className="star-average-wrapper">
