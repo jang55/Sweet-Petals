@@ -10,7 +10,6 @@ function AllReviews() {
     const all_reviews = useSelector(state => state.reviewState)
     const [reviews, setReviews] = useState([]);
     const [isLoaded, setIsLoaded] = useState(false)
-
     const [totalAverage, setTotalAverage] = useState(0);
     const [fiveStars,setFiveStars] = useState(0);
     const [fourStars, setFourStars] = useState(0);
@@ -24,10 +23,12 @@ function AllReviews() {
         });
     }, [dispatch])
 
+    // sets the reviews to be mapped
     useEffect(() => {
         setReviews(Object.values(all_reviews));
     }, [all_reviews])
 
+    // helper function to get average
     const getAverage = (reviews) => {
         let total = 0;
 
@@ -37,6 +38,7 @@ function AllReviews() {
         return total / reviews.length 
     }
 
+    // sets the count for all the review stars
     useEffect(() => {
         setTotalAverage(getAverage(reviews))
         let total5 = 0
@@ -47,7 +49,6 @@ function AllReviews() {
 
         reviews.forEach(review => {
             if(review.stars === 5) {
-                console.log("hit 5")
                 total5 += 1
             } else if (review.stars === 4) {
                 total4 += 1
@@ -68,11 +69,16 @@ function AllReviews() {
         
     }, [reviews])
 
+    // helper function to calculate width for average bar
     const calculateWidth = (num) => {
         return `${(num/reviews.length) * 100}%`
     }
 
-    
+    // helper function to reverse the array
+    const reverseArray = (array) => {
+        let reverseArray = array.reverse();
+        return reverseArray;
+    };
 
 
     return (
@@ -101,7 +107,7 @@ function AllReviews() {
                             </div>
                         </div>
                     </div>
-                    {reviews.map((review, i) => (
+                    {reverseArray([...reviews]).map((review, i) => (
                         <div key={`${review.id}${i}`} className={`${i%2 === 0 ? `review-wrapper-left` : `review-wrapper-right`}`}>
                             <ReviewCard review={review} />
                         </div>
