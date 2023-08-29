@@ -1,19 +1,27 @@
 .all-reviews-container {
     /* margin: auto; */
     /* background-color: pink; */
-    background-image: url("../../../images/cupcake-background.jpg");
-    /* background-size: 1550px; */
+    /* background-image: url(https://i.imgur.com/CQWDXi1.jpg); */
+    background-size: 500px;
     padding-bottom: 1px;
+}
+
+.all-reviews-h1 {
+    background-color: var(--main-bg-color);
+    width: fit-content;
+    padding: 0px 5px;
+    border-radius: 10px;
 }
 
 .all-reviews-outer-wrapper {
     padding-top: 70px;
-    max-width: 1050px;
+    max-width: 850px;
     margin: auto;
 }
 
 .all-reviews-wrapper {
-    background-color: rgba(249, 237, 224, 0.6);
+    /* background-color: rgba(249, 237, 224, 0.95); */
+    background-color: var(--main-form-color);
     margin: 20px;
     margin-bottom: 80px;
     padding-bottom: 40px;
@@ -23,8 +31,8 @@
     position: relative;
     box-shadow: 0px 0px 5px 3px rgba(65, 63, 63, 0.2);
     display: grid;
-    grid-template-columns: repeat(6 1fr);
-    gap: 15px 40px;
+    grid-template-columns: repeat(4 1fr);
+    gap: 15px 10px;
 }
 
 /* grid-column-start: 1;
@@ -33,30 +41,114 @@ grid-row-start: 1;
 grid-row-end: 2; */
 
 .review-wrapper-left {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    width: 400px;
+    box-shadow: 0px 0px 5px 3px rgba(65, 63, 63, 0.2);
+    border-radius: 5px;
+    margin: 5px 70px;
+    padding: 15px;
+    padding-top: 0px;
+    background-color: rgba(244, 244, 244, 0.8);
+    border: 1px solid gray;
+
+}
+
+.review-wrapper-right {
     grid-column-start: 2;
     grid-column-end: 4;
     width: 400px;
     box-shadow: 0px 0px 5px 3px rgba(65, 63, 63, 0.2);
     border-radius: 5px;
-    margin: 5px 30px;
+    margin: 5px 10px;
     padding: 15px;
-    background-color: rgba(244, 244, 244, 0.8);
-    border: 1px solid gray;
-    white-space: normal;
-    overflow-wrap: break-word;
-}
-
-.review-wrapper-right {
-    grid-column-start: 3;
-    grid-column-end: 5;
-    width: 400px;
-    box-shadow: 0px 0px 5px 3px rgba(65, 63, 63, 0.2);
-    border-radius: 5px;
-    margin: 5px 30px;
-    padding: 15px;
+    padding-top: 0px;
     /* background-color: rgba(244, 244, 244, 0.8); */
     background-color: rgb(244, 244, 244);
     border: 1px solid gray;
-    white-space: normal;
-    overflow-wrap: break-word;
+}
+
+
+
+
+/* ********* average review ****************** */
+.average-container {
+    width: 200px;
+    border: 1px solid gray;
+    background-color: rgb(244, 244, 244);
+    position: absolute;
+    right: 30px;
+    top: 47px;
+    box-shadow: 0px 0px 5px 3px rgba(65, 63, 63, 0.2);
+    border-radius: 5px;
+    padding: 8px;
+    padding-bottom: 0px;
+    background-color: rgba(244, 244, 244, 0.8);
+    border: 1px solid gray;
+}
+
+.average-rating-text {
+    border-bottom: 1px solid gray;
+    display: flex;
+    justify-content: center;
+}
+
+.star-average-bar-wrapper {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.star-average-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    border-right: 1px solid gray;
+    margin: 5px;
+
+}
+
+.star-average-wrapper p {
+    margin: 3px;
+}
+
+.star-bar-wrapper {
+    width: 120px;
+    margin-top: 10px;
+}
+
+.star-rate5, 
+.star-rate4, 
+.star-rate3, 
+.star-rate2, 
+.star-rate1 {
+    height: 12px;
+    /* width: 100px; */
+    background-color: black;
+    /* margin-top: 12px;
+    margin-bottom: 12px; */
+    
+}
+
+.star-rate5 {
+    margin-top: 4px;
+}
+
+.star-rate4 {
+    margin-top: 0px;
+    margin-bottom: 15px;
+}
+
+.star-rate3 {
+    margin-top: 0px;
+    margin-bottom: 15px;
+}
+
+.star-rate2 {
+    margin-top: 0px;
+    margin-bottom: 15px;
+}
+
+.star-rate1 {
+    margin-top: 0px;
 }

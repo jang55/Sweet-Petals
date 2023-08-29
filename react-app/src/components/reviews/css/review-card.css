@@ -1,5 +1,6 @@
 .review-stars {
-    font-size: 30px;
+    font-size: 40px;
+    color: rgb(236, 236, 43);
 }
 
 .review-user-date-wrapper {
@@ -20,8 +21,15 @@
 
 .review-text {
     font-size: 20px;
+    text-align: justify;
+    white-space: normal;
+    overflow-wrap: break-word;
 }
 
 .review-img {
-    
+    width: 180px;
+    /* height: 150px; */
+    float:right;
+    border-radius: 10px;
+    margin: 10px;
 }

@@ -62,18 +62,7 @@ function CreateReview({ order, setShowModal }) {
           value={review}
           onChange={(e) => {
             setReview(e.target.value);
-            setCharCount(prevCount => {
-              let total = 0;
-              if(prevCount < e.target.value.length) {
-                console.log("here")
-                total = prevCount + 1;
-              } else {
-                console.log("other here")
-                total = prevCount - 1;
-              }
-              
-              return total;
-            })
+            setCharCount(e.target.value.length)
           }}
           maxLength={300}
       ></textarea>
