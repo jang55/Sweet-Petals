@@ -1,0 +1,27 @@
+.review-stars {
+    font-size: 30px;
+}
+
+.review-user-date-wrapper {
+    display: flex;
+    border-bottom: 1px solid gray;
+}
+
+.review-user {
+    font-size: 20px;
+    margin: 0px;
+}
+
+.review-date {
+    font-size: 12px;
+    margin: 6px;
+    margin-left: 20px;
+}
+
+.review-text {
+    font-size: 20px;
+}
+
+.review-img {
+    
+}

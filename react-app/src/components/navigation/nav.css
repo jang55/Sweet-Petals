@@ -7,7 +7,17 @@
     flex-direction: row;
     justify-content: center;
     position: absolute;
-    z-index: 20;
+    z-index: 200;
+    background-color: var(--main-bg-color);
+    /* background: hsla(43, 83%, 93%, 1);
+
+background: linear-gradient(135deg, hsla(43, 83%, 93%, 1) 0%, hsla(305, 64%, 83%, 1) 66%, hsla(289, 50%, 76%, 1) 100%);
+
+background: -moz-linear-gradient(135deg, hsla(43, 83%, 93%, 1) 0%, hsla(305, 64%, 83%, 1) 66%, hsla(289, 50%, 76%, 1) 100%);
+
+background: -webkit-linear-gradient(135deg, hsla(43, 83%, 93%, 1) 0%, hsla(305, 64%, 83%, 1) 66%, hsla(289, 50%, 76%, 1) 100%);
+
+filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#FCF4DF", endColorstr="#EFB7EA", GradientType=1 ); */
 }
 
 .nav-container {

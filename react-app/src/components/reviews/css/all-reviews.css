@@ -1,4 +1,11 @@
 .all-reviews-container {
+    /* margin: auto; */
+    /* background-color: pink; */
+    background-image: url(https://i.imgur.com/xvdPDdC.jpg);
+    background-size: 1550px;
+}
+
+.all-reviews-outer-wrapper {
     padding-top: 70px;
     max-width: 1050px;
     margin: auto;
@@ -9,12 +16,43 @@
     margin: 20px;
     margin-bottom: 80px;
     padding-bottom: 40px;
+    padding-top: 40px;
     border-radius: 7px;
     /* padding-bottom: auto; */
     position: relative;
     box-shadow: 0px 0px 5px 3px rgba(65, 63, 63, 0.2);
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(6 1fr);
     gap: 20px 30px;
-    margin-right: 20px;
+
+}
+
+/* grid-column-start: 1;
+grid-column-end: 6;
+grid-row-start: 1;
+grid-row-end: 2; */
+
+.review-wrapper-left {
+    grid-column-start: 2;
+    grid-column-end: 4;
+    width: 400px;
+    box-shadow: 0px 0px 5px 3px rgba(65, 63, 63, 0.2);
+    border-radius: 5px;
+    margin: 5px 30px;
+    padding: 15px;
+    background-color: rgba(244, 244, 244, 0.8);
+    border: 1px solid gray;
+}
+
+.review-wrapper-right {
+    grid-column-start: 3;
+    grid-column-end: 5;
+    width: 400px;
+    box-shadow: 0px 0px 5px 3px rgba(65, 63, 63, 0.2);
+    border-radius: 5px;
+    margin: 5px 30px;
+    padding: 15px;
+    /* background-color: rgba(244, 244, 244, 0.8); */
+    background-color: rgb(244, 244, 244);
+    border: 1px solid gray;
 }

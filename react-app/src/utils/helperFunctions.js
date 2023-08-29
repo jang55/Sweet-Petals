@@ -205,6 +205,9 @@ const isItTomrrow = (date) => {
 // converts the date created into a proper format to be displayed
 export const dateFormat = (date) => {
   // console.log(date)
+  if(!date) {
+    return ""
+  }
   // get the new date
   const newDate = new Date();
   let newFormattedDate = "";
@@ -251,18 +254,19 @@ export const dateFormat = (date) => {
 // converts the date created into a proper format to be displayed
 export const dateFormatTwo = (date) => {
   // get the new date
-  const newDate = new Date();
+  // const newDate = new Date();
   let newFormattedDate = "";
+  let time;
   // gets the time of the created at date and split between HR/MIN
-  const time = date.slice(17, 22);
-
-  // if no conditions met, it will return date as format of "08/01/23 8:07 PM"
-  newFormattedDate += `${date.slice(0, 3)}, `;
-  // newFormattedDate += `${monthToNum(date.slice(8, 11))}-`;
-  newFormattedDate += `${date.slice(8, 11)} `;
-  newFormattedDate += `${date.slice(5, 7)}, `;
-  newFormattedDate += `${date.slice(12, 16)} `;
-  newFormattedDate += `${timeConversion(time)}`;
+  if(date) {
+    time = date.slice(17, 22);
+  
+    newFormattedDate += `${date.slice(0, 3)}, `;
+    newFormattedDate += `${date.slice(8, 11)} `;
+    newFormattedDate += `${date.slice(5, 7)}, `;
+    newFormattedDate += `${date.slice(12, 16)} `;
+    newFormattedDate += `${timeConversion(time)}`;
+  }
 
   return newFormattedDate;
 };
@@ -274,13 +278,14 @@ export const dateFormatTwo = (date) => {
 
 // converts the date created into a proper format to be be sent to backend
 export const dateFormatTooBackend = (date) => {
+  if(!date) {
+    return ""
+  }
   // get the new date
   let newFormattedDate = "";
   // gets the time of the created at date and split between HR/MIN
   const time = date.slice(17, 22);
   
-
-  // if no conditions met, it will return date as format of "08/01/23 8:07 PM"
   newFormattedDate += `${date.slice(12, 16)}-`;
   newFormattedDate += `${monthToNum(date.slice(8, 11))}-`;
   newFormattedDate += `${date.slice(5, 7)} `;
@@ -291,7 +296,11 @@ export const dateFormatTooBackend = (date) => {
 
 
 // check dates to see if the order is within a day
-export const checkDateMiliseconds = (date) => {               
+export const checkDateMiliseconds = (date) => {
+  if(!date) {
+    return ""
+  }         
+
   const time = date.slice(17, 22);
   const timeArr = time.split(":");
   const pickUpDate = new Date(Number(date.slice(12, 16)), Number(monthToMonthIndex(date.slice(8, 11))), Number(date.slice(5, 7)), Number(timeArr[0]), Number(timeArr[1]))

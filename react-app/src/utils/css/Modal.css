@@ -54,7 +54,8 @@
 #modal-content {
   position: absolute;
   /* background-color:rgb(219, 223, 223); */
-  background-color: rgb(242, 239, 236);
+  /* background-color: rgb(242, 239, 236); */
+  background-color: var(--main-bg-color);
   /* padding: 10px; */
   border-radius: 17px;
   /* width: 350px; */

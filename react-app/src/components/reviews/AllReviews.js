@@ -23,13 +23,15 @@ function AllReviews() {
 
     return (
         isLoaded && <div className="all-reviews-container">
-            <h1>Customer Reviews</h1>
-            <div className="all-reviews-wrapper" >
-                {reviews.map((review, i) => (
-                    <div key={`${review.id}${i}`} >
-                        <ReviewCard review={review} />
-                    </div>
-                ))}
+            <div className="all-reviews-outer-wrapper">
+                <h1>Customer Reviews</h1>
+                <div className="all-reviews-wrapper" >
+                    {reviews.map((review, i) => (
+                        <div key={`${review.id}${i}`} className={`${i%2 === 0 ? `review-wrapper-left` : `review-wrapper-right`}`}>
+                            <ReviewCard review={review} />
+                        </div>
+                    ))}
+                </div>
             </div>
         </div>
     )
