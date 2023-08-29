@@ -103,6 +103,12 @@
   background-color: white;
 }
 
+.c-review-char-count {
+  position: absolute;
+  top: 330px;
+  right: 70px;
+}
+
 .c-review-errors-container {
   align-self: flex-start;
   padding-left: 10px;

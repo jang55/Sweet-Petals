@@ -10,7 +10,8 @@ import { useHistory } from "react-router-dom";
 function CreateReview({ order, setShowModal }) {
   const [stars, setStars] = useState(0);
   const [review, setReview] = useState("");
-  const [image, setImage] = useState("")
+  const [image, setImage] = useState("");
+  const [charCount, setCharCount] = useState(0)
   const dispatch = useDispatch();
 
   const createReviewHandler = async (e) => {
@@ -59,8 +60,24 @@ function CreateReview({ order, setShowModal }) {
           placeholder="Leave your review here..."
           className="c-review-textbox"
           value={review}
-          onChange={(e) => setReview(e.target.value)}
+          onChange={(e) => {
+            setReview(e.target.value);
+            setCharCount(prevCount => {
+              let total = 0;
+              if(prevCount < e.target.value.length) {
+                console.log("here")
+                total = prevCount + 1;
+              } else {
+                console.log("other here")
+                total = prevCount - 1;
+              }
+              
+              return total;
+            })
+          }}
+          maxLength={300}
       ></textarea>
+      <p className="c-review-char-count">Count:{300 - charCount}</p>
         <StarRating stars={stars} setStars={setStars} />
         <input
               type="file"
