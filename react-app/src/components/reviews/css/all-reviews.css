@@ -132,11 +132,7 @@ grid-row-end: 2; */
 .star-rate2, 
 .star-rate1 {
     height: 12px;
-    /* width: 100px; */
     background-color: black;
-    /* margin-top: 12px;
-    margin-bottom: 12px; */
-    
 }
 
 .star-rate5 {
