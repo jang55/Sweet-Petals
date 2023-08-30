@@ -4,7 +4,6 @@
     height: 310px;
     box-shadow: 0px 0px 5px 3px rgba(65, 63, 63, 0.2);
     border-radius: 5px;
-    /* margin: 5px 70px; */
     padding: 15px;
     padding-top: 0px;
     background-color: rgb(244, 244, 244);
@@ -57,4 +56,5 @@
     border-radius: 50px;
     margin: 10px;
     shape-outside: circle();
+    box-shadow: 0px 0px 5px 3px rgba(65, 63, 63, 0.2);
 }

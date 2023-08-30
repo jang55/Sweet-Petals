@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import "./css/create-review.css";
 import { dateFormat } from "../../utils/helperFunctions";
 import { createReviewThunk, uploadReviewImageThunk } from "../../store/reviewReducer";
-import { useHistory } from "react-router-dom";
 
 
 function CreateReview({ order, setShowModal }) {

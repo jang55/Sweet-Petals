@@ -86,7 +86,7 @@ function LandingFooter() {
       <div className="landing-footer-container">
         <div className="landing-footer-wrapper">
           <h1 className="footer-h1">What our customers had to say...</h1>
-          {/* **********average container***************** */}
+          {/* **********average review container***************** */}
           <div className="footer-average-container">
             <div className="average-rating-text">
               Average Rating: <span className="avg-num">{totalAverage}/5</span>

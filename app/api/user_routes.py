@@ -61,4 +61,19 @@ def get_all_current_user_orders():
 @login_required
 def get_all_users_reviews():
     reviews = Review.query.filter(Review.user_id == current_user.get_id()).all()
-    return {"Reviews": [review.to_dict() for review in reviews]}
+
+    all_reviews = []
+
+    # loop through each order and set the dessert order to each one
+    for review in reviews:
+        current_review = review.to_dict()
+
+        if review.user:
+            current_review["User"] = review.user.to_dict()
+
+        if review.order:
+            current_review["Order"] = review.order.to_dict()
+
+        all_reviews.append(current_review)
+
+    return {"Reviews": all_reviews}
