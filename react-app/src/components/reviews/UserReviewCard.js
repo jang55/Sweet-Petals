@@ -81,9 +81,9 @@ function UserReviewCard({ review, hoverShowEdit, setHoverShowEdit, showEditForm,
                     onChange={(e) => setImage(e.target.files[0])}
                     className="user-review-file-input"
                     />
-                    {image ? (<div className="user-review-remove-image">
+                    {image ? (<div className="user-review-remove-upload-image" onClick={e => setImage("")}>
                         <FcRemoveImage className="user-review-remove-image-icon"/>
-                    </div>) :(<div className="user-review-add-image">
+                    </div>) :(<div className="user-review-add-upload-image">
                         <FcAddImage className="user-review-add-image-icon"/>
                     </div>)}
                 </div>
@@ -98,6 +98,7 @@ function UserReviewCard({ review, hoverShowEdit, setHoverShowEdit, showEditForm,
                     }}
                     maxLength={300}
                 ></textarea>
+                <p className="c-review-char-count">Count:{300 - charCount}</p>
             </div>
             <span className="user-review-cancel-edit" onClick={e => setShowEditForm("")}>Cancel</span>
             <button className="user-review-save-button" type="submit">
