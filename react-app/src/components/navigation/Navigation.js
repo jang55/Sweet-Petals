@@ -53,9 +53,9 @@ function Navigation({ isLoaded }){
                     <li>
                         <NavLink exact to="/reviews">Reviews</NavLink>
                     </li>
-                    <li>
+                    {sessionUser && <li>
                         <NavLink exact to="/orders/new">Create Order</NavLink>
-                    </li>
+                    </li>}
                     {/* <div><LoginFormModal /></div> */}
                     {/* <div><SignupFormModal /></div> */}
                     

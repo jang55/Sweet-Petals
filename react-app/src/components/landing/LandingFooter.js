@@ -42,7 +42,7 @@ function LandingFooter() {
 
   // sets the count for all the review stars
   useEffect(() => {
-    setTotalAverage(getAverage(reviews));
+    setTotalAverage(getAverage(reviews).toFixed(1));
     let total5 = 0;
     let total4 = 0;
     let total3 = 0;
