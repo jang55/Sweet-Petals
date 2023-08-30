@@ -3,13 +3,14 @@ import { NavLink, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { RxHamburgerMenu } from "react-icons/rx";
 import { RiShoppingCart2Line } from "react-icons/ri"
-import { useState } from 'react';
+import { useState} from 'react';
 import { InfoContext } from "../../context/InfoContext" 
 import logo from "../../images/SWEET_PETALS_wlogo.png" 
 import { logout } from '../../store/session';
 import ShoppingCart from '../shopping-cart/ShoppingCart';
 import LoginFormModal from '../modal-pages/LoginFormModal';
 import "./nav.css"
+import { removeAllCartItems } from "../../store/cartReducer";
 
 
 function Navigation({ isLoaded }){
@@ -18,6 +19,12 @@ function Navigation({ isLoaded }){
     const [openMenu, setOpenMenu] = useState(false);
     const dispatch = useDispatch()
     const history = useHistory();
+    
+    // useEffect(() => {
+    //   if(!sessionUser) {
+    //     return history.push("/")
+    //   }
+    // }, [sessionUser])
 
     const toggleMenu = () => {
         setOpenMenu(!openMenu);
@@ -28,8 +35,9 @@ function Navigation({ isLoaded }){
     }
 
     const logoutHandler = async () => {
-        await dispatch(logout())
-        return history.push('/')
+        await dispatch(logout());
+        // await dispatch(removeAllCartItems());
+        return history.push('/');
     }
 
 	return (

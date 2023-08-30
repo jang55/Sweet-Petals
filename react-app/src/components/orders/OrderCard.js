@@ -11,7 +11,7 @@ import AddReviewModal from "../modal-pages/AddReviewModal";
 
 
 function OrderCard({ order, pageType, validOrder }) {
-  const user = useSelector((state) => state.session);
+  const user = useSelector((state) => state.session.user);
   const orderOwner = useSelector(state => state.userState[order.owner_id]);
   // const allReviews= useSelector(state => Object.values(state.reviewState));
   const [cupcakes, setCupcakes] = useState([]);
@@ -23,6 +23,12 @@ function OrderCard({ order, pageType, validOrder }) {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  useEffect(() => {
+    if(!user) {
+      return history.push("/")
+    }
+  }, [user])
+  
   useEffect(() => {
     if (order && order.Cupcakes) {
       setCupcakes(order.Cupcakes);
@@ -50,7 +56,7 @@ function OrderCard({ order, pageType, validOrder }) {
   //   }
   // }, [allReviews])
 
-  console.log(orderReview)
+
 
 
   // sets the amount of items and subtotal price
@@ -108,7 +114,7 @@ function OrderCard({ order, pageType, validOrder }) {
           </span>
         </p>
         <span className="order-received">
-          {user && user.user.role === "admin" ? (
+          {user && user.role === "admin" ? (
             <span>Have the customer received their order? </span>
           ) : (
             <span>Have you received your order? </span>
@@ -123,12 +129,12 @@ function OrderCard({ order, pageType, validOrder }) {
             </span>
           )}
         </span>
-        {(user && user.user.role === "admin") && <span className="order-owner-name">Name: <span className="order-info-text">{orderOwner.username}</span></span>}
-        {(user && user.user.role === "admin") && <span className="order-owner-contact">Contact: <span className="order-info-text">{orderOwner.email}</span></span>}
+        {(user && user.role === "admin") && <span className="order-owner-name">Name: <span className="order-info-text">{orderOwner.username}</span></span>}
+        {(user && user.role === "admin") && <span className="order-owner-contact">Contact: <span className="order-info-text">{orderOwner.email}</span></span>}
         <p className="order-subtotal">
           Subtotal: <span className="order-info-text">${subTotal}.00</span>
         </p>
-        {user && user.user.role === "admin" ? (
+        {user && user.role === "admin" ? (
           <div className="order-functions">
             {order.order_completed ? (
               <button onClick={handleCompleteButton} className="order-buttons" >Incompleted</button>

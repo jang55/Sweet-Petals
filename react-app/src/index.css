@@ -4,7 +4,7 @@ body {
     background-color: var(--main-bg-color);
     /* display: flex;
     justify-content: center; */
-    /* height: 100%; */
+    height: 100%;
     /* width: 100%; */
     /* margin: 10px 0px; */
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -15,9 +15,12 @@ body {
     overflow-x: hidden;
     /* setting position relative will mess with MODALS */
     /* position: relative; */
-
+    /* height: 100vh; */
 }
 
+html {
+    height: 100vh;
+}
 
 
 

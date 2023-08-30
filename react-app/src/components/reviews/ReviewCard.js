@@ -17,12 +17,20 @@ function ReviewCard({ review }) {
   return (
     review && (
       <>
-        <div className="review-user-date-wrapper">
-          {starsCountArr.map((count, i) => (
-            <span className="review-stars" key={`${review.id}${i}`}>
-              {"★"}
-            </span>
-          ))}
+        <div className="review-user-date-stars-wrapper">
+          <div className="review-user-date-wrapper">
+            <p className="review-user">{review.User.username}</p>
+            <p className="review-date">
+              {dateFormatTwo(review.created_at).slice(4, 17)}
+            </p>
+          </div>
+          <div>
+            {starsCountArr.map((count, i) => (
+              <span className="review-stars" key={`${review.id}${i}`}>
+                {"★"}
+              </span>
+            ))}
+          </div>
         </div>
         <div>
           {review.image_url && (
@@ -32,12 +40,8 @@ function ReviewCard({ review }) {
               className="review-img"
             />
           )}
-          <p className="review-text">{review.review}</p>
+          <p className="review-text">"{review.review}"</p>
         </div>
-        <p className="review-user">- {review.User.username}</p>
-        <p className="review-date">
-          {dateFormatTwo(review.created_at).slice(4, 17)}
-        </p>
       </>
     )
   );

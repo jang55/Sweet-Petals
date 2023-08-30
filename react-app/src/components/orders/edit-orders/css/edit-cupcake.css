@@ -118,7 +118,7 @@
     margin-left: 80px;
     cursor: pointer;
     font-size: 15px;
-    background-color: rgb(241, 168, 179);
+    background-color: #DA9AC5;
     color: white;
     border-radius: 6px;
     width: 113px;
@@ -126,7 +126,7 @@
 }
 
 .edit-cupcake-text-save:hover {
-    background-color: rgb(253, 206, 214);
+    background-color: #e5a4d0;
 }
 
 .edit-cancel {
