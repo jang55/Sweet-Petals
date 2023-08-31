@@ -1,36 +1,34 @@
 /* TODO Add site wide styles */
 
 body {
-    background-color: var(--main-bg-color);
-    /* display: flex;
+  background-color: var(--main-bg-color);
+  /* display: flex;
     justify-content: center; */
-    height: 100%;
-    /* width: 100%; */
-    /* margin: 10px 0px; */
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    color: var(--main-text-color);
-    padding: 0px;
-    margin: 0px;
-    /* overflow: hidden scroll; */
-    overflow-x: hidden;
-    /* setting position relative will mess with MODALS */
-    /* position: relative; */
-    /* height: 100vh; */
+  height: 100%;
+  /* width: 100%; */
+  /* margin: 10px 0px; */
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  color: var(--main-text-color);
+  padding: 0px;
+  margin: 0px;
+  /* overflow: hidden scroll; */
+  overflow-x: hidden;
+  /* setting position relative will mess with MODALS */
+  /* position: relative; */
+  /* height: 100vh; */
 }
 
 html {
-    height: 100vh;
+  height: 100vh;
 }
 
-
-
 :root {
-    /* --main-bg-color: rgb(239, 213, 217); */
-    /* --main-bg-button: rgb(235, 186, 194); */
-    --main-bg-color: rgb(247, 236, 238);
-    --main-bg-button: rgba(237, 214, 218, 0.659);
-    --main-input-color:  #e9d5b3;
-    --main-text-color: rgba(88, 86, 92, 0.887);
-    --main-form-color: rgb(242, 239, 236);
-    --main-select-color: rgb(228, 224, 220);
+  /* --main-bg-color: rgb(239, 213, 217); */
+  /* --main-bg-button: rgb(235, 186, 194); */
+  --main-bg-color: rgb(247, 236, 238);
+  --main-bg-button: rgba(237, 214, 218, 0.659);
+  --main-input-color: #e9d5b3;
+  --main-text-color: rgba(88, 86, 92, 0.887);
+  --main-form-color: rgb(242, 239, 236);
+  --main-select-color: rgb(228, 224, 220);
 }

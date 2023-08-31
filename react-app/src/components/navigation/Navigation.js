@@ -11,7 +11,7 @@ import ShoppingCart from "../shopping-cart/ShoppingCart";
 import LoginFormModal from "../modal-pages/LoginFormModal";
 import "./nav.css";
 import { removeAllCartItems } from "../../store/cartReducer";
-import {FaEnvelope} from "react-icons/fa"
+import { FaEnvelope } from "react-icons/fa";
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
@@ -57,7 +57,7 @@ function Navigation({ isLoaded }) {
           )}
           {/**************** sections for login button and navigations ********************************/}
           {!sessionUser ? (
-            <li>
+            <li className="nav-login-wrapper">
               <LoginFormModal />
             </li>
           ) : (
@@ -67,8 +67,9 @@ function Navigation({ isLoaded }) {
                 {openMenu && (
                   <div className="nav-menu">
                     <NavLink className="nav-menu-items-wrap" to="/messages">
-                      <span className="nav-menu-items">Inbox <FaEnvelope className="nav-envelope"/></span>
-                      
+                      <span className="nav-menu-items">
+                        Inbox <FaEnvelope className="nav-envelope" />
+                      </span>
                     </NavLink>
 
                     {sessionUser.role === "admin" && (

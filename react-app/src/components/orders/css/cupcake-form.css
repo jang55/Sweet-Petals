@@ -1,214 +1,199 @@
 .cupcake-container {
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: fit-content;
-    background-color: var(--main-bg-button);
-    border-radius: 5px;
-    /* width: fit-content; */
-    margin: auto;
-    padding: 30px 0px;
-    margin-top: 50px;
-    box-shadow: 0px 0px 5px 3px rgba(65, 63, 63, 0.2);
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: fit-content;
+  background-color: var(--main-bg-button);
+  border-radius: 5px;
+  /* width: fit-content; */
+  margin: auto;
+  padding: 30px 0px;
+  margin-top: 50px;
+  box-shadow: 0px 0px 5px 3px rgba(65, 63, 63, 0.2);
 }
 
 .cupcake-container-2 {
-    box-shadow: 0px 1px 10px 2px rgba(65, 63, 63, 0.6);
-    padding: 0px 10px;
-    display: flex;
-    flex-direction: row;
-    background-color: var(--main-form-color);
-    width: 450px;
-    border-radius: 5px;
-    margin: 10px;
+  box-shadow: 0px 1px 10px 2px rgba(65, 63, 63, 0.6);
+  padding: 0px 10px;
+  display: flex;
+  flex-direction: row;
+  background-color: var(--main-form-color);
+  width: 450px;
+  border-radius: 5px;
+  margin: 10px;
 }
 
 .cupcake-container-3 {
-    padding: 20px;
-    width: 100%;
-    text-align: center;
-    margin-bottom: 8px;
-    overflow: visible;
-    height: fit-content;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+  padding: 20px;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 8px;
+  overflow: visible;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .cupcake-container-4 {
-    display: flex;
-    justify-content: center;
-    width: inherit;
-    max-width: 960px;
+  display: flex;
+  justify-content: center;
+  width: inherit;
+  max-width: 960px;
 }
 
 .cupcake-container-5 {
-    width: 100%;
-    max-width: 400px;
+  width: 100%;
+  max-width: 400px;
 }
 
 .cupcake-container-6 {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    /* justify-content: center;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  /* justify-content: center;
     align-items: flex-start; */
 }
 
 /*  ---------------------------------------- Form Section ---------------------------------------------*/
 
-
-
 .cupcake-form-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .cupcake-h1 {
-    margin: 0px;
+  margin: 0px;
 }
 
 .cupcake-input-label {
-    color: #616b71;
-    text-align: left;
-    /* font-weight: bold; */
-    text-transform: uppercase;
-    font-size: 12px;
-    margin-bottom: 8px;
-    letter-spacing: 0.02em;
+  color: #616b71;
+  text-align: left;
+  /* font-weight: bold; */
+  text-transform: uppercase;
+  font-size: 12px;
+  margin-bottom: 8px;
+  letter-spacing: 0.02em;
 }
 
 .required {
-    color: red;
-    font-size: 10px;
+  color: red;
+  font-size: 10px;
 }
 
 .cupcake-input-field {
-    width: 95%;
-    outline: none;
-    padding: 10px;
-    font-size: 17px;
-    border-radius: 2px;
-    border: none;
-    background-color: var(--main-select-color);
-    color: var(--main-text-color);
+  width: 95%;
+  outline: none;
+  padding: 10px;
+  font-size: 17px;
+  border-radius: 2px;
+  border: none;
+  background-color: var(--main-select-color);
+  color: var(--main-text-color);
 }
 
 .cupcake-select-field {
-    width: 100%;
-    outline: none;
-    padding: 10px;
-    font-size: 17px;
-    border-radius: 2px;
-    border: none;
-    background-color: var(--main-select-color);
-    color: var(--main-text-color);
-}
-
-
-.cupcake-submit-button {
-    margin-top: 10px;
-    cursor: pointer;
-    background-color: var(--main-bg-button);
-    padding: 3px;
+  width: 100%;
+  outline: none;
+  padding: 10px;
+  font-size: 17px;
+  border-radius: 2px;
+  border: none;
+  background-color: var(--main-select-color);
+  color: var(--main-text-color);
 }
 
 .cupcake-submit-button {
-    margin-top: 35px;
-    cursor: pointer;
-    /* background-color: var(--main-bg-button); */
-    background-color:  #DA9AC5;
-    padding: 5px;
-    border-radius: 5px;
-    font-family: Arial, Helvetica, sans-serif;
-    /* color: var(--main-text-color); */
-    border: 1px solid var(--main-text-color);
-    color: white;
-    width: 400px;
-    height: 32px;
+  margin-top: 10px;
+  cursor: pointer;
+  background-color: var(--main-bg-button);
+  padding: 3px;
+}
+
+.cupcake-submit-button {
+  margin-top: 35px;
+  cursor: pointer;
+  /* background-color: var(--main-bg-button); */
+  background-color: #da9ac5;
+  padding: 5px;
+  border-radius: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  /* color: var(--main-text-color); */
+  border: 1px solid var(--main-text-color);
+  color: white;
+  width: 400px;
+  height: 32px;
 }
 
 .cupcake-submit-button:hover {
-    background-color: #e5a4d0;
+  background-color: #e5a4d0;
 }
-
-
-
-
 
 /* Color Wheels */
 
 .remove {
-    display: flex;
-    cursor: pointer;
-    font-size: 13px;
-    width: fit-content;
+  display: flex;
+  cursor: pointer;
+  font-size: 13px;
+  width: fit-content;
 }
 .remove:hover {
-    color: red;
+  color: red;
 }
 
 .add-color {
-    display: flex;
-    margin-top: 15px;
-    cursor: pointer;
-    width: fit-content;
-    font-size: 14px;
+  display: flex;
+  margin-top: 15px;
+  cursor: pointer;
+  width: fit-content;
+  font-size: 14px;
 }
 
 .add-color:hover {
-    color: #00aeff;
+  color: #00aeff;
 }
 
 .cupcake-color-one {
-    position: relative;
+  position: relative;
 }
 
 .color-wheel-one {
-    /* width: 50px!important;
+  /* width: 50px!important;
     height: 50px!important; */
-    position: absolute!important;
-    top: 1px;
-    right: 35px;
-    /* display: none!important; */
+  position: absolute !important;
+  top: 1px;
+  right: 35px;
+  /* display: none!important; */
 }
-
 
 .cupcake-color-two {
-    position: relative;
+  position: relative;
 }
-
 
 .color-wheel-two {
-    /* width: 50px!important;
+  /* width: 50px!important;
     height: 50px!important; */
-    position: absolute!important;
-    top: -55px;
-    right: 35px;
-    /* display: none!important; */
+  position: absolute !important;
+  top: -55px;
+  right: 35px;
+  /* display: none!important; */
 }
-
-
-
-
 
 .cupcake-color-three {
-    position: relative;
+  position: relative;
 }
-
 
 .color-wheel-three {
-    /* width: 50px!important;
+  /* width: 50px!important;
     height: 50px!important; */
-    position: absolute!important;
-    top: -124px;
-    right: 35px;
-    /* display: none!important; */
+  position: absolute !important;
+  top: -124px;
+  right: 35px;
+  /* display: none!important; */
 }
 
-
 .wheel-not-active {
-    display: none!important;
+  display: none !important;
 }

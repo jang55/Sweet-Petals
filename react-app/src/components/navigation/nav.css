@@ -1,167 +1,176 @@
 .nav-outer-container {
-    width: 100vw;
-    height: 70px;
-    box-shadow: 0px 4px 5px 0px rgba(65, 63, 63, 0.2);
-    margin-bottom: 9px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    z-index: 200;
-    background-color: var(--main-bg-color);
-    /***** gradient background linear **********/
-    /* background: hsla(43, 83%, 93%, 1);
+  width: 100vw;
+  height: 70px;
+  box-shadow: 0px 4px 5px 0px rgba(65, 63, 63, 0.2);
+  margin-bottom: 9px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 200;
+  background-color: var(--main-bg-color);
+  /***** gradient background linear **********/
+  /* background: hsla(43, 83%, 93%, 1);
     background: linear-gradient(135deg, hsla(43, 83%, 93%, 1) 0%, hsla(305, 64%, 83%, 1) 66%, hsla(289, 50%, 76%, 1) 100%);
     background: -moz-linear-gradient(135deg, hsla(43, 83%, 93%, 1) 0%, hsla(305, 64%, 83%, 1) 66%, hsla(289, 50%, 76%, 1) 100%);
     background: -webkit-linear-gradient(135deg, hsla(43, 83%, 93%, 1) 0%, hsla(305, 64%, 83%, 1) 66%, hsla(289, 50%, 76%, 1) 100%);
     filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#FCF4DF", endColorstr="#EFB7EA", GradientType=1 ); */
-    background: hsla(308, 55%, 87%, 1);
-    background: linear-gradient(180deg, hsla(308, 55%, 87%, 1) 0%, hsla(288, 22%, 87%, 1) 100%);
-    background: -moz-linear-gradient(180deg, hsla(308, 55%, 87%, 1) 0%, hsla(288, 22%, 87%, 1) 100%);
-    background: -webkit-linear-gradient(180deg, hsla(308, 55%, 87%, 1) 0%, hsla(288, 22%, 87%, 1) 100%);
-    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#F0CBEB", endColorstr="#E2D6E5", GradientType=1 );
-
+  background: hsla(308, 55%, 87%, 1);
+  background: linear-gradient(
+    180deg,
+    hsla(308, 55%, 87%, 1) 0%,
+    hsla(288, 22%, 87%, 1) 100%
+  );
+  background: -moz-linear-gradient(
+    180deg,
+    hsla(308, 55%, 87%, 1) 0%,
+    hsla(288, 22%, 87%, 1) 100%
+  );
+  background: -webkit-linear-gradient(
+    180deg,
+    hsla(308, 55%, 87%, 1) 0%,
+    hsla(288, 22%, 87%, 1) 100%
+  );
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#F0CBEB", endColorstr="#E2D6E5", GradientType=1 );
 }
 
 .nav-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 1200px;
-    margin: 0px 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 1200px;
+  margin: 0px 30px;
 }
 
 .nav-list-wrapper {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-end;
-    width: 250px;
-    padding-right: 30px;
-    /* margin-right: 5px; */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  width: 250px;
+  padding-right: 30px;
+  /* margin-right: 5px; */
 }
 
 .nav-logo {
-    width: 170px;
-    height: 80px;
-    margin-top: 10px;
+  width: 170px;
+  height: 80px;
+  margin-top: 10px;
 }
 
 .nav-list-wrapper > li {
-    list-style: none;
+  list-style: none;
 }
 
 .nav-list-wrapper > li > a {
-    text-decoration: none;
-    color: var(--main-text-color);
+  text-decoration: none;
+  color: var(--main-text-color);
+}
+
+.nav-login-wrapper {
+  margin-right: 15px;
 }
 
 /********** menu css ********************/
 
 .nav-menu-wrapper {
-    background-color: rgb(218,154,197);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 20px;
-    width: 40px;
-    height: 40px;
-    position: relative;
-    cursor: pointer;
-    margin: 0px 15px;
+  background-color: rgb(218, 154, 197);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  width: 40px;
+  height: 40px;
+  position: relative;
+  cursor: pointer;
+  margin: 0px 15px;
 }
 
 .nav-menu-button {
-    font-size: 25px;
-    font-weight: lighter;
+  font-size: 25px;
+  font-weight: lighter;
 }
 
 .nav-menu {
-    width: 120px;
-    height: 200px;
-    background-color: rgb(185, 175, 175);
-    position: absolute;
-    top: 51px;
-    right: 10px;
-    z-index: 5;
-    padding: 0px;
-    border-radius: 5px;
+  width: 120px;
+  height: 200px;
+  background-color: rgb(185, 175, 175);
+  position: absolute;
+  top: 51px;
+  right: 10px;
+  z-index: 5;
+  padding: 0px;
+  border-radius: 5px;
 }
 
 .nav-menu-items-wrap {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
 }
 
 .nav-menu-items-wrap:hover {
-    
 }
 
 .nav-menu-items {
-    /* background-color: red; */
-    color: var(--main-text-color);
-    width: 100%;
-    padding-left: 2px;
-    padding-bottom: 6px;
-    border-bottom: 1px solid gray;
-    margin: 5px 5px;
-    display: flex;
-    align-items: center;
+  /* background-color: red; */
+  color: var(--main-text-color);
+  width: 100%;
+  padding-left: 2px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid gray;
+  margin: 5px 5px;
+  display: flex;
+  align-items: center;
 }
 
 .nav-envelope {
-    margin-left: 10px;
+  margin-left: 10px;
 }
-
 
 /***** cart css ******************/
 
 .nav-shopping-wrapper {
-    position: relative;
+  position: relative;
 }
 
 .nav-shopping-cart {
-    font-size: 20px;
-    margin-top: 5px;
-    cursor: pointer;
-    padding: 4px;
+  font-size: 20px;
+  margin-top: 5px;
+  cursor: pointer;
+  padding: 4px;
 }
 
 .nav-shopping-count {
-    width: 17px;
-    height: 17px;
-    background-color: rgba(229, 76, 76, 0.77);
-    border-radius: 10px;
-    position: absolute;
-    top: -2px;
-    right: -5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    font-size: 10px;
-    font-family: Arial, Helvetica, sans-serif;
-    text-align: center;
+  width: 17px;
+  height: 17px;
+  background-color: rgba(229, 76, 76, 0.77);
+  border-radius: 10px;
+  position: absolute;
+  top: -2px;
+  right: -5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
 }
-
 
 .nav-shopping-cart-items {
-    background-color:var(--main-form-color);
-    width: 290px;
-    height: 585px;
-    position: absolute;
-    right: 0;
-    top: 50px;
-    z-index: 22;
-    border-radius: 5px;
-    font-family:'Times New Roman', Times, serif;
-    font-weight: bold;
-    box-shadow: 0px 2px 10px 3px rgba(65, 63, 63, 0.3);
+  background-color: var(--main-form-color);
+  width: 290px;
+  height: 585px;
+  position: absolute;
+  right: 0;
+  top: 50px;
+  z-index: 22;
+  border-radius: 5px;
+  font-family: "Times New Roman", Times, serif;
+  font-weight: bold;
+  box-shadow: 0px 2px 10px 3px rgba(65, 63, 63, 0.3);
 }
-
-
-
