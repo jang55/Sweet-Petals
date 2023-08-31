@@ -37,7 +37,7 @@ function App() {
           <Route path="/orders/:orderId">
             <EditOrderDetails />
           </Route>
-          <Route exact path="/reviews">
+          <Route exact path="/reviews/users">
             <AllUserReviews/>
           </Route>
         </Switch>
