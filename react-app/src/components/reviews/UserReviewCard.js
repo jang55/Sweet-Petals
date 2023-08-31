@@ -5,6 +5,7 @@ import { useState } from "react";
 import { FcAddImage, FcRemoveImage } from "react-icons/fc"
 import { updateReviewThunk, uploadReviewImageThunk, removeReviewImageThunk } from "../../store/reviewReducer";
 import { useDispatch } from "react-redux";
+import DeleteReviewModal from "../modal-pages/DeleteReviewModal";
 
 
 function UserReviewCard({ review, hoverShowEdit, setHoverShowEdit, showEditForm, setShowEditForm }) {
@@ -166,11 +167,7 @@ function UserReviewCard({ review, hoverShowEdit, setHoverShowEdit, showEditForm,
                     </span>
                 )}
                 {hoverShowEdit === review.id && (
-                    <span
-                    className="user-review-delete-review-text"
-                    >
-                    Delete
-                    </span>
+                    <DeleteReviewModal review={review} setShowEditForm={setShowEditForm} />
                 )}
             </>
             )
