@@ -145,7 +145,7 @@ export const updateReviewThunk =
 
     if (response.ok) {
       const data = await response.json();
-      dispatch(updateReviewActions(data));
+      dispatch(getAllUserReviewsThunk());
       return data;
     } else {
       const err = await response.json();
@@ -184,7 +184,7 @@ export const uploadReviewImageThunk =
 
     if (res.ok) {
       const updatedReview = await res.json();
-      await dispatch(updateReviewActions(updatedReview));
+      await dispatch(getAllUserReviewsThunk());
       return updatedReview;
     } else {
       const error = await res.json();
@@ -202,6 +202,7 @@ export const removeReviewImageThunk = (reviewId) => async (dispatch) => {
 
   if (res.ok) {
     const data = await res.json();
+    await dispatch(getAllUserReviewsThunk());
     return data;
   }
 };

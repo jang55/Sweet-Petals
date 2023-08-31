@@ -23,9 +23,9 @@ function CreateReview({ order, setShowModal }) {
       formData.append("image_url", image);
       await dispatch(uploadReviewImageThunk(newReview.id, formData));
     
-    setShowModal(false);
     }
     
+    setShowModal(false);
   };
 
   return (

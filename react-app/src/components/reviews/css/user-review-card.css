@@ -64,6 +64,12 @@
   margin-top: 10px;
 }
 
+.user-review-char-count {
+  position: absolute;
+  bottom: 13px;
+  right: 160px;
+}
+
 
 /****** this is for the file input ********/
 /* .user-review-image-input-wrapper {
@@ -155,10 +161,6 @@
 
 /********** edit function buttons ******************/
 .user-review-edit-review-text {
-  /* grid-column-start: 10;
-  grid-column-end: 12;
-  grid-row-start: 3;
-  grid-row-end: 4; */
   margin-top: 30px;
   margin-left: 50px;
   cursor: pointer;
@@ -169,6 +171,20 @@
 }
 
 .user-review-edit-review-text:hover {
+  color: rgb(202, 195, 195);
+}
+
+.user-review-delete-review-text {
+  margin-top: 30px;
+  margin-left: 50px;
+  cursor: pointer;
+  font-size: 15px;
+  position: absolute;
+  right: 70px;
+  bottom: 20px;
+}
+
+.user-review-delete-review-text:hover {
   color: rgb(202, 195, 195);
 }
 

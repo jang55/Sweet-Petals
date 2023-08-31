@@ -3,14 +3,18 @@ import { dateFormatTwo } from "../../utils/helperFunctions";
 import { useEffect } from "react";
 import { useState } from "react";
 import { FcAddImage, FcRemoveImage } from "react-icons/fc"
+import { updateReviewThunk, uploadReviewImageThunk, removeReviewImageThunk } from "../../store/reviewReducer";
+import { useDispatch } from "react-redux";
+
 
 function UserReviewCard({ review, hoverShowEdit, setHoverShowEdit, showEditForm, setShowEditForm }) {
     const [starsCountArr, setStarsCountArr] = useState([]);
     const [stars, setStars] = useState(review.stars);
     const [currReviewText, setCurrReviewText] = useState(review.review);
     const [image, setImage] = useState("");
-    const [charCount, setCharCount] = useState(0);
+    const [charCount, setCharCount] = useState(review.review.length);
     const [hover, setHover] = useState(0);
+    const dispatch = useDispatch();
 
 
 
@@ -23,9 +27,24 @@ function UserReviewCard({ review, hoverShowEdit, setHoverShowEdit, showEditForm,
     }, [review, setStarsCountArr]);
 
 
-    const editReviewHandler = (e) => {
-        e.preventDefault()
+    const editReviewHandler = async (e) => {
+        e.preventDefault();
+
+        const updatedReview = await dispatch(updateReviewThunk(review.id, currReviewText, stars))
+    
+        if (image) {
+            const formData = new FormData();
+            formData.append("image_url", image);
+            await dispatch(uploadReviewImageThunk(updatedReview.id, formData));
+        }
+
+        setShowEditForm("");
     }
+
+    const removeImageHandler = (e => {
+        e.preventDefault();
+        dispatch(removeReviewImageThunk(review.id));
+    })
 
 
     return (
@@ -69,7 +88,7 @@ function UserReviewCard({ review, hoverShowEdit, setHoverShowEdit, showEditForm,
                     alt="review-img"
                     className="user-review-img"
                     />
-                    <span className="user-review-remove-image">
+                    <span className="user-review-remove-image" onClick={removeImageHandler}>
                         Remove Image
                     </span>
                 </>
@@ -98,7 +117,7 @@ function UserReviewCard({ review, hoverShowEdit, setHoverShowEdit, showEditForm,
                     }}
                     maxLength={300}
                 ></textarea>
-                <p className="c-review-char-count">Count:{300 - charCount}</p>
+                <p className="user-review-char-count">Count:{300 - charCount}</p>
             </div>
             <span className="user-review-cancel-edit" onClick={e => setShowEditForm("")}>Cancel</span>
             <button className="user-review-save-button" type="submit">
@@ -143,7 +162,14 @@ function UserReviewCard({ review, hoverShowEdit, setHoverShowEdit, showEditForm,
                     className="user-review-edit-review-text"
                     onClick={(e) => setShowEditForm(review.id)}
                     >
-                    EDIT
+                    Edit
+                    </span>
+                )}
+                {hoverShowEdit === review.id && (
+                    <span
+                    className="user-review-delete-review-text"
+                    >
+                    Delete
                     </span>
                 )}
             </>
