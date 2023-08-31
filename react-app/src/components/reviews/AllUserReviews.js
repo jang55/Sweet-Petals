@@ -3,6 +3,7 @@ import { getAllUserReviewsThunk } from "../../store/reviewReducer";
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import UserReviewCard from "./UserReviewCard";
+import { NavLink } from "react-router-dom";
 
 function AllUserReviews() {
   const dispatch = useDispatch();
@@ -35,7 +36,7 @@ function AllUserReviews() {
         <div className="all-reviews-outer-wrapper">
           <h1 className="all-reviews-h1">My Reviews</h1>
           <div className="all-reviews-wrapper">
-            {reverseArray([...reviews]).map((review, i) => (
+            {reviews.length > 0 ? reverseArray([...reviews]).map((review, i) => (
               <div
                 key={`${review.id}${i}`}
                 className={`${
@@ -52,7 +53,12 @@ function AllUserReviews() {
                   setShowEditForm={setShowEditForm}
                 />
               </div>
-            ))}
+            )) : 
+            <div className="no-reviews-messages">
+              <h3>You currently do not have any reviews created.</h3>
+              <NavLink to="/orders/users">Click here </NavLink>
+              <span>to see if you have any previous orders completed to make a review!</span>
+            </div>}
           </div>
         </div>
       </div>

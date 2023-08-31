@@ -22,3 +22,15 @@
 }
 
 
+.no-order-messages {
+    margin-left: 30px;
+}
+
+.no-order-messages a {
+    text-decoration: none;
+    color: blue;
+}
+
+.no-order-messages a:hover {
+    color: rgb(162, 162, 228);
+}

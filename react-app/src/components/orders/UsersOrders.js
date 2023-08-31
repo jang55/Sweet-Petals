@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { getAllUserOrdersThunk } from "../../store/orderReducer";
 import { getAllReviewsThunk } from "../../store/reviewReducer";
+import { NavLink } from "react-router-dom";
 
 
 function UsersOrders() {
@@ -64,18 +65,22 @@ function UsersOrders() {
     return(
         isLoaded && <div className="users-orders-container">
             <h1>My Orders</h1>
-            {orders.map(order => (
+            {orders.length > 0 ? orders.map(order => (
                 <div key={order.id} className="order-outer-wrapper">
                     <OrderCard order={order} validOrder={true} />
                 </div>
-            ))}
+            )) : 
+            <div className="no-order-messages">
+                <p>You currently do not have any orders pending.</p>
+                <NavLink to="/orders/new">Click here</NavLink><span> to make your orders!</span> 
+            </div>}
             <div className="orders-break-line"></div>
             <h2>Previous orders</h2>
-            {oldOrders.map(order => (
+            {oldOrders.length > 0 ? oldOrders.map(order => (
                 <div key={order.id} className="order-outer-wrapper">
                     <OrderCard order={order} validOrder={false} />
                 </div>
-            ))}
+            )) : <p className="no-order-messages">No previous order!</p>}
         </div>
     )
 }

@@ -68,7 +68,6 @@
   position: relative;
 }
 
-
 @media (max-width: 715px) {
   .review-wrapper-right {
     grid-column-start: 2;
@@ -87,3 +86,17 @@
     position: relative;
   }
 }
+
+.no-reviews-messages {
+  grid-column-start:2;
+  grid-column-end: 4;
+}
+
+.no-reviews-messages a {
+  text-decoration: none;
+  color: blue;
+}
+
+.no-reviews-messages a:hover {
+  color: rgb(162, 162, 228);
+} 
