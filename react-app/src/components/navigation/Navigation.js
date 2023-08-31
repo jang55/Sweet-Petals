@@ -11,6 +11,7 @@ import ShoppingCart from "../shopping-cart/ShoppingCart";
 import LoginFormModal from "../modal-pages/LoginFormModal";
 import "./nav.css";
 import { removeAllCartItems } from "../../store/cartReducer";
+import {FaEnvelope} from "react-icons/fa"
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
@@ -54,37 +55,47 @@ function Navigation({ isLoaded }) {
               </NavLink>
             </li>
           )}
-{/**************** sections for login button and navigations ********************************/}
+          {/**************** sections for login button and navigations ********************************/}
           {!sessionUser ? (
-            <div>
+            <li>
               <LoginFormModal />
-            </div>
+            </li>
           ) : (
             isLoaded && (
               <li className="nav-menu-wrapper" onClick={toggleMenu}>
                 <RxHamburgerMenu className="nav-menu-button" />
                 {openMenu && (
-                  <ul className="nav-menu">
-                    
-                    {sessionUser.role === "admin" && 
-                    <li>
-                      <NavLink to="/orders">All orders</NavLink>
-                    </li>}
-                    <li>
-                      <NavLink to="/orders/users">My orders</NavLink>
-                    </li>
-                    <li>
-                      <NavLink exact to="/reviews/users">
-                        My reviews
+                  <div className="nav-menu">
+                    <NavLink className="nav-menu-items-wrap" to="/messages">
+                      <span className="nav-menu-items">Inbox <FaEnvelope className="nav-envelope"/></span>
+                      
+                    </NavLink>
+
+                    {sessionUser.role === "admin" && (
+                      <NavLink className="nav-menu-items-wrap" to="/orders">
+                        <span className="nav-menu-items">All Orders</span>
                       </NavLink>
-                    </li>
+                    )}
+
+                    <NavLink className="nav-menu-items-wrap" to="/orders/users">
+                      <span className="nav-menu-items">My Orders</span>
+                    </NavLink>
+
+                    <NavLink
+                      className="nav-menu-items-wrap"
+                      exact
+                      to="/reviews/users"
+                    >
+                      <span className="nav-menu-items">My Reviews</span>
+                    </NavLink>
+
                     <div onClick={logoutHandler}>Logout</div>
-                  </ul>
+                  </div>
                 )}
               </li>
             )
           )}
-{/**************** end sections for login button and navigations ********************************/}
+          {/**************** end sections for login button and navigations ********************************/}
 
           <li className="nav-shopping-wrapper">
             <RiShoppingCart2Line
