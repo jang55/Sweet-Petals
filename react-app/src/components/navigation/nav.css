@@ -96,7 +96,7 @@
 .nav-menu {
   width: 120px;
   height: 200px;
-  background-color: rgb(185, 175, 175);
+  background-color: var(--main-form-color);
   position: absolute;
   top: 51px;
   right: 10px;
@@ -105,24 +105,28 @@
   border-radius: 5px;
 }
 
+
+
 .nav-menu-items-wrap {
   display: flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
+  padding: 0px;
+  margin: 0px;
 }
 
 .nav-menu-items-wrap:hover {
+  background-color: rgb(209, 201, 201);
+  border-radius: 5px;
 }
 
 .nav-menu-items {
-  /* background-color: red; */
   color: var(--main-text-color);
   width: 100%;
-  padding-left: 2px;
-  padding-bottom: 6px;
+  margin: 0px 5px;
+  padding: 9px;
   border-bottom: 1px solid gray;
-  margin: 5px 5px;
   display: flex;
   align-items: center;
 }

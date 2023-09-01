@@ -9,6 +9,7 @@ import UsersOrders from "./components/orders/UsersOrders";
 import AllOrders from "./components/orders/AllOrders";
 import EditOrderDetails from "./components/orders/EditOrderDetails";
 import AllUserReviews from "./components/reviews/AllUserReviews";
+import CustomerReviews from "./components/reviews/CustomerReviews";
 
 function App() {
   const dispatch = useDispatch();
@@ -37,7 +38,10 @@ function App() {
           <Route path="/orders/:orderId">
             <EditOrderDetails />
           </Route>
-          <Route exact path="/reviews/users">
+          <Route exact path="/reviews">
+            <CustomerReviews/>
+          </Route>
+          <Route path="/reviews/users">
             <AllUserReviews/>
           </Route>
         </Switch>

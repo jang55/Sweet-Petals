@@ -155,7 +155,7 @@ export const updateReviewThunk =
 
 // ***************************
 
-export const deleteReviewThunk = (reviewId) => async (dispatch) => {
+export const deleteReviewThunk = (reviewId, pageType) => async (dispatch) => {
   const response = await fetch(`/api/reviews/${reviewId}`, {
     method: "DELETE",
     headers: {
@@ -165,7 +165,11 @@ export const deleteReviewThunk = (reviewId) => async (dispatch) => {
 
   if (response.ok) {
     const data = await response.json();
-    dispatch(getAllUserReviewsThunk());
+    if (pageType === "Customer-Reviews") {
+      dispatch(getAllReviewsThunk());
+    } else {
+      dispatch(getAllUserReviewsThunk());
+    }
     return data;
   } else {
     const err = await response.json();

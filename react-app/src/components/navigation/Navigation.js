@@ -78,19 +78,31 @@ function Navigation({ isLoaded }) {
                       </NavLink>
                     )}
 
-                    <NavLink className="nav-menu-items-wrap" to="/orders/users">
-                      <span className="nav-menu-items">My Orders</span>
-                    </NavLink>
+                    {sessionUser.role === "admin" && (
+                      <NavLink className="nav-menu-items-wrap" to="/reviews">
+                        <span className="nav-menu-items">All Reviews</span>
+                      </NavLink>
+                    )}
 
-                    <NavLink
+                    {sessionUser.role === "admin" && (
+                      <NavLink className="nav-menu-items-wrap" to="/recipes">
+                        <span className="nav-menu-items">Recipes</span>
+                      </NavLink>
+                    )}
+
+                    {sessionUser.role === "customer" && <NavLink className="nav-menu-items-wrap" to="/orders/users">
+                      <span className="nav-menu-items">My Orders</span>
+                    </NavLink>}
+
+                    {sessionUser.role === "customer" && <NavLink
                       className="nav-menu-items-wrap"
                       exact
                       to="/reviews/users"
                     >
                       <span className="nav-menu-items">My Reviews</span>
-                    </NavLink>
+                    </NavLink>}
 
-                    <div onClick={logoutHandler}>Logout</div>
+                    <div className="nav-menu-items-wrap" onClick={logoutHandler}><span className="nav-menu-items">Logout</span></div>
                   </div>
                 )}
               </li>

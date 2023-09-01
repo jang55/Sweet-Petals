@@ -104,7 +104,7 @@ def delete_a_review(id):
     if review is None:
         return jsonify({"message": "Review not found"}), 404
 
-    if str(review.user_id) != current_user.get_id():
+    if str(review.user_id) != current_user.get_id() and current_user.to_dict()["role"] == "customer":
         return {"errors": [{"Unauthorized": "Unauthorized Action"}]}, 401
 
     db.session.delete(review)

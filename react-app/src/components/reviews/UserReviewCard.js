@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 import DeleteReviewModal from "../modal-pages/DeleteReviewModal";
 
 
-function UserReviewCard({ review, hoverShowEdit, setHoverShowEdit, showEditForm, setShowEditForm }) {
+function UserReviewCard({ review, hoverShowEdit, pageType, showEditForm, setShowEditForm }) {
     const [starsCountArr, setStarsCountArr] = useState([]);
     const [stars, setStars] = useState(review.stars);
     const [currReviewText, setCurrReviewText] = useState(review.review);
@@ -158,7 +158,7 @@ function UserReviewCard({ review, hoverShowEdit, setHoverShowEdit, showEditForm,
                 )}
                 <p className="user-review-text">"{review.review}"</p>
                 </div>
-                {hoverShowEdit === review.id && (
+                {hoverShowEdit === review.id && pageType !== "Customer-Reviews" && (
                     <span
                     className="user-review-edit-review-text"
                     onClick={(e) => setShowEditForm(review.id)}
@@ -167,7 +167,7 @@ function UserReviewCard({ review, hoverShowEdit, setHoverShowEdit, showEditForm,
                     </span>
                 )}
                 {hoverShowEdit === review.id && (
-                    <DeleteReviewModal review={review} setShowEditForm={setShowEditForm} />
+                    <DeleteReviewModal review={review} setShowEditForm={setShowEditForm} pageType={pageType} />
                 )}
             </>
             )

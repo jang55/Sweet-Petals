@@ -186,11 +186,17 @@ const wasItCreatedYesterday = (day) => {
 
 // helper function to check to see if the message was created the day before
 const isItTomrrow = (date) => {
-  const formattedDate = `${date.slice(0, 3)}, ${date.slice(8, 11)} ${date.slice(
-    5,
-    7
-  )}, ${date.slice(12, 16)}`;
-  const nextDay = moment().add(1, "days").format("llll").slice(0, 17);
+  const formattedDate = `${date.slice(0, 3)}, ${date.slice(8, 11)} ${Number(date.slice(5, 7
+  ))}, ${date.slice(12, 16)}`;
+  const day = moment().add(1, "days").format().slice(8, 10);
+  let nextDay;
+
+  if(Number(day) < 10) {
+    nextDay = moment().add(1, "days").format("llll").slice(0, 16);
+  } else {
+    nextDay = moment().add(1, "days").format("llll").slice(0, 17);
+  }
+  
   return formattedDate === nextDay;
 };
 
