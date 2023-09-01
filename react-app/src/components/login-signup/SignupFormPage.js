@@ -142,7 +142,7 @@ function SignupFormPage() {
 
                     <div className="signup-button-container">
                       <button className="signup-button" type="submit">
-                        Sign Up
+                        Register
                       </button>
                     </div>
 

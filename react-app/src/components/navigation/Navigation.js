@@ -102,7 +102,7 @@ function Navigation({ isLoaded }) {
                       <span className="nav-menu-items">My Reviews</span>
                     </NavLink>}
 
-                    <div className="nav-menu-items-wrap" onClick={logoutHandler}><span className="nav-menu-items">Logout</span></div>
+                    <div className="nav-menu-items-wrap" onClick={logoutHandler}><span className="nav-menu-items-logout">Logout</span></div>
                   </div>
                 )}
               </li>
