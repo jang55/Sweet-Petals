@@ -50,7 +50,7 @@ function Navigation({ isLoaded }) {
         <ul className="nav-list-wrapper">
           {sessionUser && (
             <li>
-              <NavLink exact to="/orders/new">
+              <NavLink exact to="/orders/new" className="nav-create-order">
                 Create Order
               </NavLink>
             </li>

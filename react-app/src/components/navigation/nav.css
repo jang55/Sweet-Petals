@@ -68,6 +68,15 @@
   margin-right: 15px;
 }
 
+.nav-create-order {
+  font-size: 17px;
+  font-weight: bolder;
+}
+
+.nav-create-order:hover {
+  color: white;
+}
+
 /********** menu css ********************/
 
 .nav-menu-wrapper {
@@ -81,7 +90,10 @@
   position: relative;
   cursor: pointer;
   margin: 0px 15px;
-  
+}
+
+.nav-menu-wrapper:hover {
+  background-color: #e5a4d0;
 }
 
 .nav-menu-button {
@@ -118,7 +130,6 @@
 }
 
 .nav-menu-items {
-  color: var(--main-text-color);
   width: 100%;
   margin: 0px ;
   padding: 15px;
@@ -127,10 +138,14 @@
   align-items: center;
   color: white;
   font-size: 18px;
+  font-weight: bold;
+}
+
+.nav-menu-items:hover {
+  color: rgb(125, 124, 124);
 }
 
 .nav-menu-items-logout {
-  color: var(--main-text-color);
   width: 100%;
   margin: 0px 5px;
   padding: 9px;
@@ -138,6 +153,11 @@
   align-items: center;
   color: white;
   font-size: 20px;
+  font-weight: bold;
+}
+
+.nav-menu-items-logout:hover {
+  color: rgb(125, 124, 124);
 }
 
 .nav-envelope {
