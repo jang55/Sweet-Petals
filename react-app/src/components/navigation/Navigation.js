@@ -28,13 +28,13 @@ function Navigation({ isLoaded }) {
   // }, [sessionUser])
 
   
-  useEffect(() => {
-    document.addEventListener("click", (event) => {
-      if(openMenu) {
-        setOpenMenu(false)
-      }
-    });
-  }, [openMenu])
+  // useEffect(() => {
+  //   document.addEventListener("click", (event) => {
+  //     if(openMenu) {
+  //       setOpenMenu(false)
+  //     }
+  //   });
+  // }, [openMenu])
 
   // useEffect(() => {
   //   document.addEventListener("mouseup", function (event) {
@@ -100,7 +100,7 @@ function Navigation({ isLoaded }) {
             isLoaded && (
               <li className="nav-menu-wrapper"  onClick={toggleMenu}>
                 <RxHamburgerMenu className="nav-menu-button" />
-                {(
+                {openMenu && (
                   <div className="nav-menu" id="nav-menu">
                     <NavLink className="nav-menu-items-wrap" to="/messages">
                       <span className="nav-menu-items">
