@@ -177,6 +177,10 @@
   padding: 4px;
 }
 
+.nav-shopping-cart:hover {
+  color: white;
+}
+
 .nav-shopping-count {
   width: 17px;
   height: 17px;
@@ -207,3 +211,4 @@
   font-weight: bold;
   box-shadow: 0px 2px 10px 3px rgba(65, 63, 63, 0.3);
 }
+
