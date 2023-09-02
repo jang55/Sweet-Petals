@@ -102,7 +102,7 @@
 }
 
 .nav-menu {
-  width: 145px;
+  width: 175px;
   height: fit-content;
   background-color: rgb(218,154,197);
   position: absolute;
@@ -143,6 +143,10 @@
 
 .nav-menu-items:hover {
   color: rgb(125, 124, 124);
+}
+
+.nav-menu-customer-reviews {
+  padding-right: 7px;
 }
 
 .nav-menu-items-logout {

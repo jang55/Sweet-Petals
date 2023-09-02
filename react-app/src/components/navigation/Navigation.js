@@ -3,14 +3,14 @@ import { NavLink, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { RiShoppingCart2Line } from "react-icons/ri";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { InfoContext } from "../../context/InfoContext";
 import logo from "../../images/SWEET_PETALS_wlogo.png";
 import { logout } from "../../store/session";
 import ShoppingCart from "../shopping-cart/ShoppingCart";
 import LoginFormModal from "../modal-pages/LoginFormModal";
 import "./nav.css";
-import { removeAllCartItems } from "../../store/cartReducer";
+// import { removeAllCartItems } from "../../store/cartReducer";
 import { FaEnvelope } from "react-icons/fa";
 
 function Navigation({ isLoaded }) {
@@ -26,6 +26,42 @@ function Navigation({ isLoaded }) {
   //     return history.push("/")
   //   }
   // }, [sessionUser])
+
+  
+  useEffect(() => {
+    document.addEventListener("click", (event) => {
+      if(openMenu) {
+        setOpenMenu(false)
+      }
+    });
+  }, [openMenu])
+
+  // useEffect(() => {
+  //   document.addEventListener("mouseup", function (event) {
+  //     const menu = document.getElementById("nav-menu");
+  //     if (event.target !== menu && event.target.parentNode !== menu) {
+
+  //     }
+  //     // if (event.target !== menu && event.target.parentNode !== menu) {
+  //     //   if (menu && menu.style) {
+  //     //     menu.style.display = "none";
+  //     //   }
+  //     // }
+  //   });
+  // }, []);
+
+  // useEffect(() => {
+  //   document.addEventListener("mouseup", function (event) {
+  //     const cart = document.getElementById("nav-shopping-cart-items");
+  //     console.log(event.target.childNodes)
+  //     if (event.target != cart && event.target.parentNode != cart) {
+  //       // if (cart) {
+  //       //   // cart.style.display = "none";
+  //       //   setOpenShoppingCart(false)
+  //       // }
+  //     }
+  //   });
+  // }, []);
 
   const toggleMenu = () => {
     setOpenMenu(!openMenu);
@@ -48,7 +84,7 @@ function Navigation({ isLoaded }) {
           <img src={logo} alt="cupcake-logo" className="nav-logo" />
         </NavLink>
         <ul className="nav-list-wrapper">
-          {sessionUser && (
+          {sessionUser && sessionUser.role === "customer" && (
             <li>
               <NavLink exact to="/orders/new" className="nav-create-order">
                 Create Order
@@ -62,10 +98,10 @@ function Navigation({ isLoaded }) {
             </li>
           ) : (
             isLoaded && (
-              <li className="nav-menu-wrapper" onClick={toggleMenu}>
+              <li className="nav-menu-wrapper"  onClick={toggleMenu}>
                 <RxHamburgerMenu className="nav-menu-button" />
-                {openMenu && (
-                  <div className="nav-menu">
+                {(
+                  <div className="nav-menu" id="nav-menu">
                     <NavLink className="nav-menu-items-wrap" to="/messages">
                       <span className="nav-menu-items">
                         Inbox <FaEnvelope className="nav-envelope" />
@@ -74,19 +110,19 @@ function Navigation({ isLoaded }) {
 
                     {sessionUser.role === "admin" && (
                       <NavLink className="nav-menu-items-wrap" to="/orders">
-                        <span className="nav-menu-items">All Orders</span>
+                        <span className="nav-menu-items">Order Logs</span>
                       </NavLink>
                     )}
 
                     {sessionUser.role === "admin" && (
                       <NavLink className="nav-menu-items-wrap" to="/reviews">
-                        <span className="nav-menu-items">All Reviews</span>
+                        <span className="nav-menu-items nav-menu-customer-reviews">Customer Reviews</span>
                       </NavLink>
                     )}
 
                     {sessionUser.role === "admin" && (
                       <NavLink className="nav-menu-items-wrap" to="/recipes">
-                        <span className="nav-menu-items">Recipes</span>
+                        <span className="nav-menu-items">Recipes List</span>
                       </NavLink>
                     )}
 
@@ -110,7 +146,7 @@ function Navigation({ isLoaded }) {
           )}
           {/**************** end sections for login button and navigations ********************************/}
 
-          <li className="nav-shopping-wrapper">
+          <li className="nav-shopping-wrapper" >
             <RiShoppingCart2Line
               className="nav-shopping-cart"
               onClick={toggleShoppingCart}
@@ -119,7 +155,7 @@ function Navigation({ isLoaded }) {
               <div className="nav-shopping-count">{cartCount}</div>
             )}
             {openShoppingCart && (
-              <div className="nav-shopping-cart-items">
+              <div className="nav-shopping-cart-items" id="nav-shopping-cart-items">
                 <ShoppingCart />
               </div>
             )}
