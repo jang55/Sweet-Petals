@@ -1,7 +1,7 @@
 .landing-main-body-container {
   display: grid;
   /* grid-template-rows: 0.3fr 3fr; */
-  grid-template-rows: 0.8fr 0.7fr 0.7fr 0.7fr 0.5fr;
+  grid-template-rows: 0.8fr 0.7fr 0.7fr 0.7fr 0.7fr 0.5fr;
   /* height: 1500px; */
   width: 100%;
   padding-top: 70px;
@@ -19,7 +19,7 @@
 .landing-body-wrapper-2 {
   grid-row-start: 2;
   grid-row-end: 3;
-  /* background-color: rgb(81, 255, 0); */
+  background-color: var(--main-form-color);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -104,7 +104,7 @@
 .landing-body-wrapper-4 {
   grid-row-start: 4;
   grid-row-end: 5;
-  /* background-color: rgb(0, 217, 255); */
+  background-color: var(--main-form-color);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -141,20 +141,62 @@
 }
 
 
-/************* sections 5 *********************/
+/***** sections 5*********************/
+
 .landing-body-wrapper-5 {
   grid-row-start: 5;
   grid-row-end: 6;
+  /* background-color: rgb(221, 255, 0); */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.lb-wrap-5 {
+  width: 1100px;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+}
+
+.lb-5-img {
+  width: 400px;
+  grid-column-start: 6;
+  grid-column-end: 10;
+  grid-row-start: 1;
+  grid-row-end: 3;
+}
+
+.lb-5-h2 {
+  grid-column-start: 2;
+  grid-column-end: 6;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+
+.lb-5-p {
+  grid-column-start: 2;
+  grid-column-end: 6;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+
+/************* sections 6 *********************/
+.landing-body-wrapper-6 {
+  grid-row-start: 6;
+  grid-row-end: 7;
   background-color: var(--main-bg-button);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-image: url(https://i.imgur.com/FrObEwi.jpg);
+  background-image: url(https://i.imgur.com/PdouAPg.jpg);
   background-size: cover;
 }
 
-.lb-5-h2 {
+.lb-5-h6 {
   color: black;
   font-family: cursive;
   font-weight: bolder;
