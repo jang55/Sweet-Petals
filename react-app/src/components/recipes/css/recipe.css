@@ -4,3 +4,19 @@
     max-width: 1050px;
     margin: auto;
 }
+
+.recipe-wrapper {
+    background-color: var(--main-form-color);
+    margin: 20px;
+    margin-bottom: 80px;
+    border-radius: 7px;
+    position: relative;
+    box-shadow: 0px 0px 5px 3px rgba(65, 63, 63, 0.2);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

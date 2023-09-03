@@ -151,10 +151,10 @@ function CreateRecipe() {
         <div className="c-recipe-ingred-list-wrap">
           <h3 className="c-recipe-h3">Ingredients List</h3>
           <ul className="c-recipe-ingred-list">
-            {frontEndIngred.length >= 1 &&
+            {frontEndIngred.length >= 1 ?
               frontEndIngred.map((ingred, i) => (
                 <li key={`${ingred}${i}`} className="c-recipe-ingred-list-item">{ingred}</li>
-              ))}
+              )) : <p className="c-recipe-ingred-list-item">List is empty</p>}
           </ul>
           {backEndIngred.length > 0 && <p className="c-recipe-remove-ingred" onClick={handleRemoveIngred}>Remove last item</p>}
         </div>
