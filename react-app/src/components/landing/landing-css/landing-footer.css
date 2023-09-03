@@ -166,7 +166,7 @@
 .star-average-wrapper {
   display: flex;
   flex-direction: column;
-  align-items: end;
+  align-items: flex-end;
   border-right: 1px solid rgb(173, 87, 196);
   margin: 5px;
 }

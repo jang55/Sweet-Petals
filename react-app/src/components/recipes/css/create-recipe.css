@@ -52,6 +52,8 @@
   background-color: var(--main-select-color);
   color: var(--main-text-color);
   margin-left: 5px;
+  font-size: 15px;
+  font-weight: bold;
 }
 
 .c-recipe-ingred-label {
@@ -84,6 +86,8 @@
   color: var(--main-text-color);
   margin: 8px;
   margin-top: 20px;
+  font-size: 15px;
+  font-weight: bold;
 }
 
 .c-recipe-add-ingred-button {
@@ -138,15 +142,70 @@
 }
 
 .c-recipe-ingred-list {
-  height: 80px;
+  max-height: 80px;
+  min-height: 70px;
   overflow-y: auto;
   white-space: normal;
   overflow-wrap: break-word;
+  margin: 0px;
   padding-left: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background:
+  /* Shadow Cover TOP */ linear-gradient(
+      var(--main-form-color) 30%,
+      rgba(255, 255, 255, 0)
+    )
+    center top,
+  /* Shadow Cover BOTTOM */
+    linear-gradient(rgba(255, 255, 255, 0), var(--main-form-color) 70%) center
+    bottom,
+  /* Shadow TOP */
+    radial-gradient(
+      farthest-side at 50% 0,
+      rgba(0, 0, 0, 0.2),
+      rgba(0, 0, 0, 0)
+    )
+    center top,
+  /* Shadow BOTTOM */
+    radial-gradient(
+      farthest-side at 50% 100%,
+      rgba(0, 0, 0, 0.4),
+      rgba(0, 0, 0, 0)
+    )
+    center bottom;
+
+background-repeat: no-repeat;
+background-size: 100% 40px, 100% 40px, 100% 7px, 100% 7px;
+background-attachment: local, local, scroll, scroll;
+}
+
+/* width */
+.c-recipe-ingred-list::-webkit-scrollbar {
+  width: 5px;
+  height: 10px;
+}
+
+/* Track */
+.c-recipe-ingred-list::-webkit-scrollbar-track {
+  background: #b9b9b9;
+  border-radius: 15px;
+}
+
+/* Handle */
+.c-recipe-ingred-list::-webkit-scrollbar-thumb {
+  border-radius: 15px;
+  background: #989898;
+}
+
+.c-recipe-ingred-list-item {
+  font-size: 15px;
+  font-weight: bold;
 }
 
 .c-recipe-h3 {
   text-decoration: underline;
+  margin-bottom: 0px;
 }
 
 .c-recipe-submit-button {
@@ -169,4 +228,16 @@
 
 .c-recipe-submit-button:hover {
   background-color: #e5a4d0;
+}
+
+.c-recipe-remove-ingred {
+  display: flex;
+  cursor: pointer;
+  font-size: 13px;
+  width: fit-content;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+.c-recipe-remove-ingred:hover {
+  color: red;
 }

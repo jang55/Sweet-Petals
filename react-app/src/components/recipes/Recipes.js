@@ -6,7 +6,7 @@ function Recipes() {
 
     return(
         <div className="recipe-container">
-            <h1>Recipe Logs</h1>
+            <h1>Recipes</h1>
             <CreateRecipe />
         </div>
     )
