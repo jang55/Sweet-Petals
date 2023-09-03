@@ -3,7 +3,7 @@ import { NavLink, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { RiShoppingCart2Line } from "react-icons/ri";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { InfoContext } from "../../context/InfoContext";
 import logo from "../../images/SWEET_PETALS_wlogo.png";
 import { logout } from "../../store/session";
@@ -13,6 +13,7 @@ import "./nav.css";
 // import { removeAllCartItems } from "../../store/cartReducer";
 import { FaEnvelope } from "react-icons/fa";
 
+
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
   const { cartCount, openShoppingCart, setOpenShoppingCart } =
@@ -20,48 +21,29 @@ function Navigation({ isLoaded }) {
   const [openMenu, setOpenMenu] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
-
-  // useEffect(() => {
-  //   if(!sessionUser) {
-  //     return history.push("/")
-  //   }
-  // }, [sessionUser])
-
+  const dropdownRef = useRef();
+  const cartRef = useRef();
   
-  // useEffect(() => {
-  //   document.addEventListener("click", (event) => {
-  //     if(openMenu) {
-  //       setOpenMenu(false)
-  //     }
-  //   });
-  // }, [openMenu])
 
-  // useEffect(() => {
-  //   document.addEventListener("mouseup", function (event) {
-  //     const menu = document.getElementById("nav-menu");
-  //     if (event.target !== menu && event.target.parentNode !== menu) {
+  // handles the event being clicked outside of the area
+  const handleClickOutside = (event) => {
+    if (cartRef.current && !cartRef.current.contains(event.target)) {
+      setOpenShoppingCart(false)
+    }
 
-  //     }
-  //     // if (event.target !== menu && event.target.parentNode !== menu) {
-  //     //   if (menu && menu.style) {
-  //     //     menu.style.display = "none";
-  //     //   }
-  //     // }
-  //   });
-  // }, []);
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setOpenMenu(false);
+    }
+  };
 
-  // useEffect(() => {
-  //   document.addEventListener("mouseup", function (event) {
-  //     const cart = document.getElementById("nav-shopping-cart-items");
-  //     console.log(event.target.childNodes)
-  //     if (event.target != cart && event.target.parentNode != cart) {
-  //       // if (cart) {
-  //       //   // cart.style.display = "none";
-  //       //   setOpenShoppingCart(false)
-  //       // }
-  //     }
-  //   });
-  // }, []);
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside, true);
+    return () => {
+      document.removeEventListener("click", handleClickOutside, true);
+    };
+  }, []);
+  // end of the handling event being clicked outside of the area
+
 
   const toggleMenu = () => {
     setOpenMenu(!openMenu);
@@ -101,7 +83,7 @@ function Navigation({ isLoaded }) {
               <li className="nav-menu-wrapper"  onClick={toggleMenu}>
                 <RxHamburgerMenu className="nav-menu-button" />
                 {openMenu && (
-                  <div className="nav-menu" id="nav-menu">
+                  <div className="nav-menu" ref={dropdownRef} >
                     <NavLink className="nav-menu-items-wrap" to="/messages">
                       <span className="nav-menu-items">
                         Inbox <FaEnvelope className="nav-envelope" />
@@ -155,7 +137,7 @@ function Navigation({ isLoaded }) {
               <div className="nav-shopping-count">{cartCount}</div>
             )}
             {openShoppingCart && (
-              <div className="nav-shopping-cart-items" id="nav-shopping-cart-items">
+              <div className="nav-shopping-cart-items" ref={cartRef}>
                 <ShoppingCart />
               </div>
             )}
