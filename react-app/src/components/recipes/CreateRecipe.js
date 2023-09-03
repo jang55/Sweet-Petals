@@ -10,6 +10,7 @@ function CreateRecipe() {
   const [frontEndIngred, setFrontEndIngred] = useState([]);
   const [currIngred, setCurrIngred] = useState("");
   const [description, setDescription] = useState("");
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     if(backEndIngred.length >= 1) {
@@ -23,8 +24,22 @@ function CreateRecipe() {
 
   }, [backEndIngred])
 
-  const handleAddIngred = () => {
+  const handleAddIngred = (event) => {
+    setErrors({});
+    const newErrors = {}
     // handled adding into the array state whether first value or not
+    if(currIngred.length <= 3) {
+      newErrors["ingred"] = "*Ingredients needs to be between 4-25 chars only"
+      setErrors(newErrors)
+      return;
+    }
+
+    if(!currIngred.match(/^[a-zA-Z0-9]+$/)) {
+      newErrors["ingred"] = "*Ingredients needs to be numbers or letters"
+      setErrors(newErrors)
+      return
+    }
+
     if(backEndIngred.length < 1) {
       setBackEndIngred([...backEndIngred, currIngred]);
     } else {
@@ -36,14 +51,36 @@ function CreateRecipe() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setErrors({});
+    const newErrors = {};
+
+    if(backEndIngred.length < 1) {
+      newErrors["ingred"] = "*Ingredients are required"
+
+    }
+    
+    if(!title.match(/^[a-zA-Z]+$/)) {
+      newErrors["title"] = "*Title needs to be letters only"
+    }
+
+    if(Object.values(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
     const ingredStr = backEndIngred.join("");
 
-    dispatch(createRecipeThunk(title, ingredStr, description));
+    const newRecipe = dispatch(createRecipeThunk(title, ingredStr, description));
 
+    if(newRecipe) {
+      setTitle("");
+      setCurrIngred("");
+      setDescription("")
+      setBackEndIngred([]);
+      setFrontEndIngred([]);
+    }
   };
 
-  // console.log(backEndIngred, "back");
-  // console.log(frontEndIngred, "front");
 
   return (
     <div className="create-recipe-container">
@@ -55,21 +92,25 @@ function CreateRecipe() {
             className="c-recipe-title-input"
             type="text"
             value={title}
-            max={100}
+            maxLength={100}
+            required
             onChange={(e) => setTitle(e.target.value)}
           />
         </label>
+        {errors && errors["title"] && <p className="c-recipe-title-error">{errors["title"]}</p>}
         <label className="c-recipe-ingred-label">
           Ingredients
           <input
             className="c-recipe-ingred-input"
             type="text"
             value={currIngred}
-            min={3}
+            minLength={3}
+            maxLength={25}
             onChange={(e) => setCurrIngred(e.target.value)}
           />
           <button type="button" className="c-recipe-add-ingred-button" onClick={handleAddIngred}>add</button>
         </label>
+        {errors && errors["ingred"] && <p className="c-recipe-ingred-error">{errors["ingred"]}</p>}
         <label className="c-recipe-description-label">
           Directions
           <textarea
@@ -77,10 +118,16 @@ function CreateRecipe() {
             type="textarea"
             onChange={(e) => setDescription(e.target.value)}
             value={description}
+            required
           ></textarea>
         </label>
-        <div className="c-recipe-ingred-list">
-          <h3>Ingredients List</h3>
+        <div className="c-recipe-ingred-list-wrap">
+          <h3 className="c-recipe-h3">Ingredients List</h3>
+          <ul className="c-recipe-ingred-list">
+            {frontEndIngred.length >= 1 && frontEndIngred.map((ingred, i) => (
+              <li key={`${ingred}${i}`}>{ingred}</li>
+            ))} 
+          </ul>
         </div>
         <button className="c-recipe-submit-button" type="submit">Submit</button>
       </form>
