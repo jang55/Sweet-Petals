@@ -49,37 +49,40 @@ function CreateRecipe() {
     <div className="create-recipe-container">
       <h2>Create a new Recipe</h2>
       <form className="c-recipe-wrapper" onSubmit={handleSubmit}>
-        <label>
+        <label className="c-recipe-title-label">
           Recipe Title
           <input
+            className="c-recipe-title-input"
             type="text"
             value={title}
             max={100}
             onChange={(e) => setTitle(e.target.value)}
           />
         </label>
-        <label>
+        <label className="c-recipe-ingred-label">
           Ingredients
           <input
+            className="c-recipe-ingred-input"
             type="text"
             value={currIngred}
             min={3}
             onChange={(e) => setCurrIngred(e.target.value)}
           />
+          <button type="button" className="c-recipe-add-ingred-button" onClick={handleAddIngred}>add</button>
         </label>
-          <button type="button" onClick={handleAddIngred}>add</button>
-        <label>
+        <label className="c-recipe-description-label">
           Directions
           <textarea
+            className="c-recipe-description-input"
             type="textarea"
             onChange={(e) => setDescription(e.target.value)}
             value={description}
           ></textarea>
         </label>
-        <div>
-          <h3></h3>
+        <div className="c-recipe-ingred-list">
+          <h3>Ingredients List</h3>
         </div>
-        <button type="submit">Submit</button>
+        <button className="c-recipe-submit-button" type="submit">Submit</button>
       </form>
     </div>
   );
