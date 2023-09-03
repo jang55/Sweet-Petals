@@ -10,6 +10,7 @@ import AllOrders from "./components/orders/AllOrders";
 import EditOrderDetails from "./components/orders/EditOrderDetails";
 import AllUserReviews from "./components/reviews/AllUserReviews";
 import CustomerReviews from "./components/reviews/CustomerReviews";
+import Recipes from "./components/recipes/Recipes";
 
 function App() {
   const dispatch = useDispatch();
@@ -43,6 +44,9 @@ function App() {
           </Route>
           <Route path="/reviews/users">
             <AllUserReviews/>
+          </Route>
+          <Route path="/recipes">
+            <Recipes />
           </Route>
         </Switch>
       )}

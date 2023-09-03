@@ -35,10 +35,10 @@ function AllUserReviews() {
       <div className="all-reviews-container">
         <div className="all-reviews-outer-wrapper">
           <h1 className="all-reviews-h1">My Reviews</h1>
-          <div className="yes-reviews-messages">
+          {reviews.length > 0 ? <div className="yes-reviews-messages">
             <NavLink to="/orders/users">Click here </NavLink>
             <span>to see if you have any previous orders completed to make a review!</span>
-          </div>
+          </div> : <></>}
           <div className="all-reviews-wrapper">
             {reviews.length > 0 ? reverseArray([...reviews]).map((review, i) => (
               <div
