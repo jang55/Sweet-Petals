@@ -65,6 +65,7 @@ function Navigation({ isLoaded }) {
         <NavLink to="/" className="nav-logo-wrapper">
           <img src={logo} alt="cupcake-logo" className="nav-logo" />
         </NavLink>
+        {/* <p className="nav-slogan">Keep calm and have a cupcake.</p> */}
         <ul className="nav-list-wrapper">
           {sessionUser && sessionUser.role === "customer" && (
             <li>
