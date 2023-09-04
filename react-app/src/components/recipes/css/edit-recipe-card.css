@@ -1,4 +1,4 @@
-.recipe-card-wrapper {
+.edit-recipe-card-wrapper {
     width: 90%;
     max-height: fit-content;
     /* height: 310px; */
@@ -18,7 +18,9 @@
     position: relative;
 }
 
-.recipe-card-title {
+
+/* ****** title ****************** */
+.edit-recipe-card-title {
     color: rgb(52, 49, 49);
     border: 1px solid rgb(52, 49, 49);
     padding: 5px;
@@ -29,10 +31,41 @@
     font-size: 20px;
     font-weight: bolder;
     padding: 10px 20px;
+
 }
 
+.edit-recipe-title-label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit-recipe-title-input {
+    width: fit-content;
+    outline: none;
+    padding: 5px 0px;
+    font-size: 17px;
+    border-radius: 2px;
+    /* border: none; */
+    border: 1px solid gray;
+    background-color: var(--main-select-color);
+    color: var(--main-text-color);
+    margin-left: 5px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.edit-recipe-title-error {
+    margin: 0px;
+    font-size: 13px;
+    color: red;
+    margin-left: 40px;
+}
+
+
 /* ******** ingred ******************************** */
-.recipe-card-ingred-wrap {
+.edit-recipe-card-ingred-wrap {
     grid-column-start: 1;
     grid-column-end: 4;
     grid-row-start: 1;
@@ -41,15 +74,16 @@
     flex-direction: column;
     align-items: center;
     margin-top: 38px;
+    width: fit-content;
 }
 
-.recipe-card-ingred-label {
+.edit-recipe-card-ingred-label {
     font-size: 30px;
     margin: 0px;
     text-decoration: underline;
 }
 
-.recipe-card-ingred {
+.edit-recipe-card-ingred {
     padding: 0px;
     display: flex;
     flex-direction: column;
@@ -57,21 +91,149 @@
     align-items: center;
 }
 
-.recipe-card-ingred-items {
-    list-style: none;
-    margin: 5px;
+
+.edit-recipe-ingred-error {
+    margin: 0px;
+    margin-left: 40px;
+    font-size: 13px;
+    color: red;
+}
+
+.edit-recipe-ingred-label {
+    height: 60px;
+}
+
+.edit-recipe-ingred-input {
+    width: 36%;
+    outline: none;
+    padding: 5px 15px 5px 5px;
+    font-size: 17px;
+    border-radius: 2px;
+    border: 1px solid gray;
+    background-color: var(--main-select-color);
+    color: var(--main-text-color);
+    margin: 8px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.edit-recipe-add-ingred-button-disabled {
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 50px;
+    height: 32px;
+    background-color: rgb(209, 208, 208);
+}
+
+.edit-recipe-add-ingred-button {
+    margin-bottom: 35px;
+    cursor: pointer;
+    background-color: #da9ac5;
+    padding: 5px;
+    border-radius: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    border: 1px solid var(--main-text-color);
+    color: white;
+    width: 50px;
+    height: 32px;
+}
+
+.edit-recipe-add-ingred-button:hover {
+    background-color: #e5a4d0;
+}
+
+
+.edit-recipe-ingred-list {
+    max-height: 150px;
+    min-height: 20px;
+    width: 150px;
+    overflow-y: auto;
+    white-space: normal;
+    overflow-wrap: break-word;
+    margin: 0px;
+    padding-left: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background:
+    /* Shadow Cover TOP */ linear-gradient(
+        var(--main-form-color) 30%,
+        rgba(255, 255, 255, 0)
+    )
+    center top,
+    /* Shadow Cover BOTTOM */
+    linear-gradient(rgba(255, 255, 255, 0), var(--main-form-color) 70%) center
+    bottom,
+    /* Shadow TOP */
+    radial-gradient(
+        farthest-side at 50% 0,
+        rgba(0, 0, 0, 0.2),
+        rgba(0, 0, 0, 0)
+    )
+    center top,
+    /* Shadow BOTTOM */
+    radial-gradient(
+        farthest-side at 50% 100%,
+        rgba(0, 0, 0, 0.4),
+        rgba(0, 0, 0, 0)
+    )
+    center bottom;
+
+    background-repeat: no-repeat;
+    background-size: 100% 40px, 100% 40px, 100% 7px, 100% 7px;
+    background-attachment: local, local, scroll, scroll;
+}
+
+  /* width */
+.edit-recipe-ingred-list::-webkit-scrollbar {
+    width: 5px;
+    height: 10px;
+}
+
+  /* Track */
+.edit-recipe-ingred-list::-webkit-scrollbar-track {
+    background: #b9b9b9;
+    border-radius: 15px;
+}
+
+  /* Handle */
+.edit-recipe-ingred-list::-webkit-scrollbar-thumb {
+    border-radius: 15px;
+    background: #989898;
+}
+
+.edit-recipe-ingred-list-item {
+    font-size: 15px;
     font-weight: bolder;
 }
 
+
+.edit-recipe-remove-ingred {
+    display: flex;
+    cursor: pointer;
+    font-size: 13px;
+    width: fit-content;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.edit-recipe-remove-ingred:hover {
+    color: red;
+}
+
+
+
+
 /* ******** description ******************************** */
-.recipe-card-description-wrap {
+.edit-recipe-card-description-wrap {
     grid-column-start: 5;
     grid-column-end: 11;
     grid-row-start: 1;
     grid-row-end: 3;
 }
 
-.recipe-card-description-label {
+.edit-recipe-card-description-label {
     display: flex;
     justify-content: center;
     font-size: 30px;
@@ -80,7 +242,7 @@
     text-decoration: underline;
 }
 
-.recipe-card-description-item {
+.edit-recipe-card-description-item {
     white-space: normal;
     overflow-wrap: break-word;
     padding-right: 50px;
@@ -90,7 +252,7 @@
 }
 
 /* ******** notes ******************************** */
-.recipe-card-notes-wrap {
+.edit-recipe-card-notes-wrap {
     grid-column-start: 1;
     grid-column-end: 11;
     grid-row-start: 3;
@@ -103,13 +265,13 @@
     border-radius: 5px;
 }
 
-.recipe-card-notes-label {
+.edit-recipe-card-notes-label {
     font-size: 25px;
     margin: 5px;
     text-decoration: underline;
 }
 
-.recipe-card-notes {
+.edit-recipe-card-notes {
     white-space: normal;
     overflow-wrap: break-word;
     line-height: 1.5;
@@ -120,7 +282,7 @@
 
 /* ******* functionality ******************************* */
 
-.recipe-card-delete {
+.edit-recipe-card-delete {
     position: absolute;
     bottom: 0;
     right: 100px;
@@ -128,11 +290,11 @@
     cursor: pointer;
 }
 
-.recipe-card-delete:hover {
+.edit-recipe-card-delete:hover {
     color: rgb(199, 195, 195);
 }
 
-.recipe-card-edit {
+.edit-recipe-card-edit {
     position: absolute;
     bottom: 0;
     right: 30px;
@@ -140,6 +302,6 @@
     cursor: pointer;
 }
 
-.recipe-card-edit:hover {
+.edit-recipe-card-edit:hover {
     color: rgb(199, 195, 195);
 }

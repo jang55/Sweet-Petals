@@ -4,6 +4,7 @@ import { getAllRecipesThunk } from "../../store/recipeReducer";
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import RecipeCard from "./RecipeCard";
+import EditRecipeCard from "./EditRecipeCard";
 
 
 
@@ -12,6 +13,7 @@ function Recipes() {
     const allRecipes = useSelector(state => state.recipeState);
     const [recipes, setRecipes] = useState([]);
     const [isLoaded, setIsLoaded] = useState(false);
+    const [showEdit, setShowEdit] = useState("");
 
     // sets the recipes as array of all the recipes
     useEffect(() => {
@@ -38,8 +40,13 @@ function Recipes() {
             <div className="recipe-wrapper">
                 <h2 className="recipe-h2">Recipes List</h2>
                 {recipes.length > 0 && reverseArray([...recipes]).map((recipe, i) => (
-                    <fieldset key={recipe.id} className="recipe-card-wrapper">
-                        <RecipeCard recipe={recipe} isLoaded={isLoaded} />
+                    showEdit === recipe.id ? 
+                    <fieldset key={`${recipe.id}${i}${recipe.title}`} className="edit-recipe-card-wrapper">
+                        <EditRecipeCard recipe={recipe} isLoaded={isLoaded} setShowEdit={setShowEdit} />
+                    </fieldset>
+                    :       
+                    <fieldset key={`${recipe.id}${i}${recipe.title}`} className="recipe-card-wrapper">
+                        <RecipeCard recipe={recipe} isLoaded={isLoaded} setShowEdit={setShowEdit} />
                     </fieldset>
                 ))}
             </div>

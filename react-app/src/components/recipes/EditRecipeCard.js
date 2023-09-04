@@ -1,52 +1,245 @@
-import "./css/edit-recipe-card.css"
+import "./css/edit-recipe-card.css";
 import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { updateRecipeThunk } from "../../store/recipeReducer";
+
+function EditRecipeCard({ recipe, isLoaded, setShowEdit }) {
+  const dispatch = useDispatch();
+  // const [ingred, setIngred] = useState([]);
+  // const [description, setDescription] = useState([]);
+  
+  // **************************************
+  const [title, setTitle] = useState(recipe.title);
+  const [backEndIngred, setBackEndIngred] = useState([]);
+  const [frontEndIngred, setFrontEndIngred] = useState([]);
+  const [currIngred, setCurrIngred] = useState("");
+  const [description, setDescription] = useState("");
+  const [backEndDescription, setBackEndDescription] = useState([]);
+  const [frontEndDescription, setFrontEndDescription] = useState([]);
+  const [notes, setNotes] = useState("");
+  const [errors, setErrors] = useState({});
 
 
-function EditRecipeCard({ recipe, isLoaded }) {
-    const [ingred, setIngred] = useState([]);
-    const[description, setDescription] = useState([]);
+  // takes the result from the recipe and loops over it to make the right layout to send back
+  // and forth to the backend
+  useEffect(() => {
+    let bIngredArr = [];
+    const ingredSplit = recipe.ingredients.split("/");
+    let bDescripArr = [];
+    const descripSplit = recipe.description.split("/");
 
-    useEffect(() => {
-        if(recipe && recipe.ingredients) {
-            const ingredArrSplit = recipe.ingredients.split("/");
-            // sets the the array to be rendered to the frontend
-            setIngred([...ingredArrSplit]);
-        }
+    for(let i = 0; i < ingredSplit.length; i++) {
+      let ingred = ingredSplit[i];
 
-        if(recipe && recipe.description) {
-            const descripArrSplit = recipe.description.split("/");
-            // sets the the array to be rendered to the frontend
-            setDescription([...descripArrSplit]);
-        }
-    }, [recipe])
-    
-    return(
-        isLoaded && <>
-            <legend className="recipe-card-title">{recipe.title.toUpperCase()}</legend>
-            <div className="recipe-card-ingred-wrap">
-                <p className="recipe-card-ingred-label">INGREDIENTS</p>
-                <ul className="recipe-card-ingred">
-                    {ingred.map(ingred => (
-                        <li className="recipe-card-ingred-items" key={`${ingred}`}>{ingred}</li>
-                    ))}
-                </ul>
-            </div>
-            <div className="recipe-card-description-wrap">
-                <p className="recipe-card-description-label">DIRECTIONS</p>
-                <ol className="recipe-card-description">
-                    {description.map(descrip => (
-                        <li className="recipe-card-description-item" key={`${descrip}`}>{descrip}</li>
-                    ))}
-                </ol>
-            </div>
-            <div className="recipe-card-notes-wrap">
-                <p className="recipe-card-notes-label">NOTES</p>
-                {recipe.notes ? <p className="recipe-card-notes">{recipe.notes}</p> : <p className="recipe-card-notes">You have no notes listed.</p>}
-            </div>
-            <p className="recipe-card-delete">Delete</p>
-            <p className="recipe-card-edit">Edit</p>
-        </>
+      if(i === 0) {
+        bIngredArr.push(ingred)
+      } else {
+        bIngredArr.push(`/${ingred}`)
+      }
+    }
+
+    for(let i = 0; i < descripSplit.length; i++) {
+      let descrip = descripSplit[i];
+
+      if(i === 0) {
+        bDescripArr.push(descrip);
+      } else {
+        bDescripArr.push(`/${descrip}`)
+      }
+    }
+
+    setBackEndIngred(bIngredArr);
+    setBackEndDescription(bDescripArr);
+  }, [recipe])
+
+
+  // sets the backend arr to be mapped out in the front
+  useEffect(() => {
+    if (backEndIngred.length >= 1) {
+      // joined the arr together into 1 string
+      const ingredArr = backEndIngred.join("");
+      // split the string on the "/"
+      const ingredArrSplit = ingredArr.split("/");
+      // sets the the array to be rendered to the frontend
+      setFrontEndIngred([...ingredArrSplit]);
+      return;
+    }
+
+    setFrontEndIngred([]);
+  }, [backEndIngred]);
+
+  // handles adding ingrdients to the backend arr
+  const handleAddIngred = (event) => {
+    setErrors({});
+    const newErrors = {};
+    // handled adding into the array state whether first value or not
+    if (currIngred.trim().length <= 3) {
+      newErrors["ingred"] = "*Ingredients needs to be between 4-25 chars only";
+      setErrors(newErrors);
+      return;
+    }
+
+    if (!currIngred.trim().match(/^[a-zA-Z0-9 ]+$/)) {
+      newErrors["ingred"] = "*Ingredients needs to be numbers or letters";
+      setErrors(newErrors);
+      return;
+    }
+
+    if (backEndIngred.length < 1) {
+      setBackEndIngred([...backEndIngred, currIngred]);
+    } else {
+      setBackEndIngred([...backEndIngred, `/${currIngred}`]);
+    }
+    // resets the state to add a new value in
+    setCurrIngred("");
+  };
+
+  // removes the last item in the backendArr
+  const handleRemoveIngred = (event) => {
+    const ingredArr = [...backEndIngred];
+    ingredArr.pop();
+    setBackEndIngred([...ingredArr]);
+  };
+
+  // *************************************************************************
+
+  // sets the backend arr to be mapped out in the front
+  useEffect(() => {
+    if (backEndDescription.length >= 1) {
+      // joined the arr together into 1 string
+      const descriptionArr = backEndDescription.join("");
+      // split the string on the "/"
+      const descriptionArrSplit = descriptionArr.split("/");
+      // sets the the array to be rendered to the frontend
+      setFrontEndDescription([...descriptionArrSplit]);
+      return;
+    }
+
+    setFrontEndDescription([]);
+  }, [backEndDescription]);
+
+  // handles adding ingrdients to the backend arr
+  const handleAddDescription = (event) => {
+    setErrors({});
+    const newErrors = {};
+    // handled adding into the array state whether first value or not
+    if (description.trim().length <= 3) {
+      newErrors["description"] =
+        "*Directions needs to be atleast 4 characters long";
+      setErrors(newErrors);
+      return;
+    }
+
+    if (!description.trim().match(/^[a-zA-Z0-9 .]+$/)) {
+      newErrors["description"] = "*Directions needs to be numbers or letters";
+      setErrors(newErrors);
+      return;
+    }
+
+    if (backEndDescription.length < 1) {
+      setBackEndDescription([...backEndDescription, description]);
+    } else {
+      setBackEndDescription([...backEndDescription, `/${description}`]);
+    }
+    // resets the state to add a new value in
+    setDescription("");
+  };
+
+  // ********************************************
+
+
+  return (
+    isLoaded && (
+      <>
+      {/* ****** title position ******************** */}
+        <legend className="edit-recipe-card-title">
+          <label className="edit-recipe-title-label">
+            Recipe Title:
+            <input
+              className="edit-recipe-title-input"
+              type="text"
+              value={title}
+              maxLength={100}
+              required
+              onChange={(e) => setTitle(e.target.value)}
+            />
+          </label>
+          {errors && errors["title"] && (
+            <p className="edit-recipe-title-error">{errors["title"]}</p>
+          )}
+        </legend>
+        {/******* end title position************ */}
+
+
+
+      {/* handle inputs for ingredients */}
+        <div className="edit-recipe-card-ingred-wrap">
+        {errors && errors["ingred"] && (
+            <p className="edit-recipe-ingred-error">{errors["ingred"]}</p>
+          )}
+          {backEndIngred.length >= 10 && (
+            <p className="edit-recipe-ingred-error">*Reached limit of 10 ingredients</p>
+          )}
+          <label className="edit-recipe-ingred-label">
+            Ingredients:
+            <input
+              className="edit-recipe-ingred-input"
+              type="text"
+              value={currIngred}
+              minLength={3}
+              maxLength={25}
+              onChange={(e) => setCurrIngred(e.target.value)}
+            />
+            <button
+              type="button"
+              className={`${backEndIngred.length >= 10 ? "edit-recipe-add-ingred-button-disabled" : "edit-recipe-add-ingred-button"}`}
+              onClick={handleAddIngred}
+              disabled={backEndIngred.length >= 10}
+            >
+              add
+            </button>
+          </label>
+          <p className="edit-recipe-card-ingred-label">INGREDIENTS</p>
+          {/* <ul className="edit-recipe-card-ingred"> */}
+          <ul className="edit-recipe-ingred-list">
+            {frontEndIngred.length >= 1 ?
+              frontEndIngred.map((ingred, i) => (
+                <li key={`${ingred}${i}`} className="edit-recipe-ingred-list-item">{ingred}</li>
+              )) : <p className="edit-recipe-ingred-list-item">List is empty</p>}
+          </ul>
+          {backEndIngred.length > 0 && <p className="edit-recipe-remove-ingred" onClick={handleRemoveIngred}>Remove last item</p>}
+        </div>
+      {/* ends handling inputs for ingrdients */}
+
+
+        <div className="edit-recipe-card-description-wrap">
+          <p className="edit-recipe-card-description-label">DIRECTIONS</p>
+          <ol className="edit-recipe-card-description">
+            {frontEndDescription.map((descrip, i) => (
+              <li
+                className="edit-recipe-card-description-item"
+                key={`${descrip}${i}`}
+              >
+                {descrip}
+              </li>
+            ))}
+          </ol>
+        </div>
+        <div className="edit-recipe-card-notes-wrap">
+          <p className="edit-recipe-card-notes-label">NOTES</p>
+          {recipe.notes ? (
+            <p className="edit-recipe-card-notes">{recipe.notes}</p>
+          ) : (
+            <p className="edit-recipe-card-notes">You have no notes listed.</p>
+          )}
+        </div>
+        <p className="edit-recipe-card-delete" onClick={(e) => setShowEdit("")}>
+          Cancel
+        </p>
+        <button className="edit-recipe-card-edit">Save</button>
+      </>
     )
+  );
 }
 
 export default EditRecipeCard;

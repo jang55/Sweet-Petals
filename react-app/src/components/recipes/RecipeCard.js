@@ -2,7 +2,7 @@ import "./css/recipe-card.css"
 import { useState, useEffect } from "react";
 
 
-function RecipeCard({ recipe, isLoaded }) {
+function RecipeCard({ recipe, isLoaded, setShowEdit }) {
     const [ingred, setIngred] = useState([]);
     const[description, setDescription] = useState([]);
 
@@ -26,16 +26,16 @@ function RecipeCard({ recipe, isLoaded }) {
             <div className="recipe-card-ingred-wrap">
                 <p className="recipe-card-ingred-label">INGREDIENTS</p>
                 <ul className="recipe-card-ingred">
-                    {ingred.map(ingred => (
-                        <li className="recipe-card-ingred-items" key={`${ingred}`}>{ingred}</li>
+                    {ingred.map((ingred, i) => (
+                        <li className="recipe-card-ingred-items" key={`${ingred}${i}`}>{ingred}</li>
                     ))}
                 </ul>
             </div>
             <div className="recipe-card-description-wrap">
                 <p className="recipe-card-description-label">DIRECTIONS</p>
                 <ol className="recipe-card-description">
-                    {description.map(descrip => (
-                        <li className="recipe-card-description-item" key={`${descrip}`}>{descrip}</li>
+                    {description.map((descrip, i) => (
+                        <li className="recipe-card-description-item" key={`${descrip}${i}`}>{descrip}</li>
                     ))}
                 </ol>
             </div>
@@ -44,7 +44,7 @@ function RecipeCard({ recipe, isLoaded }) {
                 {recipe.notes ? <p className="recipe-card-notes">{recipe.notes}</p> : <p className="recipe-card-notes">You have no notes listed.</p>}
             </div>
             <p className="recipe-card-delete">Delete</p>
-            <p className="recipe-card-edit">Edit</p>
+            <p className="recipe-card-edit" onClick={e => setShowEdit(recipe.id)} >Edit</p>
         </>
     )
 }
