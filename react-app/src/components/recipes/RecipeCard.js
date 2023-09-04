@@ -22,23 +22,29 @@ function RecipeCard({ recipe, isLoaded }) {
     
     return(
         isLoaded && <>
-            <legend className="recipe-card-title">{recipe.title}</legend>
-            <div>
-                <p>INGREDIENTS</p>
-                <ul>
+            <legend className="recipe-card-title">{recipe.title.toUpperCase()}</legend>
+            <div className="recipe-card-ingred-wrap">
+                <p className="recipe-card-ingred-label">INGREDIENTS</p>
+                <ul className="recipe-card-ingred">
                     {ingred.map(ingred => (
-                        <li key={`${ingred}`}>{ingred}</li>
+                        <li className="recipe-card-ingred-items" key={`${ingred}`}>{ingred}</li>
                     ))}
                 </ul>
             </div>
-            <div>
-                <p>DIRECTIONS</p>
-                <ol>
+            <div className="recipe-card-description-wrap">
+                <p className="recipe-card-description-label">DIRECTIONS</p>
+                <ol className="recipe-card-description">
                     {description.map(descrip => (
-                        <li key={`${descrip}`}>{descrip}</li>
+                        <li className="recipe-card-description-item" key={`${descrip}`}>{descrip}</li>
                     ))}
                 </ol>
             </div>
+            <div className="recipe-card-notes-wrap">
+                <p className="recipe-card-notes-label">NOTES</p>
+                {recipe.notes ? <p className="recipe-card-notes">{recipe.notes}</p> : <p className="recipe-card-notes">You have no notes listed.</p>}
+            </div>
+            <p className="recipe-card-delete">Delete</p>
+            <p className="recipe-card-edit">Edit</p>
         </>
     )
 }

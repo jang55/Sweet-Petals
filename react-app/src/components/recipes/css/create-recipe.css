@@ -208,9 +208,9 @@ background-attachment: local, local, scroll, scroll;
 }
 
 .c-recipe-description-input {
-  width: 41%;
+  width: 39%;
   outline: none;
-  padding: 5px 0px;
+  padding: 5px 10px 5px 0px;
   font-size: 17px;
   border-radius: 2px;
   border: 1px solid gray;
@@ -218,7 +218,7 @@ background-attachment: local, local, scroll, scroll;
   color: var(--main-text-color);
   margin: 8px;
   margin-top: 20px;
-  margin-left: 15px;
+  margin-left: 16px;
   font-size: 15px;
   font-weight: bold;
 }
@@ -348,7 +348,7 @@ background-attachment: local, local, scroll, scroll;
   height: 50px;
   resize: none;
   background-color: var(--main-select-color);
-  border: 1px solid black;
+  border: 1px solid gray;
   font-size: 15px;
   font-weight: bold;
   border-radius: 7px;
@@ -357,6 +357,7 @@ background-attachment: local, local, scroll, scroll;
   color: var(--main-text-color);
   margin-top: 10px;
 }
+
 
 
 /* **************************************************************** */
