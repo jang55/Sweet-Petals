@@ -183,10 +183,10 @@ function EditRecipeCard({ recipe, isLoaded, setShowEdit }) {
   
       const ingredStr = backEndIngred.join("");
       const descriptionStr = backEndDescription.join("");
-  
+      const note = notes ? (notes.trim().length < 1 ? null : notes.trim()) : null
   
       const updatedRecipe = await dispatch(
-        updateRecipeThunk(recipe.id, title.trim(), ingredStr, descriptionStr, notes.trim().length < 1 ? null : notes.trim())
+        updateRecipeThunk(recipe.id, title.trim(), ingredStr, descriptionStr, note)
       );
   
       if (updatedRecipe) {
@@ -229,12 +229,6 @@ function EditRecipeCard({ recipe, isLoaded, setShowEdit }) {
 
       {/* handle inputs for ingredients */}
         <div className="edit-recipe-card-ingred-wrap">
-        {errors && errors["ingred"] && (
-            <p className="edit-recipe-ingred-error">{errors["ingred"]}</p>
-          )}
-          {backEndIngred.length >= 10 && (
-            <p className="edit-recipe-ingred-error">*Reached limit of 10 ingredients</p>
-          )}
           <label className="edit-recipe-ingred-label">
             Ingredients:
             <input
@@ -254,6 +248,12 @@ function EditRecipeCard({ recipe, isLoaded, setShowEdit }) {
               add
             </button>
           </label>
+          {errors && errors["ingred"] && (
+            <p className="edit-recipe-ingred-error">{errors["ingred"]}</p>
+          )}
+          {backEndIngred.length >= 10 && (
+            <p className="edit-recipe-ingred-error">*Reached limit of 10 ingredients</p>
+          )}
           <p className="edit-recipe-card-ingred-label">INGREDIENTS</p>
           {/* <ul className="edit-recipe-card-ingred"> */}
           <ul className="edit-recipe-ingred-list">
@@ -263,17 +263,13 @@ function EditRecipeCard({ recipe, isLoaded, setShowEdit }) {
               )) : <p className="edit-recipe-ingred-list-item">List is empty</p>}
           </ul>
           {backEndIngred.length > 0 && <p className="edit-recipe-remove-ingred" onClick={handleRemoveIngred}>Remove last item</p>}
+        
         </div>
+        
       {/* ends handling inputs for ingrdients */}
 
 
         <div className="edit-recipe-card-description-wrap">
-            {errors && errors["description"] && (
-              <p className="edit-recipe-description-error">{errors["description"]}</p>
-            )}
-            {backEndDescription.length >= 10 && (
-              <p className="edit-recipe-description-error">*Reached limit of 10 directions</p>
-            )}
                 <label className="edit-recipe-description-label">
               Directions:
               <input
@@ -293,7 +289,12 @@ function EditRecipeCard({ recipe, isLoaded, setShowEdit }) {
                 add
               </button>
             </label>
-
+            {errors && errors["description"] && (
+              <p className="edit-recipe-description-error">{errors["description"]}</p>
+            )}
+            {backEndDescription.length >= 10 && (
+              <p className="edit-recipe-description-error">*Reached limit of 10 directions</p>
+            )}
 
           <p className="edit-recipe-card-description-label">DIRECTIONS</p>
           <ol className="edit-recipe-description-list" >
