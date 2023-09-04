@@ -1,0 +1,25 @@
+.recipe-card-wrapper {
+    width: 90%;
+    max-height: 300px;
+    height: 310px;
+    box-shadow: 0px 0px 5px 3px rgba(65, 63, 63, 0.2);
+    border-radius: 5px;
+    padding: 15px;
+    padding-top: 0px;
+    background-color: rgb(244, 244, 244);
+    border: 1px solid gray;
+    margin-bottom: 30px;
+}
+
+.recipe-card-title {
+    color: rgb(52, 49, 49);
+    border: 1px solid rgb(52, 49, 49);
+    padding: 5px;
+    border-radius: 7px;
+    background-color: rgb(244, 244, 244);
+    box-shadow: 0px 0px 5px 3px rgba(65, 63, 63, 0.2);
+    margin: auto;
+    font-size: 20px;
+    font-weight: bolder;
+    padding: 10px 20px;
+}

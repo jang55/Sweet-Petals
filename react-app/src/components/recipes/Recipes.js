@@ -32,15 +32,15 @@ function Recipes() {
     };
 
     return(
-        <div className="recipe-container">
-            <h1>Recipes</h1>
+        isLoaded && <div className="recipe-container">
+            <h1 className="recipe-h1">Recipe Page</h1>
             <CreateRecipe />
             <div className="recipe-wrapper">
-                <h2>My Recipes</h2>
+                <h2 className="recipe-h2">Recipes List</h2>
                 {recipes.length > 0 && reverseArray([...recipes]).map((recipe, i) => (
-                    <div key={recipe.id} className="">
+                    <fieldset key={recipe.id} className="recipe-card-wrapper">
                         <RecipeCard recipe={recipe} />
-                    </div>
+                    </fieldset>
                 ))}
             </div>
         </div>

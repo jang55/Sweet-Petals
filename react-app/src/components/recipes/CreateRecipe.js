@@ -34,13 +34,13 @@ function CreateRecipe() {
     setErrors({});
     const newErrors = {};
     // handled adding into the array state whether first value or not
-    if (currIngred.length <= 3) {
+    if (currIngred.trim().length <= 3) {
       newErrors["ingred"] = "*Ingredients needs to be between 4-25 chars only";
       setErrors(newErrors);
       return;
     }
 
-    if (!currIngred.match(/^[a-zA-Z0-9]+$/)) {
+    if (!currIngred.trim().match(/^[a-zA-Z0-9 ]+$/)) {
       newErrors["ingred"] = "*Ingredients needs to be numbers or letters";
       setErrors(newErrors);
       return;
@@ -59,7 +59,6 @@ function CreateRecipe() {
   // removes the last item in the backendArr
   const handleRemoveIngred = (event) => {
     const ingredArr = [...backEndIngred];
-    console.log( ingredArr ,"in the remove handle")
     ingredArr.pop();
     setBackEndIngred([...ingredArr])
   }
@@ -131,12 +130,16 @@ function CreateRecipe() {
             type="button"
             className="c-recipe-add-ingred-button"
             onClick={handleAddIngred}
+            disabled={backEndIngred.length >= 10}
           >
             add
           </button>
         </label>
         {errors && errors["ingred"] && (
           <p className="c-recipe-ingred-error">{errors["ingred"]}</p>
+        )}
+        {backEndIngred.length >= 10 && (
+          <p className="c-recipe-ingred-error">*Reached limit of 10 ingredients</p>
         )}
         <label className="c-recipe-description-label">
           Directions:
