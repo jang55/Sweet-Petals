@@ -16,7 +16,7 @@ function EditRecipeCard({ recipe, isLoaded, setShowEdit }) {
   const [description, setDescription] = useState("");
   const [backEndDescription, setBackEndDescription] = useState([]);
   const [frontEndDescription, setFrontEndDescription] = useState([]);
-  const [notes, setNotes] = useState("");
+  const [notes, setNotes] = useState(recipe.notes);
   const [errors, setErrors] = useState({});
 
   // takes the result from the recipe and loops over it to make the right layout to send back
