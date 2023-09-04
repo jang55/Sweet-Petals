@@ -39,7 +39,7 @@ function Recipes() {
                 <h2 className="recipe-h2">Recipes List</h2>
                 {recipes.length > 0 && reverseArray([...recipes]).map((recipe, i) => (
                     <fieldset key={recipe.id} className="recipe-card-wrapper">
-                        <RecipeCard recipe={recipe} />
+                        <RecipeCard recipe={recipe} isLoaded={isLoaded} />
                     </fieldset>
                 ))}
             </div>

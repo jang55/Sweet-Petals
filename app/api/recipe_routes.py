@@ -64,7 +64,8 @@ def create_recipe():
             user_id=current_user.get_id(),
             title=data["title"],
             ingredients=data["ingredients"],
-            description=data["description"]
+            description=data["description"],
+            notes=data["notes"]
         )
         db.session.add(new_recipe)
         db.session.commit()
@@ -99,6 +100,7 @@ def edit_a_recipe(id):
         recipe.title=data["title"]
         recipe.ingredients=data["ingredients"]
         recipe.description=data["description"]
+        recipe.notes=data["notes"]
         db.session.commit()
         return recipe.to_dict()
     return {"errors": validation_errors_to_error_messages(form.errors)}, 400

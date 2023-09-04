@@ -64,7 +64,7 @@ function UsersOrders() {
     
     return(
         isLoaded && <div className="users-orders-container">
-            <h1>My Orders</h1>
+            <h1 style={{textDecoration: "underline"}}>My Orders</h1>
             {orders.length > 0 ? orders.map(order => (
                 <div key={order.id} className="order-outer-wrapper">
                     <OrderCard order={order} validOrder={true} />

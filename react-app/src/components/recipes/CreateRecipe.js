@@ -10,6 +10,9 @@ function CreateRecipe() {
   const [frontEndIngred, setFrontEndIngred] = useState([]);
   const [currIngred, setCurrIngred] = useState("");
   const [description, setDescription] = useState("");
+  const [backEndDescription, setBackEndDescription] = useState([]);
+  const [frontEndDescription, setFrontEndDescription] = useState([]);
+  const [notes, setNotes] = useState("");
   const [errors, setErrors] = useState({});
 
 
@@ -64,17 +67,82 @@ function CreateRecipe() {
   }
 
 
+  // *************************************************************************
+  
+    // sets the backend arr to be mapped out in the front
+    useEffect(() => {
+      if (backEndDescription.length >= 1) {
+        // joined the arr together into 1 string
+        const descriptionArr = backEndDescription.join("");
+        // split the string on the "/"
+        const descriptionArrSplit = descriptionArr.split("/");
+        // sets the the array to be rendered to the frontend
+        setFrontEndDescription([...descriptionArrSplit]);
+        return;
+      }
+  
+      setFrontEndDescription([]);
+    }, [backEndDescription]);
+  
+  
+    // handles adding ingrdients to the backend arr
+    const handleAddDescription = (event) => {
+      setErrors({});
+      const newErrors = {};
+      // handled adding into the array state whether first value or not
+      if (description.trim().length <= 3) {
+        newErrors["description"] = "*Directions needs to be atleast 4 characters long";
+        setErrors(newErrors);
+        return;
+      }
+  
+      if (!description.trim().match(/^[a-zA-Z0-9 .]+$/)) {
+        newErrors["description"] = "*Directions needs to be numbers or letters";
+        setErrors(newErrors);
+        return;
+      }
+  
+      if (backEndDescription.length < 1) {
+        setBackEndDescription([...backEndDescription, description]);
+      } else {
+        setBackEndDescription([...backEndDescription, `/${description}`]);
+      }
+      // resets the state to add a new value in
+      setDescription("");
+    };
+  
+  
+    // removes the last item in the backendArr
+    const handleRemoveDescription = (event) => {
+      const descriptionArr = [...backEndDescription];
+      descriptionArr.pop();
+      setBackEndDescription([...descriptionArr])
+    }
+
+
+
+
+
+
+
+  // *************************************************************************
+
+
   // handles submission of the form
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors({});
     const newErrors = {};
 
+    if (backEndDescription.length < 1) {
+      newErrors["description"] = "*Directions are required";
+    }
+
     if (backEndIngred.length < 1) {
       newErrors["ingred"] = "*Ingredients are required";
     }
 
-    if (!title.match(/^[a-zA-Z]+$/)) {
+    if (!title.match(/^[a-zA-Z .]+$/)) {
       newErrors["title"] = "*Title needs to be letters only";
     }
 
@@ -84,9 +152,11 @@ function CreateRecipe() {
     }
 
     const ingredStr = backEndIngred.join("");
+    const descriptionStr = backEndDescription.join("");
+
 
     const newRecipe = dispatch(
-      createRecipeThunk(title, ingredStr, description)
+      createRecipeThunk(title.trim(), ingredStr, descriptionStr, notes.trim().length < 1 ? null : notes.trim())
     );
 
     if (newRecipe) {
@@ -95,6 +165,9 @@ function CreateRecipe() {
       setDescription("");
       setBackEndIngred([]);
       setFrontEndIngred([]);
+      setBackEndDescription([]);
+      setFrontEndDescription([]);
+      setNotes("");
     }
   };
 
@@ -116,6 +189,7 @@ function CreateRecipe() {
         {errors && errors["title"] && (
           <p className="c-recipe-title-error">{errors["title"]}</p>
         )}
+        {/* handle inputs for ingredients */}
         <label className="c-recipe-ingred-label">
           Ingredients:
           <input
@@ -128,7 +202,7 @@ function CreateRecipe() {
           />
           <button
             type="button"
-            className="c-recipe-add-ingred-button"
+            className={`${backEndIngred.length >= 10 ? "c-recipe-add-ingred-button-disabled" : "c-recipe-add-ingred-button"}`}
             onClick={handleAddIngred}
             disabled={backEndIngred.length >= 10}
           >
@@ -141,16 +215,47 @@ function CreateRecipe() {
         {backEndIngred.length >= 10 && (
           <p className="c-recipe-ingred-error">*Reached limit of 10 ingredients</p>
         )}
+        {/* ends handling inputs for ingrdients */}
+
+
+
+
+
+        {/* handles inputs for directions */}
         <label className="c-recipe-description-label">
           Directions:
-          <textarea
+          <input
             className="c-recipe-description-input"
-            type="textarea"
-            onChange={(e) => setDescription(e.target.value)}
+            type="text"
             value={description}
-            required
-          ></textarea>
+            minLength={3}
+            // maxLength={25}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+          <button
+            type="button"
+            className={`${backEndDescription.length >= 10 ? "c-recipe-add-description-button-disabled" : "c-recipe-add-description-button"}`}
+            onClick={handleAddDescription}
+            disabled={backEndDescription.length >= 10}
+          >
+            add
+          </button>
         </label>
+        {errors && errors["description"] && (
+          <p className="c-recipe-description-error">{errors["description"]}</p>
+        )}
+        {backEndDescription.length >= 10 && (
+          <p className="c-recipe-description-error">*Reached limit of 10 directions</p>
+        )}
+        {/* ends handling inputs for directions */}
+
+
+        {/* handles the notes part */}
+          <label className="c-recipe-notes-label">
+            Notes: 
+            <textarea value={notes} onChange={e => setNotes(e.target.value)} className="c-recipe-notes"></textarea>
+          </label>
+        {/* ends handles the notes part */}
         <div className="c-recipe-ingred-list-wrap">
           <h3 className="c-recipe-h3">Ingredients List</h3>
           <ul className="c-recipe-ingred-list">
@@ -160,6 +265,16 @@ function CreateRecipe() {
               )) : <p className="c-recipe-ingred-list-item">List is empty</p>}
           </ul>
           {backEndIngred.length > 0 && <p className="c-recipe-remove-ingred" onClick={handleRemoveIngred}>Remove last item</p>}
+        </div>
+        <div className="c-recipe-description-list-wrap">
+          <h3 className="c-recipe-h3">Directions List</h3>
+          <ol className="c-recipe-description-list">
+            {frontEndDescription.length >= 1 ?
+              frontEndDescription.map((descrip, i) => (
+                <li key={`${descrip}${i}`} className="c-recipe-description-list-item">{descrip}</li>
+              )) : <p className="c-recipe-description-list-item">List is empty</p>}
+          </ol>
+          {backEndDescription.length > 0 && <p className="c-recipe-remove-ingred" onClick={handleRemoveDescription}>Remove last item</p>}
         </div>
         <button className="c-recipe-submit-button" type="submit">
           Submit

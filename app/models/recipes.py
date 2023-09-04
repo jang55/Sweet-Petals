@@ -15,6 +15,7 @@ class Recipe(db.Model, UserMixin):
     title = db.Column(db.String(100), nullable=False)
     ingredients = db.Column(db.String(), nullable=False)
     description = db.Column(db.String(), nullable=False)
+    notes = db.Column(db.String())
     created_at = db.Column(db.DateTime(timezone=True), default=db.func.now())
     updated_at = db.Column(db.DateTime(timezone=True), default=db.func.now())
 
@@ -29,6 +30,7 @@ class Recipe(db.Model, UserMixin):
             'title': self.title,
             'ingredients': self.ingredients,
             'description': self.description,
+            'notes': self.notes,
             'created_at': self.created_at,
             'updated_at': self.updated_at
         }

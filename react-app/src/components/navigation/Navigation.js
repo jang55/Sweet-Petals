@@ -80,10 +80,10 @@ function Navigation({ isLoaded }) {
             </li>
           ) : (
             isLoaded && (
-              <li className="nav-menu-wrapper"  onClick={toggleMenu}>
+              <li className="nav-menu-wrapper" ref={dropdownRef} onClick={toggleMenu}>
                 <RxHamburgerMenu className="nav-menu-button" />
                 {openMenu && (
-                  <div className="nav-menu" ref={dropdownRef} >
+                  <div className="nav-menu"  >
                     <NavLink className="nav-menu-items-wrap" to="/messages">
                       <span className="nav-menu-items">
                         Inbox <FaEnvelope className="nav-envelope" />
@@ -128,7 +128,7 @@ function Navigation({ isLoaded }) {
           )}
           {/**************** end sections for login button and navigations ********************************/}
 
-          <li className="nav-shopping-wrapper" >
+          <li className="nav-shopping-wrapper" ref={cartRef}>
             <RiShoppingCart2Line
               className="nav-shopping-cart"
               onClick={toggleShoppingCart}
@@ -137,7 +137,7 @@ function Navigation({ isLoaded }) {
               <div className="nav-shopping-count">{cartCount}</div>
             )}
             {openShoppingCart && (
-              <div className="nav-shopping-cart-items" ref={cartRef}>
+              <div className="nav-shopping-cart-items" >
                 <ShoppingCart />
               </div>
             )}

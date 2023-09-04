@@ -8,4 +8,5 @@ class RecipeForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
     ingredients = StringField('Ingredients', validators=[DataRequired()])
     description = StringField('description', validators=[DataRequired()])
+    notes = StringField('notes')
 

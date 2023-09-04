@@ -79,7 +79,7 @@ export const getRecipeThunk = (recipeId) => async (dispatch) => {
 // ***************************
 
 export const createRecipeThunk =
-  (title, ingredients, description) => async (dispatch) => {
+  (title, ingredients, description, notes) => async (dispatch) => {
     const response = await fetch(`/api/recipes`, {
       method: "POST",
       headers: {
@@ -89,6 +89,7 @@ export const createRecipeThunk =
         title,
         ingredients,
         description,
+        notes,
       }),
     });
 
@@ -105,7 +106,7 @@ export const createRecipeThunk =
 // ***************************
 
 export const updateRecipeThunk =
-  (recipeId, title, ingredients, description) => async (dispatch) => {
+  (recipeId, title, ingredients, description, notes) => async (dispatch) => {
     const response = await fetch(`/api/recipes/${recipeId}`, {
       method: "UPDATE",
       headers: {
@@ -115,6 +116,7 @@ export const updateRecipeThunk =
         title,
         ingredients,
         description,
+        notes,
       }),
     });
 

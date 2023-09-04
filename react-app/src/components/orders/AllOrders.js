@@ -55,7 +55,7 @@ function AllOrders() {
 
     return(
         isLoaded && <div className="users-orders-container">
-            <h1>All customer orders</h1>
+            <h1 style={{textDecoration: "underline"}} >All customer orders</h1>
             <h2>Incompleted orders</h2>
             {orders.map(order => (
                 <div key={order.id} className="order-outer-wrapper">
