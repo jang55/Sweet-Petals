@@ -19,7 +19,6 @@ function EditRecipeCard({ recipe, isLoaded, setShowEdit }) {
   const [notes, setNotes] = useState("");
   const [errors, setErrors] = useState({});
 
-
   // takes the result from the recipe and loops over it to make the right layout to send back
   // and forth to the backend
   useEffect(() => {
@@ -145,7 +144,63 @@ function EditRecipeCard({ recipe, isLoaded, setShowEdit }) {
     setDescription("");
   };
 
+  // removes the last item in the backendArr
+  const handleRemoveDescription = (event) => {
+    const descriptionArr = [...backEndDescription];
+    descriptionArr.pop();
+    setBackEndDescription([...descriptionArr])
+  }
+  
+
   // ********************************************
+
+    // handles submission of the form
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      setErrors({});
+      const newErrors = {};
+  
+      if (backEndDescription.length < 1) {
+        newErrors["description"] = "*Directions is required";
+      }
+  
+      if (backEndIngred.length < 1) {
+        newErrors["ingred"] = "*Ingredients is required";
+      }
+  
+      if (!title.match(/^[a-zA-Z .]+$/)) {
+        newErrors["title"] = "*Title needs to be letters only";
+      }
+
+      if (title.trim() === "") {
+        newErrors["title"] = "*Title is required";
+      }
+  
+      if (Object.values(newErrors).length > 0) {
+        setErrors(newErrors);
+        return;
+      }
+  
+      const ingredStr = backEndIngred.join("");
+      const descriptionStr = backEndDescription.join("");
+  
+  
+      const updatedRecipe = await dispatch(
+        updateRecipeThunk(recipe.id, title.trim(), ingredStr, descriptionStr, notes.trim().length < 1 ? null : notes.trim())
+      );
+  
+      if (updatedRecipe) {
+        setTitle("");
+        setCurrIngred("");
+        setDescription("");
+        setBackEndIngred([]);
+        setFrontEndIngred([]);
+        setBackEndDescription([]);
+        setFrontEndDescription([]);
+        setNotes("");
+        setShowEdit("");
+      }
+    };
 
 
   return (
@@ -213,30 +268,52 @@ function EditRecipeCard({ recipe, isLoaded, setShowEdit }) {
 
 
         <div className="edit-recipe-card-description-wrap">
-          <p className="edit-recipe-card-description-label">DIRECTIONS</p>
-          <ol className="edit-recipe-card-description">
-            {frontEndDescription.map((descrip, i) => (
-              <li
-                className="edit-recipe-card-description-item"
-                key={`${descrip}${i}`}
+            {errors && errors["description"] && (
+              <p className="edit-recipe-description-error">{errors["description"]}</p>
+            )}
+            {backEndDescription.length >= 10 && (
+              <p className="edit-recipe-description-error">*Reached limit of 10 directions</p>
+            )}
+                <label className="edit-recipe-description-label">
+              Directions:
+              <input
+                className="edit-recipe-description-input"
+                type="text"
+                value={description}
+                minLength={3}
+                // maxLength={25}
+                onChange={(e) => setDescription(e.target.value)}
+              />
+              <button
+                type="button"
+                className={`${backEndDescription.length >= 10 ? "edit-recipe-add-description-button-disabled" : "edit-recipe-add-description-button"}`}
+                onClick={handleAddDescription}
+                disabled={backEndDescription.length >= 10}
               >
-                {descrip}
-              </li>
-            ))}
+                add
+              </button>
+            </label>
+
+
+          <p className="edit-recipe-card-description-label">DIRECTIONS</p>
+          <ol className="edit-recipe-description-list" >
+            {frontEndDescription.length >= 1 ?
+              frontEndDescription.map((descrip, i) => (
+                <li key={`${descrip}${i}`} className="edit-recipe-description-list-item">{descrip}</li>
+              )) : <p className="edit-recipe-description-list-item">List is empty</p>}
           </ol>
+          {backEndDescription.length > 0 && <p className="edit-recipe-remove-ingred" onClick={handleRemoveDescription}>Remove last item</p>}
         </div>
+
+
         <div className="edit-recipe-card-notes-wrap">
           <p className="edit-recipe-card-notes-label">NOTES</p>
-          {recipe.notes ? (
-            <p className="edit-recipe-card-notes">{recipe.notes}</p>
-          ) : (
-            <p className="edit-recipe-card-notes">You have no notes listed.</p>
-          )}
+            <textarea value={notes} onChange={e => setNotes(e.target.value)} className="edit-recipe-notes"></textarea>
         </div>
         <p className="edit-recipe-card-delete" onClick={(e) => setShowEdit("")}>
           Cancel
         </p>
-        <button className="edit-recipe-card-edit">Save</button>
+        <button className="edit-recipe-card-edit" onClick={handleSubmit}>Save</button>
       </>
     )
   );

@@ -146,6 +146,10 @@ function CreateRecipe() {
       newErrors["title"] = "*Title needs to be letters only";
     }
 
+    if (title.trim() === "") {
+      newErrors["title"] = "*Title is required";
+    }
+
     if (Object.values(newErrors).length > 0) {
       setErrors(newErrors);
       return;

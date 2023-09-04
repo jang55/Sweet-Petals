@@ -108,7 +108,7 @@ export const createRecipeThunk =
 export const updateRecipeThunk =
   (recipeId, title, ingredients, description, notes) => async (dispatch) => {
     const response = await fetch(`/api/recipes/${recipeId}`, {
-      method: "UPDATE",
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
