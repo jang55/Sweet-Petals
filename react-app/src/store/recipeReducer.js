@@ -142,7 +142,7 @@ export const deleteRecipeThunk = (recipeId) => async (dispatch) => {
 
   if (response.ok) {
     const data = await response.json();
-    dispatch(deleteRecipeActions(data));
+    dispatch(getAllRecipesThunk());
     return data;
   } else {
     const err = await response.json();

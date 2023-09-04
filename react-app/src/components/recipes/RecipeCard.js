@@ -1,5 +1,6 @@
 import "./css/recipe-card.css"
 import { useState, useEffect } from "react";
+import DeleteRecipeModal from "../modal-pages/DeleteRecipeModal";
 
 
 function RecipeCard({ recipe, isLoaded, setShowEdit }) {
@@ -43,7 +44,7 @@ function RecipeCard({ recipe, isLoaded, setShowEdit }) {
                 <p className="recipe-card-notes-label">NOTES</p>
                 {recipe.notes ? <p className="recipe-card-notes">{recipe.notes}</p> : <p className="recipe-card-notes">You have no notes listed.</p>}
             </div>
-            <p className="recipe-card-delete">Delete</p>
+            <DeleteRecipeModal recipe={recipe} />
             <p className="recipe-card-edit" onClick={e => setShowEdit(recipe.id)} >Edit</p>
         </>
     )
