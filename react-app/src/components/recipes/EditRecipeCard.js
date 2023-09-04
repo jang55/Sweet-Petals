@@ -313,7 +313,7 @@ function EditRecipeCard({ recipe, isLoaded, setShowEdit }) {
         <p className="edit-recipe-card-delete" onClick={(e) => setShowEdit("")}>
           Cancel
         </p>
-        <button className="edit-recipe-card-edit" onClick={handleSubmit}>Save</button>
+        <button className="edit-recipe-card-save-button" onClick={handleSubmit}>Save</button>
       </>
     )
   );
