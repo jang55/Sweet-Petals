@@ -23,36 +23,50 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
+
+
 
 .lb-wrap-2 {
   width: 1100px;
-  display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  grid-template-rows: repeat(3, 1fr);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
 .lb-2-img {
-  width: 400px;
-  grid-column-start: 2;
-  grid-column-end: 6;
-  grid-row-start: 1;
-  grid-row-end: 3;
+  width: 370px;
+  border-radius: 100px;
+  float: left;
+  position: absolute;
+  left: 80px;
+  z-index: 2;
+  box-shadow: 0px 0px 5px 3px rgba(86, 85, 86, 0.4);
 }
 
+.landing-aboutme-info-wrap {
+  background-color: var(--main-bg-button);
+  border-radius: 100px;
+  padding: 10px 50px;
+  text-align: center;
+  position: relative;
+  max-width: 500px;
+  height: fit-content;
+  margin-left: 300px;
+  box-shadow: 0px 0px 5px 3px rgba(86, 85, 86, 0.2);
+}
+
+
 .lb-2-h2 {
-  grid-column-start: 6;
-  grid-column-end: 10;
-  grid-row-start: 1;
-  grid-row-end: 2;
+
 }
 
 
 .lb-2-p {
-  grid-column-start: 6;
-  grid-column-end: 10;
-  grid-row-start: 2;
-  grid-row-end: 3;
+  font-weight: bold;
 }
 
 /***** sections three *********************/
@@ -60,10 +74,10 @@
 .landing-body-wrapper-3 {
   grid-row-start: 3;
   grid-row-end: 4;
-  /* background-color: rgb(221, 255, 0); */
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: var(--main-bg-button);
 }
 
 .lb-wrap-3 {

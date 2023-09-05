@@ -12,6 +12,8 @@ import img_8 from "../../images/IMG_8.JPEG";
 import img_9 from "../../images/IMG_9.JPEG";
 import img_10 from "../../images/IMG_10.JPEG";
 import img_11 from "../../images/IMG_11.JPEG";
+import baker_img from "../../images/baker_img.jpeg"
+
 
 function LandingBody() {
   return (
@@ -21,13 +23,28 @@ function LandingBody() {
       {/* ****** section 2 ******* */}
       <div className="landing-body-wrapper-2">
         <div className="lb-wrap-2">
-          <img src={logo} className="lb-2-img" />
-          <h2 className="lb-2-h2">A quick about me about here</h2>
-          <p className="lb-2-p">
-            A random paragraph place holder for people to see so that im going
-            to keep typing in here to make this very long just to have some info
-            space
-          </p>
+          <img src={baker_img} className="lb-2-img" />
+          <div className="landing-aboutme-info-wrap">
+            <h2 className="lb-2-h2">So, who am I...</h2>
+            <p className="lb-2-p">
+              "Hi i'm Chheanna! I'm a self taught baker. I never thought baking was
+              for me. Like many others during the pandemic, I found myself bored
+              during lockdown. Since most bakeries shut down during COVID-19
+              pandemic, I decied to bake my own homemade cookies. I baked my first
+              batch of chocolate chip cookies and it turned out pretty good. I
+              remembered baking the same chocolate chip cookies, but just tweaking
+              the ingridients around until i baked what I thought was the perfect
+              batch. Baking became an obsession and I started baking cupcakes,
+              cheesecakes, cookies, and more! I also took this time to practice
+              piping buttercream. I didn't get it at first. It took many trials
+              and errors and finally, I piped the most beautiful rosette and the
+              rest was history! I decided to take my passin for baking and turned
+              it into a small business. I wanted to be able to share my treats
+              with others. My home baked treats are baked and decorated with love.
+              i Use high quality ingredients because I believe that it makes a
+              huge difference on the outcome. Thank you all for your support!"
+            </p>
+          </div>
         </div>
       </div>
       {/* ****** section 3 ******* */}
