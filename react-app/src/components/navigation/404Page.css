@@ -1,0 +1,55 @@
+.fof-page-outer-container {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(248,248,248);
+}
+
+
+.fof-page-container {
+    width: 1200px;
+    background-image: url(https://i.imgur.com/LR1za5E.jpg);
+    background-size: cover;
+    height: 100vh;
+    margin: auto;
+    position: relative;
+}
+
+.fof-error-message {
+    position: absolute;
+    top: 220px;
+    left: 60px;
+    font-size: 90px;
+    font-weight: bolder;
+    transform: rotate(-45deg);
+    color: rgb(218,154,197);
+}
+
+.fof-error-message-2 {
+    position: absolute;
+    top: 260px;
+    right: 0;
+    font-size: 80px;
+    font-weight: bolder;
+    transform: rotate(45deg);
+    color: rgb(218,154,197);
+}
+
+.fof-page-home-button {
+    position: absolute;
+    background-color: rgb(218,154,197);
+    z-index: 5;
+    top: 80px;
+    right: 490px;
+    width: 240px;
+    height: 50px;
+    font-size: 30px;
+    cursor: pointer;
+    color: white;
+    border-radius: 30px;
+    /* border: none; */
+}
+
+.fof-page-home-button:hover {
+    background-color: rgb(212, 193, 218);
+    color: black;
+}
