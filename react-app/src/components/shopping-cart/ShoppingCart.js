@@ -18,6 +18,7 @@ import { useHistory } from "react-router-dom";
 
 function ShoppingCart() {
   const cart = useSelector((state) => state.cartState);
+  const sessionUser = useSelector((state) => state.session.user);
   const [cupcakes, setCupcakes] = useState([]);
   const [cheesecakes, setCheesecakes] = useState([]);
   const [cookies, setCookies] = useState([]);
@@ -29,18 +30,21 @@ function ShoppingCart() {
   const dispatch = useDispatch();
   const history = useHistory();
 
+
   // sets all the dessert items into an array
   useEffect(() => {
-    if (cart && cart.cupcakes) {
-      setCupcakes(Object.values(cart.cupcakes));
-    }
-
-    if (cart && cart.cheesecakes) {
-      setCheesecakes(Object.values(cart.cheesecakes));
-    }
-
-    if (cart && cart.cookies) {
-      setCookies(Object.values(cart.cookies));
+    if(sessionUser) {
+      if (cart && cart.cupcakes) {
+        setCupcakes(Object.values(cart.cupcakes));
+      }
+  
+      if (cart && cart.cheesecakes) {
+        setCheesecakes(Object.values(cart.cheesecakes));
+      }
+  
+      if (cart && cart.cookies) {
+        setCookies(Object.values(cart.cookies));
+      }
     }
   }, [cart]);
 

@@ -76,7 +76,7 @@ function CreateReview({ order, setShowModal }) {
               className="c-file-input"
             />
             <div className="c-file-image">
-              <button className="c-file-image-button">Add Image</button>
+              <button className="c-file-image-button" type="button">Add Image</button>
               {image ? <span className="c-image-text">Image selected</span> : <span className="c-image-text">No image selected</span>}
               {image ? <span className="c-remove" onClick={e => setImage("")}>remove</span> : <></>}
             </div>

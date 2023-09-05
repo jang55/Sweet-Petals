@@ -1,3 +1,4 @@
+
 // constants
 const ADD_CUPCAKE = "cart/ADD_CUPCAKE";
 const SUBTRACT_CUPCAKE = "cart/SUBTRACT_CUPCAKE";
@@ -166,35 +167,44 @@ export default function cartReducer(state = initialState, action) {
     case ADD_CUPCAKE:
       const add_cupcake = addCupcake(newState.cupcakes, action.payload)
       newState.cupcakes = add_cupcake;
+      window.sessionStorage.setItem(`cart-items`, JSON.stringify({newState}));
       return newState;
     case ADD_CHEESECAKE:
       const add_cheesecake = addCheesecake(newState.cheesecakes, action.payload)
       newState.cheesecakes = add_cheesecake;
+      window.sessionStorage.setItem(`cart-items`, JSON.stringify(newState));
       return newState;
     case ADD_COOKIE:
       const add_cookies = addCookie(newState.cookies, action.payload)
       newState.cookies = add_cookies;
+      window.sessionStorage.setItem(`cart-items`, JSON.stringify(newState));
       return newState;
     case SUBTRACT_CUPCAKE:
       const subtract_cupcake = subtractCupcake(newState.cupcakes, action.payload)
       newState.cupcakes = subtract_cupcake;
+      window.sessionStorage.setItem(`cart-items`, JSON.stringify(newState));
       return newState;
     case SUBTRACT_CHEESECAKE:
       const subtract_cheesecake = subtractCheesecake(newState.cheesecakes, action.payload)
       newState.cheesecakes = subtract_cheesecake;
+      window.sessionStorage.setItem(`cart-items`, JSON.stringify(newState));
       return newState;
     case SUBTRACT_COOKIE:
       const subtract_cookies = subtractCookie(newState.cookies, action.payload)
       newState.cookies = subtract_cookies;
+      window.sessionStorage.setItem(`cart-items`, JSON.stringify(newState));
       return newState;
     case REMOVE_CUPCAKE:
       delete newState.cupcakes[action.payload.id];
+      window.sessionStorage.setItem(`cart-items`, JSON.stringify(newState));
       return newState;
     case REMOVE_CHEESECAKE:
       delete newState.cheesecakes[action.payload.id];
+      window.sessionStorage.setItem(`cart-items`, JSON.stringify(newState));
       return newState;
     case REMOVE_COOKIE:
       delete newState.cookies[action.payload.flavor];
+      window.sessionStorage.setItem(`cart-items`, JSON.stringify(newState));
       return newState;
     case RESET_CART:
       newState = {
@@ -202,8 +212,13 @@ export default function cartReducer(state = initialState, action) {
         cheesecakes: {},
         cookies: {},
       }
+      window.sessionStorage.setItem(`cart-items`, JSON.stringify(newState));
       return newState;
     default:
+      const sessionState = JSON.parse(window.sessionStorage.getItem(`cart-items`))
+      if(sessionState) {
+        return sessionState;
+      }
       return state;
   }
 }

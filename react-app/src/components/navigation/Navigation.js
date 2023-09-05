@@ -10,20 +10,73 @@ import { logout } from "../../store/session";
 import ShoppingCart from "../shopping-cart/ShoppingCart";
 import LoginFormModal from "../modal-pages/LoginFormModal";
 import "./nav.css";
-// import { removeAllCartItems } from "../../store/cartReducer";
 import { FaEnvelope } from "react-icons/fa";
 
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
-  const { cartCount, openShoppingCart, setOpenShoppingCart } =
+  const cart = useSelector((state) => state.cartState);
+  const [cupcakes, setCupcakes] = useState([]);
+  const [cheesecakes, setCheesecakes] = useState([]);
+  const [cookies, setCookies] = useState([]);
+  const { cartCount, setCartCount, openShoppingCart, setOpenShoppingCart } =
     useContext(InfoContext);
   const [openMenu, setOpenMenu] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
   const dropdownRef = useRef();
   const cartRef = useRef();
+
   
+  // *********** this sets the count for the session storage values *******************************
+    useEffect(() => {
+      if(!sessionUser) {
+        setCartCount(0)
+      }
+    }, [sessionUser])
+
+    // sets all the dessert items into an array
+    useEffect(() => {
+      if(sessionUser) {
+        if (cart && cart.cupcakes) {
+          setCupcakes(Object.values(cart.cupcakes));
+        }
+    
+        if (cart && cart.cheesecakes) {
+          setCheesecakes(Object.values(cart.cheesecakes));
+        }
+    
+        if (cart && cart.cookies) {
+          setCookies(Object.values(cart.cookies));
+        }
+      }
+    }, [cart]);
+  
+    // sets the amount of items and subtotal price
+    useEffect(() => {
+      let totalItems = 0;
+  
+      if (cupcakes && cupcakes.length > 0) {
+        cupcakes.forEach((cupcake) => {
+          totalItems += cupcake.amount;
+        });
+      }
+  
+      if (cheesecakes && cheesecakes.length > 0) {
+        cheesecakes.forEach((cheesecake) => {
+          totalItems += cheesecake.amount;
+        });
+      }
+  
+      if (cookies && cookies.length > 0) {
+        cookies.forEach((cookie) => {
+          totalItems += cookie.amount;
+        });
+      }
+      setCartCount(totalItems);
+    }, [cupcakes, cheesecakes, cookies, setCartCount]);
+// ***********************************************************
+
 
   // handles the event being clicked outside of the area
   const handleClickOutside = (event) => {
@@ -54,6 +107,11 @@ function Navigation({ isLoaded }) {
   };
 
   const logoutHandler = async () => {
+    window.sessionStorage.setItem(`cart-items`, JSON.stringify({
+      cupcakes: {},
+      cheesecakes: {},
+      cookies: {},
+    }));
     await dispatch(logout());
     // await dispatch(removeAllCartItems());
     return history.push("/");
