@@ -95,7 +95,7 @@
 
 .yes-reviews-messages a {
   text-decoration: none;
-  color: blue;
+  color: rgb(218,154,197);
 }
 
 .yes-reviews-messages a:hover {
@@ -110,7 +110,7 @@
 
 .no-reviews-messages a {
   text-decoration: none;
-  color: blue;
+  color: rgb(218,154,197);
 }
 
 .no-reviews-messages a:hover {
