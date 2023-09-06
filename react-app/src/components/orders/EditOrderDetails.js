@@ -93,6 +93,12 @@ function EditOrderDetails() {
     setShowEditForm("");
   }
 
+  const handleCancelUpdatingOrder = () => {
+    setShowEditForm("");
+    setPickUpDate("");
+    setPickUpTime("");
+  }
+
   return (
     isLoaded &&
     order.user_id === user.id && (
@@ -106,7 +112,7 @@ function EditOrderDetails() {
               <span className="order-info-text">
                 {dateFormat(order.pick_up_time)}
               </span>
-              <span onClick={e => setShowEditForm("date-time")} className="edit-pickup-time-text">Edit-Date/Time</span>
+              <span onClick={e => setShowEditForm("date-time")} className="edit-pickup-time-text">Change</span>
             </p>
             <span className="order-received">
             <span>Have you received your order? </span>
@@ -137,7 +143,7 @@ function EditOrderDetails() {
             <input className="edit-order-pickup-time" type="time" min="09:00" max="18:00" onChange={e => setPickUpTime(e.target.value)}></input>
             <span className="validity"></span>
           </label>
-                <p onClick={e => setShowEditForm("")} className="edit-order-cancel">Cancel</p>
+                <p onClick={handleCancelUpdatingOrder} className="edit-order-cancel">Cancel</p>
                 <button onClick={handleUpdatingOrder} className={`${pickUpDate.length < 1  || pickUpTime.length < 1 ? "edit-order-save-invalid" :"edit-order-save"}`} disabled={pickUpDate.length < 1 || pickUpTime.length < 1} >Save</button>
             </form>}
           {/* ******** ends edit handling dates order and time ************** */}

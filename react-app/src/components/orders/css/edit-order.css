@@ -52,6 +52,10 @@
   border-bottom-right-radius: 5px;
   border: 1px solid gray;
   margin-left: 5px;
+  position: absolute;
+  top: 30px;
+  right: 150px;
+  background-color: var(--main-bg-color);
 }
 
 .edit-date-time-question {
@@ -137,7 +141,7 @@ margin-left: 5px;
   margin-bottom: 10px;
   height: 20px;
   cursor: pointer;
-  background-color: #DA9AC5;
+  background-color: rgb(241, 168, 179);
   border-radius: 5px;
   font-family: Arial, Helvetica, sans-serif;
   border: 1px solid var(--main-text-color);
@@ -159,5 +163,5 @@ margin-left: 5px;
 }
 
 .edit-order-save:hover {
-  background-color: #e5a4d0;
+  background-color: rgb(253, 206, 214);
 }
