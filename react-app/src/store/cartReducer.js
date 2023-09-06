@@ -167,7 +167,7 @@ export default function cartReducer(state = initialState, action) {
     case ADD_CUPCAKE:
       const add_cupcake = addCupcake(newState.cupcakes, action.payload)
       newState.cupcakes = add_cupcake;
-      window.sessionStorage.setItem(`cart-items`, JSON.stringify({newState}));
+      window.sessionStorage.setItem(`cart-items`, JSON.stringify(newState));
       return newState;
     case ADD_CHEESECAKE:
       const add_cheesecake = addCheesecake(newState.cheesecakes, action.payload)
@@ -216,7 +216,8 @@ export default function cartReducer(state = initialState, action) {
       return newState;
     default:
       const sessionState = JSON.parse(window.sessionStorage.getItem(`cart-items`));
-      if(sessionState) {
+      console.log(sessionState, "session state")
+      if(sessionState && sessionState !== null) {
         if(Object.values(sessionState.cupcakes).length > 0 || Object.values(sessionState.cheesecakes).length > 0 || Object.values(sessionState.cookies).length > 0) {
           return sessionState;
         }

@@ -11,6 +11,7 @@ import ShoppingCart from "../shopping-cart/ShoppingCart";
 import LoginFormModal from "../modal-pages/LoginFormModal";
 import "./nav.css";
 import { FaEnvelope } from "react-icons/fa";
+import { removeAllCartItems } from "../../store/cartReducer";
 
 
 function Navigation({ isLoaded }) {
@@ -114,6 +115,7 @@ function Navigation({ isLoaded }) {
       cookies: {},
     }));
     await dispatch(logout());
+    await dispatch(removeAllCartItems());
     // await dispatch(removeAllCartItems());
     return history.push("/");
   };
