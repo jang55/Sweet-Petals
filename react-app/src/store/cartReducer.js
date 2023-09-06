@@ -215,9 +215,11 @@ export default function cartReducer(state = initialState, action) {
       window.sessionStorage.setItem(`cart-items`, JSON.stringify(newState));
       return newState;
     default:
-      const sessionState = JSON.parse(window.sessionStorage.getItem(`cart-items`))
+      const sessionState = JSON.parse(window.sessionStorage.getItem(`cart-items`));
       if(sessionState) {
-        return sessionState;
+        if(Object.values(sessionState.cupcakes).length > 0 || Object.values(sessionState.cheesecakes).length > 0 || Object.values(sessionState.cookies).length > 0) {
+          return sessionState;
+        }
       }
       return state;
   }
