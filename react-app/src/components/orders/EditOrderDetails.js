@@ -9,10 +9,12 @@ import EditCupcake from "./edit-orders/EditCupcake";
 import { dateFormat } from "../../utils/helperFunctions";
 import moment from "moment";
 import * as orderActions from "../../store/orderReducer";
+import { useHistory } from "react-router-dom";
 
 function EditOrderDetails() {
   const { orderId } = useParams();
   const dispatch = useDispatch();
+  const history = useHistory();
   const order = useSelector((state) => state.orderState);
   const user = useSelector((state) => state.session);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -25,13 +27,30 @@ function EditOrderDetails() {
   const [pickUpDate, setPickUpDate] = useState("");
   const [pickUpTime, setPickUpTime] = useState("");
   const [minDate, setMinDate] = useState("");
-  // const [showEditDate, setShowEditDate] = useState(false)
+
+  // checks to handle the url param to make sure the id is an actual number
+  // return 404page if not
+  useEffect(() => {
+    if(typeof Number(orderId) !== "number") {
+      history.push("/404error")
+      return;
+    }
+  }, [orderId])
 
   useEffect(() => {
     dispatch(getOrderThunk(orderId)).then(() => {
       setIsLoaded(true);
     });
   }, [dispatch, orderId]);
+
+  // checks to see if the order that is return is there. return 404page if not
+    useEffect(() => {
+      if(isLoaded) {
+        if(Object.values(order).length < 1) {
+          history.push("/404error")
+        }
+      }
+  }, [isLoaded])
 
   // sets all the dessert items into an array
   useEffect(() => {
@@ -103,7 +122,7 @@ function EditOrderDetails() {
     isLoaded &&
     order.user_id === user.id && (
       <div className="edit-order-container">
-        <h1>Order Details</h1>
+        <h1 style={{textDecoration: "underline"}}>Order Details</h1>
         <p>You can make changes to your order here on this page.</p>
         <div className="edit-order-wrapper">
           <div className="edit-info-wrap">

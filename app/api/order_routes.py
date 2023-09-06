@@ -79,6 +79,9 @@ def get_order_detail(id):
     if order is None:
         return {"error": "Order not found"}, 404
 
+    if str(order.owner_id) != current_user.get_id():
+        return {"errors": [{"Unauthorized": "Unauthorized Action"}]}, 401
+
     current_order = order.to_dict()
 
     if order.cupcakes:

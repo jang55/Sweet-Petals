@@ -52,8 +52,8 @@
 }
 
 .delete-order-confirm-button {
-    background-color: rgb(227, 82, 82);
+    background-color: rgb(152, 148, 148);
 }
 .delete-order-confirm-button:hover {
-    background-color: rgba(254, 0, 0, 0.9);
+    background-color: rgb(227, 82, 82);
 }

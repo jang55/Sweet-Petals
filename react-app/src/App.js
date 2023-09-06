@@ -46,7 +46,7 @@ function App() {
           <Route path="/reviews/users">
             <AllUserReviews/>
           </Route>
-          <Route path="/recipes">
+          <Route exact path="/recipes">
             <Recipes />
           </Route>
           <Route>
