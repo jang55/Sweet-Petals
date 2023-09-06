@@ -59,12 +59,7 @@ function CustomerReviews() {
               ))
             ) : (
               <div className="no-reviews-messages">
-                <h3>You currently do not have any reviews created.</h3>
-                <NavLink to="/orders/users">Click here </NavLink>
-                <span>
-                  to see if you have any previous orders completed to make a
-                  review!
-                </span>
+                <h3>You currently do not have any reviews from any customers.</h3>
               </div>
             )}
           </div>
