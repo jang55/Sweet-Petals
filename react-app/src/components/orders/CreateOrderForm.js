@@ -3,12 +3,14 @@ import { useState } from "react"
 import CheesecakeForm from "./CheesecakeForm"
 import CupcakeForm from "./CupcakeForm"
 import CookieForm from "./CookieForm"
+import { useSelector } from "react-redux"
 
 function CreateOrderForm() {
-    const [currentForm, setCurrentForm] = useState("Cupcakes")
+    const [currentForm, setCurrentForm] = useState("Cupcakes");
+    const user = useSelector((state) => state.session.user);
 
     return (
-        <div className="create-order-container">
+        user && <div className="create-order-container">
             <div className="c-order-buttons-wrap">
                 <button 
                 onClick={e => setCurrentForm("Cupcakes")} 

@@ -5,14 +5,24 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { getAllOrdersThunk } from "../../store/orderReducer";
 import { getAllUsersThunk } from "../../store/userReducer";
+import { useHistory } from "react-router-dom";
 
 
 function AllOrders() {
     const usersOrders = useSelector(state => state.orderState);
+    const user = useSelector((state) => state.session.user);
     const [orders, setOrders] = useState([]);
     const [oldOrders, setOldOrders] = useState([]);
     const [isLoaded, setIsLoaded] = useState(false);
     const dispatch = useDispatch();
+    const history = useHistory();
+    
+
+    useEffect(() => {
+        if (user && user.role !== "admin") {
+            history.push("/404error")
+        }
+    }, [user])
 
 // dispatch the thunk to set redux for users orders
     useEffect(() => {
@@ -54,7 +64,7 @@ function AllOrders() {
 
 
     return(
-        isLoaded && <div className="users-orders-container">
+        isLoaded && user && <div className="users-orders-container">
             <h1 style={{textDecoration: "underline"}} >All customer orders</h1>
             <h2>Incompleted orders</h2>
             {orders.map(order => (

@@ -9,6 +9,7 @@ import ReviewCard from "./ReviewCard";
 function CustomerReviews() {
   const dispatch = useDispatch();
   const all_reviews = useSelector((state) => state.reviewState);
+  const user = useSelector((state) => state.session.user);
   const [isLoaded, setIsLoaded] = useState(false);
   const [reviews, setReviews] = useState([]);
   const [hoverShowEdit, setHoverShowEdit] = useState("");
@@ -32,7 +33,7 @@ function CustomerReviews() {
   };
 
   return (
-    isLoaded && (
+    isLoaded && user && (
         <div className="customer-reviews-container">
           <h1 className="all-reviews-h1">Customer Reviews</h1>
           <div className="customer-reviews-wrapper">

@@ -55,7 +55,7 @@
   position: absolute;
   top: 30px;
   right: 150px;
-  background-color: var(--main-bg-color);
+  background-color: rgb(244, 244, 244);
 }
 
 .edit-date-time-question {

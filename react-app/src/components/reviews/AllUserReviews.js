@@ -8,6 +8,7 @@ import { NavLink } from "react-router-dom";
 function AllUserReviews() {
   const dispatch = useDispatch();
   const all_reviews = useSelector((state) => state.reviewState);
+  const user = useSelector((state) => state.session.user);
   const [reviews, setReviews] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const [hoverShowEdit, setHoverShowEdit] = useState("");
@@ -31,7 +32,7 @@ function AllUserReviews() {
   };
 
   return (
-    isLoaded && (
+    isLoaded && user && (
       <div className="all-reviews-container">
         <div className="all-reviews-outer-wrapper">
           <h1 className="all-reviews-h1">My Reviews</h1>

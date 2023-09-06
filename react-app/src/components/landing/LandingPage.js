@@ -2,11 +2,11 @@ import LandingBody from "./LandingBody"
 import LandingFooter from "./LandingFooter"
 import "./landing-css/landing-page.css"
 
-function LandingPage() {
+function LandingPage({ isLoaded }) {
 
 
     return (
-        <div>
+        isLoaded && <div>
             <LandingBody />
             <LandingFooter />
         </div>

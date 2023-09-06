@@ -10,6 +10,7 @@ import { NavLink } from "react-router-dom";
 
 function UsersOrders() {
     const usersOrders = useSelector(state => state.orderState);
+    const user = useSelector((state) => state.session.user);
     const [orders, setOrders] = useState([]);
     const [oldOrders, setOldOrders] = useState([]);
     const [isLoaded, setIsLoaded] = useState(false);
@@ -63,7 +64,7 @@ function UsersOrders() {
 
     
     return(
-        isLoaded && <div className="users-orders-container">
+        isLoaded && user && <div className="users-orders-container">
             <h1 style={{textDecoration: "underline"}}>My Orders</h1>
             {orders.length > 0 ? orders.map(order => (
                 <div key={order.id} className="order-outer-wrapper">

@@ -32,6 +32,7 @@ function Navigation({ isLoaded }) {
     useEffect(() => {
       if(!sessionUser) {
         setCartCount(0)
+        // history.push("/")
       }
     }, [sessionUser])
 

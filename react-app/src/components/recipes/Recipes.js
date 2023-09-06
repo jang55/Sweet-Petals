@@ -11,6 +11,7 @@ import EditRecipeCard from "./EditRecipeCard";
 function Recipes() {
     const dispatch = useDispatch();
     const allRecipes = useSelector(state => state.recipeState);
+    const user = useSelector((state) => state.session.user);
     const [recipes, setRecipes] = useState([]);
     const [isLoaded, setIsLoaded] = useState(false);
     const [showEdit, setShowEdit] = useState("");
@@ -34,7 +35,7 @@ function Recipes() {
     };
 
     return(
-        isLoaded && <div className="recipe-container">
+        isLoaded && user && <div className="recipe-container">
             <h1 className="recipe-h1">Recipe Page</h1>
             <CreateRecipe />
             <div className="recipe-wrapper">

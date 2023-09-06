@@ -26,7 +26,7 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path="/" >
-            <LandingPage />
+            <LandingPage isLoaded={isLoaded} />
           </Route>
           <Route exact path="/orders" >
             <AllOrders />
