@@ -35,7 +35,7 @@ function Recipes() {
     };
 
     return(
-        isLoaded && user && <div className="recipe-container">
+        isLoaded && user && user.role === "admin" && <div className="recipe-container">
             <h1 className="recipe-h1">Recipe Page</h1>
             <CreateRecipe />
             <div className="recipe-wrapper">
