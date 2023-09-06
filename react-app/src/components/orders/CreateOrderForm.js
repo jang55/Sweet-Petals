@@ -10,7 +10,7 @@ function CreateOrderForm() {
     const user = useSelector((state) => state.session.user);
 
     return (
-        user && <div className="create-order-container">
+        user && user.role !== "admin" && <div className="create-order-container">
             <div className="c-order-buttons-wrap">
                 <button 
                 onClick={e => setCurrentForm("Cupcakes")} 
