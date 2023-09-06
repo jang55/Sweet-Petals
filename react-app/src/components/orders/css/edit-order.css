@@ -1,36 +1,163 @@
 .edit-order-container {
-    padding-top: 70px;
-    max-width: 1050px;
-    margin: auto;
+  padding-top: 70px;
+  max-width: 1050px;
+  margin: auto;
 }
 
 .edit-order-wrapper {
-    background-color: var(--main-form-color);
-    margin: 20px;
-    margin-bottom: 80px;
-    padding-bottom: 40px;
-    border-radius: 7px;
-    /* padding-bottom: auto; */
-    position: relative;
-    box-shadow: 0px 0px 5px 3px rgba(65, 63, 63, 0.2);
+  background-color: var(--main-form-color);
+  margin: 20px;
+  margin-bottom: 80px;
+  padding-bottom: 40px;
+  border-radius: 7px;
+  /* padding-bottom: auto; */
+  position: relative;
+  box-shadow: 0px 0px 5px 3px rgba(65, 63, 63, 0.2);
 }
-
 
 .edit-info-wrap {
-    margin: 20px;
-    padding-top: 20px;
+  margin: 20px;
+  padding-top: 20px;
 }
 
-
 .no-order-messages {
-    margin-left: 30px;
+  margin-left: 30px;
 }
 
 .no-order-messages a {
-    text-decoration: none;
-    color: rgb(218,154,197);
+  text-decoration: none;
+  color: rgb(218, 154, 197);
 }
 
 .no-order-messages a:hover {
-    color: rgb(162, 162, 228);
+  color: rgb(162, 162, 228);
+}
+
+/* ****** edit time and date pickup******************* */
+
+.edit-pickup-time-text {
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.edit-pickup-time-text:hover {
+  color: rgb(162, 159, 159);
+}
+
+.edit-date-time-order-wrapper {
+  display: grid;
+  grid-template-columns: repeat(11, 1fr);
+  width: 40%;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border: 1px solid gray;
+  margin-left: 5px;
+}
+
+.edit-date-time-question {
+margin-left: 5px;
+}
+
+.edit-order-pickup-date-wrapper {
+  font-size: 13px;
+  grid-column-start: 2;
+  grid-column-end: 12;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  margin-top: 10px;
+}
+
+.edit-order-pickup-time-wrapper {
+  font-size: 13px;
+  grid-column-start: 2;
+  grid-column-end: 12;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  margin-top: 10px;
+  padding-bottom: 15px;
+}
+
+.edit-order-pickup-date {
+  margin-left: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  height: 18px;
+}
+
+.edit-order-pickup-time {
+  position: relative;
+  grid-column-start: 2;
+  grid-column-end: 11;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  margin-left: 0px;
+  height: 18px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.edit-order-time-message {
+  width: 136px;
+}
+
+.edit-order-pickup-time:invalid + span::after {
+  position: absolute;
+  content: "✖";
+  padding-left: 5px;
+  color: red;
+  font-size: 15px;
+}
+
+.edit-order-pickup-time:valid + span::after {
+  position: absolute;
+  content: "✓";
+  padding-left: 5px;
+  color: green;
+  font-size: 15px;
+}
+
+
+.edit-order-cancel {
+  grid-column-start: 4;
+  grid-column-end: 5;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  margin: 0px;
+  cursor: pointer;
+}
+
+.edit-order-cancel:hover {
+  color: rgb(162, 159, 159);
+}
+
+.edit-order-save {
+  grid-column-start: 7;
+  grid-column-end: 8;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  margin: 0px;
+  margin-bottom: 10px;
+  height: 20px;
+  cursor: pointer;
+  background-color: #DA9AC5;
+  border-radius: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  border: 1px solid var(--main-text-color);
+  color: white;
+}
+
+.edit-order-save-invalid {
+  grid-column-start: 7;
+  grid-column-end: 8;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  margin: 0px;
+  margin-bottom: 10px;
+  height: 20px;
+  background-color: rgb(192, 187, 187);
+  border-radius: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+}
+
+.edit-order-save:hover {
+  background-color: #e5a4d0;
 }
