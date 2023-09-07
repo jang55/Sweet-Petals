@@ -7,7 +7,6 @@ function AboutUs() {
   return (
     <div className="about-container">
         <div className="about-main-wrap">
-
             <div className="about-wrap-1">
                 <img src={dev_img} className="about-1-img" />
                 <div className="aboutme-info-wrap-1">

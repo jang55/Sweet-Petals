@@ -55,10 +55,10 @@ function LandingBody() {
             <h2 className="lb-3-h2">Not just beautiful, but delicious...</h2>
             <p className="lb-3-p">
               Not only are the cupcakes beautiful, but they taste amazing! The
-              cupcakes are soft and fluffy. The buttercream isn't too sweet. I
-              specialized in semi-floral and floral style cupcakes. I hand piped
-              each one myself. I offered different flavors for the cupcakes like
-              vanilla, chocolate, and lemon. I only use All American vnilla
+              cupcakes are soft and fluffy. The buttercream isn't too sweet. We
+              specialized in semi-floral and floral style cupcakes. We hand piped
+              each one ourselves. We offered different flavors for the cupcakes like
+              vanilla, chocolate, and lemon. We only use All American vnilla
               buettercream because it holds the style in place
             </p>
           </div>
@@ -71,8 +71,8 @@ function LandingBody() {
           <div className="lb-4-info-wrap">
             <h2 className="lb-4-h2">A perfect bite...</h2>
             <p className="lb-4-p">
-              My cheesecake bites are the perfect balance of creamy, sweet, and
-              tangy. I used fresh lemons to balance off the sweetness. It has a
+              Our cheesecake bites are the perfect balance of creamy, sweet, and
+              tangy. We used fresh lemons to balance off the sweetness. It has a
               nice buttery think crust. Once you take a bite, you will be back for
               seconds or thirds. You can order it in its original flavor, matcha,
               or many more! You will have the option to order the cheesecake bites
@@ -89,7 +89,7 @@ function LandingBody() {
             <h2 className="lb-5-h2">Why take one, when you can take two...</h2>
             <p className="lb-5-p">
               Everyone has that perfect idea of there perfect chocolate chip
-              cookies. I've always been a salty and sweet gal. My cookies are
+              cookies. Our cookies are
               brown butter based. They have the perfect balance of sweet and
               salty. The outside is slightly crispy and chewy in the middle. The
               chocolate just melts in your mouth. Warning! You will go for another
