@@ -23,6 +23,14 @@ function SignupFormPage() {
     e.preventDefault();
     setErrors({});
     const errors = {};
+
+    if(username.length < 5) {
+      errors.username = "Username needs to be atleast 5 characters long"
+    }
+
+    if(!username.match(/^[a-zA-Z0-9]+$/)) {
+      errors.username = "Username can only consist of numbers and letters with no spaces or special characters."
+    }
     
     if(password !== confirmPassword) {
       errors.password = "Passwords did not match"
