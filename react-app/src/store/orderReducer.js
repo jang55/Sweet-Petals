@@ -473,7 +473,7 @@ export const deleteCupcakeOrderThunk =
 
     if (response.ok) {
       const data = await response.json();
-      dispatch(getOrderThunk(orderId));
+      await dispatch(getOrderThunk(orderId));
       return data;
     } else {
       const err = await response.json();
@@ -497,7 +497,7 @@ export const deleteCheesecakesOrderThunk =
 
     if (response.ok) {
       const data = await response.json();
-      dispatch(getOrderThunk(orderId));
+      await dispatch(getOrderThunk(orderId));
       return data;
     } else {
       const err = await response.json();
@@ -518,7 +518,7 @@ export const deleteCookiesOrderThunk =
 
     if (response.ok) {
       const data = await response.json();
-      dispatch(getOrderThunk(orderId));
+      await dispatch(getOrderThunk(orderId));
       return data;
     } else {
       const err = await response.json();

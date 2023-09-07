@@ -5,9 +5,10 @@ import { useDispatch } from "react-redux";
 import "./css/edit-cupcake.css"
 import {AiOutlineMinusCircle, AiFillPlusCircle, } from "react-icons/ai";
 import { deleteCupcakeOrderThunk, updateCupcakeOrderThunk } from "../../../store/orderReducer";
+import DeleteOrderModalTwo from "../../modal-pages/DeleteOrderModalTwo";
+import { getOrderThunk } from "../../../store/orderReducer";
 
-
-function EditCupcake({ cupcake, hoverShowEdit, setHoverShowEdit, showEditForm, setShowEditForm}) {
+function EditCupcake({ cupcake, hoverShowEdit, setHoverShowEdit, showEditForm, setShowEditForm, totalItemsCount, order}) {
   const [flavor, setFlavor] = useState(cupcake.flavor);
   const [hsvaOne, setHsvaOne] = useState(hexToHsva(cupcake.color_one));
   const [hsvaTwo, setHsvaTwo] = useState(null);
@@ -21,6 +22,7 @@ function EditCupcake({ cupcake, hoverShowEdit, setHoverShowEdit, showEditForm, s
   // const [edit, setEdit] = useState(false)
   const dispatch = useDispatch();
 
+  
   useEffect(() => {
     if (cupcake.color_two) {
       setHsvaTwo(hexToHsva(cupcake.color_two));
@@ -68,10 +70,11 @@ function EditCupcake({ cupcake, hoverShowEdit, setHoverShowEdit, showEditForm, s
   }
 
   // handles removing items in cart with one click
-  const handleRemove = (e) => {
+  const handleRemove = async (e) => {
     e.preventDefault();
 
-    dispatch(deleteCupcakeOrderThunk(cupcake.order_id, cupcake.id));
+    await dispatch(deleteCupcakeOrderThunk(cupcake.order_id, cupcake.id));
+    // setShowEditForm("");
     return;
   };
 
@@ -220,9 +223,9 @@ function EditCupcake({ cupcake, hoverShowEdit, setHoverShowEdit, showEditForm, s
           <span className="cart-dollar-sign" >$</span>
           {cupcake.amount * 30}.00
         </span>
-        <span className="edit-remove" onClick={handleRemove}>
+        {totalItemsCount <= 1 ? <DeleteOrderModalTwo order={order} dessertType={"cupcake"}/> : <span className="edit-remove" onClick={handleRemove}>
           remove
-        </span>
+        </span>}
         <span className="edit-cancel" onClick={e => setShowEditForm("")}>Cancel</span>
         <button className="edit-cupcake-text-save" onClick={handleEditCupcake}>Save Changes</button>
       </div> :

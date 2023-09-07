@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import "./css/edit-cookie.css";
 import { deleteCookiesOrderThunk, updateCookiesOrderThunk } from "../../../store/orderReducer";
-
+import DeleteOrderModalTwo from "../../modal-pages/DeleteOrderModalTwo";
 
 
 
@@ -12,6 +12,8 @@ function EditCookie({
   setHoverShowEdit,
   showEditForm,
   setShowEditForm,
+  totalItemsCount,
+  order
 }) {
   const [selectedCookie, setSelectedCookie] = useState(cookie.flavor);
   const [amount, setAmount] = useState(cookie.amount);
@@ -31,9 +33,10 @@ function EditCookie({
   };
 
   // handles removing items in cart with one click
-  const handleRemove = (e) => {
+  const handleRemove = async (e) => {
     e.preventDefault();
-    dispatch(deleteCookiesOrderThunk(cookie.order_id, cookie.id));
+    await dispatch(deleteCookiesOrderThunk(cookie.order_id, cookie.id));
+    // setShowEditForm("");
     return;
   };
 
@@ -99,12 +102,9 @@ function EditCookie({
         <span className="cart-dollar-sign">$</span>
         {cookie.amount * 10}.00
       </span>
-      <span
-        className="edit-cookie-remove"
-        onClick={(e) => handleRemove(e, cookie)}
-      >
-        remove
-      </span>
+        {totalItemsCount <= 1 ? <DeleteOrderModalTwo order={order} dessertType={"cookie"}/> : <span className="edit-cookie-remove" onClick={handleRemove}>
+          remove
+        </span>}
       <span className="edit-cookie-cancel" onClick={e => setShowEditForm("")}>Cancel</span>
       <button className="edit-cookie-text-save" onClick={handleCookieEdit}>
         Save Changes

@@ -11,6 +11,7 @@ import moment from "moment";
 import * as orderActions from "../../store/orderReducer";
 import { useHistory } from "react-router-dom";
 
+
 function EditOrderDetails() {
   const { orderId } = useParams();
   const dispatch = useDispatch();
@@ -27,6 +28,9 @@ function EditOrderDetails() {
   const [pickUpDate, setPickUpDate] = useState("");
   const [pickUpTime, setPickUpTime] = useState("");
   const [minDate, setMinDate] = useState("");
+  const [totalItemsCount, setTotalItemsCount] = useState(0);
+  console.log(order)
+
 
   // checks to handle the url param to make sure the id is an actual number
   // return 404page if not
@@ -35,7 +39,7 @@ function EditOrderDetails() {
       history.push("/404error")
       return;
     }
-  }, [orderId])
+  }, [orderId, history])
 
   useEffect(() => {
     dispatch(getOrderThunk(orderId)).then(() => {
@@ -50,7 +54,7 @@ function EditOrderDetails() {
           history.push("/404error")
         }
       }
-  }, [isLoaded])
+  }, [isLoaded, history, order])
 
   // sets all the dessert items into an array
   useEffect(() => {
@@ -70,15 +74,18 @@ function EditOrderDetails() {
   // sets the amount of items and subtotal price
   useEffect(() => {
     let totalPrice = 0;
+    let itemCount = 0;
 
     if (cupcakes && cupcakes.length > 0) {
       cupcakes.forEach((cupcake) => {
+        itemCount += 1;
         totalPrice += cupcake.amount * 30;
       });
     }
 
     if (cheesecakes && cheesecakes.length > 0) {
       cheesecakes.forEach((cheesecake) => {
+        itemCount += 1;
         if (cheesecake.strawberries) {
           totalPrice += cheesecake.amount * 20;
         } else {
@@ -89,10 +96,12 @@ function EditOrderDetails() {
 
     if (cookies && cookies.length > 0) {
       cookies.forEach((cookie) => {
+        itemCount += 1;
         totalPrice += cookie.amount * 10;
       });
     }
     setSubTotal(totalPrice);
+    setTotalItemsCount(itemCount)
   }, [cupcakes, cheesecakes, cookies]);
 
 
@@ -117,6 +126,8 @@ function EditOrderDetails() {
     setPickUpDate("");
     setPickUpTime("");
   }
+
+
 
   return (
     isLoaded &&
@@ -179,6 +190,8 @@ function EditOrderDetails() {
                     setHoverShowEdit={setHoverShowEdit}
                     showEditForm={showEditForm}
                     setShowEditForm={setShowEditForm}
+                    totalItemsCount={totalItemsCount}
+                    order={order}
                   />
                 </div>
               ))}
@@ -195,6 +208,8 @@ function EditOrderDetails() {
                     setHoverShowEdit={setHoverShowEdit}
                     showEditForm={showEditForm}
                     setShowEditForm={setShowEditForm}
+                    totalItemsCount={totalItemsCount}
+                    order={order}
                   />
                 </div>
               ))}
@@ -211,6 +226,8 @@ function EditOrderDetails() {
                   setHoverShowEdit={setHoverShowEdit}
                   showEditForm={showEditForm}
                   setShowEditForm={setShowEditForm}
+                  totalItemsCount={totalItemsCount}
+                  order={order}
                   />
                 </div>
               ))}

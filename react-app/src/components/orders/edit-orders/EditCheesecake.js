@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import "./css/edit-cheesecake.css";
 import { deleteCheesecakesOrderThunk, updateCheesecakesOrderThunk } from "../../../store/orderReducer";
-
+import DeleteOrderModalTwo from "../../modal-pages/DeleteOrderModalTwo";
 
 
 function EditCheesecake({
@@ -11,6 +11,8 @@ function EditCheesecake({
   setHoverShowEdit,
   showEditForm,
   setShowEditForm,
+  totalItemsCount,
+  order
 }) {
 
 
@@ -35,9 +37,10 @@ function EditCheesecake({
 
 
   // handles removing items in cart with one click
-  const handleRemove = (e) => {
+  const handleRemove = async (e) => {
     e.preventDefault();
-    dispatch(deleteCheesecakesOrderThunk(cheesecake.order_id, cheesecake.id))
+    await dispatch(deleteCheesecakesOrderThunk(cheesecake.order_id, cheesecake.id))
+    // setShowEditForm("");
     return;
   };
 
@@ -121,12 +124,9 @@ function EditCheesecake({
           {cheesecake.amount * 18}.00
         </span>
       )}
-      <span
-        className="edit-remove"
-        onClick={handleRemove}
-      >
-        remove
-      </span>
+        {totalItemsCount <= 1 ? <DeleteOrderModalTwo order={order} dessertType={"cheesecake"}/> : <span className="edit-remove" onClick={handleRemove}>
+          remove
+        </span>}
       <span className="edit-cancel" onClick={e => setShowEditForm("")}>Cancel</span>
       <button className="edit-cupcake-text-save" onClick={handleEditCheesecake}>
         Save Changes
