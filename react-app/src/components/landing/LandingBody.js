@@ -20,7 +20,7 @@ function LandingBody() {
       {/* ****** section 1 ******* */}
       <div className="landing-body-wrapper-1"></div>
       {/* ****** section 2 ******* */}
-      <div className="landing-body-wrapper-2">
+      {/* <div className="landing-body-wrapper-2">
         <div className="lb-wrap-2">
           <img src={baker_img} className="lb-2-img" />
           <div className="landing-aboutme-info-wrap">
@@ -46,7 +46,7 @@ function LandingBody() {
             </p>
           </div>
         </div>
-      </div>
+      </div> */}
       {/* ****** section 3 ******* */}
       <div className="landing-body-wrapper-3">
         <div className="lb-wrap-3">
