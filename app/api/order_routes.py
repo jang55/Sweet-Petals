@@ -11,7 +11,6 @@ order_routes = Blueprint('orders', __name__)
 
 # # creates validation errors format
 # def validation_errors_to_error_messages(validation_errors):
-#     print(validation_errors)
 #     errorMessages = []
 #     for field in validation_errors:
 #         for error in validation_errors[field]:
@@ -221,7 +220,6 @@ def create_cookie(id):
 @order_routes.route("/<int:id>", methods=["PUT", "PATCH"])
 @login_required
 def edit_a_order(id):
-    print("hit function *******************************")
     form = OrderForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
     # query for the order

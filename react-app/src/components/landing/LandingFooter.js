@@ -81,7 +81,6 @@ function LandingFooter() {
     return reverseArray;
   };
 
-  console.log(totalAverage)
 
   return (
     isLoaded && (

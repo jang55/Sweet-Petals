@@ -4,7 +4,6 @@ import SignupFormPage from "../login-signup/SignupFormPage"
 
 function SignupFormModal() {
     const [showModal, setShowModal] = useState(false);
-    console.log(showModal)
     return (
         <>
         <div onClick={() => setShowModal(true)} style={{}}>Sign Up</div>

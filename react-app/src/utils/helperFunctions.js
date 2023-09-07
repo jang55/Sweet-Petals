@@ -155,8 +155,6 @@ const wasItCreatedYesterday = (day) => {
 // const isItTomrrow = (date) => {
 //     const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 //     const nextDay = moment().add(2, 'days').format("llll");
-//     console.log(nextDay, "moment")
-//     console.log(date, "date")
 //     // const currentWkDay = new Date().toString().slice(0, 3)
 //     // const currentDate = new Date().toString()
 
@@ -167,8 +165,6 @@ const wasItCreatedYesterday = (day) => {
 //     // find the index of what day it is
 //     const indexOfPickUpDay = weekdays.indexOf(date.slice(0, 3))
 //     const indexOfTomrrowDay = weekdays.indexOf(nextDay.slice(0, 3))
-//     // console.log(indexOfPickUpDay, "pick up")
-//     // console.log(indexOfTomrrowDay, "current day")
 
 //     // checks to see if the index is only 1 place behind
 //     if (Math.abs(indexOfTomrrowDay - indexOfPickUpDay) === 1) {
@@ -210,7 +206,6 @@ const isItTomrrow = (date) => {
 
 // converts the date created into a proper format to be displayed
 export const dateFormat = (date) => {
-  // console.log(date)
   if(!date) {
     return ""
   }
@@ -220,8 +215,6 @@ export const dateFormat = (date) => {
   // gets the time of the created at date and split between HR/MIN
   const time = date.slice(17, 22);
 
-  // console.log(date.slice(8, 11), "reg date")
-  // console.log(newDate.toString().slice(4, 7), "new date")
   // if the chat was made today, it will set the time today
   // with format of "Today at 1:18 AM"
   if (

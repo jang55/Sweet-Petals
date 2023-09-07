@@ -32,7 +32,6 @@ function UserReviewCard({ review, hoverShowEdit, pageType, showEditForm, setShow
         e.preventDefault();
 
         const updatedReview = await dispatch(updateReviewThunk(review.id, currReviewText, stars))
-        // console.log(Object.values(image).length > 0)
         if (image) {
             const formData = new FormData();
             formData.append("image_url", image);

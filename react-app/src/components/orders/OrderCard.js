@@ -52,7 +52,6 @@ function OrderCard({ order, pageType, validOrder }) {
   //   if (allReviews) {
   //     const review = allReviews.find(review => Number(review.order_id) === Number(order.id));
   //     setOrderReview(review)
-  //     console.log(review, `review: ${order.id}, ${order.order_number} `)
   //   }
   // }, [allReviews])
 

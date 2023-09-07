@@ -29,9 +29,7 @@ function EditOrderDetails() {
   const [pickUpTime, setPickUpTime] = useState("");
   const [minDate, setMinDate] = useState("");
   const [totalItemsCount, setTotalItemsCount] = useState(0);
-  console.log(cupcakes, "cupcakes");
-  console.log(cookies, "cookies");
-  console.log(cheesecakes, "cheesecakes")
+
 
 
   // checks to handle the url param to make sure the id is an actual number
