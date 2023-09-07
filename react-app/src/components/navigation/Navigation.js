@@ -135,6 +135,11 @@ function Navigation({ isLoaded }) {
               </NavLink>
             </li>
           )}
+            <li>
+              <NavLink exact to="/about-us" className="nav-about-us">
+                About Us
+              </NavLink>
+            </li>
           {/**************** sections for login button and navigations ********************************/}
           {!sessionUser ? (
             <li className="nav-login-wrapper">

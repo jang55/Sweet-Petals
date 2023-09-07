@@ -50,7 +50,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: flex-end;
-  width: 250px;
+  width: fit-content;
   padding-right: 30px;
   /* margin-right: 5px; */
 }
@@ -80,6 +80,16 @@
 }
 
 .nav-create-order:hover {
+  color: white;
+}
+
+.nav-about-us {
+  font-size: 17px;
+  font-weight: bolder;
+  margin: 15px;
+}
+
+.nav-about-us:hover {
   color: white;
 }
 

@@ -12,6 +12,7 @@ import AllUserReviews from "./components/reviews/AllUserReviews";
 import CustomerReviews from "./components/reviews/CustomerReviews";
 import Recipes from "./components/recipes/Recipes";
 import FourOhFourPage from "./components/navigation/404Page";
+import AboutUs from "./components/navigation/AboutUs";
 
 function App() {
   const dispatch = useDispatch();
@@ -48,6 +49,9 @@ function App() {
           </Route>
           <Route exact path="/recipes">
             <Recipes />
+          </Route>
+          <Route exact path="/about-us">
+            <AboutUs />
           </Route>
           <Route>
             <FourOhFourPage />
