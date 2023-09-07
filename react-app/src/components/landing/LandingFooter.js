@@ -42,7 +42,7 @@ function LandingFooter() {
 
   // sets the count for all the review stars
   useEffect(() => {
-    setTotalAverage(getAverage(reviews).toFixed(1));
+    setTotalAverage(getAverage(reviews));
     let total5 = 0;
     let total4 = 0;
     let total3 = 0;
@@ -81,6 +81,8 @@ function LandingFooter() {
     return reverseArray;
   };
 
+  console.log(totalAverage)
+
   return (
     isLoaded && (
       <div className="landing-footer-container">
@@ -89,7 +91,7 @@ function LandingFooter() {
           {/* **********average review container***************** */}
           <div className="footer-average-container">
             <div className="average-rating-text">
-              Average Rating: <span className="avg-num">{totalAverage}/5</span>
+              Average Rating: <span className="avg-num">{totalAverage ? String(totalAverage).length === 1 ? totalAverage : Number(totalAverage).toFixed(1) : 0}/5</span>
             </div>
             <div className="star-average-bar-wrapper">
               <div className="star-average-wrapper">
@@ -142,7 +144,7 @@ function LandingFooter() {
           </div>
           {/* **************end average container****************** */}
           <div className="landing-footer-review-carousel">
-            <InfiniteCarousel
+            {reviews.length > 0 ? <InfiniteCarousel
               // className=""
               breakpoints={[
                 {
@@ -174,7 +176,7 @@ function LandingFooter() {
                   <ReviewCard review={review} />
                 </div>
               ))}
-            </InfiniteCarousel>
+            </InfiniteCarousel> : <p style={{color: "black"}}>There are currently no reviews listed at this time.</p>}
           </div>
         </div>
         <Footer />
