@@ -9,11 +9,15 @@ def seed_reviews():
     review_two = Review(user_id=3, order_id=2, review="Best cookies ever!", stars=5)
     review_three = Review(user_id=4, order_id=3, review="I really enjoyed these cheesecakes very much!", stars=4)
     review_four = Review(user_id=5, order_id=4, review="Cookies were good, but my wife better ones.", stars=3)
+    review_five = Review(user_id=1, order_id=14, review="Cookies were delicious! Could not stop eating them!", stars=5)
+    review_six = Review(user_id=1, order_id=15, review="Bought the cupcakes for my wife and she loved it!.", image_url="https://i.imgur.com/JBirxgX.jpg", stars=5)
 
     db.session.add(review_one)
     db.session.add(review_two)
     db.session.add(review_three)
     db.session.add(review_four)
+    db.session.add(review_five)
+    db.session.add(review_six)
     db.session.commit()
 
 

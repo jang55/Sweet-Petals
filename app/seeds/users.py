@@ -9,17 +9,23 @@ def seed_users():
     demo_admin = User(
         username='DemoAdmin', role="admin", email='demo_admin@aa.io', password='password')
     marnie = User(
-        username='marnie', role="customer", email='marnie@aa.io', password='password')
+        username='Marnie', role="customer", email='marnie@aa.io', password='password')
     bobbie = User(
-        username='bobbie', role="customer", email='bobbie@aa.io', password='password')
+        username='Bobbie', role="customer", email='bobbie@aa.io', password='password')
     mike = User(
-        username='mike', role="customer", email='mike@aa.io', password='password')
+        username='Mike', role="customer", email='mike@aa.io', password='password')
     bill = User(
-        username='bill', role="customer", email='bill@aa.io', password='password')
+        username='Bill', role="customer", email='bill@aa.io', password='password')
     julianna = User(
-        username='julianna', role="customer", email='julianna@aa.io', password='password')
+        username='Julianna', role="customer", email='julianna@aa.io', password='password')
     john = User(
-        username='john', role="customer", email='john@aa.io', password='password')
+        username='John', role="customer", email='john@aa.io', password='password')
+    cedrick = User(
+        username='Cedrick', role="customer", email='cedrick@aa.io', password='password')
+    jerry = User(
+        username='Jerry', role="customer", email='jerry@aa.io', password='password')
+    andrew = User(
+        username='Andrew', role="customer", email='andrew@aa.io', password='password')
 
     db.session.add(demo)
     db.session.add(demo_admin)
@@ -29,6 +35,9 @@ def seed_users():
     db.session.add(bill)
     db.session.add(julianna)
     db.session.add(john)
+    db.session.add(cedrick)
+    db.session.add(jerry)
+    db.session.add(andrew)
     db.session.commit()
 
 

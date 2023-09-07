@@ -5,14 +5,22 @@ from datetime import datetime
 
 
 def seed_orders():
-    order_one = Order(owner_id=1, order_number="JHGH3JH2G", pick_up_time= datetime.now())
-    order_two = Order(owner_id=3, order_number="KJGJ3542", pick_up_time= datetime.now())
-    order_three = Order(owner_id=4, order_number="C25C2H5CH", pick_up_time= datetime.now())
-    order_four = Order(owner_id=5, order_number="KBH35B335B", pick_up_time= datetime.now())
-    order_five = Order(owner_id=6, order_number="L4JH6VL456H", pick_up_time= datetime.now())
-    order_six = Order(owner_id=7, order_number="46VH4JVH4JV", pick_up_time= datetime.now())
-    order_seven = Order(owner_id=8, order_number="GU3G535G3U", pick_up_time= datetime.now())
-    order_eight = Order(owner_id=1, order_number="KJH325GKG2", pick_up_time= datetime.now())
+    order_one = Order(owner_id=1, order_number="JHGH3JH", order_completed=True, pick_up_time= datetime(2023, 9, 4, 9, 15))
+    order_two = Order(owner_id=3, order_number="KJGJ35Y", order_completed=True, pick_up_time= datetime(2023, 9, 3, 10, 15))
+    order_three = Order(owner_id=4, order_number="C25C2H", order_completed=True, pick_up_time= datetime(2023, 9, 3, 11, 15))
+    order_four = Order(owner_id=5, order_number="KBH35B3", order_completed=True, pick_up_time= datetime(2023, 9, 5, 12, 15))
+    order_five = Order(owner_id=6, order_number="L4JH6VL", pick_up_time= datetime.now())
+    order_six = Order(owner_id=7, order_number="46VH4JV", pick_up_time= datetime.now())
+    order_seven = Order(owner_id=8, order_number="GU3G534", pick_up_time= datetime(2023, 9, 7, 9, 15))
+    order_eight = Order(owner_id=1, order_number="GER325G", pick_up_time= datetime.now())
+    order_nine = Order(owner_id=1, order_number="KERG25G", order_completed=True, pick_up_time= datetime(2023, 9, 5, 9, 45))
+    order_ten = Order(owner_id=9, order_number="GER54TG", pick_up_time= datetime.now())
+    order_eleven = Order(owner_id=10, order_number="34GRGE3", pick_up_time= datetime.now())
+    order_twelve = Order(owner_id=11, order_number="544DFG3", pick_up_time= datetime.now())
+    order_thirteen = Order(owner_id=1, order_number="ERERT34", pick_up_time= datetime(2023, 10, 15, 11, 30))
+    order_fourteen = Order(owner_id=1, order_number="DHFGT34", order_completed=True, pick_up_time= datetime(2023, 9, 1, 11, 45))
+    order_fifteen = Order(owner_id=1, order_number="DGDFG44", order_completed=True, pick_up_time= datetime(2023, 9, 2, 11, 20))
+    order_sixteen = Order(owner_id=1, order_number="KJHKDRT", order_completed=True, pick_up_time= datetime(2023, 9, 3, 11, 50))
 
     db.session.add(order_one)   #cup, cook, cheese
     db.session.add(order_two)   #cook
@@ -22,6 +30,14 @@ def seed_orders():
     db.session.add(order_six)   #cook
     db.session.add(order_seven) #cup
     db.session.add(order_eight) #cup, cheese
+    db.session.add(order_nine)  #cupcake
+    db.session.add(order_ten)   #cupcake, cookie
+    db.session.add(order_eleven) # cookie, cheesecake
+    db.session.add(order_twelve) # cheesecake
+    db.session.add(order_thirteen) # cheesecake
+    db.session.add(order_fourteen) #cookie
+    db.session.add(order_fifteen) # cupcake
+    db.session.add(order_sixteen) #cookie
     db.session.commit()
 
 

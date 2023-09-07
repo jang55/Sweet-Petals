@@ -146,11 +146,14 @@ function Navigation({ isLoaded }) {
                 <RxHamburgerMenu className="nav-menu-button" />
                 {openMenu && (
                   <div className="nav-menu"  >
-                    <NavLink className="nav-menu-items-wrap" to="/messages">
+                    {/* <span className="nav-menu-items">
+                      Inbox <FaEnvelope className="nav-envelope" />
+                    </span> */}
+                    {/* <NavLink className="nav-menu-items-wrap" to="/messages">
                       <span className="nav-menu-items">
                         Inbox <FaEnvelope className="nav-envelope" />
                       </span>
-                    </NavLink>
+                    </NavLink> */}
 
                     {sessionUser.role === "admin" && (
                       <NavLink className="nav-menu-items-wrap" to="/orders">
