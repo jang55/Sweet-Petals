@@ -29,7 +29,7 @@
 }
 
 .aboutme-info-wrap-1 {
-  background-color: var(--main-bg-button);
+  background-color: rgb(233,208,232);
   border-radius: 100px;
   padding: 10px 50px;
   text-align: center;
@@ -39,6 +39,7 @@
   /* margin-left: 300px; */
   margin-right: 120px;
   box-shadow: 0px 0px 5px 3px rgba(86, 85, 86, 0.1);
+  color: rgb(145, 134, 134);
 }
 
 .about-1-h2 {
@@ -112,7 +113,8 @@
 }
 
 .aboutme-info-wrap-2 {
-  background-color: var(--main-bg-button);
+  background-color: rgb(233,208,232);
+  color: rgb(145, 134, 134);
   border-radius: 100px;
   padding: 10px 50px;
   text-align: center;

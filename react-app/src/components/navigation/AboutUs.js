@@ -19,7 +19,7 @@ function AboutUs() {
                     use one day with her baking. That one day became a reality. This
                     project is built using Flask, React, HTML, and CSS. Customers can
                     sign up and create orders according to what the options are
-                    available. Customers can make changes to there orders and make
+                    available. Customers can make changes to their orders and make
                     review on the orders that have been completed. Thank you for taking
                     the time to take a look at this project!"
                 </p>
