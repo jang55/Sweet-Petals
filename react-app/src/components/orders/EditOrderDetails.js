@@ -29,7 +29,9 @@ function EditOrderDetails() {
   const [pickUpTime, setPickUpTime] = useState("");
   const [minDate, setMinDate] = useState("");
   const [totalItemsCount, setTotalItemsCount] = useState(0);
-  console.log(order)
+  console.log(cupcakes, "cupcakes");
+  console.log(cookies, "cookies");
+  console.log(cheesecakes, "cheesecakes")
 
 
   // checks to handle the url param to make sure the id is an actual number
@@ -59,15 +61,27 @@ function EditOrderDetails() {
   // sets all the dessert items into an array
   useEffect(() => {
     if (order && order.Cupcakes) {
-      setCupcakes(order.Cupcakes);
+      if(Object.values(order.Cupcakes).length > 0) {
+        setCupcakes(order.Cupcakes);
+      }
+    } else {
+      setCupcakes([])
     }
 
     if (order && order.Cheesecakes) {
-      setCheesecakes(order.Cheesecakes);
+      if(Object.values(order.Cheesecakes).length > 0) {
+        setCheesecakes(order.Cheesecakes);
+      }
+    } else {
+      setCheesecakes([])
     }
 
     if (order && order.Cookies) {
-      setCookies(order.Cookies);
+      if(Object.values(order.Cookies).length > 0) {
+        setCookies(order.Cookies);
+      }
+    } else {
+      setCookies([])
     }
   }, [order]);
 
