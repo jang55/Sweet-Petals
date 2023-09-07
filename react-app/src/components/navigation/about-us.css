@@ -1,13 +1,17 @@
 .about-container {
   padding-top: 70px;
-  padding-bottom: 20px;
-  background-color: rgb(226,214,229);
+  padding-bottom: 50px;
+  /* background-color: rgb(226,214,229); */
 }
 
 .about-main-wrap {
     max-width: 1200px;
     margin: auto;
     margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .about-wrap-1 {
