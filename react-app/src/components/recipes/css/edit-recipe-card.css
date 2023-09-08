@@ -80,6 +80,7 @@
   margin: 0px;
   text-decoration: underline;
   margin-bottom: 5px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .edit-recipe-card-ingred {
@@ -238,6 +239,7 @@
   margin: 0px;
   margin-bottom: 5px;
   text-decoration: underline;
+  font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .edit-recipe-description-label {
@@ -375,6 +377,7 @@
   font-size: 25px;
   margin: 5px;
   text-decoration: underline;
+  font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .edit-recipe-notes {

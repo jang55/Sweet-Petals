@@ -45,7 +45,7 @@
 }
 
 .c-recipe-title-input {
-  width: 68%;
+  width: 67%;
   outline: none;
   padding: 5px 0px;
   font-size: 17px;
@@ -54,7 +54,7 @@
   border: 1px solid gray;
   background-color: var(--main-select-color);
   color: var(--main-text-color);
-  margin-left: 5px;
+  margin-left: 7px;
   font-size: 15px;
   font-weight: bold;
 }
@@ -218,7 +218,7 @@ background-attachment: local, local, scroll, scroll;
   color: var(--main-text-color);
   margin: 8px;
   margin-top: 20px;
-  margin-left: 16px;
+  margin-left: 18px;
   font-size: 15px;
   font-weight: bold;
 }

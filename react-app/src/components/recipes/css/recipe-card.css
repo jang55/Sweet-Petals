@@ -32,6 +32,7 @@
     max-width: 700px;
     white-space: normal;
     overflow-wrap: break-word;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 /* ******** ingred ******************************** */
@@ -50,6 +51,7 @@
     font-size: 30px;
     margin: 0px;
     text-decoration: underline;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .recipe-card-ingred {
@@ -81,6 +83,7 @@
     margin: 5px;
     margin-top: 38px;
     text-decoration: underline;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .recipe-card-description-item {
@@ -110,6 +113,7 @@
     font-size: 25px;
     margin: 5px;
     text-decoration: underline;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .recipe-card-notes {
