@@ -78,7 +78,7 @@ function EditRecipeCard({ recipe, isLoaded, setShowEdit }) {
       return;
     }
 
-    if (!currIngred.trim().match(/^[a-zA-Z0-9 ]+$/)) {
+    if (!currIngred.trim().match(/^[a-zA-Z0-9 .]+$/)) {
       newErrors["ingred"] = "*Ingredients needs to be numbers or letters";
       setErrors(newErrors);
       return;

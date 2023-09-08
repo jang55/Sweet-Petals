@@ -46,7 +46,7 @@ function ShoppingCart() {
         setCookies(Object.values(cart.cookies));
       }
     }
-  }, [cart]);
+  }, [cart, sessionUser]);
 
   // sets the amount of items and subtotal price
   useEffect(() => {

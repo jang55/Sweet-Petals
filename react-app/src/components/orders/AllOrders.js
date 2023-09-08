@@ -22,7 +22,7 @@ function AllOrders() {
         if (user && user.role !== "admin") {
             history.push("/404error")
         }
-    }, [user])
+    }, [user, history])
 
 // dispatch the thunk to set redux for users orders
     useEffect(() => {

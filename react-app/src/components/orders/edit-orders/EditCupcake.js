@@ -6,7 +6,6 @@ import "./css/edit-cupcake.css"
 import {AiOutlineMinusCircle, AiFillPlusCircle, } from "react-icons/ai";
 import { deleteCupcakeOrderThunk, updateCupcakeOrderThunk } from "../../../store/orderReducer";
 import DeleteOrderModalTwo from "../../modal-pages/DeleteOrderModalTwo";
-import { getOrderThunk } from "../../../store/orderReducer";
 
 function EditCupcake({ cupcake, hoverShowEdit, setHoverShowEdit, showEditForm, setShowEditForm, totalItemsCount, order}) {
   const [flavor, setFlavor] = useState(cupcake.flavor);

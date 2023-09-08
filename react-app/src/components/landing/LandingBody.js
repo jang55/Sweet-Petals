@@ -1,18 +1,18 @@
 import "./landing-css/landing-body.css";
 import InfiniteCarousel from "react-leaf-carousel";
-import logo from "../../images/SWEET_PETALS_wlogo.png";
+// import logo from "../../images/SWEET_PETALS_wlogo.png";
 import img_1 from "../../images/IMG_1.JPEG";
 import img_2 from "../../images/IMG_2.JPEG";
 import img_3 from "../../images/IMG_3.JPEG";
 import img_4 from "../../images/IMG_4.JPEG";
 import img_5 from "../../images/IMG_5.JPEG";
 import img_6 from "../../images/IMG_6.JPEG";
-import img_7 from "../../images/IMG_7.JPEG";
-import img_8 from "../../images/IMG_8.JPEG";
-import img_9 from "../../images/IMG_9.JPEG";
+// import img_7 from "../../images/IMG_7.JPEG";
+// import img_8 from "../../images/IMG_8.JPEG";
+// import img_9 from "../../images/IMG_9.JPEG";
 import img_10 from "../../images/IMG_10.JPEG";
 import img_11 from "../../images/IMG_11.JPEG";
-import baker_img from "../../images/baker_img.jpeg";
+// import baker_img from "../../images/baker_img.jpeg";
 
 function LandingBody() {
   return (
@@ -50,7 +50,7 @@ function LandingBody() {
       {/* ****** section 3 ******* */}
       <div className="landing-body-wrapper-3">
         <div className="lb-wrap-3">
-          <img src={"https://i.imgur.com/JBirxgX.jpg"} className="lb-3-img" />
+          <img src={"https://i.imgur.com/JBirxgX.jpg"} className="lb-3-img" alt=""/>
           <div className="lb-3-info-wrap">
             <h2 className="lb-3-h2">Not just beautiful, but delicious...</h2>
             <p className="lb-3-p">
@@ -67,7 +67,7 @@ function LandingBody() {
       {/* ****** section 4 ******* */}
       <div className="landing-body-wrapper-4">
         <div className="lb-wrap-4">
-          <img src={img_5} className="lb-4-img" />
+          <img src={img_5} className="lb-4-img" alt=""/>
           <div className="lb-4-info-wrap">
             <h2 className="lb-4-h2">A perfect bite...</h2>
             <p className="lb-4-p">
@@ -84,7 +84,7 @@ function LandingBody() {
       {/* ****** section 5 ******* */}
       <div className="landing-body-wrapper-5">
         <div className="lb-wrap-5">
-          <img src={"https://i.imgur.com/HhxM6ko.jpg"} className="lb-5-img" />
+          <img src={"https://i.imgur.com/HhxM6ko.jpg"} className="lb-5-img" alt=""/>
           <div className="lb-5-info-wrap">
             <h2 className="lb-5-h2">Why take one, when you can take two...</h2>
             <p className="lb-5-p">

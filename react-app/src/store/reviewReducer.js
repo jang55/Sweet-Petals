@@ -36,17 +36,17 @@ const createReviewAction = (review) => ({
 
 // ***************************
 
-const updateReviewActions = (review) => ({
-  type: UPDATE_REVIEW,
-  payload: review,
-});
+// const updateReviewActions = (review) => ({
+//   type: UPDATE_REVIEW,
+//   payload: review,
+// });
 
-// ***************************
+// // ***************************
 
-const deleteReviewActions = (review) => ({
-  type: DELETE_REVIEW,
-  payload: review,
-});
+// const deleteReviewActions = (review) => ({
+//   type: DELETE_REVIEW,
+//   payload: review,
+// });
 
 // ******************** Thunk Creators *************************************
 

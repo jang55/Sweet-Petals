@@ -3,20 +3,20 @@ const GET_ALL_ORDERS = "orders/GET_ALL_ORDERS";
 const GET_USER_ORDERS = "orders/GET_USER_ORDERS";
 const GET_ORDER = "orders/GET_ORDER";
 
-const CREATE_ORDER = "orders/CREATE_ORDER";
-const CREATE_CUPCAKE_ORDER = "orders/CREATE_CUPCAKE_ORDER";
-const CREATE_CHEESECAKE_ORDER = "orders/CREATE_CHEESECAKE_ORDER";
-const CREATE_COOKIE_ORDER = "orders/CREATE_COOKIE_ORDER";
+// const CREATE_ORDER = "orders/CREATE_ORDER";
+// const CREATE_CUPCAKE_ORDER = "orders/CREATE_CUPCAKE_ORDER";
+// const CREATE_CHEESECAKE_ORDER = "orders/CREATE_CHEESECAKE_ORDER";
+// const CREATE_COOKIE_ORDER = "orders/CREATE_COOKIE_ORDER";
 
 const UPDATE_ORDER = "orders/UPDATE_ORDER";
-const UPDATE_CUPCAKE_ORDER = "orders/UPDATE_CUPCAKE_ORDER";
-const UPDATE_CHEESECAKE_ORDER = "orders/UPDATE_CHEESECAKE_ORDER";
-const UPDATE_COOKIE_ORDER = "orders/UPDATE_COOKIE_ORDER";
+// const UPDATE_CUPCAKE_ORDER = "orders/UPDATE_CUPCAKE_ORDER";
+// const UPDATE_CHEESECAKE_ORDER = "orders/UPDATE_CHEESECAKE_ORDER";
+// const UPDATE_COOKIE_ORDER = "orders/UPDATE_COOKIE_ORDER";
 
 const DELETE_ORDER = "orders/DELETE_ORDER";
-const DELETE_CUPCAKE_ORDER = "orders/DELETE_CUPCAKE_ORDER";
-const DELETE_CHEESECAKE_ORDER = "orders/DELETE_CHEESECAKE_ORDER";
-const DELETE_COOKIE_ORDER = "orders/DELETE_COOKIE_ORDER";
+// const DELETE_CUPCAKE_ORDER = "orders/DELETE_CUPCAKE_ORDER";
+// const DELETE_CHEESECAKE_ORDER = "orders/DELETE_CHEESECAKE_ORDER";
+// const DELETE_COOKIE_ORDER = "orders/DELETE_COOKIE_ORDER";
 
 // ******************** Action Creators *************************************
 
@@ -41,93 +41,93 @@ const getOrderActions = (order) => ({
 
 // ***************************
 
-const createOrderAction = (order) => ({
-  type: CREATE_ORDER,
-  payload: order,
-});
+// const createOrderAction = (order) => ({
+//   type: CREATE_ORDER,
+//   payload: order,
+// });
 
-// ***************************
+// // ***************************
 
-const createCupcakeOrderAction = (cupakeOrder) => ({
-  type: CREATE_CUPCAKE_ORDER,
-  payload: cupakeOrder,
-});
+// const createCupcakeOrderAction = (cupakeOrder) => ({
+//   type: CREATE_CUPCAKE_ORDER,
+//   payload: cupakeOrder,
+// });
 
-// ***************************
+// // ***************************
 
-const createCeesecakeOrderAction = (cheesecakeOrder) => ({
-  type: CREATE_CHEESECAKE_ORDER,
-  payload: cheesecakeOrder,
-});
+// const createCeesecakeOrderAction = (cheesecakeOrder) => ({
+//   type: CREATE_CHEESECAKE_ORDER,
+//   payload: cheesecakeOrder,
+// });
 
-// ***************************
+// // ***************************
 
-const createCookieOrderAction = (cookieOrder) => ({
-  type: CREATE_COOKIE_ORDER,
-  payload: cookieOrder,
-});
+// const createCookieOrderAction = (cookieOrder) => ({
+//   type: CREATE_COOKIE_ORDER,
+//   payload: cookieOrder,
+// });
 
 // // ***************************
 // // ***************************
 // // ***************************
 // // ***************************
 
-const updateOrderAction = (order) => ({
-  type: UPDATE_ORDER,
-  payload: order,
-});
+// const updateOrderAction = (order) => ({
+//   type: UPDATE_ORDER,
+//   payload: order,
+// });
 
-// ***************************
+// // ***************************
 
-const updateCupcakeOrderAction = (cupakeOrder) => ({
-  type: UPDATE_CUPCAKE_ORDER,
-  payload: cupakeOrder,
-});
+// const updateCupcakeOrderAction = (cupakeOrder) => ({
+//   type: UPDATE_CUPCAKE_ORDER,
+//   payload: cupakeOrder,
+// });
 
-// ***************************
+// // ***************************
 
-const updateCeesecakeOrderAction = (cheesecakeOrder) => ({
-  type: UPDATE_CHEESECAKE_ORDER,
-  payload: cheesecakeOrder,
-});
+// const updateCeesecakeOrderAction = (cheesecakeOrder) => ({
+//   type: UPDATE_CHEESECAKE_ORDER,
+//   payload: cheesecakeOrder,
+// });
 
-// ***************************
+// // ***************************
 
-const updateCookieOrderAction = (cookieOrder) => ({
-  type: UPDATE_COOKIE_ORDER,
-  payload: cookieOrder,
-});
+// const updateCookieOrderAction = (cookieOrder) => ({
+//   type: UPDATE_COOKIE_ORDER,
+//   payload: cookieOrder,
+// });
 
 // // ***************************
 // // ***************************
 // // ***************************
 // // ***************************
 
-const deleteOrderAction = (order) => ({
-  type: DELETE_ORDER,
-  payload: order,
-});
+// const deleteOrderAction = (order) => ({
+//   type: DELETE_ORDER,
+//   payload: order,
+// });
 
-// ***************************
+// // ***************************
 
-const deleteCupcakeOrderAction = (cupakeOrder) => ({
-  type: DELETE_CUPCAKE_ORDER,
-  payload: cupakeOrder,
-});
+// const deleteCupcakeOrderAction = (cupakeOrder) => ({
+//   type: DELETE_CUPCAKE_ORDER,
+//   payload: cupakeOrder,
+// });
 
-// ***************************
+// // ***************************
 
-const deleteCheesecakeOrderAction = (cheesecakeOrder) => ({
-  type: DELETE_CHEESECAKE_ORDER,
-  payload: cheesecakeOrder,
-});
+// const deleteCheesecakeOrderAction = (cheesecakeOrder) => ({
+//   type: DELETE_CHEESECAKE_ORDER,
+//   payload: cheesecakeOrder,
+// });
 
-// ***************************
+// // ***************************
 
-const deleteCookieOrderAction = (cookieOrder) => ({
-  type: DELETE_COOKIE_ORDER,
-  payload: cookieOrder,
-});
+// const deleteCookieOrderAction = (cookieOrder) => ({
+//   type: DELETE_COOKIE_ORDER,
+//   payload: cookieOrder,
+// });
 
 // ******************** Thunk Creators *************************************
 // get all the orders

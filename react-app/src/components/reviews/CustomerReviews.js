@@ -3,8 +3,6 @@ import { getAllReviewsThunk } from "../../store/reviewReducer";
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import UserReviewCard from "./UserReviewCard";
-import { NavLink } from "react-router-dom";
-import ReviewCard from "./ReviewCard";
 
 function CustomerReviews() {
   const dispatch = useDispatch();

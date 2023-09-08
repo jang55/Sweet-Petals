@@ -29,7 +29,7 @@
 
 .user-review-text {
   font-size: 15px;
-  text-align: justify;
+  /* text-align:; */
   white-space: normal;
   overflow-wrap: break-word;
   margin: 7px;

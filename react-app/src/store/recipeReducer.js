@@ -35,10 +35,10 @@ const updateRecipeActions = (recipe) => ({
 
 // ***************************
 
-const deleteRecipeActions = (recipe) => ({
-  type: DELETE_RECIPE,
-  payload: recipe,
-});
+// const deleteRecipeActions = (recipe) => ({
+//   type: DELETE_RECIPE,
+//   payload: recipe,
+// });
 
 // ******************** Thunk Creators *************************************
 

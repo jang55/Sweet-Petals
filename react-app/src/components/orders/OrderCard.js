@@ -27,7 +27,7 @@ function OrderCard({ order, pageType, validOrder }) {
     if(!user) {
       return history.push("/")
     }
-  }, [user])
+  }, [user, history])
   
   useEffect(() => {
     if (order && order.Cupcakes) {

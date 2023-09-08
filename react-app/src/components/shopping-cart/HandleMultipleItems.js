@@ -9,7 +9,7 @@ import {
     removeCookieAction,
     removeCupcakeAction,
 } from "../../store/cartReducer";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 
 

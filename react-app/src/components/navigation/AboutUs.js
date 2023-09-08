@@ -8,7 +8,7 @@ function AboutUs() {
     <div className="about-container">
       <div className="about-main-wrap">
         <div className="about-wrap-1">
-          <img src={dev_img} className="about-1-img" />
+          <img src={dev_img} className="about-1-img" alt=""/>
           <div className="aboutme-info-wrap-1">
             <h2 className="about-1-h2">Meet the developer...</h2>
             <p className="about-1-p">
@@ -27,6 +27,7 @@ function AboutUs() {
                 <a
                   href="https://github.com/jang55"
                   target="_blank"
+                  rel="noreferrer"
                   className="github"
                 >
                   <BsGithub /> GitHub
@@ -34,6 +35,7 @@ function AboutUs() {
                 <a
                   href="https://www.linkedin.com/in/jonathan-ang-b1508b286/"
                   target="_blank"
+                  rel="noreferrer"
                   className="linkedin"
                 >
                   <BsLinkedin />
@@ -44,7 +46,7 @@ function AboutUs() {
           </div>
         </div>
         <div className="about-wrap-2">
-          <img src={baker_img} className="about-2-img" />
+          <img src={baker_img} className="about-2-img" alt=""/>
           <div className="aboutme-info-wrap-2">
             <h2 className="about-2-h2">Meet the baker...</h2>
             <p className="about-2-p">

@@ -10,9 +10,10 @@ import { logout } from "../../store/session";
 import ShoppingCart from "../shopping-cart/ShoppingCart";
 import LoginFormModal from "../modal-pages/LoginFormModal";
 import "./nav.css";
-import { FaEnvelope } from "react-icons/fa";
-import { MdOutlineRateReview } from "react-icons/md"
-import { RiFileList3Line, RiLogoutBoxLine } from "react-icons/ri"
+// import { FaEnvelope } from "react-icons/fa";
+// import { MdOutlineRateReview } from "react-icons/md"
+// import { RiFileList3Line } from "react-icons/ri"
+import {  RiLogoutBoxLine } from "react-icons/ri"
 import { removeAllCartItems } from "../../store/cartReducer";
 
 
@@ -36,7 +37,7 @@ function Navigation({ isLoaded }) {
         setCartCount(0)
         // history.push("/")
       }
-    }, [sessionUser])
+    }, [sessionUser, setCartCount])
 
     // sets all the dessert items into an array
     useEffect(() => {
@@ -53,7 +54,7 @@ function Navigation({ isLoaded }) {
           setCookies(Object.values(cart.cookies));
         }
       }
-    }, [cart]);
+    }, [cart, sessionUser]);
   
     // sets the amount of items and subtotal price
     useEffect(() => {
@@ -81,23 +82,24 @@ function Navigation({ isLoaded }) {
 // ***********************************************************
 
 
-  // handles the event being clicked outside of the area
-  const handleClickOutside = (event) => {
-    if (cartRef.current && !cartRef.current.contains(event.target)) {
-      setOpenShoppingCart(false)
-    }
 
-    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-      setOpenMenu(false);
-    }
-  };
+useEffect(() => {
+    // handles the event being clicked outside of the area
+    const handleClickOutside = (event) => {
+      if (cartRef.current && !cartRef.current.contains(event.target)) {
+        setOpenShoppingCart(false)
+      }
+    
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setOpenMenu(false);
+      }
+    };
 
-  useEffect(() => {
     document.addEventListener("click", handleClickOutside, true);
     return () => {
       document.removeEventListener("click", handleClickOutside, true);
     };
-  }, []);
+  }, [cartRef, setOpenShoppingCart]);
   // end of the handling event being clicked outside of the area
 
 
