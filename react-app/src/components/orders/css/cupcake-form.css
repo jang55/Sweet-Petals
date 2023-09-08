@@ -30,7 +30,7 @@
   text-align: center;
   /* margin-bottom: 8px; */
   overflow: visible;
-  height: fit-content;
+  height: 460px;
   display: flex;
   align-items: center;
   flex-direction: column;
