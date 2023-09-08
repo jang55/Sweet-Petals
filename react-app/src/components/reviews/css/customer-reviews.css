@@ -24,7 +24,7 @@
 .customer-review-wrapper-left {
   grid-column-start: 2;
   grid-column-end: 4;
-  width: 350px;
+  width: 400px;
   max-height: 250px;
   height: 310px;
   box-shadow: 0px 0px 5px 3px rgba(65, 63, 63, 0.2);
@@ -40,7 +40,7 @@
 .customer-review-wrapper-right {
   grid-column-start: 4;
   grid-column-end: 4;
-  width: 350px;
+  width: 400px;
   max-height: 250px;
   height: 310px;
   box-shadow: 0px 0px 5px 3px rgba(65, 63, 63, 0.2);
@@ -86,7 +86,7 @@
   }
   
   .customer-review-wrapper-left {
-    width: 350px;
+    width: 400px;
     max-height: 250px;
     height: 310px;
     box-shadow: 0px 0px 5px 3px rgba(65, 63, 63, 0.2);
@@ -101,7 +101,7 @@
   }
 
   .customer-review-wrapper-right {
-    width: 350px;
+    width: 400px;
     max-height: 250px;
     height: 310px;
     box-shadow: 0px 0px 5px 3px rgba(65, 63, 63, 0.2);

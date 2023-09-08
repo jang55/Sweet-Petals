@@ -167,7 +167,7 @@
   font-size: 15px;
   position: absolute;
   right: 20px;
-  bottom: 20px;
+  bottom: 10px;
 }
 
 .user-review-edit-review-text:hover {
@@ -181,7 +181,7 @@
   font-size: 15px;
   position: absolute;
   right: 70px;
-  bottom: 20px;
+  bottom: 10px;
 }
 
 .user-review-delete-review-text:hover {
@@ -200,7 +200,7 @@
   border: 1px solid black;
   position: absolute;
   right: 20px;
-  bottom: 20px;
+  bottom: 15px;
 }
 
 .user-review-save-button:hover {
