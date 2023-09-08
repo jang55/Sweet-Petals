@@ -4,20 +4,28 @@ import { addCookieAction } from "../../store/cartReducer";
 import { useDispatch } from "react-redux";
 import { InfoContext } from "../../context/InfoContext";
 import { useSelector } from "react-redux";
+import {IoMdCheckmarkCircle} from "react-icons/io"
 
 function CookieForm() {
   const [selectedCookie, setSelectedCookie] = useState("");
   const [amount, setAmount] = useState(1);
   const dispatch = useDispatch();
-  const { setCartCount } = useContext(InfoContext);
+  const { setCartCount, addedToCart, setAddedtoCart } = useContext(InfoContext);
   const cart = useSelector((state) => state.cartState);
   const [cookies, setCookies] = useState({});
+  
 
   useEffect(() => {
     if (cart && cart.cookies) {
       setCookies(cart.cookies);
     }
   }, [cart]);
+
+  useEffect(() => {
+    if(addedToCart) {
+      setAddedtoCart(false)
+    }
+  }, [selectedCookie])
   
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -35,6 +43,7 @@ function CookieForm() {
       type: "cookie"
     }
     dispatch(addCookieAction(formRes));
+    setAddedtoCart(true);
     return;
   }
 
@@ -80,9 +89,13 @@ function CookieForm() {
                         </option>
                       </select>
                     </label>
-                    <button className="cookie-submit-button" type="submit">
+                    <button className="cookie-submit-button" type="submit" >
                       Add to cart
                     </button>
+                    {addedToCart && <div className="cookie-added-to-cart-wrapper">
+                      <IoMdCheckmarkCircle className="cookie-added-to-cart-checkmark"/>
+                      <span className="cookie-added-to-cart-message">Added to cart</span>
+                    </div>}
                   </form>
               </div>
             </div>

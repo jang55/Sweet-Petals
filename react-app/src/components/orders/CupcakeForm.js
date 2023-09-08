@@ -2,10 +2,10 @@ import "./css/cupcake-form.css";
 import { useState, Fragment, useEffect, useContext } from "react";
 import Wheel from "@uiw/react-color-wheel";
 import { hsvaToHex } from "@uiw/color-convert";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addCupcakeAction} from "../../store/cartReducer";
 import { InfoContext } from "../../context/InfoContext";
-import { useSelector } from "react-redux";
+import {IoMdCheckmarkCircle} from "react-icons/io"
 
 
 function CupcakeForm() {
@@ -19,7 +19,7 @@ function CupcakeForm() {
   const [openWheel, setOpenWheel] = useState("");
   const [addColorTwo, setAddColorTwo] = useState(false);
   const [addColorThree, setAddColorThree] = useState(false);
-  const { setCartCount } = useContext(InfoContext);
+  const { setCartCount, addedToCart, setAddedtoCart } = useContext(InfoContext);
   const [cupcakes, setCupcakes] = useState({});
   const dispatch = useDispatch();
 
@@ -41,6 +41,13 @@ function CupcakeForm() {
     }
   }, [cart]);
 
+  useEffect(() => {
+    if(addedToCart) {
+      setAddedtoCart(false);
+    }
+
+  }, [flavor,hsvaOne, hsvaTwo, hsvaThree, style])
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -61,6 +68,7 @@ function CupcakeForm() {
       amount: amount,
     }
     dispatch(addCupcakeAction(formRes));
+    setAddedtoCart(true);
     return;
   }
 
@@ -229,6 +237,10 @@ function CupcakeForm() {
                   <button className="cupcake-submit-button" type="submit">
                     Add to cart
                   </button>
+                  {addedToCart && <div className="cookie-added-to-cart-wrapper">
+                      <IoMdCheckmarkCircle className="cookie-added-to-cart-checkmark"/>
+                      <span className="cookie-added-to-cart-message">Added to cart</span>
+                    </div>}
                 </form>
               </div>
             </div>

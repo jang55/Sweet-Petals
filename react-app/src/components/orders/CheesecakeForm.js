@@ -1,16 +1,16 @@
 import "./css/cheesecake-form.css";
 import { useState, useContext, useEffect } from "react";
 import { addCheesecakeAction } from "../../store/cartReducer";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { InfoContext } from "../../context/InfoContext";
-import { useSelector } from "react-redux";
+import {IoMdCheckmarkCircle} from "react-icons/io"
 
 function CheesecakeForm() {
   const [strawberries, setStrawberries] = useState(false);
   const [cheesecakeFlavor, setCheesecakeFlavor] = useState("")
   const [amount, setAmount] = useState(1);
   const dispatch = useDispatch();
-  const { setCartCount } = useContext(InfoContext);
+  const { setCartCount, addedToCart, setAddedtoCart } = useContext(InfoContext);
   const cart = useSelector((state) => state.cartState);
   const [cheesecakes, setCheesecakes] = useState({});
 
@@ -21,6 +21,13 @@ function CheesecakeForm() {
       setCheesecakes(cart.cheesecakes);
     }
   }, [cart]);
+
+  useEffect(() => {
+    if(addedToCart) {
+      setAddedtoCart(false);
+    }
+
+  }, [strawberries, cheesecakeFlavor])
 
 
   const handleSubmit = (e) => {
@@ -41,6 +48,7 @@ function CheesecakeForm() {
     }
 
     dispatch(addCheesecakeAction(formRes));
+    setAddedtoCart(true)
     return;
   }
 
@@ -90,6 +98,10 @@ function CheesecakeForm() {
                     <button className="cheesecake-submit-button" type="submit">
                       Add to cart
                     </button>
+                    {addedToCart && <div className="cookie-added-to-cart-wrapper">
+                      <IoMdCheckmarkCircle className="cookie-added-to-cart-checkmark"/>
+                      <span className="cookie-added-to-cart-message">Added to cart</span>
+                    </div>}
                   </form>
               </div>
             </div>

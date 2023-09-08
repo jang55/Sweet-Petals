@@ -20,13 +20,12 @@ function Navigation({ isLoaded }) {
   const [cupcakes, setCupcakes] = useState([]);
   const [cheesecakes, setCheesecakes] = useState([]);
   const [cookies, setCookies] = useState([]);
-  const { cartCount, setCartCount, openShoppingCart, setOpenShoppingCart } =
+  const { cartCount, setCartCount, openShoppingCart, setOpenShoppingCart, cartRef } =
     useContext(InfoContext);
   const [openMenu, setOpenMenu] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
   const dropdownRef = useRef();
-  const cartRef = useRef();
 
   
   // *********** this sets the count for the session storage values *******************************
