@@ -237,9 +237,9 @@ function CupcakeForm() {
                   <button className="cupcake-submit-button" type="submit">
                     Add to cart
                   </button>
-                  {addedToCart && <div className="cookie-added-to-cart-wrapper">
-                      <IoMdCheckmarkCircle className="cookie-added-to-cart-checkmark"/>
-                      <span className="cookie-added-to-cart-message">Added to cart</span>
+                  {addedToCart && <div className="cupcake-added-to-cart-wrapper">
+                      <IoMdCheckmarkCircle className="cupcake-added-to-cart-checkmark"/>
+                      <span className="cupcake-added-to-cart-message">Added to cart</span>
                     </div>}
                 </form>
               </div>
