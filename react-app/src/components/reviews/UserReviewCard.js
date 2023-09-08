@@ -10,13 +10,21 @@ import DeleteReviewModal from "../modal-pages/DeleteReviewModal";
 
 function UserReviewCard({ review, hoverShowEdit, pageType, showEditForm, setShowEditForm }) {
     const [starsCountArr, setStarsCountArr] = useState([]);
-    const [stars, setStars] = useState(review.stars);
-    const [currReviewText, setCurrReviewText] = useState(review.review);
+    const [stars, setStars] = useState("");
+    const [currReviewText, setCurrReviewText] = useState("");
+    const [reviewImage, setReviewImage] = useState("")
     const [image, setImage] = useState("");
     const [charCount, setCharCount] = useState(review.review.length);
     const [hover, setHover] = useState(0);
     const dispatch = useDispatch();
 
+
+
+    useEffect(() => {
+        setStars(review.stars);
+        setCurrReviewText(review.review);
+        setReviewImage(review.image_url);
+    }, [review])
 
 
     useEffect(() => {
@@ -32,20 +40,37 @@ function UserReviewCard({ review, hoverShowEdit, pageType, showEditForm, setShow
         e.preventDefault();
 
         const updatedReview = await dispatch(updateReviewThunk(review.id, currReviewText, stars))
-        if (image) {
+
+        if(review.image_url && !reviewImage) {
+            await dispatch(removeReviewImageThunk(review.id));
+            console.log("remove image")
+        } 
+
+        if (image !== "") {
+            console.log("hit add image")
             const formData = new FormData();
             formData.append("image_url", image);
-            await dispatch(uploadReviewImageThunk(updatedReview.id, formData));
+            const data = await dispatch(uploadReviewImageThunk(updatedReview.id, formData));
+            console.log(data)
         }
 
         setShowEditForm("");
     }
 
-    const removeImageHandler = (e => {
-        e.preventDefault();
-        dispatch(removeReviewImageThunk(review.id));
-        setImage("");
-    })
+    // const removeImageHandler = (e => {
+    //     e.preventDefault();
+    //     dispatch(removeReviewImageThunk(review.id));
+    //     // setImage("");
+    // })
+
+
+    const handleCancel = () => {
+        setShowEditForm("");
+        setReviewImage(review.image_url);
+        setStars(review.stars);
+        setHover(review.stars)
+        setCurrReviewText(review.review)
+    }
 
 
     return (
@@ -82,14 +107,17 @@ function UserReviewCard({ review, hoverShowEdit, pageType, showEditForm, setShow
             </div>
             </div>
             <div>
-            {review.image_url ? (
+            {reviewImage ? (
                 <>
                     <img
-                    src={review.image_url}
+                    src={reviewImage}
                     alt="review-img"
                     className="user-review-img"
                     />
-                    <span className="user-review-remove-image" onClick={removeImageHandler}>
+                    <span className="user-review-remove-image" onClick={e => {
+                        setReviewImage(null)
+                        setImage("");
+                    }}>
                         Remove Image
                     </span>
                 </>
@@ -120,7 +148,7 @@ function UserReviewCard({ review, hoverShowEdit, pageType, showEditForm, setShow
                 ></textarea>
                 <p className="user-review-char-count">Count:{300 - charCount}</p>
             </div>
-            <span className="user-review-cancel-edit" onClick={e => setShowEditForm("")}>Cancel</span>
+            <span className="user-review-cancel-edit" onClick={handleCancel}>Cancel</span>
             <button className="user-review-save-button" type="submit">
                 Save Changes
             </button>
