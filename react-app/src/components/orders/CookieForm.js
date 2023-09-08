@@ -43,7 +43,12 @@ function CookieForm() {
       type: "cookie"
     }
     dispatch(addCookieAction(formRes));
-    setAddedtoCart(true);
+    const cartState = JSON.parse(window.sessionStorage.getItem(`cart-items`));
+    if(cartState.cookies[selectedCookie] && cartState.cookies[selectedCookie].amount < 10) {
+      setAddedtoCart(true);
+    } else {
+      setAddedtoCart(false);
+    }
     return;
   }
 

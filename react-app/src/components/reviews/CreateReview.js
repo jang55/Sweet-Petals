@@ -65,9 +65,9 @@ function CreateReview({ order, setShowModal }) {
             setReview(e.target.value);
             setCharCount(e.target.value.length)
           }}
-          maxLength={300}
+          maxLength={245}
       ></textarea>
-      <p className="c-review-char-count">Count:{300 - charCount}</p>
+      <p className="c-review-char-count">Count:{245 - charCount}</p>
         <StarRating stars={stars} setStars={setStars} />
         <input
               type="file"

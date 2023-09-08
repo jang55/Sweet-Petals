@@ -97,8 +97,8 @@
 }
 
 .landing-footer-review-carousel {
-  width: 490px;
-  height: 270px;
+  width: 520px;
+  height: 285px;
   /* margin: 50px; */
   grid-column-start: 6;
   grid-column-end: 9;

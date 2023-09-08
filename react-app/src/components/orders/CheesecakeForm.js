@@ -48,7 +48,13 @@ function CheesecakeForm() {
     }
 
     dispatch(addCheesecakeAction(formRes));
-    setAddedtoCart(true)
+    // setAddedtoCart(true)
+    const cartState = JSON.parse(window.sessionStorage.getItem(`cart-items`));
+    if(cartState.cheesecakes[cheesecakeFlavor+String(strawberries)] && cartState.cheesecakes[cheesecakeFlavor+String(strawberries)].amount < 10) {
+      setAddedtoCart(true);
+    } else {
+      setAddedtoCart(false);
+    }
     return;
   }
 

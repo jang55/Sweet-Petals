@@ -68,7 +68,13 @@ function CupcakeForm() {
       amount: amount,
     }
     dispatch(addCupcakeAction(formRes));
-    setAddedtoCart(true);
+    // setAddedtoCart(true);
+    const cartState = JSON.parse(window.sessionStorage.getItem(`cart-items`));
+    if(cartState.cupcakes[flavor+style+(hsvaToHex(hsvaOne))+(hsvaTwo?hsvaToHex(hsvaTwo):"")+(hsvaThree?hsvaToHex(hsvaThree):"")] && cartState.cupcakes[flavor+style+(hsvaToHex(hsvaOne))+(hsvaTwo?hsvaToHex(hsvaTwo):"")+(hsvaThree?hsvaToHex(hsvaThree):"")].amount < 10) {
+      setAddedtoCart(true);
+    } else {
+      setAddedtoCart(false);
+    }
     return;
   }
 

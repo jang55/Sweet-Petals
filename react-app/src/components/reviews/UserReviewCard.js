@@ -43,15 +43,12 @@ function UserReviewCard({ review, hoverShowEdit, pageType, showEditForm, setShow
 
         if(review.image_url && !reviewImage) {
             await dispatch(removeReviewImageThunk(review.id));
-            console.log("remove image")
         } 
 
         if (image !== "") {
-            console.log("hit add image")
             const formData = new FormData();
             formData.append("image_url", image);
             const data = await dispatch(uploadReviewImageThunk(updatedReview.id, formData));
-            console.log(data)
         }
 
         setShowEditForm("");
@@ -144,9 +141,9 @@ function UserReviewCard({ review, hoverShowEdit, pageType, showEditForm, setShow
                         setCurrReviewText(e.target.value);
                         setCharCount(e.target.value.length)
                     }}
-                    maxLength={300}
+                    maxLength={245}
                 ></textarea>
-                <p className="user-review-char-count">Count:{300 - charCount}</p>
+                <p className="user-review-char-count">Count:{245 - charCount}</p>
             </div>
             <span className="user-review-cancel-edit" onClick={handleCancel}>Cancel</span>
             <button className="user-review-save-button" type="submit">
