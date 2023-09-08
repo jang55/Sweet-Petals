@@ -25,7 +25,9 @@
   /* border-left: 1px solid rgb(169, 156, 156);
   border-right: 1px solid rgb(169, 156, 156);
   border-bottom: 1px solid rgb(169, 156, 156); */
-  border: 1px solid rgb(169, 156, 156);;
+  border: 1px solid rgb(169, 156, 156);
+    font-family: cursive;
+
 }
 
 .c-order-buttons:hover {

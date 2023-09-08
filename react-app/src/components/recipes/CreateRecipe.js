@@ -185,7 +185,7 @@ function CreateRecipe() {
             className="c-recipe-title-input"
             type="text"
             value={title}
-            maxLength={100}
+            maxLength={50}
             required
             onChange={(e) => setTitle(e.target.value)}
           />

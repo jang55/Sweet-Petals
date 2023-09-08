@@ -98,7 +98,7 @@
 
 .landing-footer-review-carousel {
   width: 490px;
-  height: 255px;
+  height: 270px;
   /* margin: 50px; */
   grid-column-start: 6;
   grid-column-end: 9;
@@ -176,7 +176,7 @@
   } */
 
 .star-average-wrapper p {
-  margin: 3px;
+  margin: 3.5px;
 }
 
 .star-bar-wrapper {

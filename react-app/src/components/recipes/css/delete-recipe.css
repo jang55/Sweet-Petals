@@ -5,21 +5,29 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 700px;
 }
 
 .delete-recipe-title{
     font-weight: bolder;
     color: black;
+    white-space: normal;
+    overflow-wrap: break-word;
+    /* max-width: 10px; */
 }
 
 
 .delete-recipe-h1 {
     margin: 10px;
     font-size: 27px;
+    width: 600px;
+    text-align: center;
 }
 
 .delete-recipe-warning-message {
     margin: 10px;
+    white-space: normal;
+    overflow-wrap: break-word;
 }
 
 .delete-recipe-date-wrap {

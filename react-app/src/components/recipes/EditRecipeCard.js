@@ -270,7 +270,7 @@ function EditRecipeCard({ recipe, isLoaded, setShowEdit }) {
 
 
         <div className="edit-recipe-card-description-wrap">
-                <label className="edit-recipe-description-label">
+            <label className="edit-recipe-description-label">
               Directions:
               <input
                 className="edit-recipe-description-input"

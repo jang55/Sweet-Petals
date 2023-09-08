@@ -194,6 +194,7 @@
   grid-row-start: 2;
   grid-row-end: 3;
   margin: 5px;
+  margin-left: 40px;
 }
 
 
@@ -203,6 +204,7 @@
   grid-row-start: 1;
   grid-row-end: 2;
   margin: 5px;
+  margin-left: 40px;
 }
 
 
