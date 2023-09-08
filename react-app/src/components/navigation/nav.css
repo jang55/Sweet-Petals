@@ -148,13 +148,14 @@
 .nav-menu-items {
   width: 100%;
   margin: 0px ;
-  padding: 15px;
+  padding: 15px 10px;
   border-bottom: 1px solid gray;
   display: flex;
   align-items: center;
   color: white;
-  font-size: 18px;
-  font-weight: bold;
+  /* font-size: 18px;
+  font-weight: bold; */
+  font-size: 20px;
 }
 
 .nav-menu-items:hover {
@@ -168,12 +169,13 @@
 .nav-menu-items-logout {
   width: 100%;
   margin: 0px 5px;
-  padding: 14px 9px;
+  padding: 14px 5px;
   display: flex;
   align-items: center;
   color: white;
-  font-size: 20px;
-  font-weight: bold;
+  font-size: 22px;
+  /* font-size: 20px; */
+  /* font-weight: bold; */
 }
 
 .nav-menu-items-logout:hover {
@@ -182,6 +184,11 @@
 
 .nav-envelope {
   margin-left: 10px;
+}
+
+.nav-menu-icons {
+  font-size: 25px;
+  margin-right: 8px;
 }
 
 /***** cart css ******************/

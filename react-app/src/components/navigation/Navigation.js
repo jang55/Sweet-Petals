@@ -11,6 +11,8 @@ import ShoppingCart from "../shopping-cart/ShoppingCart";
 import LoginFormModal from "../modal-pages/LoginFormModal";
 import "./nav.css";
 import { FaEnvelope } from "react-icons/fa";
+import { MdOutlineRateReview } from "react-icons/md"
+import { RiFileList3Line, RiLogoutBoxLine } from "react-icons/ri"
 import { removeAllCartItems } from "../../store/cartReducer";
 
 
@@ -189,7 +191,7 @@ function Navigation({ isLoaded }) {
                       <span className="nav-menu-items">My Reviews</span>
                     </NavLink>}
 
-                    <div className="nav-menu-items-wrap" onClick={logoutHandler}><span className="nav-menu-items-logout">Logout</span></div>
+                    <div className="nav-menu-items-wrap" onClick={logoutHandler}><span className="nav-menu-items-logout"><RiLogoutBoxLine className=" nav-menu-icons" />Logout</span></div>
                   </div>
                 )}
               </li>
