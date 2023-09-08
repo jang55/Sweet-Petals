@@ -28,9 +28,8 @@
   padding: 20px;
   width: 100%;
   text-align: center;
-  /* margin-bottom: 8px; */
   overflow: visible;
-  height: 460px;
+  max-height: fit-content;
   display: flex;
   align-items: center;
   flex-direction: column;
