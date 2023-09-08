@@ -102,7 +102,7 @@
   grid-row-end: 3;
   text-align: center;
   /* width: 340px; */
-  width: 345px;
+  width: 365px;
   padding: 10px 40px;
   border-radius: 80px;
   /* background-color: var(--main-form-color); */
@@ -180,7 +180,7 @@
   grid-row-end: 3;
   text-align: center;
   /* width: 334px; */
-  width: 350px;
+  width: 360px;
   padding: 10px 40px;
   border-radius: 80px;
   /* background-color: var(--main-bg-button);
@@ -225,7 +225,7 @@
   grid-column-start: 3;
   grid-column-end: 6;
   text-align: center;
-  width: 355px;
+  width: 374px;
   padding: 10px 40px;
   border-radius: 80px;
   /* background-color: var(--main-form-color);
