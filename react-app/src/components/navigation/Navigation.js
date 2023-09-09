@@ -10,7 +10,7 @@ import { logout } from "../../store/session";
 import ShoppingCart from "../shopping-cart/ShoppingCart";
 import LoginFormModal from "../modal-pages/LoginFormModal";
 import "./nav.css";
-// import { FaEnvelope } from "react-icons/fa";
+import { FaEnvelope } from "react-icons/fa";
 // import { MdOutlineRateReview } from "react-icons/md"
 // import { RiFileList3Line } from "react-icons/ri"
 import {  RiLogoutBoxLine } from "react-icons/ri"
@@ -157,11 +157,11 @@ useEffect(() => {
                     {/* <span className="nav-menu-items">
                       Inbox <FaEnvelope className="nav-envelope" />
                     </span> */}
-                    {/* <NavLink className="nav-menu-items-wrap" to="/messages">
+                    <NavLink className="nav-menu-items-wrap" to="/messages">
                       <span className="nav-menu-items">
                         Inbox <FaEnvelope className="nav-envelope" />
                       </span>
-                    </NavLink> */}
+                    </NavLink>
 
                     {sessionUser.role === "admin" && (
                       <NavLink className="nav-menu-items-wrap" to="/orders">
