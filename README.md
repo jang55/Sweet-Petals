@@ -1,12 +1,22 @@
 <h1 align="center">Sweet Petals <a href="https://sweet-petals.onrender.com/"></a></h1>
 
 
-<img width="627" alt="image" src="https://github.com/jang55/Sweet-Petals/assets/95331968/2d4364bf-bcb3-4bea-b040-e0f5e5ca7d27">
+<img width="100%" alt="image" src="https://github.com/jang55/Sweet-Petals/assets/95331968/2d4364bf-bcb3-4bea-b040-e0f5e5ca7d27">
 
 
-[Sweet Petals](https://sweet-petals.onrender.com/) is one of many AppAcademy's capstone project that was given to every student at the end of the curriculum to test there knowledge and understanding of what they have learned. This project gives the opportunity for the student to make nothing into something using their imagination. Sweet Petals is an original idea and offers a platform that gives customers a chance to customize their orders and make reviews. There is an admin side that can see all orders, make recipes.
+[Sweet Petals](https://sweet-petals.onrender.com/) is one of many AppAcademy's capstone project that was given to every student at the end of the curriculum to test there knowledge and understanding of what they have learned. This project gives the opportunity for the student to make nothing into something using their imagination. Sweet Petals is an original idea and offers a platform that gives customers a chance to customize their orders and make reviews. There is an admin side that can see all orders and make recipes to be used.
 
+***
+## Table of Contents
+- [Technologies Used](#technologies-used)
+- [Installation](#installation)
+  - [Backend Setup: Flask](#backend-setup-flask)
+  - [Frontend Setup: React](#frontend-setup-react)
+- [Operating](#operating)
+- [Wiki Documents](#wiki-documents)
+- [Future Features](#future-features)
 
+***
 ## Technologies Used
 Accord was built using the following technologies:
 
@@ -25,7 +35,7 @@ Accord was built using the following technologies:
 - **AWS**: Cloud infrastructure and services
 - **WTForms**: Forms handling
 
-
+***
 ## Installation
 
 ### Backend Setup: Flask
@@ -83,4 +93,21 @@ For subsequent sessions, ensure you have two terminal windows:
     cd react-app
     npm start
     ```
+    
+***
+## [Wiki Documents](git@github.com:jang55/Sweet-Petals.git)
+- [Database Schema](https://github.com/jang55/Sweet-Petals/wiki/Database-Schema)
+- [Features](https://github.com/jang55/Sweet-Petals/wiki/Feature-List)
+- [Backend Routes](https://github.com/jang55/Sweet-Petals/wiki/Backend-Routes)
+- [User Stories](https://github.com/jang55/Sweet-Petals/wiki/User-Stories)
 
+
+***
+## Future Features
+
+### Messaging
+- Give a source for the user and admin to communicate
+- Using socketIO to give user and admin a srouce to communicate real time
+
+### Payment
+-Gives the user a source to make payments upon completion of creating an order
