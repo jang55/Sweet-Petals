@@ -49,7 +49,10 @@ def get_all_messages():
 @message_routes.route('/users/<int:id>')
 @login_required
 def get_all_customer_messages(id):
-    if current_user.to_dict()["id"] != id:
+
+    if current_user.to_dict()["role"] == "admin":
+        pass
+    elif current_user.to_dict()["id"] != id:
         return {"errors": [{"Unauthorized": "Unauthorized Action"}]}, 401
 
     all_messages = Message.query.filter(Message.customer_id == str(id)).all()
