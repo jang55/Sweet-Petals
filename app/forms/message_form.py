@@ -5,3 +5,4 @@ from wtforms.validators import DataRequired
 
 class MessageForm(FlaskForm):
     message = StringField("Message", validators=[DataRequired()])
+    # sender = StringField("Sender", validators=[DataRequired()])

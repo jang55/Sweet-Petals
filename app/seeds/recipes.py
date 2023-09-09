@@ -6,7 +6,7 @@ from sqlalchemy.sql import text
 def seed_recipes():
     recipe_one = Recipe(user_id=2, title="chocolate chip cookie", ingredients="2 Eggs/1 cup of flour/1.5 cup of milk/chocolate chips", description="Take all the ingrdients and put them into a bowl/Bake it for 12 minutes/Let it sit for 15 minutes/Enjoy it!")
     recipe_two = Recipe(user_id=2, title="cheesecake", ingredients="1 stick cream cheese/2 eggs/1 stick butter", description="Take all the ingrdients and put them into a bowl/Bake it for 12 minutes/Let it sit for 15 minutes/Enjoy it!")
-    recipe_three = Recipe(user_id=2, title="cupcake", ingredients="1 cup flour/3 eggs/1/5 cup vegetable-oil", description="Take all the ingrdients and put them into a bowl/Bake it for 12 minutes/Let it sit for 15 minutes/Enjoy it!")
+    recipe_three = Recipe(user_id=2, title="cupcake", ingredients="1 cup flour/3 eggs/1.5 cup vegetable oil", description="Take all the ingrdients and put them into a bowl/Bake it for 12 minutes/Let it sit for 15 minutes/Enjoy it!")
     recipe_four = Recipe(user_id=2, title="ube cookie", ingredients="ube/1.5 cup sugar", description="Take all the ingrdients and put them into a bowl/Bake it for 12 minutes/Let it sit for 15 minutes/Enjoy it!")
     recipe_five = Recipe(user_id=2, title="peanut butter cookie", ingredients="2 cup peanut butter/1 egg/1.5 cup flour", description="Take all the ingrdients and put them into a bowl/Bake it for 12 minutes/Let it sit for 15 minutes/Enjoy it!")
 

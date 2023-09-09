@@ -62,11 +62,11 @@ def get_all_customer_messages(id):
     for message in all_messages:
         current_message = message.to_dict()
 
-        # if message.admin:
-        #     current_message["Admin"] = message.admin.to_dict()
+        if message.admin:
+            current_message["Admin"] = message.admin.to_dict()
     
-        # if message.customer:
-        #     current_message["Customer"] = message.customer.to_dict()
+        if message.customer:
+            current_message["Customer"] = message.customer.to_dict()
 
         res.append(current_message)
 
@@ -118,6 +118,7 @@ def create_customer_message():
             customer_id=current_user.get_id(),
             admin_id="2",
             message=data["message"],
+            sender="customer"
         )
         db.session.add(new_message)
         db.session.commit()
@@ -154,6 +155,7 @@ def create_admin_message(id):
             customer_id=customer.to_dict()["id"],
             admin_id="2",
             message=data["message"],
+            sender="admin"
         )
         db.session.add(new_message)
         db.session.commit()
