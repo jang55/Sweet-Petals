@@ -1,4 +1,4 @@
-<h1 align="center">Sweet Petals <a href="https://sweet-petals.onrender.com/"><img align="right" src="https://i.imgur.com/QBeByit.png" alt="image description" height="135"></a></h1>
+<h1 align="center">Sweet Petals <a href="https://sweet-petals.onrender.com/"></a></h1>
 
 
 <img width="627" alt="image" src="https://github.com/jang55/Sweet-Petals/assets/95331968/2d4364bf-bcb3-4bea-b040-e0f5e5ca7d27">
