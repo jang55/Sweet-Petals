@@ -15,9 +15,97 @@ def validation_errors_to_error_messages(validation_errors):
 
 
 
-@message_routes.route('/', methods=["POST"])
+@message_routes.route('')
+@login_required
+def get_all_messages():
+    if current_user.to_dict()["role"] != "admin":
+        return {"errors": [{"Unauthorized": "Unauthorized Action"}]}, 401
+
+    all_messages = Message.query.all()
+
+    res = {}
+    # messages = [message.to_dict() for message in all_messages]
+    for message in all_messages:
+        current_message = message.to_dict()
+
+        if message.admin:
+            current_message["Admin"] = message.admin.to_dict()
+    
+        if message.customer:
+            current_message["Customer"] = message.customer.to_dict()
+
+        if res.get(current_message["customer_id"]) == None:
+            res[current_message["customer_id"]] = [current_message]
+        else:
+            res[current_message["customer_id"]].append(current_message)
+
+
+    return {"Messages": res}
+
+
+# ***********************************************
+
+
+@message_routes.route('/users/<int:id>')
+@login_required
+def get_all_customer_messages(id):
+    if current_user.to_dict()["id"] != id:
+        return {"errors": [{"Unauthorized": "Unauthorized Action"}]}, 401
+
+    all_messages = Message.query.filter(Message.customer_id == str(id)).all()
+
+    res = []
+    # messages = [message.to_dict() for message in all_messages]
+    for message in all_messages:
+        current_message = message.to_dict()
+
+        # if message.admin:
+        #     current_message["Admin"] = message.admin.to_dict()
+    
+        # if message.customer:
+        #     current_message["Customer"] = message.customer.to_dict()
+
+        res.append(current_message)
+
+
+    return {"Messages": res}
+
+
+
+
+
+# ***********************************************
+
+
+
+
+
+
+
+# ***********************************************
+
+
+
+
+@message_routes.route("/<int:id>", methods=["GET"])
+@login_required
+def get_message_by_id(id):
+    message = Message.query.get(id)
+    if not message:
+        return jsonify({"message": "Message not found"}), 404
+    return message.to_dict()
+
+
+# ***********************************************
+
+
+
+@message_routes.route('', methods=["POST"])
 @login_required
 def create_customer_message():
+    if current_user.to_dict()["role"] == "admin":
+        return {"errors": [{"Unauthorized": "Unauthorized Action"}]}, 401
+
     form = MessageForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
 
@@ -34,6 +122,10 @@ def create_customer_message():
         return new_message.to_dict()
     return {"errors": validation_errors_to_error_messages(form.errors)}, 400
 
+
+
+
+# ***********************************************
 
 
 
@@ -68,17 +160,7 @@ def create_admin_message(id):
 
 
 
-
-
-@message_routes.route("/<int:id>", methods=["GET"])
-@login_required
-def get_message_by_id(id):
-    message = Message.query.get(id)
-    if not message:
-        return jsonify({"message": "Message not found"}), 404
-    return message.to_dict()
-
-
+# *****************************************
 
 
 @message_routes.route("/<int:id>", methods=["PUT", "PATCH"])
@@ -99,6 +181,10 @@ def edit_message(id):
         db.session.commit()
         return message.to_dict()
     return {"errors": validation_errors_to_error_messages(form.errors)}, 400
+
+
+
+# ***********************************************
 
 
 @message_routes.route("/<int:id>", methods=["DELETE"])
