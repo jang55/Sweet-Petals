@@ -134,4 +134,9 @@
 .cookie-added-to-cart-message {
     font-size: 19px;
     font-weight: bold;
+    animation: mymove 0.2s;
+}
+
+@keyframes mymove {
+    50% {font-size: 20px;}
 }
