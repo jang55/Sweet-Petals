@@ -1,148 +1,129 @@
-# Flask React Project
-
-This is the starter for the Flask React project.
-
-## Getting started
-1. Clone this repository (only this branch)
-
-2. Install dependencies
-
-      ```bash
-      pipenv install -r requirements.txt
-      ```
-
-3. Create a **.env** file based on the example with proper settings for your
-   development environment
-
-4. Make sure the SQLite3 database connection URL is in the **.env** file
-
-5. This starter organizes all tables inside the `flask_schema` schema, defined
-   by the `SCHEMA` environment variable.  Replace the value for
-   `SCHEMA` with a unique name, **making sure you use the snake_case
-   convention**.
-
-6. Get into your pipenv, migrate your database, seed your database, and run your Flask app
-
-   ```bash
-   pipenv shell
-   ```
-
-   ```bash
-   flask db upgrade
-   ```
-
-   ```bash
-   flask seed all
-   ```
-
-   ```bash
-   flask run
-   ```
-
-7. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
+<h1 align="center">Sweet Petals <a href="https://sweet-petals.onrender.com/"></a></h1>
 
 
-## Deployment through Render.com
+<img width="100%" alt="image" src="https://github.com/jang55/Sweet-Petals/assets/95331968/2d4364bf-bcb3-4bea-b040-e0f5e5ca7d27">
 
-First, refer to your Render.com deployment articles for more detailed
-instructions about getting started with [Render.com], creating a production
-database, and deployment debugging tips.
 
-From the [Dashboard], click on the "New +" button in the navigation bar, and
-click on "Web Service" to create the application that will be deployed.
+[Sweet Petals](https://sweet-petals.onrender.com/) is one of many AppAcademy's capstone project that was given to every student at the end of the curriculum to test there knowledge and understanding of what they have learned. This project gives the opportunity for the student to make nothing into something using their imagination. Sweet Petals is an original idea and offers a platform that gives customers a chance to customize their orders and make reviews. There is an admin side that can see all orders and make recipes to be used.
 
-Look for the name of the application you want to deploy, and click the "Connect"
-button to the right of the name.
+***
+## Table of Contents
+- [Technologies Used](#technologies-used)
+- [Installation](#installation)
+  - [Backend Setup: Flask](#backend-setup-flask)
+  - [Frontend Setup: React](#frontend-setup-react)
+- [Operating](#operating)
+- [Wiki Documents](#wiki-documents)
+- [Future Features](#future-features)
+- [Sweet Petals showcase](#sweet-petals-Showcase)
 
-Now, fill out the form to configure the build and start commands, as well as add
-the environment variables to properly deploy the application.
+***
+## Technologies Used
+Accord was built using the following technologies:
 
-### Part A: Configure the Start and Build Commands
+### Backend:
+- **Python**
+- **Flask**
+  - flask-sqlalchemy
+- **SQLAlchemy** (with Alembic for database migrations)
 
-Start by giving your application a name.
+### Frontend:
+- **JavaScript**
+- **React**
+- **Redux**
 
-Leave the root directory field blank. By default, Render will run commands from
-the root directory.
+### Others:
+- **AWS**: Cloud infrastructure and services
+- **WTForms**: Forms handling
 
-Make sure the Environment field is set set to "Python 3", the Region is set to
-the location closest to you, and the Branch is set to "main".
+***
+## Installation
 
-Next, add your Build command. This is a script that should include everything
-that needs to happen _before_ starting the server.
+### Backend Setup: Flask
 
-For your Flask project, enter the following command into the Build field, all in
-one line:
+1. **Clone the Repository**
+    ```bash
+    git clone git@github.com:jang55/Sweet-Petals.git
+    ```
 
-```shell
-# build command - enter all in one line
-npm install --prefix react-app &&
-npm run build --prefix react-app &&
-pip install -r requirements.txt &&
-pip install psycopg2 &&
-flask db upgrade &&
-flask seed all
-```
+2. **Install Dependencies**
+    ```bash
+    pipenv install -r requirements.txt
+    ```
 
-This script will install dependencies for the frontend, and run the build
-command in the __package.json__ file for the frontend, which builds the React
-application. Then, it will install the dependencies needed for the Python
-backend, and run the migration and seed files.
+3. **Configure Environment Settings**
+    - Create a `.env` file using the provided example, adjusting settings suitable for your development environment.
+    - Ensure the SQLite3 database connection URL is present in the `.env` file.
+    - Set a unique name for the `SCHEMA` environment variable, using the `snake_case` convention.
 
-Now, add your start command in the Start field:
+4. **Setup and Start the Flask Server**
+    ```bash
+    pipenv shell
+    flask db upgrade
+    flask seed all
+    flask run
+    ```
 
-```shell
-# start script
-gunicorn app:app
-```
+### Frontend Setup: React
 
-_If you are using websockets, use the following start command instead for increased performance:_
+1. **Navigate to the React App Folder**
+    ```bash
+    cd react-app
+    ```
 
-`gunicorn --worker-class eventlet -w 1 app:app`
+2. **Install Dependencies and Start the App**
+    ```bash
+    npm install
+    npm start
+    ```
 
-### Part B: Add the Environment Variables
+3. With both backend and frontend running, you're ready to experience Accord. Cheers!
 
-Click on the "Advanced" button at the bottom of the form to configure the
-environment variables your application needs to access to run properly. In the
-development environment, you have been securing these variables in the __.env__
-file, which has been removed from source control. In this step, you will need to
-input the keys and values for the environment variables you need for production
-into the Render GUI.
+## Operating
 
-Click on "Add Environment Variable" to start adding all of the variables you
-need for the production environment.
+For subsequent sessions, ensure you have two terminal windows:
 
-Add the following keys and values in the Render GUI form:
+1. **Backend Server** (ensure the database is migrated and seeded as mentioned in the installation process)
+    ```bash
+    pipenv shell
+    flask run
+    ```
 
-- SECRET_KEY (click "Generate" to generate a secure secret for production)
-- FLASK_ENV production
-- FLASK_APP app
-- SCHEMA (your unique schema name, in snake_case)
-- REACT_APP_BASE_URL (use render.com url, located at top of page, similar to
-  https://this-application-name.onrender.com)
+2. **Frontend Server**
+    ```bash
+    cd react-app
+    npm start
+    ```
+    
+***
+## [Wiki Documents](git@github.com:jang55/Sweet-Petals.git)
+- [Database Schema](https://github.com/jang55/Sweet-Petals/wiki/Database-Schema)
+- [Features](https://github.com/jang55/Sweet-Petals/wiki/Feature-List)
+- [Backend Routes](https://github.com/jang55/Sweet-Petals/wiki/Backend-Routes)
+- [User Stories](https://github.com/jang55/Sweet-Petals/wiki/User-Stories)
 
-In a new tab, navigate to your dashboard and click on your Postgres database
-instance.
 
-Add the following keys and values:
+***
+## Future Features
 
-- DATABASE_URL (copy value from Internal Database URL field)
+### Messaging
+- Give a source for the user and admin to communicate
+- Using socketIO to give user and admin a srouce to communicate real time
 
-_Note: Add any other keys and values that may be present in your local __.env__
-file. As you work to further develop your project, you may need to add more
-environment variables to your local __.env__ file. Make sure you add these
-environment variables to the Render GUI as well for the next deployment._
+### Payment
+- Gives the user a source to make payments upon completion of creating an order
 
-Next, choose "Yes" for the Auto-Deploy field. This will re-deploy your
-application every time you push to main.
 
-Now, you are finally ready to deploy! Click "Create Web Service" to deploy your
-project. The deployment process will likely take about 10-15 minutes if
-everything works as expected. You can monitor the logs to see your build and
-start commands being executed, and see any errors in the build process.
+***
 
-When deployment is complete, open your deployed site and check to see if you
-successfully deployed your Flask application to Render! You can find the URL for
-your site just below the name of the Web Service at the top of the page.
+## Sweet Petals showcase
+<img width="934" alt="image" src="https://github.com/jang55/Sweet-Petals/assets/95331968/be749aad-96b5-4c51-bce8-ec37a8563125">
+<img width="1034" alt="image" src="https://github.com/jang55/Sweet-Petals/assets/95331968/be5b8e9a-b91c-4862-9ce8-f3ba212d4c3d">
+<img width="1053" alt="image" src="https://github.com/jang55/Sweet-Petals/assets/95331968/99a93248-626c-4b80-8908-ed855b1888d9">
+<img width="964" alt="image" src="https://github.com/jang55/Sweet-Petals/assets/95331968/abe84f38-a8fc-4b3d-b789-e7cdeb892ad7">
+<img width="912" alt="image" src="https://github.com/jang55/Sweet-Petals/assets/95331968/3e1a586f-cba0-4846-b281-23470174f096">
 
-[Render.com]: https://render.com/
-[Dashboard]: https://dashboard.render.com/
+
+
+
+

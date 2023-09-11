@@ -117,6 +117,19 @@
   font-weight: lighter;
 }
 
+
+.nav-menu-wrapper:hover .nav-menu-button {
+  font-weight: lighter;
+  animation: mybuttonmove 0.5s ease-in;
+  color: white;
+}
+
+@keyframes mybuttonmove {
+  50% {  
+    font-size: 30px;
+  }
+}
+
 .nav-menu {
   width: 175px;
   height: fit-content;
