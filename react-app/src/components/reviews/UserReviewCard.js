@@ -48,7 +48,7 @@ function UserReviewCard({ review, hoverShowEdit, pageType, showEditForm, setShow
         if (image !== "") {
             const formData = new FormData();
             formData.append("image_url", image);
-            const data = await dispatch(uploadReviewImageThunk(updatedReview.id, formData));
+            await dispatch(uploadReviewImageThunk(updatedReview.id, formData));
         }
 
         setShowEditForm("");

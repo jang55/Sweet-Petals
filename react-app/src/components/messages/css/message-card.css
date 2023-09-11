@@ -1,0 +1,33 @@
+.chat-sender-outer-wrapper,
+.chat-recipient-outer-wrapper  {
+    margin: 10px 20px;
+}
+
+.chat-sender-outer-wrapper {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.chat-recipient-outer-wrapper {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.chat-sender-inner-wrapper, 
+.chat-recipient-inner-wrapper {
+    width: fit-content;
+    padding: 10px;
+    border-radius: 10px;
+    white-space: normal;
+    overflow-wrap: break-word;
+    max-width: 500px;
+}
+
+.chat-sender-inner-wrapper {
+    background-color: rgb(34, 109, 222);
+}
+
+.chat-recipient-inner-wrapper {
+    background-color: white;
+}
+

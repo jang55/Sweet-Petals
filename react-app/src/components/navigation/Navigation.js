@@ -154,12 +154,9 @@ useEffect(() => {
                 <RxHamburgerMenu className="nav-menu-button" />
                 {openMenu && (
                   <div className="nav-menu"  >
-                    {/* <span className="nav-menu-items">
-                      Inbox <FaEnvelope className="nav-envelope" />
-                    </span> */}
                     <NavLink className="nav-menu-items-wrap" to="/messages">
                       <span className="nav-menu-items">
-                        Inbox <FaEnvelope className="nav-envelope" />
+                        Messages <FaEnvelope className="nav-envelope" />
                       </span>
                     </NavLink>
 

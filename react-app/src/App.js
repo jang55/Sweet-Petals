@@ -13,6 +13,7 @@ import CustomerReviews from "./components/reviews/CustomerReviews";
 import Recipes from "./components/recipes/Recipes";
 import FourOhFourPage from "./components/navigation/404Page";
 import AboutUs from "./components/navigation/AboutUs";
+import MessagePage from "./components/messages/MessagePage";
 
 function App() {
   const dispatch = useDispatch();
@@ -52,6 +53,9 @@ function App() {
           </Route>
           <Route exact path="/about-us">
             <AboutUs />
+          </Route>
+          <Route exact path="/messages">
+            <MessagePage />
           </Route>
           <Route>
             <FourOhFourPage />

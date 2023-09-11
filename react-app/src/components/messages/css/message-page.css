@@ -1,0 +1,26 @@
+.message-page-container {
+    padding-top: 70px;
+    max-width: 1050px;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+.message-h1 {
+    text-decoration: underline;
+    margin-bottom: 0px;
+    margin-top: 10px;
+}
+
+.message-info-text {
+    margin: 13px;
+}
+
+.message-chatbox-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

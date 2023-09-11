@@ -193,15 +193,17 @@ export default function messageReducer(state = initialState, action) {
   let newState = {};
   switch (action.type) {
     case GET_ALL_MESSAGES:
-      const messages = action.payload;
-      // recipes.forEach((recipe) => {
-      //   newState[recipe.id] = recipe;
-      // });
-      console.log(messages)
+      // each number for the key is the customer id with all message sent 
+      // between admin and customer
+      const allUserMessages = action.payload;
+      newState = {...allUserMessages}
       return newState;
-    // case GET_RECIPE:
-    //   newState[action.payload.id] = action.payload;
-    //   return newState;
+    case GET_CUSTOMER_MESSAGES:
+      const customerMessages = action.payload.Messages;
+      customerMessages.forEach(message => {
+        newState[message.id] = message;
+      })
+      return newState;
     // case CREATE_RECIPE:
     //   newState = { ...state };
     //   newState[action.payload.id] = action.payload;
