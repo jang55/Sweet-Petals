@@ -6,6 +6,7 @@ import reviewReducer from './reviewReducer';
 import recipeReducer from './recipeReducer';
 import cartReducer from './cartReducer';
 import userReducer from './userReducer';
+import messageReducer from './messageReducer';
 
 const rootReducer = combineReducers({
   session,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   recipeState: recipeReducer,
   cartState: cartReducer,
   userState: userReducer,
+  messageState: messageReducer,
 });
 
 

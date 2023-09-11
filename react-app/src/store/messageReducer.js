@@ -192,12 +192,13 @@ const initialState = {};
 export default function messageReducer(state = initialState, action) {
   let newState = {};
   switch (action.type) {
-    // case GET_ALL_RECIPES:
-    //   const recipes = action.payload;
-    //   recipes.forEach((recipe) => {
-    //     newState[recipe.id] = recipe;
-    //   });
-    //   return newState;
+    case GET_ALL_MESSAGES:
+      const messages = action.payload;
+      // recipes.forEach((recipe) => {
+      //   newState[recipe.id] = recipe;
+      // });
+      console.log(messages)
+      return newState;
     // case GET_RECIPE:
     //   newState[action.payload.id] = action.payload;
     //   return newState;

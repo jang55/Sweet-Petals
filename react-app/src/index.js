@@ -11,6 +11,7 @@ import * as reviewActions from "./store/reviewReducer";
 import * as recipeActions from "./store/recipeReducer";
 import * as cartActions from "./store/cartReducer";
 import * as userActions from "./store/userReducer"
+import * as messageActions from "./store/messageReducer"
 import App from "./App";
 
 import "./index.css";
@@ -25,6 +26,7 @@ if (process.env.NODE_ENV !== "production") {
   window.recipeActions = recipeActions;
   window.cartActions = cartActions;
   window.userActions = userActions;
+  window.messageActions = messageActions;
 }
 
 // Wrap the application with the Modal provider and render the Modal component
