@@ -15,6 +15,7 @@
 - [Operating](#operating)
 - [Wiki Documents](#wiki-documents)
 - [Future Features](#future-features)
+- [Sweet Petals showcase](#sweet-petals-Showcase)
 
 ***
 ## Technologies Used
@@ -110,4 +111,19 @@ For subsequent sessions, ensure you have two terminal windows:
 - Using socketIO to give user and admin a srouce to communicate real time
 
 ### Payment
--Gives the user a source to make payments upon completion of creating an order
+- Gives the user a source to make payments upon completion of creating an order
+
+
+***
+
+## Sweet Petals showcase
+<img width="934" alt="image" src="https://github.com/jang55/Sweet-Petals/assets/95331968/be749aad-96b5-4c51-bce8-ec37a8563125">
+<img width="1034" alt="image" src="https://github.com/jang55/Sweet-Petals/assets/95331968/be5b8e9a-b91c-4862-9ce8-f3ba212d4c3d">
+<img width="1053" alt="image" src="https://github.com/jang55/Sweet-Petals/assets/95331968/99a93248-626c-4b80-8908-ed855b1888d9">
+<img width="964" alt="image" src="https://github.com/jang55/Sweet-Petals/assets/95331968/abe84f38-a8fc-4b3d-b789-e7cdeb892ad7">
+<img width="912" alt="image" src="https://github.com/jang55/Sweet-Petals/assets/95331968/3e1a586f-cba0-4846-b281-23470174f096">
+
+
+
+
+
