@@ -151,36 +151,10 @@ const wasItCreatedYesterday = (day) => {
 
 
 
-// // helper function to check to see if the message was created the day before
-// const isItTomrrow = (date) => {
-//     const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-//     const nextDay = moment().add(2, 'days').format("llll");
-//     // const currentWkDay = new Date().toString().slice(0, 3)
-//     // const currentDate = new Date().toString()
-
-//     if (nextDay.slice(0, 3) === "Sun" && date.slice(0, 3) === "Sat" ) {
-//         return true;
-//     }
-
-//     // find the index of what day it is
-//     const indexOfPickUpDay = weekdays.indexOf(date.slice(0, 3))
-//     const indexOfTomrrowDay = weekdays.indexOf(nextDay.slice(0, 3))
-
-//     // checks to see if the index is only 1 place behind
-//     if (Math.abs(indexOfTomrrowDay - indexOfPickUpDay) === 1) {
-//         return true;
-//     }
-
-//     return false;
-// };
 
 
 
-
-
-
-
-// helper function to check to see if the message was created the day before
+// helper function to check to see if the date is the next day
 const isItTomrrow = (date) => {
   const formattedDate = `${date.slice(0, 3)}, ${date.slice(8, 11)} ${Number(date.slice(5, 7
   ))}, ${date.slice(12, 16)}`;
@@ -194,6 +168,24 @@ const isItTomrrow = (date) => {
   }
   
   return formattedDate === nextDay;
+}
+
+
+
+// helper function to check to see if the message was created the day before
+const isItYesterday = (date) => {
+  const formattedDate = `${date.slice(0, 3)}, ${date.slice(4,7)} ${Number(date.slice(8, 10
+  ))}, ${date.slice(11, 15)}`;
+  const day = moment().subtract(1, "days").format().slice(8, 10);
+  let yesterday;
+
+  if(Number(day) < 10) {
+    yesterday = moment().subtract(1, "days").format("llll").slice(0, 16);
+  } else {
+    yesterday = moment().subtract(1, "days").format("llll").slice(0, 17);
+  }
+  
+  return formattedDate === yesterday;
 };
 
 
@@ -204,7 +196,7 @@ const isItTomrrow = (date) => {
 
 
 
-// converts the date created into a proper format to be displayed
+// converts the date created into a proper format to be displayed for orders
 export const dateFormat = (date) => {
   if(!date) {
     return ""
@@ -250,7 +242,7 @@ export const dateFormat = (date) => {
 
 
 
-// converts the date created into a proper format to be displayed
+// converts the date created into a proper format to be displayed for reviewcard
 export const dateFormatTwo = (date) => {
   // get the new date
   // const newDate = new Date();
@@ -269,6 +261,39 @@ export const dateFormatTwo = (date) => {
 
   return newFormattedDate;
 };
+
+
+
+// converts the date created into a proper format to be displayed for messages
+export const dateFormatThree = (date) => {
+  // get the new date
+    const newDate = new Date();
+    let newFormattedDate = "";
+  // gets the time of the created at date and split between HR/MIN
+    const time = date.slice(16, 21);
+
+  // if the chat was made today, it will set the time today
+  // with format of "Today at 1:18 AM"
+    if (newDate.toString().slice(0, 3) === date.slice(0, 3)) {
+        newFormattedDate += `Today at ${timeConversion(time)}`;
+
+        return newFormattedDate;
+    }
+
+    if (isItYesterday(date)) {
+        newFormattedDate += `Yesterday at ${timeConversion(time)}`;
+        return newFormattedDate;
+    }
+
+  // if no conditions met, it will return date as format of "08/01/23 8:07 PM"
+    newFormattedDate += `${monthToNum(date.slice(4, 7))}/`;
+    newFormattedDate += `${date.slice(8, 10)}/`;
+    newFormattedDate += `${date.slice(13, 15)} `;
+    newFormattedDate += `${timeConversion(time)}`;
+
+    return newFormattedDate;
+};
+
 
 
 
