@@ -28,7 +28,7 @@
 .message-users-container {
     background-color: rgb(136, 130, 130);
     width: 700px;
-    height: 75vh;
+    height: 60vh;
     overflow: auto;
 }
 
