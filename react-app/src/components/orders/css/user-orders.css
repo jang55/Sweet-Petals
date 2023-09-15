@@ -258,6 +258,12 @@
   background-color: rgb(234, 191, 198);
 }
 
+.order-message-button {
+  width: fit-content;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
 /*********************Style for the cupcakes ****************/
 .order-cupcake-title {
   margin: 0px;

@@ -99,6 +99,10 @@ function OrderCard({ order, pageType, validOrder }) {
     history.push(`/orders/${order.id}`)
   }
 
+  const handleMessageButton = () => {
+    history.push(`/messages/users/${order.owner_id}`)
+  }
+
 
   return (
     <fieldset
@@ -140,6 +144,7 @@ function OrderCard({ order, pageType, validOrder }) {
             ) : (
               <button onClick={handleCompleteButton} className="order-buttons" >Completed</button>
             )}
+            <button onClick={handleMessageButton} className="order-buttons order-message-button">Leave Message</button>
           </div>
         ) : checkDateMiliseconds(order.pick_up_time) ? (
           <div className="order-functions">

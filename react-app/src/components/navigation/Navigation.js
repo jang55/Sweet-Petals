@@ -154,11 +154,12 @@ useEffect(() => {
                 <RxHamburgerMenu className="nav-menu-button" />
                 {openMenu && (
                   <div className="nav-menu"  >
-                    <NavLink className="nav-menu-items-wrap" to="/messages">
+{/* links for all the admins */}
+                    {sessionUser.role === "admin" && <NavLink className="nav-menu-items-wrap" to="/messages/list">
                       <span className="nav-menu-items">
                         Messages <FaEnvelope className="nav-envelope" />
                       </span>
-                    </NavLink>
+                    </NavLink>}
 
                     {sessionUser.role === "admin" && (
                       <NavLink className="nav-menu-items-wrap" to="/orders">
@@ -177,6 +178,12 @@ useEffect(() => {
                         <span className="nav-menu-items">Recipes List</span>
                       </NavLink>
                     )}
+{/* links for all the customers */}
+                    {sessionUser.role === "customer" && <NavLink className="nav-menu-items-wrap" to={`/messages/users/${sessionUser.id}`}>
+                      <span className="nav-menu-items">
+                        Messages <FaEnvelope className="nav-envelope" />
+                      </span>
+                    </NavLink>}
 
                     {sessionUser.role === "customer" && <NavLink className="nav-menu-items-wrap" to="/orders/users">
                       <span className="nav-menu-items">My Orders</span>

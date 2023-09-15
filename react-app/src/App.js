@@ -14,6 +14,7 @@ import Recipes from "./components/recipes/Recipes";
 import FourOhFourPage from "./components/navigation/404Page";
 import AboutUs from "./components/navigation/AboutUs";
 import MessagePage from "./components/messages/MessagePage";
+import MessageList from "./components/messages/MessageList";
 
 function App() {
   const dispatch = useDispatch();
@@ -54,7 +55,10 @@ function App() {
           <Route exact path="/about-us">
             <AboutUs />
           </Route>
-          <Route exact path="/messages">
+          <Route path="/messages/list">
+            <MessageList />
+          </Route>
+          <Route path="/messages/users/:userId">
             <MessagePage />
           </Route>
           <Route>

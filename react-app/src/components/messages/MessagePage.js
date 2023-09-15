@@ -1,115 +1,47 @@
 import "./css/message-page.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import {
-  getCustomerMessagesThunk,
-  getAllMessagesThunk,
-} from "../../store/messageReducer";
+import { getCustomerMessagesThunk } from "../../store/messageReducer";
 import ChatBox from "./ChatBox";
-import { dateFormatThree } from "../../utils/helperFunctions";
+import { useParams } from "react-router-dom";
+import {PiArrowFatLinesLeftDuotone} from "react-icons/pi"
+import { useHistory } from "react-router-dom";
 
 function MessagePage() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const user = useSelector((state) => state.session.user);
   const allMessages = useSelector((state) => state.messageState);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [userMessages, setUserMessages] = useState([]);
-  const [openChat, setOpenChat] = useState(false);
+  const { userId } = useParams();
 
   useEffect(() => {
-    if (user && user.role === "customer") {
-      dispatch(getCustomerMessagesThunk(user.id)).then(() => {
-        setIsLoaded(true);
-      });
-    } else if (user && user.role === "admin") {
-      dispatch(getAllMessagesThunk()).then(() => {
+    if (user) {
+      dispatch(getCustomerMessagesThunk(userId)).then(() => {
         setIsLoaded(true);
       });
     }
-  }, [user]);
+  }, [user, userId]);
 
-  useEffect(() => {
-    if (user && user.role === "admin") {
-      setUserMessages(Object.values(allMessages));
-    }
-  }, [user, allMessages]);
 
-  const handleOpenChat = async (e, customerId) => {
+  const handleBackArrow = (e) => {
     e.preventDefault();
 
-    await dispatch(getCustomerMessagesThunk(customerId));
-    setOpenChat(true);
-  };
-
-  const handleCloseChat = async (e) => {
-    e.preventDefault();
-
-    await dispatch(getAllMessagesThunk());
-    setOpenChat(false);
-  };
+    history.push("/messages/list")
+  }
 
   return (
     isLoaded &&
-    user && (
+    user &&
+    (
       <div className="message-page-container">
         <h1 className="message-h1">Messages</h1>
-{/* // sets up the layout for user customer side  */}
-        {user.role === "customer" ? (
-          <>
-            <p className="message-info-text">
-              Have a question? Feel free to ask us!
-            </p>
-            <div className="message-chatbox-wrapper">
-              <ChatBox messages={Object.values(allMessages)} />
-            </div>
-          </>
-        ) : (
-//sets up the layout for user admin side 
-          <>
-            {openChat ? (
-              <>
-            <span className="message-info-text">
-                {Object.values(allMessages)[0]?.Customer?.username}
-            </span>
-                <p onClick={(e) => handleCloseChat(e)}>back</p>
-                <div className="message-chatbox-wrapper">
-                  <ChatBox messages={Object.values(allMessages)} />
-                </div>
-              </>
-            ) : (
-              <>
-                <p className="message-info-text">
-                  Your current messages with customers.
-                </p>
-                <div className="message-users-container">
-                  {userMessages.map((messages, i) => {
-                    const date = new Date(
-                      messages[messages.length - 1]?.created_at
-                    ).toString();
-                    const lastUserMessage =
-                      messages[messages.length - 1]?.sender === "admin"
-                        ? messages[messages.length - 1]?.Admin?.username
-                        : messages[messages.length - 1]?.Customer?.username;
-                    return (
-                      <div
-                        key={i}
-                        className="message-users-wrapper"
-                        onClick={(e) =>
-                          handleOpenChat(e, messages[0]?.Customer?.id)
-                        }
-                      >
-                        <p>{messages[0]?.Customer?.username}</p>
-                        <span>{lastUserMessage}</span>
-                        <span>{dateFormatThree(date)}</span>
-                        <p>{messages[messages.length - 1]?.message}</p>
-                      </div>
-                    );
-                  })}
-                </div>
-              </>
-            )}
-          </>
-        )}
+        {user.role === "customer" ? <p className="message-info-text">
+          Have a question? Feel free to ask us!
+        </p> :<span onClick={handleBackArrow} ><PiArrowFatLinesLeftDuotone /> Messages List</span> }
+        <div className="message-chatbox-wrapper">
+          <ChatBox messages={Object.values(allMessages)} />
+        </div>
       </div>
     )
   );
