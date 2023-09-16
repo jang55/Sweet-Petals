@@ -6,7 +6,7 @@ import {
   createCustomerMessageThunk,
 } from "../../store/messageReducer";
 
-function ChatInput() {
+function ChatInput({ customerId }) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
   const [chatInput, setChatInput] = useState("");
@@ -16,6 +16,8 @@ function ChatInput() {
 
     if (user.role === "customer") {
       dispatch(createCustomerMessageThunk(user.id, chatInput));
+    } else if (user.role === "admin") {
+      dispatch(createAdminMessageThunk(customerId, chatInput));
     }
 
     setChatInput("");

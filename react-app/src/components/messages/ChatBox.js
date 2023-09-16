@@ -8,14 +8,14 @@ import ChatInput from "./ChatInput";
 
 function ChatBox({ messages }) {
   const user = useSelector((state) => state.session.user);
-  const [isCustomer, setIsCustomer] = useState(false);
-  const chatRef = useRef()
+  const [customer, setCustomer] = useState(messages[0]?.Customer);
+  const chatRef = useRef();
 
-  useEffect(() => {
-    if (user && user.role === "customer") {
-      setIsCustomer(true);
-    }
-  }, [user]);
+  // useEffect(() => {
+  //   if (user && user.role === "customer") {
+  //     setIsCustomer(true);
+  //   }
+  // }, [user]);
 
   useEffect(() => {
     if(messages) {
@@ -24,6 +24,7 @@ function ChatBox({ messages }) {
         block: "start"
       })
     }
+    
   }, [messages])
 
   // Function to reverse a given array
@@ -37,8 +38,9 @@ function ChatBox({ messages }) {
       <div className="chat-messages-wrapper">
         {/* this is a ref to scroll after a message is sent */}
         <div ref={chatRef}></div>
+        {/* ternary condition to determine which role is the user */}
         {messages &&
-          reverseArray([...messages]).map((message) => {
+          user.role === "customer" ? reverseArray([...messages]).map((message) => {
             // console.log(message);
             return message.sender === "customer" ? (
               <div key={message.id} className="chat-sender-outer-wrapper">
@@ -49,9 +51,20 @@ function ChatBox({ messages }) {
                 <RecipientCard message={message} />
               </div>
             );
+          }) : reverseArray([...messages]).map((message) => {
+            // console.log(message);
+            return message.sender === "admin" ? (
+              <div key={message.id} className="chat-sender-outer-wrapper">
+                <SenderCard message={message} />
+              </div>
+            ) : (
+              <div key={message.id} className="chat-recipient-outer-wrapper">
+                <RecipientCard message={message} />
+              </div>
+            );
           })}
       </div>
-      <ChatInput />
+      <ChatInput customerId={customer.id} />
     </div>
   );
 }
