@@ -1,8 +1,8 @@
 // constants
 const GET_ALL_MESSAGES = "messages/GET_ALL_MESSAGES";
 const GET_CUSTOMER_MESSAGES = "messages/GET_CUSTOMER_MESSAGES";
-const CREATE_ADMIN_MESSAGE = "messages/CREATE_ADMIN_MESSAGE";
-const CREATE_CUSTOMER_MESSAGE = "messages/CREATE_CUSTOMER_MESSAGE";
+// const CREATE_ADMIN_MESSAGE = "messages/CREATE_ADMIN_MESSAGE";
+// const CREATE_CUSTOMER_MESSAGE = "messages/CREATE_CUSTOMER_MESSAGE";
 // const UPDATE_MESSAGE = "messages/UPDATE_MESSAGE";
 // const DELETE_MESSAGE = "messages/DELETE_MESSAGE";
 
@@ -22,18 +22,18 @@ const getCustomerMessagesAction = (messages) => ({
 
 // ***************************
 
-const createAdminMessageAction = (message) => ({
-  type: CREATE_ADMIN_MESSAGE,
-  payload: message,
-});
+// const createAdminMessageAction = (message) => ({
+//   type: CREATE_ADMIN_MESSAGE,
+//   payload: message,
+// });
 
-// ***************************
+// // ***************************
 
 
-const createCustomerMessageAction = (message) => ({
-  type: CREATE_CUSTOMER_MESSAGE,
-  payload: message,
-});
+// const createCustomerMessageAction = (message) => ({
+//   type: CREATE_CUSTOMER_MESSAGE,
+//   payload: message,
+// });
 
 // ***************************
 

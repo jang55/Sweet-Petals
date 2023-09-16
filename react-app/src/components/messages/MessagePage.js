@@ -21,7 +21,7 @@ function MessagePage() {
         setIsLoaded(true);
       });
     }
-  }, [user, userId]);
+  }, [user, userId, dispatch]);
 
 
   const handleBackArrow = (e) => {

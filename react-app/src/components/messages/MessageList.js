@@ -1,4 +1,3 @@
-import "./css/message-page.css";
 import "./css/message-list.css"
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
@@ -26,7 +25,7 @@ function MessageList() {
       });
       dispatch(getAllUsersThunk());
     }
-  }, [user]);
+  }, [user, dispatch]);
 
 
 
@@ -83,7 +82,10 @@ function MessageList() {
           Your current messages with customers.
         </p>
         <form onSubmit={handleSearchUser}>
-          <input type="text" value={customerEmail} onChange={e => setCustomerEmail(e.target.value)} placeholder="example@aa.io"></input>
+          <label>
+            Find a customer: 
+            <input type="text" value={customerEmail} onChange={e => setCustomerEmail(e.target.value)} placeholder="example@aa.io"></input>
+          </label>
           <button type="submit">Search</button>
         </form>
         {errors && errors.email && <p className="message-list-error">*{errors.email}</p>}
@@ -102,10 +104,12 @@ function MessageList() {
                 className="message-users-wrapper"
                 onClick={(e) => handleOpenChat(e, messages[messages.length - 1]?.Customer?.id)}
               >
-                <p>{messages[0]?.Customer?.username}</p>
-                <span>{lastUserMessage}</span>
-                <span>{dateFormatThree(date)}</span>
-                <p>{messages[messages.length - 1]?.message}</p>
+                <span className="message-list-customer-name-wrap">Customer: <span className="message-list-customer-name">{messages[0]?.Customer?.username}</span></span>
+                <div className="message-list-message-wrap">
+                  <span className="message-list-msg-item-1">Last message sent:</span>
+                  <span className="message-list-msg-item-2">{lastUserMessage} <span className="message-list-msg-item-3">{dateFormatThree(date)}</span></span>
+                  <span className="message-list-msg-item-4">"{messages[messages.length - 1]?.message}"</span>
+                </div>
               </div>
             );
           })}
