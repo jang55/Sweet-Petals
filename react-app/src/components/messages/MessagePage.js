@@ -40,7 +40,7 @@ function MessagePage() {
           Have a question? Feel free to ask us!
         </p> :<span onClick={handleBackArrow} ><PiArrowFatLinesLeftDuotone /> Messages List</span> }
         <div className="message-chatbox-wrapper">
-          <ChatBox messages={Object.values(allMessages)} />
+          <ChatBox messages={allMessages ? Object.values(allMessages) : []} customerId={userId} />
         </div>
       </div>
     )

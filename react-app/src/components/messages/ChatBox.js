@@ -6,9 +6,9 @@ import { useEffect, useState, useRef } from "react";
 import ChatInput from "./ChatInput";
 
 
-function ChatBox({ messages }) {
+function ChatBox({ messages, customerId }) {
   const user = useSelector((state) => state.session.user);
-  const [customer, setCustomer] = useState(messages[0]?.Customer);
+  // const [customer, setCustomer] = useState(messages[0]?.Customer);
   const chatRef = useRef();
 
   // useEffect(() => {
@@ -64,7 +64,7 @@ function ChatBox({ messages }) {
             );
           })}
       </div>
-      <ChatInput customerId={customer.id} />
+      <ChatInput customerId={customerId} />
     </div>
   );
 }
