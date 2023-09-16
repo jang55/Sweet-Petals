@@ -4,7 +4,7 @@ import RecipientCard from "./RecipientCard";
 import { useSelector } from "react-redux";
 import { useEffect,  useRef } from "react";
 import ChatInput from "./ChatInput";
-import { dateFormatThree, dateFormatTwo } from "../../utils/helperFunctions";
+import { dateFormatThree, dateFormatFour } from "../../utils/helperFunctions";
 
 
 
@@ -12,15 +12,15 @@ function ChatBox({ messages, customerId }) {
   const user = useSelector((state) => state.session.user);
   const chatRef = useRef();
 
-  useEffect(() => {
-    if(messages) {
-      chatRef.current?.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      })
-    }
+  // useEffect(() => {
+  //   if(messages) {
+  //     chatRef.current?.scrollIntoView({
+  //       behavior: "smooth",
+  //       block: "start"
+  //     })
+  //   }
     
-  }, [messages])
+  // }, [messages])
 
   // Function to reverse a given array
   const reverseArray = (array) => {
@@ -47,14 +47,14 @@ function ChatBox({ messages, customerId }) {
                 <div key={message.id} className="chat-sender-outer-wrapper">
                   <SenderCard message={message} />
                 </div>
-                {isNewDay && <p className="chat-date-section">{dateFormatTwo(message?.created_at).slice(4, 17)}</p>}
+                {isNewDay && <p className="chat-date-section">{dateFormatFour(new Date(message?.created_at).toString())}</p>}
               </>
             ) : (
               <>
                 <div key={message.id} className="chat-recipient-outer-wrapper">
                   <RecipientCard message={message} />
                 </div>
-                {isNewDay && <p className="chat-date-section">{dateFormatTwo(message?.created_at).slice(4, 17)}</p>}
+                {isNewDay && <p className="chat-date-section">{dateFormatFour(new Date(message?.created_at).toString())}</p>}
               </>
             );
             // condition if sender is admin
@@ -70,14 +70,14 @@ function ChatBox({ messages, customerId }) {
                 <div key={message.id} className="chat-sender-outer-wrapper">
                   <SenderCard message={message} />
                 </div>
-                {isNewDay && <p className="chat-date-section">{dateFormatTwo(message?.created_at).slice(4, 17)}</p>}
+                {isNewDay && <p className="chat-date-section">{dateFormatFour(new Date(message?.created_at).toString())}</p>}
               </>
             ) : (
               <>
                 <div key={message.id} className="chat-recipient-outer-wrapper">
                   <RecipientCard message={message} />
                 </div>
-                {isNewDay && <p className="chat-date-section">{dateFormatTwo(message?.created_at).slice(4, 17)}</p>}
+                {isNewDay && <p className="chat-date-section">{dateFormatFour(new Date(message?.created_at).toString())}</p>}
               </>
             );
           })}

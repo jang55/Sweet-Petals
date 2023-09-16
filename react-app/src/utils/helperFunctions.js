@@ -310,6 +310,17 @@ export const dateFormatThree = (date) => {
     return newFormattedDate;
 };
 
+// converts the date created into a proper format to be displayed for messages day sections
+export const dateFormatFour = (date) => {
+    let newFormattedDate = "";
+
+    newFormattedDate += `${date.slice(4, 7)} `;
+    newFormattedDate += `${date.slice(8, 10)}, `;
+    newFormattedDate += `${date.slice(11, 15)} `;
+
+    return newFormattedDate;
+};
+
 
 
 
