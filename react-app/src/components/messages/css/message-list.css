@@ -31,7 +31,7 @@
 .message-users-wrapper {
     /* background-color: rgb(204, 198, 198); */
     background-color: var(--main-form-color);
-    height: 80px;
+    height: 95px;
     width: 96.9%;
     border-top: 1px solid gray;
     border-bottom: 1px solid gray;
@@ -63,6 +63,7 @@
 .message-list-customer-name {
     margin-left: 10px;
     font-weight: bold;
+    color: rgb(36, 34, 34);
 }
 
 
@@ -85,6 +86,7 @@
     grid-column-end: 11;
     margin: 5px;
     font-weight: bold;
+    color: rgb(36, 34, 34);
 }
 
 .message-list-msg-item-3 {
@@ -99,5 +101,10 @@
     grid-row-end: 3;
     font-weight: bold;
     margin-left: 10px;
+    color: rgb(36, 34, 34);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 500px;
 }
 

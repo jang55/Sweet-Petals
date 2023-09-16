@@ -94,10 +94,11 @@ function MessageList() {
             const date = new Date(
               messages[messages.length - 1]?.created_at
             ).toString();
-            const lastUserMessage =
+            const lastUserMessageUsername =
               messages[messages.length - 1]?.sender === "admin"
                 ? messages[messages.length - 1]?.Admin?.username
                 : messages[messages.length - 1]?.Customer?.username;
+            const lastUserIsAdmon = messages[messages.length - 1]?.sender === "admin"
             return (
               <div
                 key={i}
@@ -105,11 +106,17 @@ function MessageList() {
                 onClick={(e) => handleOpenChat(e, messages[messages.length - 1]?.Customer?.id)}
               >
                 <span className="message-list-customer-name-wrap">Customer: <span className="message-list-customer-name">{messages[0]?.Customer?.username}</span></span>
-                <div className="message-list-message-wrap">
+                <span className="message-list-customer-name-wrap">Email: <span className="message-list-customer-name">{messages[0]?.Customer?.email}</span></span>
+                {lastUserIsAdmon ? <div className="message-list-message-wrap">
                   <span className="message-list-msg-item-1">Last message sent:</span>
-                  <span className="message-list-msg-item-2">{lastUserMessage} <span className="message-list-msg-item-3">{dateFormatThree(date)}</span></span>
+                  <span className="message-list-msg-item-2">{lastUserMessageUsername} <span className="message-list-msg-item-3">{dateFormatThree(date)}</span></span>
                   <span className="message-list-msg-item-4">"{messages[messages.length - 1]?.message}"</span>
-                </div>
+                </div>:
+                <div className="message-list-message-wrap">
+                  <span className="message-list-msg-item-1">Message received:</span>
+                  <span className="message-list-msg-item-2">{lastUserMessageUsername} <span className="message-list-msg-item-3">{dateFormatThree(date)}</span></span>
+                  <span className="message-list-msg-item-4">"{messages[messages.length - 1]?.message}"</span>
+                </div>}
               </div>
             );
           })}
