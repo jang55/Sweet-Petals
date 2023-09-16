@@ -14,6 +14,10 @@ function ChatInput({ customerId }) {
   const handleChatSubmit = (e) => {
     e.preventDefault();
 
+    if(chatInput.trim().length < 1) {
+      return
+    }
+
     if (user.role === "customer") {
       dispatch(createCustomerMessageThunk(user.id, chatInput));
     } else if (user.role === "admin") {
@@ -30,7 +34,9 @@ function ChatInput({ customerId }) {
         className="chatbox-input"
         value={chatInput}
         onChange={(e) => setChatInput(e.target.value)}
+        minLength={1}
         maxLength={1000}
+        autoComplete="off"
       />
     </form>
   );

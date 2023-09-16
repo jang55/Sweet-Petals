@@ -41,7 +41,6 @@ function ChatBox({ messages, customerId }) {
         {/* ternary condition to determine which role is the user */}
         {messages &&
           user.role === "customer" ? reverseArray([...messages]).map((message) => {
-            // console.log(message);
             return message.sender === "customer" ? (
               <div key={message.id} className="chat-sender-outer-wrapper">
                 <SenderCard message={message} />
@@ -51,8 +50,8 @@ function ChatBox({ messages, customerId }) {
                 <RecipientCard message={message} />
               </div>
             );
+            // condition if sender is admin
           }) : reverseArray([...messages]).map((message) => {
-            // console.log(message);
             return message.sender === "admin" ? (
               <div key={message.id} className="chat-sender-outer-wrapper">
                 <SenderCard message={message} />
