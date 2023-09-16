@@ -1,4 +1,4 @@
-.message-users-container {
+.message-list-users-container {
     background-color: rgb(159, 153, 153);
     width: 700px;
     height: 60vh;
@@ -7,40 +7,42 @@
     box-shadow: 0px 0px 5px 3px rgba(65, 63, 63, 0.3);
     border: 1px solid gray;
     border-radius: 5px;
+    margin-top: 10px;
 }
 
 /* width */
-.message-users-container::-webkit-scrollbar {
+.message-list-users-container::-webkit-scrollbar {
     width: 6px;
     height: 10px;
 }
 
   /* Track */
-.message-users-container::-webkit-scrollbar-track {
-    background: #a29f9f;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
+.message-list-users-container::-webkit-scrollbar-track {
+    background: rgb(204, 198, 198);
+    /* border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px; */
+    border-radius: 10px;
 }
 
   /* Handle */
-.message-users-container::-webkit-scrollbar-thumb {
-    border-radius: 30px;
+.message-list-users-container::-webkit-scrollbar-thumb {
+    border-radius: 10px;
     background: rgb(119, 117, 117);
 }
 
-.message-users-wrapper {
+.message-list-users-wrapper {
     /* background-color: rgb(204, 198, 198); */
     background-color: var(--main-form-color);
     height: 95px;
-    width: 96.9%;
+    width: 97%;
     border-top: 1px solid gray;
     border-bottom: 1px solid gray;
     padding: 10px;
     cursor: pointer;
-    border-radius: 2px;
+    border-radius: 1px;
 }
 
-.message-users-wrapper:hover {
+.message-list-users-wrapper:hover {
     background-color: rgb(204, 198, 198);
     /* background-color: var(--main-bg-color); */
     /* background-color: #da9ac5; */
@@ -108,3 +110,45 @@
     width: 500px;
 }
 
+/******** filter *************************/
+
+.message-list-filter-wrapper {
+    margin-right: 450px;
+    margin-top: 10px;
+    display: flex;
+}
+
+.message-list-filter-items-wrap {
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/******* search input ********************** */
+.message-list-search-wrapper {
+    display: flex;
+}
+.message-list-search-input {
+    height: 18px;
+    font-size: 15px;
+    font-weight: bold;
+    margin-left: 5px;
+    padding-left: 5px;
+    padding-right: 10px;
+}
+
+.message-list-search-button {
+    cursor: pointer;
+    background-color: #da9ac5;
+    padding: 3.6px;
+    border-radius: 2px;
+    font-family: Arial, Helvetica, sans-serif;
+    border: 1px solid var(--main-text-color);
+    color: white;
+    width: 50px;
+}
+
+.message-list-search-button:hover {
+    background-color: #e5a4d0;
+}

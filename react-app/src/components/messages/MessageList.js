@@ -16,6 +16,7 @@ function MessageList() {
   const [userMessages, setUserMessages] = useState([]);
   const [customerEmail, setCustomerEmail] = useState("");
   const [errors, setErrors] = useState({});
+  const [filter, setFiler] = useState("newest")
 
 
   useEffect(() => {
@@ -37,9 +38,13 @@ function MessageList() {
 
       let a = Object.values(allMessages)
       const res = a.sort(compareNums);
-      setUserMessages(res.reverse());
+      if(filter === "newest") {
+        setUserMessages(res.reverse());
+      } else {
+        setUserMessages(res);
+      }
     }
-  }, [user, allMessages]);
+  }, [user, allMessages, filter]);
 
 
 
@@ -81,15 +86,15 @@ function MessageList() {
         <p className="message-info-text">
           Your current messages with customers.
         </p>
-        <form onSubmit={handleSearchUser}>
+        <form className="message-list-search-wrapper" onSubmit={handleSearchUser}>
           <label>
             Find a customer: 
-            <input type="text" value={customerEmail} onChange={e => setCustomerEmail(e.target.value)} placeholder="example@aa.io"></input>
+            <input className="message-list-search-input" required type="text" value={customerEmail} onChange={e => setCustomerEmail(e.target.value)} placeholder="example@aa.io"></input>
           </label>
-          <button type="submit">Search</button>
+          <button className="message-list-search-button" type="submit">Search</button>
         </form>
-        {errors && errors.email && <p className="message-list-error">*{errors.email}</p>}
-        <div className="message-users-container">
+        {<p style={{opacity:errors.email ? "1" : "0"}} className="message-list-error">*{errors.email}</p>}
+        <div className="message-list-users-container">
           {userMessages.map((messages, i) => {
             const date = new Date(
               messages[messages.length - 1]?.created_at
@@ -102,7 +107,7 @@ function MessageList() {
             return (
               <div
                 key={i}
-                className="message-users-wrapper"
+                className="message-list-users-wrapper"
                 onClick={(e) => handleOpenChat(e, messages[messages.length - 1]?.Customer?.id)}
               >
                 <span className="message-list-customer-name-wrap">Customer: <span className="message-list-customer-name">{messages[0]?.Customer?.username}</span></span>
@@ -120,6 +125,19 @@ function MessageList() {
               </div>
             );
           })}
+        </div>
+        <div className="message-list-filter-wrapper">
+          <span>Filter by: </span>
+          <div className="message-list-filter-items-wrap">
+            <label style={{cursor: "pointer"}}>
+              Most recent
+              <input style={{cursor: "pointer"}} type="checkbox" checked={filter === "newest"} value={"newest"} onChange={e => setFiler(e.target.value)} />
+            </label>
+            <label style={{cursor: "pointer"}}>
+              Oldest
+              <input style={{cursor: "pointer"}} type="checkbox" checked={filter === "oldest"} value={"oldest"} onChange={e => setFiler(e.target.value)}/>
+            </label>
+          </div>
         </div>
       </div>
     )
