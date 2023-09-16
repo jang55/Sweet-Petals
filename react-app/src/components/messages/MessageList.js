@@ -32,7 +32,13 @@ function MessageList() {
 
   useEffect(() => {
     if (user && user.role === "admin") {
-      setUserMessages(Object.values(allMessages));
+      function compareNums(a, b) {
+        return new Date(a[a.length - 1]?.created_at).getTime() - new Date(b[b.length - 1]?.created_at).getTime()
+      }
+
+      let a = Object.values(allMessages)
+      const res = a.sort(compareNums);
+      setUserMessages(res.reverse());
     }
   }, [user, allMessages]);
 
