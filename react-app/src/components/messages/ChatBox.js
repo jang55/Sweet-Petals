@@ -2,20 +2,15 @@ import "./css/chatbox.css";
 import SenderCard from "./SenderCard";
 import RecipientCard from "./RecipientCard";
 import { useSelector } from "react-redux";
-import { useEffect, useState, useRef } from "react";
+import { useEffect,  useRef } from "react";
 import ChatInput from "./ChatInput";
+import { dateFormatThree, dateFormatTwo } from "../../utils/helperFunctions";
+
 
 
 function ChatBox({ messages, customerId }) {
   const user = useSelector((state) => state.session.user);
-  // const [customer, setCustomer] = useState(messages[0]?.Customer);
   const chatRef = useRef();
-
-  // useEffect(() => {
-  //   if (user && user.role === "customer") {
-  //     setIsCustomer(true);
-  //   }
-  // }, [user]);
 
   useEffect(() => {
     if(messages) {
@@ -40,26 +35,50 @@ function ChatBox({ messages, customerId }) {
         <div ref={chatRef}></div>
         {/* ternary condition to determine which role is the user */}
         {messages &&
-          user.role === "customer" ? reverseArray([...messages]).map((message) => {
+          user.role === "customer" ? reverseArray([...messages]).map((message, idx) => {
+            const tempIndex = messages.length - idx - 1;
+            const isNewDay =
+            tempIndex === 0
+              ? true
+              : dateFormatThree(new Date(messages[tempIndex]?.created_at).toString()).slice(0,8) !==
+                dateFormatThree(new Date(messages[tempIndex - 1]?.created_at).toString()).slice(0,8);    
             return message.sender === "customer" ? (
-              <div key={message.id} className="chat-sender-outer-wrapper">
-                <SenderCard message={message} />
-              </div>
+              <>
+                <div key={message.id} className="chat-sender-outer-wrapper">
+                  <SenderCard message={message} />
+                </div>
+                {isNewDay && <p className="chat-date-section">{dateFormatTwo(message?.created_at).slice(4, 17)}</p>}
+              </>
             ) : (
-              <div key={message.id} className="chat-recipient-outer-wrapper">
-                <RecipientCard message={message} />
-              </div>
+              <>
+                <div key={message.id} className="chat-recipient-outer-wrapper">
+                  <RecipientCard message={message} />
+                </div>
+                {isNewDay && <p className="chat-date-section">{dateFormatTwo(message?.created_at).slice(4, 17)}</p>}
+              </>
             );
             // condition if sender is admin
-          }) : reverseArray([...messages]).map((message) => {
+          }) : reverseArray([...messages]).map((message, idx) => {
+            const tempIndex = messages.length - idx - 1;
+            const isNewDay =
+            tempIndex === 0
+              ? true
+              : dateFormatThree(new Date(messages[tempIndex]?.created_at).toString()).slice(0,8) !==
+                dateFormatThree(new Date(messages[tempIndex - 1]?.created_at).toString()).slice(0,8);            
             return message.sender === "admin" ? (
-              <div key={message.id} className="chat-sender-outer-wrapper">
-                <SenderCard message={message} />
-              </div>
+              <>
+                <div key={message.id} className="chat-sender-outer-wrapper">
+                  <SenderCard message={message} />
+                </div>
+                {isNewDay && <p className="chat-date-section">{dateFormatTwo(message?.created_at).slice(4, 17)}</p>}
+              </>
             ) : (
-              <div key={message.id} className="chat-recipient-outer-wrapper">
-                <RecipientCard message={message} />
-              </div>
+              <>
+                <div key={message.id} className="chat-recipient-outer-wrapper">
+                  <RecipientCard message={message} />
+                </div>
+                {isNewDay && <p className="chat-date-section">{dateFormatTwo(message?.created_at).slice(4, 17)}</p>}
+              </>
             );
           })}
       </div>

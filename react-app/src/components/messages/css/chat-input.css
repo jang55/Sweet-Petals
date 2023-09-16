@@ -1,20 +1,50 @@
 .chatbox-input-wrapper {
     position: absolute;
     bottom: 0;
-    background-color: rgb(133, 124, 124);
+    /* background-color: rgb(137, 134, 134); */
+    background-color: rgb(227,215,230);
     width: 100%;
     height: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-bottom-left-radius: 6px;
-    border-bottom-right-radius: 6px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
 }
 
 .chatbox-input {
     font-size: 20px;
-    width: 90%;
+    width: 75%;
     height: 30px;
     padding: 0px 10px;
     padding-right: 20px;
+    background-color: var(--main-select-color);
+    border: 1px solid gray;
+    border-radius: 3px;
+}
+
+.chatbox-input:focus {
+    outline: none;
+}
+
+.chat-input-submit-button {
+    height: 32px;
+    width: 50px;
+    background-color: #da9ac5;
+    cursor: pointer;
+    border: 1px solid gray;
+    border-radius: 3px;
+}
+
+.chat-input-submit-button:hover {
+    background-color: #e5a4d0;
+}
+
+/* .chat-input-submit-button:hover .chat-input-submit-arrow {
+    color: rgb(206, 204, 204);
+} */
+
+.chat-input-submit-arrow {
+    color: white;
+    font-size: 20px;
 }

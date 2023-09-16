@@ -188,6 +188,22 @@ const isItYesterday = (date) => {
   return formattedDate === yesterday;
 };
 
+// helper function to check to see if the message was created the on same day
+const isItToday = (date) => {
+  const formattedDate = `${date.slice(0, 3)}, ${date.slice(4,7)} ${Number(date.slice(8, 10
+  ))}, ${date.slice(11, 15)}`;
+  const day = moment().format().slice(8, 10);
+  let today;
+
+  if(Number(day) < 10) {
+    today = moment().format("llll").slice(0, 16);
+  } else {
+    today = moment().format("llll").slice(0, 17);
+  }
+  
+  return formattedDate === today;
+};
+
 
 
 
@@ -274,9 +290,9 @@ export const dateFormatThree = (date) => {
 
   // if the chat was made today, it will set the time today
   // with format of "Today at 1:18 AM"
-    if (newDate.toString().slice(0, 3) === date.slice(0, 3)) {
+    // if (newDate.toString().slice(0, 3) === date.slice(0, 3)) {
+    if (isItToday(date)) {
         newFormattedDate += `Today at ${timeConversion(time)}`;
-
         return newFormattedDate;
     }
 

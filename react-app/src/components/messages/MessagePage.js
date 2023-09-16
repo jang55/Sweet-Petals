@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { getCustomerMessagesThunk } from "../../store/messageReducer";
 import ChatBox from "./ChatBox";
 import { useParams } from "react-router-dom";
-import {PiArrowFatLinesLeftDuotone} from "react-icons/pi"
+import { PiArrowFatLinesLeftDuotone } from "react-icons/pi";
 import { useHistory } from "react-router-dom";
 
 function MessagePage() {
@@ -12,8 +12,9 @@ function MessagePage() {
   const history = useHistory();
   const user = useSelector((state) => state.session.user);
   const allMessages = useSelector((state) => state.messageState);
-  const [isLoaded, setIsLoaded] = useState(false);
   const { userId } = useParams();
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [customer, setCustomer] = useState({})
 
   useEffect(() => {
     if (user) {
@@ -23,24 +24,38 @@ function MessagePage() {
     }
   }, [user, userId, dispatch]);
 
+  useEffect(() => {
+    setCustomer(Object.values(allMessages)[0]?.Customer)
+  }, [isLoaded])
 
   const handleBackArrow = (e) => {
     e.preventDefault();
 
-    history.push("/messages/list")
-  }
+    history.push("/messages/list");
+  };
 
   return (
     isLoaded &&
-    user &&
-    (
+    user && (
       <div className="message-page-container">
         <h1 className="message-h1">Messages</h1>
-        {user.role === "customer" ? <p className="message-info-text">
-          Have a question? Feel free to ask us!
-        </p> :<span onClick={handleBackArrow} ><PiArrowFatLinesLeftDuotone /> Messages List</span> }
+        {user.role === "customer" ? (
+          <p className="message-info-text">
+            Have a question? Feel free to ask us!
+          </p>
+        ) : (
+          <>
+            <h3 className="message-h3">Customer: <span className="message-customer-name">{customer?.username}</span></h3>
+            <p className="message-return-to-list" onClick={handleBackArrow}>
+              <PiArrowFatLinesLeftDuotone /> Messages List
+            </p>
+          </>
+        )}
         <div className="message-chatbox-wrapper">
-          <ChatBox messages={allMessages ? Object.values(allMessages) : []} customerId={userId} />
+          <ChatBox
+            messages={allMessages ? Object.values(allMessages) : []}
+            customerId={userId}
+          />
         </div>
       </div>
     )

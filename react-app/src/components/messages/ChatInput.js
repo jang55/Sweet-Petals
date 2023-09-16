@@ -5,6 +5,9 @@ import {
   createAdminMessageThunk,
   createCustomerMessageThunk,
 } from "../../store/messageReducer";
+import { BiSolidRightArrow } from "react-icons/bi"
+
+
 
 function ChatInput({ customerId }) {
   const dispatch = useDispatch();
@@ -38,6 +41,7 @@ function ChatInput({ customerId }) {
         maxLength={1000}
         autoComplete="off"
       />
+      <button type="submit" className="chat-input-submit-button"><BiSolidRightArrow className="chat-input-submit-arrow"/></button>
     </form>
   );
 }
