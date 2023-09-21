@@ -43,11 +43,3 @@
     color: black;
 }
 
-.chat-date-section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-bottom: 1px solid black;
-    margin: 10px 50px;
-    /* font-weight: bold; */
-}
