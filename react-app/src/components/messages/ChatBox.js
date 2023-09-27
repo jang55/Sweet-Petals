@@ -5,12 +5,26 @@ import { useSelector } from "react-redux";
 import { useEffect,  useRef } from "react";
 import ChatInput from "./ChatInput";
 import { dateFormatThree, dateFormatFour } from "../../utils/helperFunctions";
-
+// import the socket
+import { io } from 'socket.io-client';
+// outside of your component, initialize the socket variable
+let socket;
 
 
 function ChatBox({ messages, customerId }) {
   const user = useSelector((state) => state.session.user);
   const chatRef = useRef();
+
+  useEffect(() => {
+
+    // create websocket/connect
+    socket = io();
+
+    // when component unmounts, disconnect
+    return (() => {
+        socket.disconnect()
+    })
+  }, [])
 
   // useEffect(() => {
   //   if(messages) {
