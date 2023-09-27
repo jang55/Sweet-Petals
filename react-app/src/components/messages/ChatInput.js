@@ -1,37 +1,20 @@
 import "./css/chat-input.css";
-import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
-import {
-  createAdminMessageThunk,
-  createCustomerMessageThunk,
-} from "../../store/messageReducer";
+import { useSelector } from "react-redux";
+// import { useState } from "react";
+// import {
+//   createAdminMessageThunk,
+//   createCustomerMessageThunk,
+// } from "../../store/messageReducer";
 import { BiSend } from "react-icons/bi"
 
 
 
-function ChatInput({ customerId }) {
-  const dispatch = useDispatch();
+function ChatInput({chatInput, setChatInput, sendChat }) {
+  // const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
-  const [chatInput, setChatInput] = useState("");
-
-  const handleChatSubmit = (e) => {
-    e.preventDefault();
-
-    if(chatInput.trim().length < 1) {
-      return
-    }
-
-    if (user.role === "customer") {
-      dispatch(createCustomerMessageThunk(user.id, chatInput));
-    } else if (user.role === "admin") {
-      dispatch(createAdminMessageThunk(customerId, chatInput));
-    }
-
-    setChatInput("");
-  };
 
   return (
-    <form className="chatbox-input-wrapper" onSubmit={handleChatSubmit}>
+    <form className="chatbox-input-wrapper" onSubmit={sendChat}>
       <input
         type="text"
         className="chatbox-input"

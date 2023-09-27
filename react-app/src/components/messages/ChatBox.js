@@ -1,30 +1,77 @@
 import "./css/chatbox.css";
 import SenderCard from "./SenderCard";
 import RecipientCard from "./RecipientCard";
-import { useSelector } from "react-redux";
-import { useEffect,  useRef } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect,  useRef, useState } from "react";
 import ChatInput from "./ChatInput";
 import { dateFormatThree, dateFormatFour } from "../../utils/helperFunctions";
+import {
+  createAdminMessageThunk,
+  createCustomerMessageThunk,
+} from "../../store/messageReducer";
 // import the socket
 import { io } from 'socket.io-client';
 // outside of your component, initialize the socket variable
 let socket;
 
-
-function ChatBox({ messages, customerId }) {
+function ChatBox({ customerId }) {
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
+  const allMessages = useSelector((state) => state.messageState);
   const chatRef = useRef();
+  const [messages, setMessages] = useState([...Object.values(allMessages)]);
+  const [chatInput, setChatInput] = useState("");
 
   useEffect(() => {
+    setMessages([...Object.values(allMessages)])
+  }, [allMessages])
 
+  // *****************************************************************************
+  // handles the web sockets for chat messages
+  useEffect(() => {
+    
     // create websocket/connect
     socket = io();
 
+    // listen for chat events
+    socket.on("chat", (chat) => {
+        // when we recieve a chat, add it into our messages array in state
+        setMessages(messages => [...messages, chat])
+    })
+    
     // when component unmounts, disconnect
     return (() => {
-        socket.disconnect()
+      socket.disconnect()
     })
   }, [])
+
+  // handles submission for chat
+  const sendChat = async (e) => {
+    e.preventDefault();
+
+    if(chatInput.trim().length < 1) {
+      return
+    }
+
+    let res;
+
+    if (user.role === "customer") {
+      res = await dispatch(createCustomerMessageThunk(user.id, chatInput));
+    } else if (user.role === "admin") {
+      res = await dispatch(createAdminMessageThunk(customerId, chatInput));
+    }
+
+    socket.emit("chat", {
+      message_id: res["message_id"],
+      message: res["message"],
+      admin_id: res["admin_id"],
+      customer_id: res["customer_id"],
+      sender: res["sender"],
+    });
+
+    setChatInput("");
+  };
+  // *****************************************************************************
 
   // useEffect(() => {
   //   if(messages) {
@@ -58,14 +105,14 @@ function ChatBox({ messages, customerId }) {
                 dateFormatThree(new Date(messages[tempIndex - 1]?.created_at).toString()).slice(0,8);    
             return message.sender === "customer" ? (
               <>
-                <div key={message.id} className="chat-sender-outer-wrapper">
+                <div key={`${message.id}${idx}`} className="chat-sender-outer-wrapper">
                   <SenderCard message={message} />
                 </div>
                 {isNewDay && <p className="chat-date-section">{dateFormatFour(new Date(message?.created_at).toString())}</p>}
               </>
             ) : (
               <>
-                <div key={message.id} className="chat-recipient-outer-wrapper">
+                <div key={`${message.id}${idx}`} className="chat-recipient-outer-wrapper">
                   <RecipientCard message={message} />
                 </div>
                 {isNewDay && <p className="chat-date-section">{dateFormatFour(new Date(message?.created_at).toString())}</p>}
@@ -81,14 +128,14 @@ function ChatBox({ messages, customerId }) {
                 dateFormatThree(new Date(messages[tempIndex - 1]?.created_at).toString()).slice(0,8);            
             return message.sender === "admin" ? (
               <>
-                <div key={message.id} className="chat-sender-outer-wrapper">
+                <div key={`${message.id}${idx}`} className="chat-sender-outer-wrapper">
                   <SenderCard message={message} />
                 </div>
                 {isNewDay && <p className="chat-date-section">{dateFormatFour(new Date(message?.created_at).toString())}</p>}
               </>
             ) : (
               <>
-                <div key={message.id} className="chat-recipient-outer-wrapper">
+                <div key={`${message.id}${idx}`} className="chat-recipient-outer-wrapper">
                   <RecipientCard message={message} />
                 </div>
                 {isNewDay && <p className="chat-date-section">{dateFormatFour(new Date(message?.created_at).toString())}</p>}
@@ -96,7 +143,7 @@ function ChatBox({ messages, customerId }) {
             );
           })}
       </div>
-      <ChatInput customerId={customerId} />
+      <ChatInput chatInput={chatInput} setChatInput={setChatInput} sendChat={sendChat}/>
     </div>
   );
 }

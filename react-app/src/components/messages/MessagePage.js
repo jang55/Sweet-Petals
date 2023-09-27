@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 import { PiArrowFatLinesLeftDuotone } from "react-icons/pi";
 import { useHistory } from "react-router-dom";
 
+
 function MessagePage() {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -15,7 +16,9 @@ function MessagePage() {
   const { userId } = useParams();
   const [isLoaded, setIsLoaded] = useState(false);
   const [customer, setCustomer] = useState({})
+  const [messages, setMessages] = useState([])
 
+  // handles dispatching the messages
   useEffect(() => {
     if (user) {
       dispatch(getCustomerMessagesThunk(userId)).then(() => {
@@ -24,10 +27,12 @@ function MessagePage() {
     }
   }, [user, userId, dispatch]);
 
+  // handles setting the customer object
   useEffect(() => {
     setCustomer(Object.values(allMessages)[0]?.Customer)
   }, [isLoaded])
 
+  
   const handleBackArrow = (e) => {
     e.preventDefault();
 
@@ -53,7 +58,7 @@ function MessagePage() {
         )}
         <div className="message-chatbox-wrapper">
           <ChatBox
-            messages={allMessages ? Object.values(allMessages) : []}
+            // messages={allMessages ? Object.values(allMessages) : []}
             customerId={userId}
           />
         </div>

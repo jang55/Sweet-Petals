@@ -23,9 +23,9 @@ socketio = SocketIO(cors_allowed_origins=origins)
 # handle chat messages when message_update event is emitted from the frontend
 @socketio.on("chat")
 def handle_chat(data):
-    # print("**************************SEND_MESSAGE DATA START**************************")
-    # print(data)
-    # print("**************************SEND_MESSAGE DATA END**************************")
+    print("**************************SEND_MESSAGE DATA START**************************")
+    print(data)
+    print("**************************SEND_MESSAGE DATA END**************************")
     emit(
         "chat_response",
         {
