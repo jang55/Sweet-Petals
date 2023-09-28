@@ -8,6 +8,7 @@ import { dateFormatThree, dateFormatFour } from "../../utils/helperFunctions";
 import {
   createAdminMessageThunk,
   createCustomerMessageThunk,
+  getCustomerMessagesThunk
 } from "../../store/messageReducer";
 // import the socket
 import { io } from 'socket.io-client';
@@ -34,9 +35,10 @@ function ChatBox({ customerId }) {
     socket = io();
 
     // listen for chat events
-    socket.on("chat", (chat) => {
+    socket.on("chat_response", (chat) => {
         // when we recieve a chat, add it into our messages array in state
-        setMessages(messages => [...messages, chat])
+        // setMessages(messages => [...messages, chat])
+        dispatch(getCustomerMessagesThunk(chat.customer_id));
     })
     
     // when component unmounts, disconnect
