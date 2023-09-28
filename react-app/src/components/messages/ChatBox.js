@@ -28,6 +28,8 @@ function ChatBox({ customerId }) {
   }, [allMessages])
 
   // *****************************************************************************
+  // *****************************************************************************
+  // *****************************************************************************
   // handles the web sockets for chat messages
   useEffect(() => {
     
@@ -74,16 +76,18 @@ function ChatBox({ customerId }) {
     setChatInput("");
   };
   // *****************************************************************************
+  // *****************************************************************************
+  // *****************************************************************************
 
-  // useEffect(() => {
-  //   if(messages) {
-  //     chatRef.current?.scrollIntoView({
-  //       behavior: "smooth",
-  //       block: "start"
-  //     })
-  //   }
+  useEffect(() => {
+    if(messages) {
+      chatRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      })
+    }
     
-  // }, [messages])
+  }, [messages])
 
   // Function to reverse a given array
   const reverseArray = (array) => {
