@@ -16,7 +16,6 @@ function MessagePage() {
   const { userId } = useParams();
   const [isLoaded, setIsLoaded] = useState(false);
   const [customer, setCustomer] = useState({})
-  const [messages, setMessages] = useState([])
 
   // handles dispatching the messages
   useEffect(() => {

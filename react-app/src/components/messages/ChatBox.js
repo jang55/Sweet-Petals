@@ -3,6 +3,7 @@ import SenderCard from "./SenderCard";
 import RecipientCard from "./RecipientCard";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect,  useRef, useState } from "react";
+import { useParams } from "react-router-dom";
 import ChatInput from "./ChatInput";
 import { dateFormatThree, dateFormatFour } from "../../utils/helperFunctions";
 import {
@@ -18,9 +19,10 @@ let socket;
 function ChatBox({ customerId }) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
+  const { userId } = useParams();
   const allMessages = useSelector((state) => state.messageState);
   const chatRef = useRef();
-  const [messages, setMessages] = useState([...Object.values(allMessages)]);
+  const [messages, setMessages] = useState([]);
   const [chatInput, setChatInput] = useState("");
 
   useEffect(() => {
@@ -39,8 +41,9 @@ function ChatBox({ customerId }) {
     // listen for chat events
     socket.on("chat_response", (chat) => {
         // when we recieve a chat, add it into our messages array in state
-        // setMessages(messages => [...messages, chat])
-        dispatch(getCustomerMessagesThunk(chat.customer_id));
+        if(Number(userId) === Number(chat.customer_id)) {
+          dispatch(getCustomerMessagesThunk(chat.customer_id));
+        }
     })
     
     // when component unmounts, disconnect
@@ -66,7 +69,7 @@ function ChatBox({ customerId }) {
     }
 
     socket.emit("chat", {
-      message_id: res["message_id"],
+      message_id: res["id"],
       message: res["message"],
       admin_id: res["admin_id"],
       customer_id: res["customer_id"],
