@@ -1,5 +1,5 @@
 import "./css/chat-input.css";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 // import { useState } from "react";
 // import {
 //   createAdminMessageThunk,
@@ -11,7 +11,7 @@ import { BiSend } from "react-icons/bi"
 
 function ChatInput({chatInput, setChatInput, sendChat }) {
   // const dispatch = useDispatch();
-  const user = useSelector((state) => state.session.user);
+  // const user = useSelector((state) => state.session.user);
 
   return (
     <form className="chatbox-input-wrapper" onSubmit={sendChat}>
