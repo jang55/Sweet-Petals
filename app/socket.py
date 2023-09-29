@@ -39,3 +39,18 @@ def handle_chat(data):
         # will connect to all connected users when true
         broadcast=True,
     )
+
+
+
+@socketio.on("message_list")
+def handle_message_list(data):
+    # print("**************************SEND_MESSAGE DATA START**************************")
+    # print(data)
+    # print("**************************SEND_MESSAGE DATA END**************************")
+    emit(
+        "message_list_response",
+        data,
+        # broadcast=False,
+        # will connect to all connected users when true
+        broadcast=True,
+    )

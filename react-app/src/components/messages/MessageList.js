@@ -5,6 +5,9 @@ import { getAllMessagesThunk } from "../../store/messageReducer";
 import { dateFormatThree } from "../../utils/helperFunctions";
 import { useHistory } from "react-router-dom";
 import { getAllUsersThunk } from "../../store/userReducer"
+import socket from "../../utils/Socket";
+import { handleMessageListUpdate } from "../../utils/Socket";
+
 
 function MessageList() {
   const dispatch = useDispatch();
@@ -28,7 +31,25 @@ function MessageList() {
     }
   }, [user, dispatch]);
 
-
+  // *****************************************************************************
+  // *****************************************************************************
+  // *****************************************************************************
+  // handles the web sockets for chat messages
+  useEffect(() => {
+    
+    const callBack = () => dispatch(getAllMessagesThunk());
+    
+    handleMessageListUpdate(callBack);
+    
+    // when component unmounts, disconnect
+    return (() => {
+      // socket.disconnect()
+      socket.off("message_list_response");
+    })
+    // *****************************************************************************
+    // *****************************************************************************
+    // *****************************************************************************
+  }, [])
 
   useEffect(() => {
     if (user && user.role === "admin") {

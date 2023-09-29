@@ -16,15 +16,22 @@ export function chatUpdateEmitter(data) {
 
 export function handleChatUpdate(cb, paramUserId) {
     socket.on("chat_response", (data) => {
-        // when we recieve a chat, add it into our messages array in state
+        // when we recieve a chat, dispatch customer messages
         if(Number(paramUserId) === Number(data.customer_id)) {
             cb(data.customer_id);
         }
     })
 }
 
+export function messageListEmitter() {
+    socket.emit("message_list", {});
+}
 
-
-
+export function handleMessageListUpdate(cb) {
+    socket.on("message_list_response", (data) => {
+        // when we recieve a chat, dispatch call message list messages
+        cb()
+    })
+}
 
 export default socket
