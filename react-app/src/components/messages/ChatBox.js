@@ -12,9 +12,11 @@ import {
   getCustomerMessagesThunk
 } from "../../store/messageReducer";
 // import the socket
-import { io } from 'socket.io-client';
-// outside of your component, initialize the socket variable
-let socket;
+// import { io } from 'socket.io-client';
+// // outside of your component, initialize the socket variable
+// let socket;
+import socket from "../../utils/Socket";
+import { handleChatUpdate, chatUpdateEmitter } from "../../utils/Socket";
 
 function ChatBox({ customerId }) {
   const dispatch = useDispatch();
@@ -36,19 +38,22 @@ function ChatBox({ customerId }) {
   useEffect(() => {
     
     // create websocket/connect
-    socket = io();
+    // socket = io();
+    const callBack = (data) => dispatch(getCustomerMessagesThunk(data));
 
     // listen for chat events
-    socket.on("chat_response", (chat) => {
-        // when we recieve a chat, add it into our messages array in state
-        if(Number(userId) === Number(chat.customer_id)) {
-          dispatch(getCustomerMessagesThunk(chat.customer_id));
-        }
-    })
+    // socket.on("chat_response", (chat) => {
+    //     // when we recieve a chat, add it into our messages array in state
+    //     if(Number(userId) === Number(chat.customer_id)) {
+    //       dispatch(getCustomerMessagesThunk(chat.customer_id));
+    //     }
+    // })
+    handleChatUpdate(callBack, userId);
     
     // when component unmounts, disconnect
     return (() => {
-      socket.disconnect()
+      // socket.disconnect()
+      socket.off("chat_response");
     })
   }, [])
 
@@ -68,13 +73,21 @@ function ChatBox({ customerId }) {
       res = await dispatch(createAdminMessageThunk(customerId, chatInput));
     }
 
-    socket.emit("chat", {
+    // socket.emit("chat", {
+    //   message_id: res["id"],
+    //   message: res["message"],
+    //   admin_id: res["admin_id"],
+    //   customer_id: res["customer_id"],
+    //   sender: res["sender"],
+    // });
+
+    chatUpdateEmitter({
       message_id: res["id"],
       message: res["message"],
       admin_id: res["admin_id"],
       customer_id: res["customer_id"],
       sender: res["sender"],
-    });
+    })
 
     setChatInput("");
   };
