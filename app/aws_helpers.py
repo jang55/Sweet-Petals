@@ -1,8 +1,10 @@
 # need this import to use aws and sockets together on render
-import eventlet
+# import eventlet
 
-eventlet.monkey_patch()
+# eventlet.monkey_patch()
 
+# if in production, keep codes above.
+# if in development, comment it out.
 # *******************************
 
 import boto3
@@ -10,6 +12,7 @@ import botocore
 import os
 import uuid
 
+s3 = boto3.client("s3")
 s3 = boto3.client(
     "s3",
     aws_access_key_id=os.environ.get("S3_KEY"),
