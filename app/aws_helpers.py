@@ -1,3 +1,10 @@
+# need this import to use aws and sockets together on render
+import eventlet
+
+eventlet.monkey_patch()
+
+# *******************************
+
 import boto3
 import botocore
 import os
