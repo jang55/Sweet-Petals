@@ -91,7 +91,7 @@ export const getCustomerMessagesThunk = (userId) => async (dispatch) => {
 
 // ***************************
 
-export const createAdminMessageThunk = (customerId, message) => async (dispatch) => {
+export const createAdminMessageThunk = (customerId, message,) => async (dispatch) => {
     const response = await fetch(`/api/messages/users/${customerId}`, {
       method: "POST",
       headers: {

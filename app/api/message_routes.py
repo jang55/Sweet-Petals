@@ -144,7 +144,7 @@ def create_admin_message(id):
             customer_id=customer.to_dict()["id"],
             admin_id="2",
             message=data["message"],
-            sender="admin"
+            sender="admin",
         )
         db.session.add(new_message)
         db.session.commit()
