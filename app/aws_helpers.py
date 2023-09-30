@@ -1,10 +1,11 @@
+# *******************************
 # need this import to use aws and sockets together on render
 import eventlet
 
 eventlet.monkey_patch()
 
 # if in production, keep codes above.
-# if in development, comment it out.
+# if in development, comment it out to help websockets work faster.
 # *******************************
 
 import boto3
