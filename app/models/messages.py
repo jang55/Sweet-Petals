@@ -15,6 +15,7 @@ class Message(db.Model, UserMixin):
     customer_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
     message = db.Column(db.String(1000), nullable=False)
     sender = db.Column(db.String(), nullable=False)
+    is_read = db.Column(db.Boolean(), default=False)
     created_at = db.Column(db.DateTime(timezone=True), default=db.func.now())
     updated_at = db.Column(db.DateTime(timezone=True), default=db.func.now())
 
@@ -30,6 +31,7 @@ class Message(db.Model, UserMixin):
             'customer_id': self.customer_id,
             'message': self.message,
             'sender': self.sender,
+            'is_read': self.is_read,
             'created_at': self.created_at,
             'updated_at': self.updated_at
         }

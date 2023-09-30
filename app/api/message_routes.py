@@ -108,7 +108,7 @@ def create_customer_message():
             customer_id=current_user.get_id(),
             admin_id="2",
             message=data["message"],
-            sender="customer"
+            sender="customer",
         )
         db.session.add(new_message)
         db.session.commit()
@@ -139,7 +139,6 @@ def create_admin_message(id):
     form["csrf_token"].data = request.cookies["csrf_token"]
 
     if form.validate_on_submit():
-        print("validated*************************")
         data = form.data
         new_message = Message(
             customer_id=customer.to_dict()["id"],

@@ -22,7 +22,8 @@ function ChatBox({ customerId }) {
   const chatRef = useRef();
   const [messages, setMessages] = useState([]);
   const [chatInput, setChatInput] = useState("");
-
+// console.log(window.location.href)
+// console.log(window.location.href === `http://localhost:3000/messages/users/${userId}`)
   useEffect(() => {
     setMessages([...Object.values(allMessages)])
   }, [allMessages])
