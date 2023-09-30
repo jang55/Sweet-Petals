@@ -51,7 +51,7 @@ function MessagePage() {
           <>
             <h3 className="message-h3">Customer: <span className="message-customer-name">{customer?.username}</span></h3>
             <p className="message-return-to-list" onClick={handleBackArrow}>
-              <PiArrowFatLinesLeftDuotone /> Messages List
+              <PiArrowFatLinesLeftDuotone /> Inbox
             </p>
           </>
         )}

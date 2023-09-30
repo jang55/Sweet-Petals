@@ -103,7 +103,7 @@ function MessageList() {
   return (
     isLoaded && user && user.role === "admin" && (
       <div className="message-page-container">
-        <h1 className="message-h1">Messages List</h1>
+        <h1 className="message-h1">Inbox</h1>
         <p className="message-info-text">
           Your current messages with customers.
         </p>
