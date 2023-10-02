@@ -27,9 +27,11 @@ function ChatBox({ customerId }) {
   useEffect(() => {
     const allMessagesArr = Object.values(allMessages)
 
+  // loops through all the messages
     for(let i = 0; i < allMessagesArr.length; i++) {
       let message = allMessagesArr[i];
-
+    // if any messages are unread, handles making it read depending 
+    // on who sees the message.
       if(message.is_read === false) {
         if(user.role === "admin" && message.sender === "customer") {
           dispatch(updateMessageThunk(message.id, userId, message.message, true));
@@ -38,9 +40,9 @@ function ChatBox({ customerId }) {
         }
       }
     }
-    
+
     setMessages([...allMessagesArr])
-  }, [allMessages])
+  }, [allMessages, user.role, userId, dispatch])
 
   // *****************************************************************************
   // *****************************************************************************
