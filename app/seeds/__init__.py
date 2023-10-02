@@ -6,6 +6,7 @@ from .recipes import seed_recipes, undo_recipes
 from .cupcakes import seed_cupcakes, undo_cupcakes
 from .cookies import seed_cookies, undo_cookies
 from .cheesecakes import seed_cheesecakes, undo_cheesecakes
+from .messages import undo_messages
 
 from app.models.db import db, environment, SCHEMA
 
@@ -29,6 +30,7 @@ def seed():
         undo_cupcakes()
         undo_cookies()
         undo_cheesecakes()
+        undo_messages()
     seed_users()
     seed_orders()
     seed_reviews()
@@ -49,4 +51,5 @@ def undo():
     undo_cupcakes()
     undo_cookies()
     undo_cheesecakes()
+    undo_messages()
     # Add other undo functions here
