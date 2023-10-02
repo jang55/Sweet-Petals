@@ -26,32 +26,20 @@ function ChatBox({ customerId }) {
 
   useEffect(() => {
     const allMessagesArr = Object.values(allMessages)
-    const allUpdatedMessagesArr = [];
-    (async () => {
-      for(let i = 0; i < allMessagesArr.length; i++) {
-        let message = allMessagesArr[i];
 
-        if(message.is_read === true) {
-          allUpdatedMessagesArr.push(message);
-        } else {
-          let updatedMessage;
-          
-          // if(user.role === "admin" && message.sender === "customer") {
-          //   console.log("is admin")
-          //   updatedMessage = await dispatch(updateMessageThunk(message.id, message.message, true));
-          //   allUpdatedMessagesArr.push(updatedMessage);
-          // } else if(user.role === "customer" && message.sender === "admin") {
-          //   console.log("is customer")
-          //   updatedMessage = await dispatch(updateMessageThunk(message.id, message.message, true));
-          //   allUpdatedMessagesArr.push(updatedMessage);
-          // }
-          // updatedMessage = await dispatch(updateMessageThunk(message.id, message.message, true));
-          // allUpdatedMessagesArr.push(updatedMessage);
+    for(let i = 0; i < allMessagesArr.length; i++) {
+      let message = allMessagesArr[i];
+
+      if(message.is_read === false) {
+        if(user.role === "admin" && message.sender === "customer") {
+          dispatch(updateMessageThunk(message.id, userId, message.message, true));
+        } else if(user.role === "customer" && message.sender === "admin") {
+          dispatch(updateMessageThunk(message.id, userId, message.message, true));
         }
       }
-      console.log(allUpdatedMessagesArr)
-    })()
-    setMessages(allUpdatedMessagesArr)
+    }
+    
+    setMessages([...allMessagesArr])
   }, [allMessages])
 
   // *****************************************************************************

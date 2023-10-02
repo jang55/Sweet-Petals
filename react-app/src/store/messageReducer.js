@@ -104,7 +104,7 @@ export const createAdminMessageThunk = (customerId, message,) => async (dispatch
 
     if (response.ok) {
       const data = await response.json();
-      dispatch(getCustomerMessagesThunk(customerId));
+      // dispatch(getCustomerMessagesThunk(customerId));
       return data;
     } else {
       const err = await response.json();
@@ -128,7 +128,7 @@ export const createCustomerMessageThunk = (userId, message) => async (dispatch) 
 
     if (response.ok) {
       const data = await response.json();
-      dispatch(getCustomerMessagesThunk(userId));
+      // dispatch(getCustomerMessagesThunk(userId));
       return data;
     } else {
       const err = await response.json();
@@ -139,7 +139,7 @@ export const createCustomerMessageThunk = (userId, message) => async (dispatch) 
 // ***************************
 
 export const updateMessageThunk =
-  (messageId, message, is_read) => async (dispatch) => {
+  (messageId, customerId, message, is_read) => async (dispatch) => {
     const response = await fetch(`/api/messages/${messageId}`, {
       method: "PUT",
       headers: {
@@ -153,7 +153,7 @@ export const updateMessageThunk =
 
     if (response.ok) {
       const data = await response.json();
-      // dispatch(updateRecipeActions(data));
+      // dispatch(getCustomerMessagesThunk(customerId));
       return data;
     } else {
       const err = await response.json();
