@@ -13,7 +13,7 @@ import "./nav.css";
 import { FaEnvelope } from "react-icons/fa";
 // import { MdOutlineRateReview } from "react-icons/md"
 // import { RiFileList3Line } from "react-icons/ri"
-import {  RiLogoutBoxLine } from "react-icons/ri"
+import { RiLogoutBoxLine } from "react-icons/ri"
 import { removeAllCartItems } from "../../store/cartReducer";
 
 

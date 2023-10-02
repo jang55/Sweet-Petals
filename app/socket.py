@@ -54,3 +54,18 @@ def handle_message_list(data):
         # will connect to all connected users when true
         broadcast=True,
     )
+
+
+
+@socketio.on("message_notification")
+def handle_message_notification(data):
+    # print("**************************SEND_MESSAGE DATA START**************************")
+    # print(data)
+    # print("**************************SEND_MESSAGE DATA END**************************")
+    emit(
+        "message_notification_response",
+        data,
+        # broadcast=False,
+        # will connect to all connected users when true
+        broadcast=True,
+    )

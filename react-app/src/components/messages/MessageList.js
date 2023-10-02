@@ -124,7 +124,8 @@ function MessageList() {
               messages[messages.length - 1]?.sender === "admin"
                 ? messages[messages.length - 1]?.Admin?.username
                 : messages[messages.length - 1]?.Customer?.username;
-            const lastUserIsAdmon = messages[messages.length - 1]?.sender === "admin"
+            const lastUserIsAdmin = messages[messages.length - 1]?.sender === "admin"
+            const unreadMessages = !messages[messages.length - 1]?.is_read
             return (
               <div
                 key={i}
@@ -133,7 +134,7 @@ function MessageList() {
               >
                 <span className="message-list-customer-name-wrap">Customer: <span className="message-list-customer-name">{messages[0]?.Customer?.username}</span></span>
                 <span className="message-list-customer-name-wrap">Email: <span className="message-list-customer-name">{messages[0]?.Customer?.email}</span></span>
-                {lastUserIsAdmon ? <div className="message-list-message-wrap">
+                {lastUserIsAdmin ? <div className="message-list-message-wrap">
                   <span className="message-list-msg-item-1">Last message sent:</span>
                   <span className="message-list-msg-item-2">{lastUserMessageUsername} <span className="message-list-msg-item-3">{dateFormatThree(date)}</span></span>
                   <span className="message-list-msg-item-4">"{messages[messages.length - 1]?.message}"</span>
@@ -142,10 +143,12 @@ function MessageList() {
                   <span className="message-list-msg-item-1">Message received:</span>
                   <span className="message-list-msg-item-2">{lastUserMessageUsername} <span className="message-list-msg-item-3">{dateFormatThree(date)}</span></span>
                   <span className="message-list-msg-item-4">"{messages[messages.length - 1]?.message}"</span>
+                  {unreadMessages && <span className="message_list-unread-message"></span>}
                 </div>}
               </div>
             );
           })}
+          {/* <div>hello</div> */}
         </div>
         <div className="message-list-filter-wrapper">
           <span>Filter by: </span>

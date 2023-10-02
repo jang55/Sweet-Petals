@@ -23,6 +23,8 @@ export function handleChatUpdate(cb, paramUserId) {
     })
 }
 
+// ************************************************************
+
 export function messageListEmitter() {
     socket.emit("message_list", {});
 }
@@ -33,5 +35,21 @@ export function handleMessageListUpdate(cb) {
         cb()
     })
 }
+
+// ************************************************************
+
+
+export function messageNotificationEmitter() {
+    socket.emit("message_notification", {});
+}
+
+export function handleMessageNotificationUpdate(cb) {
+    socket.on("message_notification_response", (data) => {
+        // when we recieve a chat, dispatch call message list messages
+        cb()
+    })
+}
+
+
 
 export default socket
