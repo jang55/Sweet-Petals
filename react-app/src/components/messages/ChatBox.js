@@ -24,6 +24,8 @@ function ChatBox({ customerId }) {
   const [messages, setMessages] = useState([]);
   const [chatInput, setChatInput] = useState("");
 
+
+// useEffect for handling and setting messages
   useEffect(() => {
     const allMessagesArr = Object.values(allMessages)
 
@@ -44,10 +46,12 @@ function ChatBox({ customerId }) {
     setMessages([...allMessagesArr])
   }, [allMessages, user.role, userId, dispatch])
 
-  // *****************************************************************************
+
+
   // *****************************************************************************
   // *****************************************************************************
   // handles the web sockets for chat messages
+  // *****************************************************************************
   useEffect(() => {
     
     const callBack = (data) => dispatch(getCustomerMessagesThunk(data));
@@ -89,12 +93,16 @@ function ChatBox({ customerId }) {
 // socket emitter for updating admins message list
     messageListEmitter()
 
+  // resets the chat input after message creation
     setChatInput("");
   };
   // *****************************************************************************
   // *****************************************************************************
   // *****************************************************************************
 
+
+
+// useEffect for handling making the new messages into view
   useEffect(() => {
     if(messages) {
       chatRef.current?.scrollIntoView({
@@ -102,7 +110,6 @@ function ChatBox({ customerId }) {
         block: "start"
       })
     }
-    
   }, [messages])
 
   // Function to reverse a given array
