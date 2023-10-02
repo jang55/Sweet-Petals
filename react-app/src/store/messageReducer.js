@@ -138,30 +138,28 @@ export const createCustomerMessageThunk = (userId, message) => async (dispatch) 
 
 // ***************************
 
-// export const updateRecipeThunk =
-//   (recipeId, title, ingredients, description, notes) => async (dispatch) => {
-//     const response = await fetch(`/api/recipes/${recipeId}`, {
-//       method: "PUT",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify({
-//         title,
-//         ingredients,
-//         description,
-//         notes,
-//       }),
-//     });
+export const updateMessageThunk =
+  (messageId, message, is_read) => async (dispatch) => {
+    const response = await fetch(`/api/messages/${messageId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        message,
+        is_read
+      }),
+    });
 
-//     if (response.ok) {
-//       const data = await response.json();
-//       dispatch(updateRecipeActions(data));
-//       return data;
-//     } else {
-//       const err = await response.json();
-//       return err;
-//     }
-//   };
+    if (response.ok) {
+      const data = await response.json();
+      // dispatch(updateRecipeActions(data));
+      return data;
+    } else {
+      const err = await response.json();
+      return err;
+    }
+  };
 
 // ***************************
 

@@ -167,13 +167,28 @@ def edit_message(id):
 
     if message is None:
         return jsonify({"message": "Message not found"}), 404
-    if str(message.user_id) != current_user.get_id():
-        return {"errors": [{"Unauthorized": "Unauthorized Action"}]}, 401
+
+    # if message.sender == "admin":
+    #     if str(message.admin_id) != current_user.get_id():
+    #         print("*******************************************************")
+    #         return {"errors": [{"Unauthorized": "Unauthorized Action"}]}, 401
+    # elif message.sender == "customer" and str(message.customer_id) != current_user.get_id():
+    #     return {"errors": [{"Unauthorized": "Unauthorized Action"}]}, 401
+    
     if form.validate_on_submit():
         data = form.data
         message.message = data["message"]
+        message.is_read = data["is_read"]
         db.session.commit()
-        return message.to_dict()
+
+        current_message = message.to_dict()
+        if message.admin:
+            current_message["Admin"] = message.admin.to_dict()
+    
+        if message.customer:
+            current_message["Customer"] = message.customer.to_dict()
+
+        return current_message
     return {"errors": validation_errors_to_error_messages(form.errors)}, 400
 
 

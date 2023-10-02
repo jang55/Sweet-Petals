@@ -9,7 +9,8 @@ import { dateFormatThree, dateFormatFour } from "../../utils/helperFunctions";
 import {
   createAdminMessageThunk,
   createCustomerMessageThunk,
-  getCustomerMessagesThunk
+  getCustomerMessagesThunk,
+  updateMessageThunk
 } from "../../store/messageReducer";
 import socket from "../../utils/Socket";
 import { handleChatUpdate, chatUpdateEmitter, messageListEmitter } from "../../utils/Socket";
@@ -24,7 +25,33 @@ function ChatBox({ customerId }) {
   const [chatInput, setChatInput] = useState("");
 
   useEffect(() => {
-    setMessages([...Object.values(allMessages)])
+    const allMessagesArr = Object.values(allMessages)
+    const allUpdatedMessagesArr = [];
+    (async () => {
+      for(let i = 0; i < allMessagesArr.length; i++) {
+        let message = allMessagesArr[i];
+
+        if(message.is_read === true) {
+          allUpdatedMessagesArr.push(message);
+        } else {
+          let updatedMessage;
+          
+          // if(user.role === "admin" && message.sender === "customer") {
+          //   console.log("is admin")
+          //   updatedMessage = await dispatch(updateMessageThunk(message.id, message.message, true));
+          //   allUpdatedMessagesArr.push(updatedMessage);
+          // } else if(user.role === "customer" && message.sender === "admin") {
+          //   console.log("is customer")
+          //   updatedMessage = await dispatch(updateMessageThunk(message.id, message.message, true));
+          //   allUpdatedMessagesArr.push(updatedMessage);
+          // }
+          // updatedMessage = await dispatch(updateMessageThunk(message.id, message.message, true));
+          // allUpdatedMessagesArr.push(updatedMessage);
+        }
+      }
+      console.log(allUpdatedMessagesArr)
+    })()
+    setMessages(allUpdatedMessagesArr)
   }, [allMessages])
 
   // *****************************************************************************
@@ -108,7 +135,7 @@ function ChatBox({ customerId }) {
               ? true
               : dateFormatThree(new Date(messages[tempIndex]?.created_at).toString()).slice(0,8) !==
                 dateFormatThree(new Date(messages[tempIndex - 1]?.created_at).toString()).slice(0,8);    
-            return message.sender === "customer" ? (
+            return message?.sender === "customer" ? (
               <>
                 <div key={`${message.id}${idx}`} className="chat-sender-outer-wrapper">
                   <SenderCard message={message} />
@@ -131,7 +158,7 @@ function ChatBox({ customerId }) {
               ? true
               : dateFormatThree(new Date(messages[tempIndex]?.created_at).toString()).slice(0,8) !==
                 dateFormatThree(new Date(messages[tempIndex - 1]?.created_at).toString()).slice(0,8);            
-            return message.sender === "admin" ? (
+            return message?.sender === "admin" ? (
               <>
                 <div key={`${message.id}${idx}`} className="chat-sender-outer-wrapper">
                   <SenderCard message={message} />
