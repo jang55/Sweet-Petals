@@ -2,7 +2,7 @@ import "./css/chatbox.css";
 import SenderCard from "./SenderCard";
 import RecipientCard from "./RecipientCard";
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect,  useRef, useState } from "react";
+import { useEffect,  useRef, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import ChatInput from "./ChatInput";
 import { dateFormatThree, dateFormatFour } from "../../utils/helperFunctions";
@@ -13,7 +13,9 @@ import {
   updateMessageThunk
 } from "../../store/messageReducer";
 import socket from "../../utils/Socket";
-import { handleChatUpdate, chatUpdateEmitter, messageListEmitter } from "../../utils/Socket";
+import { handleChatUpdate, chatUpdateEmitter, messageListEmitter, messageNotificationEmitter } from "../../utils/Socket";
+import { InfoContext } from "../../context/InfoContext";
+
 
 function ChatBox({ customerId }) {
   const dispatch = useDispatch();
@@ -23,6 +25,7 @@ function ChatBox({ customerId }) {
   const chatRef = useRef();
   const [messages, setMessages] = useState([]);
   const [chatInput, setChatInput] = useState("");
+  const { setUnreadMessages, } = useContext(InfoContext);
 
 
 // useEffect for handling and setting messages
@@ -37,8 +40,10 @@ function ChatBox({ customerId }) {
       if(message.is_read === false) {
         if(user.role === "admin" && message.sender === "customer") {
           dispatch(updateMessageThunk(message.id, userId, message.message, true));
+          // setUnreadMessages(false)
         } else if(user.role === "customer" && message.sender === "admin") {
           dispatch(updateMessageThunk(message.id, userId, message.message, true));
+          setUnreadMessages(false)
         }
       }
     }
@@ -91,7 +96,11 @@ function ChatBox({ customerId }) {
   })
 
 // socket emitter for updating admins message list
-    messageListEmitter()
+    messageListEmitter();
+
+
+// socket emitter for updating message notifications
+    messageNotificationEmitter();
 
   // resets the chat input after message creation
     setChatInput("");

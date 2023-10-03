@@ -15,21 +15,92 @@ import { FaEnvelope } from "react-icons/fa";
 // import { RiFileList3Line } from "react-icons/ri"
 import { RiLogoutBoxLine } from "react-icons/ri"
 import { removeAllCartItems } from "../../store/cartReducer";
-
+import { getCustomerMessagesThunk, getAllMessagesThunk } from "../../store/messageReducer";
+import socket from "../../utils/Socket";
+import { handleMessageNotificationUpdate } from "../../utils/Socket";
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
   const cart = useSelector((state) => state.cartState);
+  const allMessages = useSelector((state) => state.messageState);
   const [cupcakes, setCupcakes] = useState([]);
   const [cheesecakes, setCheesecakes] = useState([]);
   const [cookies, setCookies] = useState([]);
-  const { cartCount, setCartCount, openShoppingCart, setOpenShoppingCart, cartRef } =
-    useContext(InfoContext);
+  const { 
+    cartCount, 
+    setCartCount, 
+    openShoppingCart, 
+    setOpenShoppingCart, 
+    cartRef,
+    unreadMessages,
+    setUnreadMessages,
+  } = useContext(InfoContext);
   const [openMenu, setOpenMenu] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
   const dropdownRef = useRef();
 
+  useEffect(() => {
+    if(sessionUser) {
+      dispatch(getCustomerMessagesThunk(sessionUser.id))
+    }
+  }, [sessionUser])
+
+  useEffect(() => {
+    console.log(unreadMessages)
+  }, [unreadMessages])
+
+  // *****************************************************************************
+  // *****************************************************************************
+  // handles the web sockets for chat messages
+  // *****************************************************************************
+  useEffect(() => {
+    
+    const callBack = () => {
+      console.log("in call back for notifications")
+      console.log(sessionUser.role)
+      if(sessionUser && sessionUser.role === "customer") {
+        console.log("in call back for notifications in if condition")
+        dispatch(getCustomerMessagesThunk(sessionUser.id))
+      }
+    }
+    
+    handleMessageNotificationUpdate(callBack)
+    
+    // when component unmounts, disconnect
+    return (() => {
+      // socket.disconnect()
+      socket.off("message_notification_response");
+    })
+  }, [sessionUser])
+
+
+  useEffect(() => {
+    console.log("in useEffect to check messages")
+    const messages = Object.values(allMessages);
+    if(sessionUser && sessionUser.role === "customer") {
+      console.log("yipeer doo")
+      if(messages.length > 0) {
+        if(messages[messages.length - 1]?.sender === "admin" && messages[messages.length - 1]?.is_read === false) {
+          console.log("hit customer in useffect")
+          setUnreadMessages(true)
+          return
+        }
+      }
+    } else if(sessionUser && sessionUser.role === "admin") {
+      // setUnreadMessages(true)
+      console.log("hit admin in useffect")
+      return
+    } 
+
+    setUnreadMessages(false)
+    
+  }, [allMessages, dispatch, sessionUser])
+  
+  
+    // *****************************************************************************
+    // *****************************************************************************
+    // *****************************************************************************
   
   // *********** this sets the count for the session storage values *******************************
     useEffect(() => {
@@ -117,6 +188,7 @@ useEffect(() => {
       cheesecakes: {},
       cookies: {},
     }));
+    setUnreadMessages(false);
     await dispatch(logout());
     await dispatch(removeAllCartItems());
     // await dispatch(removeAllCartItems());
@@ -152,6 +224,9 @@ useEffect(() => {
             isLoaded && (
               <li className="nav-menu-wrapper" ref={dropdownRef} onClick={toggleMenu}>
                 <RxHamburgerMenu className="nav-menu-button" />
+                {/* ******************************* */}
+                {unreadMessages && <div className="nav-menu-notification"></div>}
+                {/* ******************************* */}
                 {openMenu && (
                   <div className="nav-menu"  >
 {/* links for all the admins */}
