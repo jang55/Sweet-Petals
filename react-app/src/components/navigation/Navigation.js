@@ -43,12 +43,14 @@ function Navigation({ isLoaded }) {
 
   // dispatches the message thunk on refresh or changes pages
   useEffect(() => {
-    if(sessionUser && sessionUser.role === "customer" && !window.location.href.includes("messages/users")) {
-      dispatch(getCustomerMessagesThunk(sessionUser.id))
-    } else if (sessionUser && sessionUser.role === "admin" && !window.location.href.includes("messages/users")) {
-      dispatch(getAllMessagesThunk());
+    if(sessionUser && !window.location.href.includes("messages/users")) {
+      if(sessionUser.role === "customer") {
+        dispatch(getCustomerMessagesThunk(sessionUser.id))
+      } else if(sessionUser.role === "admin") {
+        dispatch(getAllMessagesThunk());
+      }
     }
-  }, [sessionUser])
+  }, [sessionUser, dispatch])
 
 // ***********************************************************
 // ***********************************************************
@@ -92,7 +94,6 @@ function Navigation({ isLoaded }) {
       } 
 
     // setUnreadMessages(false);
-    
   }, [allMessages, dispatch, sessionUser])
 
   // *****************************************************************************
@@ -102,14 +103,12 @@ function Navigation({ isLoaded }) {
   useEffect(() => {
     
     const callBack = () => {
-      console.log("in call back for notifications")
-      if(sessionUser && sessionUser.role === "customer" && !window.location.href.includes("messages/users")) {
-        console.log("in call back for notifications in if condition")
-        dispatch(getCustomerMessagesThunk(sessionUser.id))
-      }
-
-      if(sessionUser && sessionUser.role === "admin" && !window.location.href.includes("messages/users")) {
-        dispatch(getAllMessagesThunk())
+      if(sessionUser && !window.location.href.includes("messages/users")) {
+        if(sessionUser.role === "customer") {
+          dispatch(getCustomerMessagesThunk(sessionUser.id))
+        } else if(sessionUser.role === "admin") {
+          dispatch(getAllMessagesThunk());
+        }
       }
     }
     
@@ -120,7 +119,7 @@ function Navigation({ isLoaded }) {
       // socket.disconnect()
       socket.off("message_notification_response");
     })
-  }, [sessionUser])
+  }, [sessionUser, dispatch])
 
     // *****************************************************************************
     // *****************************************************************************

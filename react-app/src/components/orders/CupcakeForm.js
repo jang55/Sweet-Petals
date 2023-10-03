@@ -15,7 +15,7 @@ function CupcakeForm() {
   const [hsvaTwo, setHsvaTwo] = useState({ h: 214, s: 43, v: 90, a: 1 });
   const [hsvaThree, setHsvaThree] = useState({ h: 214, s: 43, v: 90, a: 1 });
   const [style, setStyle] = useState("");
-  const [amount, setAmount] = useState(1);
+  // const [amount, setAmount] = useState(1);
   const [openWheel, setOpenWheel] = useState("");
   const [addColorTwo, setAddColorTwo] = useState(false);
   const [addColorThree, setAddColorThree] = useState(false);
@@ -52,9 +52,9 @@ function CupcakeForm() {
     e.preventDefault();
 
     if (!cupcakes[flavor+style+(hsvaToHex(hsvaOne))+(hsvaTwo?hsvaToHex(hsvaTwo):"")+(hsvaThree?hsvaToHex(hsvaThree):"")]) {
-      setCartCount(prevCount => prevCount + amount);
+      setCartCount(prevCount => prevCount + 1);
     } else if(cupcakes[flavor+style+(hsvaToHex(hsvaOne))+(hsvaTwo?hsvaToHex(hsvaTwo):"")+(hsvaThree?hsvaToHex(hsvaThree):"")] && cupcakes[flavor+style+(hsvaToHex(hsvaOne))+(hsvaTwo?hsvaToHex(hsvaTwo):"")+(hsvaThree?hsvaToHex(hsvaThree):"")].amount < 10) {
-      setCartCount(prevCount => prevCount + amount);
+      setCartCount(prevCount => prevCount + 1);
     } 
 
     const formRes = {
@@ -65,7 +65,7 @@ function CupcakeForm() {
       color_two: addColorTwo ? hsvaToHex(hsvaTwo) : null,
       color_three: addColorThree ? hsvaToHex(hsvaThree) : null,
       type: "cupcake",
-      amount: amount,
+      amount: 1,
     }
     dispatch(addCupcakeAction(formRes));
     // setAddedtoCart(true);

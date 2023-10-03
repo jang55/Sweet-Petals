@@ -8,7 +8,7 @@ import {IoMdCheckmarkCircle} from "react-icons/io"
 
 function CookieForm() {
   const [selectedCookie, setSelectedCookie] = useState("");
-  const [amount, setAmount] = useState(1);
+  // const [amount, setAmount] = useState(1);
   const dispatch = useDispatch();
   const { setCartCount, addedToCart, setAddedtoCart } = useContext(InfoContext);
   const cart = useSelector((state) => state.cartState);
@@ -31,15 +31,15 @@ function CookieForm() {
     e.preventDefault();
 
     if (!cookies[selectedCookie]) {
-      setCartCount(prevCount => prevCount + amount);
+      setCartCount(prevCount => prevCount + 1);
     } else if(cookies[selectedCookie] && cookies[selectedCookie].amount < 10) {
-      setCartCount(prevCount => prevCount + amount);
+      setCartCount(prevCount => prevCount + 1);
     } 
     
 
     const formRes = {
       flavor: selectedCookie,
-      amount: amount,
+      amount: 1,
       type: "cookie"
     }
     dispatch(addCookieAction(formRes));

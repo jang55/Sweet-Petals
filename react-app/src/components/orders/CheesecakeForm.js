@@ -8,7 +8,7 @@ import {IoMdCheckmarkCircle} from "react-icons/io"
 function CheesecakeForm() {
   const [strawberries, setStrawberries] = useState(false);
   const [cheesecakeFlavor, setCheesecakeFlavor] = useState("")
-  const [amount, setAmount] = useState(1);
+  // const [amount, setAmount] = useState(1);
   const dispatch = useDispatch();
   const { setCartCount, addedToCart, setAddedtoCart } = useContext(InfoContext);
   const cart = useSelector((state) => state.cartState);
@@ -34,16 +34,16 @@ function CheesecakeForm() {
     e.preventDefault();
 
     if (!cheesecakes[cheesecakeFlavor+String(strawberries)]) {
-      setCartCount(prevCount => prevCount + amount);
+      setCartCount(prevCount => prevCount + 1);
     } else if(cheesecakes[cheesecakeFlavor+String(strawberries)] && cheesecakes[cheesecakeFlavor+String(strawberries)].amount < 10) {
-      setCartCount(prevCount => prevCount + amount);
+      setCartCount(prevCount => prevCount + 1);
     } 
 
     const formRes = {
       id: cheesecakeFlavor+String(strawberries),
       flavor: cheesecakeFlavor,
       strawberries: strawberries,
-      amount: amount,
+      amount: 1,
       type: "cheesecake"
     }
 
