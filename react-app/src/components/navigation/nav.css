@@ -118,6 +118,16 @@
   right: 0;
 }
 
+.nav-menu-notification-in-menu-box {
+  position: absolute;
+  background-color: red;
+  border-radius: 50%;
+  width: 12px;
+  height: 12px;
+  top: 20px;
+  right: 10px;
+}
+
 .nav-menu-wrapper:hover {
   background-color: #e5a4d0;
 }
@@ -237,7 +247,7 @@
 .nav-shopping-count {
   width: 17px;
   height: 17px;
-  background-color: rgba(229, 76, 76, 0.77);
+  background-color: rgb(229, 76, 76);
   border-radius: 10px;
   position: absolute;
   top: -2px;

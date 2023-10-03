@@ -47,8 +47,26 @@ function Navigation({ isLoaded }) {
   }, [sessionUser])
 
   useEffect(() => {
-    console.log(unreadMessages)
-  }, [unreadMessages])
+    console.log("in useEffect to check messages")
+    const messages = Object.values(allMessages);
+    if(sessionUser && sessionUser.role === "customer") {
+      console.log("yipeer doo")
+      if(messages.length > 0) {
+        if(messages[messages.length - 1]?.sender === "admin" && messages[messages.length - 1]?.is_read === false) {
+          console.log("hit customer in useffect")
+          setUnreadMessages(true)
+          return
+        }
+      }
+    } else if(sessionUser && sessionUser.role === "admin") {
+      // setUnreadMessages(true)
+      console.log("hit admin in useffect")
+      return
+    } 
+
+    setUnreadMessages(false)
+    
+  }, [allMessages, dispatch, sessionUser])
 
   // *****************************************************************************
   // *****************************************************************************
@@ -73,30 +91,6 @@ function Navigation({ isLoaded }) {
     })
   }, [sessionUser])
 
-
-  useEffect(() => {
-    console.log("in useEffect to check messages")
-    const messages = Object.values(allMessages);
-    if(sessionUser && sessionUser.role === "customer") {
-      console.log("yipeer doo")
-      if(messages.length > 0) {
-        if(messages[messages.length - 1]?.sender === "admin" && messages[messages.length - 1]?.is_read === false) {
-          console.log("hit customer in useffect")
-          setUnreadMessages(true)
-          return
-        }
-      }
-    } else if(sessionUser && sessionUser.role === "admin") {
-      // setUnreadMessages(true)
-      console.log("hit admin in useffect")
-      return
-    } 
-
-    setUnreadMessages(false)
-    
-  }, [allMessages, dispatch, sessionUser])
-  
-  
     // *****************************************************************************
     // *****************************************************************************
     // *****************************************************************************
@@ -255,7 +249,10 @@ useEffect(() => {
 {/* links for all the customers */}
                     {sessionUser.role === "customer" && <NavLink className="nav-menu-items-wrap" to={`/messages/users/${sessionUser.id}`}>
                       <span className="nav-menu-items">
-                        Messages <FaEnvelope className="nav-envelope" />
+                        Messages 
+                        <FaEnvelope className="nav-envelope" 
+                        />
+                        {unreadMessages && <span className="nav-menu-notification-in-menu-box"></span>}
                       </span>
                     </NavLink>}
 
