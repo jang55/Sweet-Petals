@@ -41,7 +41,7 @@ function Navigation({ isLoaded }) {
   const dropdownRef = useRef();
 
   useEffect(() => {
-    if(sessionUser) {
+    if(sessionUser && !window.location.href.includes("messages/users")) {
       dispatch(getCustomerMessagesThunk(sessionUser.id))
     }
   }, [sessionUser])
@@ -58,8 +58,7 @@ function Navigation({ isLoaded }) {
     
     const callBack = () => {
       console.log("in call back for notifications")
-      console.log(sessionUser.role)
-      if(sessionUser && sessionUser.role === "customer") {
+      if(sessionUser && sessionUser.role === "customer" && !window.location.href.includes("messages/users")) {
         console.log("in call back for notifications in if condition")
         dispatch(getCustomerMessagesThunk(sessionUser.id))
       }
