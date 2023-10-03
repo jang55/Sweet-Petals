@@ -34,37 +34,64 @@ function Navigation({ isLoaded }) {
     cartRef,
     unreadMessages,
     setUnreadMessages,
+    setUnreadMessagesMoreThanOne
   } = useContext(InfoContext);
   const [openMenu, setOpenMenu] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
   const dropdownRef = useRef();
 
+  // dispatches the message thunk on refresh or changes pages
   useEffect(() => {
-    if(sessionUser && !window.location.href.includes("messages/users")) {
+    if(sessionUser && sessionUser.role === "customer" && !window.location.href.includes("messages/users")) {
       dispatch(getCustomerMessagesThunk(sessionUser.id))
+    } else if (sessionUser && sessionUser.role === "admin" && !window.location.href.includes("messages/users")) {
+      dispatch(getAllMessagesThunk());
     }
   }, [sessionUser])
 
+// ***********************************************************
+// ***********************************************************
+// ***********************************************************
+// useEffect for handling messages notifications
+// ***********************************************************
   useEffect(() => {
-    console.log("in useEffect to check messages")
     const messages = Object.values(allMessages);
+    // conditions for customer users
     if(sessionUser && sessionUser.role === "customer") {
-      console.log("yipeer doo")
       if(messages.length > 0) {
+        // condition for checking last message
         if(messages[messages.length - 1]?.sender === "admin" && messages[messages.length - 1]?.is_read === false) {
-          console.log("hit customer in useffect")
           setUnreadMessages(true)
           return
         }
       }
-    } else if(sessionUser && sessionUser.role === "admin") {
-      // setUnreadMessages(true)
-      console.log("hit admin in useffect")
-      return
-    } 
+      // conditions for admin users
+    } else if(sessionUser && sessionUser.role === "admin" && !window.location.href.includes("messages/users")) {
+        if(messages.length > 0) {
+          let count = 0;
+          // iterate through each list of customer messages
+          for(let i = 0; i < messages.length; i++) {
+            let customerMessages = messages[i]
+            // condition checking last message of each customer
+            if(customerMessages[customerMessages.length - 1]?.sender === "customer" && customerMessages[customerMessages.length - 1]?.is_read === false) {
+              // if any messages are unread, set the notification
+              setUnreadMessages(true)
+              // if count of unread messages of more than 1 user, set this state true
+              if(count >= 1) {
+                setUnreadMessagesMoreThanOne(true)
+                return;
+              }
 
-    setUnreadMessages(false)
+              count += 1
+            } 
+          }
+          // if only one unread customer message, set to false
+          setUnreadMessagesMoreThanOne(false);
+        }
+      } 
+
+    // setUnreadMessages(false);
     
   }, [allMessages, dispatch, sessionUser])
 
@@ -79,6 +106,10 @@ function Navigation({ isLoaded }) {
       if(sessionUser && sessionUser.role === "customer" && !window.location.href.includes("messages/users")) {
         console.log("in call back for notifications in if condition")
         dispatch(getCustomerMessagesThunk(sessionUser.id))
+      }
+
+      if(sessionUser && sessionUser.role === "admin" && !window.location.href.includes("messages/users")) {
+        dispatch(getAllMessagesThunk())
       }
     }
     
@@ -226,6 +257,7 @@ useEffect(() => {
                     {sessionUser.role === "admin" && <NavLink className="nav-menu-items-wrap" to="/messages/list">
                       <span className="nav-menu-items">
                         Messages <FaEnvelope className="nav-envelope" />
+                        {unreadMessages && <span className="nav-menu-notification-in-menu-box"></span>}
                       </span>
                     </NavLink>}
 
@@ -249,9 +281,7 @@ useEffect(() => {
 {/* links for all the customers */}
                     {sessionUser.role === "customer" && <NavLink className="nav-menu-items-wrap" to={`/messages/users/${sessionUser.id}`}>
                       <span className="nav-menu-items">
-                        Messages 
-                        <FaEnvelope className="nav-envelope" 
-                        />
+                        Messages <FaEnvelope className="nav-envelope" />
                         {unreadMessages && <span className="nav-menu-notification-in-menu-box"></span>}
                       </span>
                     </NavLink>}

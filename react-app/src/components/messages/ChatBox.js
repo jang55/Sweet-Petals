@@ -25,7 +25,10 @@ function ChatBox({ customerId }) {
   const chatRef = useRef();
   const [messages, setMessages] = useState([]);
   const [chatInput, setChatInput] = useState("");
-  const { setUnreadMessages, } = useContext(InfoContext);
+  const { 
+    setUnreadMessages,
+    unreadMessagesMoreThanOne,
+  } = useContext(InfoContext);
 
 
 // useEffect for handling and setting messages
@@ -40,7 +43,9 @@ function ChatBox({ customerId }) {
       if(message.is_read === false) {
         if(user.role === "admin" && message.sender === "customer") {
           dispatch(updateMessageThunk(message.id, userId, message.message, true));
-          // setUnreadMessages(false)
+          if(!unreadMessagesMoreThanOne) {
+            setUnreadMessages(false)
+          }
         } else if(user.role === "customer" && message.sender === "admin") {
           dispatch(updateMessageThunk(message.id, userId, message.message, true));
           setUnreadMessages(false)

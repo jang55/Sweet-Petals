@@ -9,6 +9,7 @@ export const InfoProvider = ({ children }) => {
   const cartRef = useRef();
   const [addedToCart, setAddedtoCart] = useState(false);
   const [unreadMessages, setUnreadMessages] = useState(false);
+  const [unreadMessagesMoreThanOne, setUnreadMessagesMoreThanOne] = useState(false);
 
   return (
     <InfoContext.Provider
@@ -22,6 +23,8 @@ export const InfoProvider = ({ children }) => {
         setAddedtoCart,
         unreadMessages,
         setUnreadMessages,
+        unreadMessagesMoreThanOne,
+        setUnreadMessagesMoreThanOne
       }}
     >
       {children}
