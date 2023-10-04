@@ -15,6 +15,7 @@ class Order(db.Model, UserMixin):
     order_number = db.Column(db.String(40), nullable=False)
     pick_up_time = db.Column(db.DateTime(timezone=True), nullable=False)
     order_completed = db.Column(db.Boolean(), default=False)
+    is_new = db.Column(db.Boolean(), default=True)
     created_at = db.Column(db.DateTime(timezone=True), default=db.func.now())
     updated_at = db.Column(db.DateTime(timezone=True), default=db.func.now())
 
@@ -40,6 +41,7 @@ class Order(db.Model, UserMixin):
             'order_number': self.order_number,
             'pick_up_time': self.pick_up_time,
             'order_completed': self.order_completed,
+            'is_new': self.is_new,
             'created_at': self.created_at,
             'updated_at': self.updated_at
         }

@@ -7,3 +7,4 @@ from app.models import Order
 class OrderForm(FlaskForm):
     pick_up_time = StringField("Pick up day and time", validators=[DataRequired()])
     order_completed = BooleanField("Order completed")
+    is_new = BooleanField("Is new order")
