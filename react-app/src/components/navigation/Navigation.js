@@ -144,8 +144,8 @@ function Navigation({ isLoaded }) {
   // *****************************************************************************
   // *****************************************************************************
   useEffect(() => {
+    console.log("in useffect order check true")
     if(sessionUser && sessionUser.role === "admin") {
-      console.log("in useffect order check true")
       const customerOrdersArr = Object.values(customerOrders)
       for(let i = 0; i < customerOrdersArr.length; i++) {
         const order = customerOrdersArr[i];
@@ -155,8 +155,10 @@ function Navigation({ isLoaded }) {
           return;
         }
       }
+      // console.log("no unseen orders")
+      // setUnSeenOrders(false)
     }
-  }, [customerOrders, sessionUser])
+  }, [customerOrders, dispatch, sessionUser])
 
 
   // *****************************************************************************

@@ -9,6 +9,27 @@
   height: fit-content;
 }
 
+.order-new-notification {
+  position: absolute;
+  background-color: red;
+  border-radius: 50%;
+  width: 23px;
+  height: 23px;
+  left: 195px;
+  top: -8px;
+  /* z-index: 20; */
+}
+
+.order-new-notification-message {
+  position: absolute;
+  font-weight: bolder;
+  left: 23px;
+  top: -2px;
+  font-size: 25px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  width: 180px;
+}
+
 .order-wrapper-more {
   height: fit-content;
   margin: 20px;

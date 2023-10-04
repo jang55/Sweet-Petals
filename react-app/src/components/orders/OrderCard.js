@@ -1,11 +1,12 @@
 import { dateFormat } from "../../utils/helperFunctions";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import DeleteOrderModal from "../modal-pages/DeleteOrderModal";
 import { useSelector,  useDispatch } from "react-redux";
 import { updateOrderThunk } from "../../store/orderReducer";
 import { dateFormatTooBackend, checkDateMiliseconds, disableOlderOrders } from "../../utils/helperFunctions";
 import { useHistory } from "react-router-dom";
 import AddReviewModal from "../modal-pages/AddReviewModal";
+import { InfoContext } from "../../context/InfoContext";
 
 
 
@@ -22,6 +23,7 @@ function OrderCard({ order, pageType, validOrder }) {
   const [orderReview, setOrderReview] = useState();
   const dispatch = useDispatch();
   const history = useHistory();
+  const { unSeenOrders, setUnSeenOrders } = useContext(InfoContext);
 
   useEffect(() => {
     if(!user) {
@@ -108,7 +110,10 @@ function OrderCard({ order, pageType, validOrder }) {
     <fieldset
       className={showMore ? "order-wrapper-more" : (Math.max(cupcakes.length, cheesecakes.length, cookies.length) > 1 ? "order-wrapper-less-gradient" :"order-wrapper-less")}
     >
-      <legend className="order-number">Orders ID: {order.order_number} </legend>
+      <legend className="order-number">
+        Orders ID: {order.order_number} 
+        {user && order.is_new && user.role === "admin" && <div className="order-new-notification"><span className="order-new-notification-message">NEW ORDER</span></div>}
+      </legend>
       <div className="order-information-wrapper">
         <p className="order-pickup">
           Pick up Date/Time:{" "}
@@ -162,6 +167,7 @@ function OrderCard({ order, pageType, validOrder }) {
             )}
           </div>
         )}
+        {/* {user && order.is_new && user.role === "admin" && <div className="order-new-notification"></div>} */}
       </div>
       <div className="order-items-wrapper">
         {cupcakes && cupcakes.length > 0 && (
