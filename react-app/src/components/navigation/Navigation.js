@@ -17,12 +17,16 @@ import { RiLogoutBoxLine } from "react-icons/ri"
 import { removeAllCartItems } from "../../store/cartReducer";
 import { getCustomerMessagesThunk, getAllMessagesThunk } from "../../store/messageReducer";
 import socket from "../../utils/Socket";
-import { handleMessageNotificationUpdate } from "../../utils/Socket";
+import { handleMessageNotificationUpdate, handleOrderNotificationUpdate } from "../../utils/Socket";
+import { getAllOrdersThunk } from "../../store/orderReducer";
+
+
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
   const cart = useSelector((state) => state.cartState);
   const allMessages = useSelector((state) => state.messageState);
+  const customerOrders = useSelector(state => state.orderState);
   const [cupcakes, setCupcakes] = useState([]);
   const [cheesecakes, setCheesecakes] = useState([]);
   const [cookies, setCookies] = useState([]);
@@ -34,7 +38,9 @@ function Navigation({ isLoaded }) {
     cartRef,
     unreadMessages,
     setUnreadMessages,
-    setUnreadMessagesMoreThanOne
+    setUnreadMessagesMoreThanOne,
+    unSeenOrders,
+    setUnSeenOrders,
   } = useContext(InfoContext);
   const [openMenu, setOpenMenu] = useState(false);
   const dispatch = useDispatch();
@@ -48,6 +54,7 @@ function Navigation({ isLoaded }) {
         dispatch(getCustomerMessagesThunk(sessionUser.id))
       } else if(sessionUser.role === "admin") {
         dispatch(getAllMessagesThunk());
+        dispatch(getAllOrdersThunk());
       }
     }
   }, [sessionUser, dispatch])
@@ -125,6 +132,52 @@ function Navigation({ isLoaded }) {
     return (() => {
       // socket.disconnect()
       socket.off("message_notification_response");
+    })
+  }, [sessionUser, dispatch])
+
+  // *****************************************************************************
+  // *****************************************************************************
+  // *****************************************************************************
+
+  
+  // *****************************************************************************
+  // *****************************************************************************
+  // *****************************************************************************
+  useEffect(() => {
+    if(sessionUser && sessionUser.role === "admin") {
+      console.log("in useffect order check true")
+      const customerOrdersArr = Object.values(customerOrders)
+      for(let i = 0; i < customerOrdersArr.length; i++) {
+        const order = customerOrdersArr[i];
+        if(order.is_new) {
+          console.log("there is unseen order")
+          setUnSeenOrders(true)
+          return;
+        }
+      }
+    }
+  }, [customerOrders, sessionUser])
+
+
+  // *****************************************************************************
+  // *****************************************************************************
+  // handles the web sockets for orders notification
+  // *****************************************************************************
+  useEffect(() => {
+    
+    const callBack = () => {
+      console.log("in callback for orders socket")
+      if(sessionUser && sessionUser.role === "admin") {
+        dispatch(getAllOrdersThunk());
+      }
+    }
+    
+    handleOrderNotificationUpdate(callBack)
+    
+    // when component unmounts, disconnect
+    return (() => {
+      // socket.disconnect()
+      socket.off("order_notification_response");
     })
   }, [sessionUser, dispatch])
 
@@ -256,6 +309,7 @@ useEffect(() => {
                 <RxHamburgerMenu className="nav-menu-button" />
                 {/* ******************************* */}
                 {unreadMessages && <div className="nav-menu-notification"></div>}
+                {unSeenOrders && <div className="nav-menu-notification"></div>}
                 {/* ******************************* */}
                 {openMenu && (
                   <div className="nav-menu"  >
@@ -263,13 +317,14 @@ useEffect(() => {
                     {sessionUser.role === "admin" && <NavLink className="nav-menu-items-wrap" to="/messages/list">
                       <span className="nav-menu-items">
                         Messages <FaEnvelope className="nav-envelope" />
-                        {unreadMessages && <span className="nav-menu-notification-in-menu-box"></span>}
+                        {unreadMessages && <span className="nav-menu-message-notification-in-menu-box"></span>}
                       </span>
                     </NavLink>}
 
                     {sessionUser.role === "admin" && (
                       <NavLink className="nav-menu-items-wrap" to="/orders">
                         <span className="nav-menu-items">Order Logs</span>
+                        {unSeenOrders && <span className="nav-menu-orders-notification-in-menu-box"></span>}
                       </NavLink>
                     )}
 

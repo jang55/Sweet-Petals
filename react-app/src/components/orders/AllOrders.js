@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import "./css/user-orders.css";
 import OrderCard from "./OrderCard";
 import { useSelector } from "react-redux";
@@ -6,8 +6,12 @@ import { useDispatch } from "react-redux";
 import { getAllOrdersThunk } from "../../store/orderReducer";
 import { getAllUsersThunk } from "../../store/userReducer";
 import { useHistory } from "react-router-dom";
+import { updateOrderStatusThunk } from "../../store/orderReducer";
+import { InfoContext } from "../../context/InfoContext";
 
 
+
+// Admin side looking at all customers orders on one page
 function AllOrders() {
     const usersOrders = useSelector(state => state.orderState);
     const user = useSelector((state) => state.session.user);
@@ -16,6 +20,7 @@ function AllOrders() {
     const [isLoaded, setIsLoaded] = useState(false);
     const dispatch = useDispatch();
     const history = useHistory();
+    const { unSeenOrders, setUnSeenOrders } = useContext(InfoContext);
     
 
     useEffect(() => {
@@ -51,6 +56,11 @@ function AllOrders() {
         const allOrders = Object.values(usersOrders)
         for (let i=0; i<allOrders.length; i++) {
             const order = allOrders[i];
+            if(order.is_new) {
+                dispatch(updateOrderStatusThunk(order.id))
+                setUnSeenOrders(false)
+            }
+
             if (checkOldOrders(order)) {
                 oldOrders.push(order);
             } else {

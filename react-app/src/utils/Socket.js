@@ -51,5 +51,20 @@ export function handleMessageNotificationUpdate(cb) {
 }
 
 
+// ************************************************************
+
+
+export function orderNotificationEmitter() {
+    socket.emit("order_notification", {});
+}
+
+export function handleOrderNotificationUpdate(cb) {
+    socket.on("order_notification_response", (data) => {
+        // when we recieve a chat, dispatch call message list messages
+        cb()
+    })
+}
+
+
 
 export default socket

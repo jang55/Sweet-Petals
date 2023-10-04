@@ -118,7 +118,7 @@
   right: 0;
 }
 
-.nav-menu-notification-in-menu-box {
+.nav-menu-message-notification-in-menu-box {
   position: absolute;
   background-color: red;
   border-radius: 50%;
@@ -126,6 +126,16 @@
   height: 12px;
   top: 20px;
   right: 10px;
+}
+
+.nav-menu-orders-notification-in-menu-box {
+  position: absolute;
+  background-color: red;
+  border-radius: 50%;
+  width: 12px;
+  height: 12px;
+  right: 10px;
+
 }
 
 .nav-menu-wrapper:hover {

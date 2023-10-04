@@ -69,3 +69,17 @@ def handle_message_notification(data):
         # will connect to all connected users when true
         broadcast=True,
     )
+
+
+@socketio.on("order_notification")
+def handle_order_notification(data):
+    # print("**************************SEND_MESSAGE DATA START**************************")
+    # print(data)
+    # print("**************************SEND_MESSAGE DATA END**************************")
+    emit(
+        "order_notification_response",
+        data,
+        # broadcast=False,
+        # will connect to all connected users when true
+        broadcast=True,
+    )

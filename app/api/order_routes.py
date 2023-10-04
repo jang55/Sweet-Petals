@@ -246,6 +246,24 @@ def edit_a_order(id):
     return {"errors": validation_errors_to_error_messages(form.errors)}, 400
 
 
+@order_routes.route("/<int:id>/status", methods=["PUT", "PATCH"])
+@login_required
+def edit_a_order_new_to_seen(id):
+    # query for the order
+    order = Order.query.get(id)
+
+    if order is None:
+        return jsonify({"message": "Order not found"}), 404
+
+    # all admins are allow to make changes to the order
+    # incase they want to adjust order completed to true
+    if current_user.to_dict()["role"] == "customer":
+        return {"errors": [{"Unauthorized": "Unauthorized Action"}]}, 401
+        
+    order.is_new = False
+    db.session.commit()
+    return order.to_dict()
+
 
 
 # *******************************************************

@@ -12,6 +12,7 @@ import moment from "moment";
 import { InfoContext } from "../../context/InfoContext";
 import * as orderActions from "../../store/orderReducer";
 import { useHistory } from "react-router-dom";
+import { orderNotificationEmitter } from "../../utils/Socket";
 
 
 
@@ -155,6 +156,8 @@ function ShoppingCart() {
       }
 
       await dispatch(orderActions.getAllUserOrdersThunk());
+      // socket emitter for notifying admin about new order
+      orderNotificationEmitter()
       setOpenShoppingCart(false);
       setCartCount(0);
       dispatch(removeAllCartItems());

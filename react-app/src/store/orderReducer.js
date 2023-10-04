@@ -326,6 +326,25 @@ export const updateOrderThunk = (orderId, pick_up_time, order_completed) => asyn
   }
 };
 
+export const updateOrderStatusThunk = (orderId) => async (dispatch) => {
+  const response = await fetch(`/api/orders/${orderId}/status`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({}),
+  });
+
+  if (response.ok) {
+    const data = await response.json();
+    // dispatch(getAllOrdersThunk());
+    return data;
+  } else {
+    const err = await response.json();
+    return err;
+  }
+};
+
 
 export const updateOrderUserSideThunk = (orderId, pick_up_time, order_completed) => async (dispatch) => {
   const response = await fetch(`/api/orders/${orderId}`, {
