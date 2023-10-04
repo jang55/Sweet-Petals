@@ -59,6 +59,11 @@ function Navigation({ isLoaded }) {
 // ***********************************************************
   useEffect(() => {
     const messages = Object.values(allMessages);
+    if(messages.length <= 0) {
+      setUnreadMessages(false)
+      return
+    }
+
     // conditions for customer users
     if(sessionUser && sessionUser.role === "customer") {
       if(messages.length > 0) {
@@ -66,6 +71,8 @@ function Navigation({ isLoaded }) {
         if(messages[messages.length - 1]?.sender === "admin" && messages[messages.length - 1]?.is_read === false) {
           setUnreadMessages(true)
           return
+        } else if(messages[messages.length - 1]?.sender === "customer") {
+          setUnreadMessages(false)
         }
       }
       // conditions for admin users
@@ -206,12 +213,12 @@ useEffect(() => {
   };
 
   const logoutHandler = async () => {
+    setUnreadMessages(false);
     window.sessionStorage.setItem(`cart-items`, JSON.stringify({
       cupcakes: {},
       cheesecakes: {},
       cookies: {},
     }));
-    setUnreadMessages(false);
     await dispatch(logout());
     await dispatch(removeAllCartItems());
     // await dispatch(removeAllCartItems());
