@@ -6,7 +6,7 @@ from .recipes import seed_recipes, undo_recipes
 from .cupcakes import seed_cupcakes, undo_cupcakes
 from .cookies import seed_cookies, undo_cookies
 from .cheesecakes import seed_cheesecakes, undo_cheesecakes
-from .messages import undo_messages
+from .messages import seed_messages, undo_messages
 
 from app.models.db import db, environment, SCHEMA
 
@@ -38,6 +38,7 @@ def seed():
     seed_cupcakes()
     seed_cookies()
     seed_cheesecakes()
+    seed_messages()
     # Add other seed functions here
 
 
