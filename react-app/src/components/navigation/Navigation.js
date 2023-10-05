@@ -348,7 +348,7 @@ useEffect(() => {
                     {sessionUser.role === "customer" && <NavLink className="nav-menu-items-wrap" to={`/messages/users/${sessionUser.id}`}>
                       <span className="nav-menu-items">
                         Messages <FaEnvelope className="nav-envelope" />
-                        {unreadMessages && <span className="nav-menu-notification-in-menu-box"></span>}
+                        {unreadMessages && <span className="nav-menu-message-notification-in-menu-box"></span>}
                       </span>
                     </NavLink>}
 
