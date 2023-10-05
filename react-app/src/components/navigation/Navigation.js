@@ -157,6 +157,8 @@ function Navigation({ isLoaded }) {
       }
 
       // setUnSeenOrders(false)
+    } else if(sessionUser && sessionUser.role === "customer") {
+      setUnSeenOrders(false)
     }
   }, [customerOrders, dispatch, sessionUser])
 
@@ -268,8 +270,8 @@ useEffect(() => {
   };
 
   const logoutHandler = async () => {
-    setUnreadMessages(false);
-    setUnSeenOrders(false);
+    await setUnreadMessages(false);
+    await setUnSeenOrders(false);
     window.sessionStorage.setItem(`cart-items`, JSON.stringify({
       cupcakes: {},
       cheesecakes: {},
