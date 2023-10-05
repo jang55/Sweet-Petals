@@ -59,7 +59,6 @@ function AllOrders() {
             if(order.is_new) {
                 dispatch(updateOrderStatusThunk(order.id))
                 setUnSeenOrders(false)
-                console.log("set orders seen to false on orders page")
             }
 
             if (checkOldOrders(order)) {

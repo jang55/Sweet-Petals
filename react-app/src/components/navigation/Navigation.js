@@ -144,18 +144,18 @@ function Navigation({ isLoaded }) {
   // *****************************************************************************
   // *****************************************************************************
   useEffect(() => {
-    console.log("in useffect order check true")
+
     if(sessionUser && sessionUser.role === "admin") {
       const customerOrdersArr = Object.values(customerOrders)
       for(let i = 0; i < customerOrdersArr.length; i++) {
         const order = customerOrdersArr[i];
         if(order.is_new) {
-          console.log("there is unseen order")
+
           setUnSeenOrders(true)
           return;
         }
       }
-      // console.log("no unseen orders")
+
       // setUnSeenOrders(false)
     }
   }, [customerOrders, dispatch, sessionUser])
@@ -168,7 +168,7 @@ function Navigation({ isLoaded }) {
   useEffect(() => {
     
     const callBack = () => {
-      console.log("in callback for orders socket")
+
       if(sessionUser && sessionUser.role === "admin") {
         dispatch(getAllOrdersThunk());
       }
