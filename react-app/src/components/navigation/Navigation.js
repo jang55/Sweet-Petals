@@ -269,6 +269,7 @@ useEffect(() => {
 
   const logoutHandler = async () => {
     setUnreadMessages(false);
+    setUnSeenOrders(false);
     window.sessionStorage.setItem(`cart-items`, JSON.stringify({
       cupcakes: {},
       cheesecakes: {},

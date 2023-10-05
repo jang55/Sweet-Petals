@@ -23,8 +23,8 @@ function OrderCard({ order, pageType, validOrder }) {
   const [orderReview, setOrderReview] = useState();
   const dispatch = useDispatch();
   const history = useHistory();
-  const { unSeenOrders, setUnSeenOrders } = useContext(InfoContext);
 
+  
   useEffect(() => {
     if(!user) {
       return history.push("/")
