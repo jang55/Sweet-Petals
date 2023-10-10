@@ -35,6 +35,7 @@ Accord was built using the following technologies:
 ### Others:
 - **AWS**: Cloud infrastructure and services
 - **WTForms**: Forms handling
+- Using socketIO to give the user and admin a source to communicate in real-time
 
 ***
 ## Installation
@@ -106,10 +107,6 @@ For subsequent sessions, ensure you have two terminal windows:
 ***
 ## Future Features
 
-### Messaging
-- Give a source for the user and admin to communicate
-- Using socketIO to give user and admin a srouce to communicate real time
-
 ### Payment
 - Gives the user a source to make payments upon completion of creating an order
 
@@ -122,6 +119,13 @@ For subsequent sessions, ensure you have two terminal windows:
 <img width="1053" alt="image" src="https://github.com/jang55/Sweet-Petals/assets/95331968/99a93248-626c-4b80-8908-ed855b1888d9">
 <img width="964" alt="image" src="https://github.com/jang55/Sweet-Petals/assets/95331968/abe84f38-a8fc-4b3d-b789-e7cdeb892ad7">
 <img width="912" alt="image" src="https://github.com/jang55/Sweet-Petals/assets/95331968/3e1a586f-cba0-4846-b281-23470174f096">
+<img width="1043" alt="image" src="https://github.com/jang55/Sweet-Petals/assets/95331968/0ceddbce-e6cc-468e-adca-eb36ba821bd7">
+
+
+
+
+
+
 
 
 
