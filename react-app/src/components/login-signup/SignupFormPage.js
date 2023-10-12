@@ -46,7 +46,6 @@ function SignupFormPage() {
     }
 
     const data = await dispatch(signUp(username, email, password));
-
     if (data) {
       setErrors(data);
     }
