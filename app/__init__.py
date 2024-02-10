@@ -14,6 +14,7 @@ from .api.message_routes import message_routes
 from .seeds import seed_commands
 from .config import Config
 from .socket import socketio
+from flask_apscheduler import APScheduler
 
 app = Flask(__name__, static_folder='../react-app/build', static_url_path='/')
 
@@ -41,6 +42,13 @@ app.register_blueprint(message_routes, url_prefix='/api/messages')
 db.init_app(app)
 Migrate(app, db)
 socketio.init_app(app)
+
+# *****************************************
+# create the aps scheduler here
+scheduler = APScheduler()
+
+
+# *****************************************
 
 # Application Security
 CORS(app)
