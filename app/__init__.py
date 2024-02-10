@@ -14,7 +14,7 @@ from .api.message_routes import message_routes
 from .seeds import seed_commands
 from .config import Config
 from .socket import socketio
-from flask_apscheduler import APScheduler
+# from flask_apscheduler import APScheduler
 
 app = Flask(__name__, static_folder='../react-app/build', static_url_path='/')
 
@@ -44,10 +44,16 @@ Migrate(app, db)
 socketio.init_app(app)
 
 # *****************************************
-# create the aps scheduler here
-scheduler = APScheduler()
+# # create the aps scheduler here
+# scheduler = APScheduler()
 
+# def scheduledTask():
+#     pass
 
+# if __name__ == "__main__":
+#     # scheduler.add_job(id = "scheduled task", func = scheduledTask, trigger = "interval", minutes = 3)
+#     scheduler.add_job(id = "scheduled task", func = scheduledTask, trigger = "interval", seconds = 1)
+#     scheduler.start()
 # *****************************************
 
 # Application Security
